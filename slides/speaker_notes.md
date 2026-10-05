@@ -34,7 +34,7 @@ Solid lines are trained models, dashed is exact Bayes, colours are the number of
 
 ## 9. The wrong beliefs follow two simple laws
 
-Given only the world's true switch and typo rates, these two formulas predict how a trained model will behave. We tested that by leaving one world out, fitting the laws on the other eleven, and predicting the held-out world's trained models: R² 0.87. Confidence intervals: 1.50 [1.29, 1.78], exponent 0.74 [0.71, 0.78], intercept −0.33 [−0.47, −0.04], slope 0.44 [0.35, 0.57].
+Given only the world's true switch and typo rates, these two formulas predict how a trained model will behave. We tested that by leaving one world out, fitting the laws on the other eleven, and predicting the held-out world's trained models: R² 0.87. Confidence intervals: 1.45 [1.29, 1.78], exponent 0.74 [0.71, 0.78], intercept −0.35 [−0.47, −0.04], slope 0.44 [0.35, 0.57].
 
 ## 10. Fading rate sets the belief, and training chose it
 

@@ -50,11 +50,30 @@ def expand(cfg):
         yield rid, args
 
 
+def train_procs():
+    """Output dirs of every recfreq.train process alive on this machine (Linux /proc), including ones started
+    by an earlier queue."""
+    outs = []
+    for pid in os.listdir("/proc"):
+        if not pid.isdigit():
+            continue
+        try:
+            args = open(f"/proc/{pid}/cmdline", "rb").read().split(b"\0")
+        except OSError:
+            continue
+        args = [a.decode(errors="replace") for a in args]
+        if "recfreq.train" in args and "--out" in args:
+            outs.append(os.path.abspath(args[args.index("--out") + 1]))
+    return outs
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("configs", nargs="+")
     p.add_argument("--max-parallel", type=int, default=4)
     p.add_argument("--retries", type=int, default=3)
+    p.add_argument("--max-gpu-jobs", type=int, default=0,
+                   help="cap on recfreq.train processes machine-wide, counting runs started elsewhere (0 = off)")
     p.add_argument("--results", default=os.path.join(ROOT, "results", "runs"))
     a = p.parse_args()
     todo = []
@@ -68,8 +87,16 @@ def main():
     attempts = {rid: 0 for rid, _, _ in todo}
     running = {}
     while todo or running:
-        while todo and len(running) < a.max_parallel:
+        alive = train_procs()
+        for _ in range(len(todo)):
+            if len(running) >= a.max_parallel or (a.max_gpu_jobs and len(alive) >= a.max_gpu_jobs):
+                break
             rid, args, out = todo.pop(0)
+            if os.path.exists(os.path.join(out, "done.json")):
+                continue  # finished by a process this queue did not start
+            if os.path.abspath(out) in alive:
+                todo.append((rid, args, out))  # already training elsewhere: wait for it
+                continue
             os.makedirs(out, exist_ok=True)
             cmd = [sys.executable, "-m", "recfreq.train", "--out", out] + sum(
                 [[f"--{k}", str(v)] for k, v in args.items()], [])
@@ -77,6 +104,7 @@ def main():
             running[rid] = (subprocess.Popen(cmd, cwd=ROOT, stdout=logf, stderr=subprocess.STDOUT), args, out, logf)
             attempts[rid] += 1
             print(time.strftime("%H:%M:%S"), "start", rid, f"(attempt {attempts[rid]})", flush=True)
+            alive.append(os.path.abspath(out))
         time.sleep(5)
         for rid in list(running):
             proc, args, out, logf = running[rid]

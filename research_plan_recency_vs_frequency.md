@@ -667,7 +667,7 @@ All 17 cited works verified against arXiv / venue pages (titles, authors, IDs). 
 | V5.1 predictive law | **Pass** | leave-one-setting-out median R² 0.867 vs true Bayes (in-sample a, b) 0.738 |
 | V5.2 elasticity | **Pass on the median, narrowly** | log-linear R² 0.93; k median 1.29 (IQR 0.82–2.40); 2-layer attention-only k ≈ 1.1–1.2 |
 
-Also: probes in-distribution (+0.004 nats); bf16 vs fp32 no effect (h′ ×0.995–1.011); 31/31 headline numbers reproduce; fit robust to optimizer (99%) with tight bootstrap CIs; laws h′ = 1.50 [1.29, 1.78]·h^0.74 [0.71, 0.78], logit ε′ = −0.33 [−0.47, −0.04] + 0.44 [0.35, 0.57]·logit ε.
+Also: probes in-distribution (+0.004 nats); bf16 vs fp32 no effect (h′ ×0.995–1.011); 31/31 headline numbers reproduce; fit robust to optimizer (99%) with tight bootstrap CIs; laws h′ = 1.45 [1.29, 1.78]·h^0.74 [0.71, 0.78], logit ε′ = −0.35 [−0.47, −0.04] + 0.44 [0.35, 0.57]·logit ε (point estimates; an earlier version of this line gave the bootstrap medians 1.50 and −0.33, corrected 6 Oct).
 Corrections made: per-copy evidence "about a third" → "about half" (median 0.46× exact Bayes); slope-surgery loss changes +0.006/+0.016; run-3 slope surgery strictly fails "all seeds" (56/57); **"the miscalibration is cheap" was wrong** — trained slopes are at the ordinary-data loss minimum in 85/85 ALiBi models and calibrating h′ costs +0.044 nats (median), so the miscalibration is loss-optimal for these heads; 3 citation fixes.
 
 ## 18. Law scope (run 6) — pre-registered predictions (written 6 Oct 2026 ~01:00 IST, before any E5 run was trained)
@@ -724,3 +724,17 @@ Corrections made: per-copy evidence "about a third" → "about half" (median 0.4
   - Leave-one-ε-level-out: the same, per level.
   - Separability: keep the simple separable law unless cross terms raise the leave-one-setting-out median R² by ≥ 0.03.
   - Noise ceiling: the seed-to-seed surface R² at the same setting. Report the law's R² as a fraction of this ceiling.
+
+**Deviation (6 Oct 2026, ~02:45 IST, before any E5 result was analysed).** The queue was trimmed from 89 to 63 runs so that it ends by about 07:30. Reason: GPU time; the N = 512 runs cost about 3× a normal run, not the 2× assumed.
+
+Dropped:
+- the ε-sweeps at N = 192 and N = 512 (12 runs);
+- the second seed of the RoPE grid (10 runs);
+- the second seed of the uniform-keys and uniform-typo variants (4 runs).
+
+Graded criteria are unchanged:
+- **S4** uses only the h-sweep at ε = 0.1, which is kept with 2 seeds at N = 192 and 512. δ_N is no longer reported.
+- **S5:** the uniform-keys and uniform-typo variants are graded on 1 seed (noisier).
+- **S6:** uses 1 seed at the 10 new RoPE settings, plus the 3 existing seeds at C and D.
+
+Trimmed configs: `configs/E5n_trim.json`, `E5d_trim_a.json`, `E5d_trim_b.json`, `E5r_trim.json`. The originals are kept as the full design.
