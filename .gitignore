@@ -1,0 +1,13 @@
+# OS / editor
+.DS_Store
+.claude/
+*.swp
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+
+# model checkpoints (~400 MB; kept on the training server)
+*.pt

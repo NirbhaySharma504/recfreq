@@ -1,0 +1,10 @@
+{
+  "exp": "E4h",
+  "base": {"steps": 20000, "mlp": 0, "layers": 2},
+  "grid": {
+    "seed": [0, 1],
+    "hp": [{"lr": 0.0003}, {"lr": 0.003}, {"batch": 256}],
+    "pe": ["alibi_learn", "rope"],
+    "point": [{"h": 0.01, "eps": 0.1}, {"h": 0.03, "eps": 0.2}]
+  }
+}

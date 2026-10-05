@@ -1,0 +1,114 @@
+{
+  "final": {
+    "ce": 1.2433183193206787,
+    "acc": 0.7413101196289062,
+    "ce_rep": 1.0493996624205635,
+    "acc_rep": 0.7896693979511298,
+    "bayes_ce": 1.2405277349236212,
+    "bayes_acc": 0.7415542602539062,
+    "bayes_acc_rep": 0.789905367909713,
+    "excess": 0.002790584397057483
+  },
+  "heads": [
+    {
+      "layer": 0,
+      "head": 0,
+      "ind_score": 0.07303296774625778,
+      "slope": null
+    },
+    {
+      "layer": 0,
+      "head": 1,
+      "ind_score": 0.032547079026699066,
+      "slope": null
+    },
+    {
+      "layer": 0,
+      "head": 2,
+      "ind_score": 0.147506982088089,
+      "slope": null
+    },
+    {
+      "layer": 0,
+      "head": 3,
+      "ind_score": 0.0669650062918663,
+      "slope": null
+    },
+    {
+      "layer": 1,
+      "head": 0,
+      "ind_score": 0.8914583921432495,
+      "slope": null
+    },
+    {
+      "layer": 1,
+      "head": 1,
+      "ind_score": 0.3645138442516327,
+      "slope": null
+    },
+    {
+      "layer": 1,
+      "head": 2,
+      "ind_score": 0.9633835554122925,
+      "slope": null
+    },
+    {
+      "layer": 1,
+      "head": 3,
+      "ind_score": 0.9883120059967041,
+      "slope": null
+    },
+    {
+      "layer": 2,
+      "head": 0,
+      "ind_score": 0.999844491481781,
+      "slope": null
+    },
+    {
+      "layer": 2,
+      "head": 1,
+      "ind_score": 0.999832034111023,
+      "slope": null
+    },
+    {
+      "layer": 2,
+      "head": 2,
+      "ind_score": 0.5848549604415894,
+      "slope": null
+    },
+    {
+      "layer": 2,
+      "head": 3,
+      "ind_score": 0.726436972618103,
+      "slope": null
+    }
+  ],
+  "args": {
+    "h": 0.01,
+    "eps": 0.1,
+    "typo": "structured",
+    "K": 16,
+    "V": 64,
+    "n_pairs": 256,
+    "key_dist": "zipf",
+    "layers": 3,
+    "mlp": 0,
+    "pe": "rope",
+    "d_model": 128,
+    "heads": 4,
+    "seed": 1,
+    "steps": 20000,
+    "batch": 128,
+    "lr": 0.001,
+    "warmup": 500,
+    "wd": 0.01,
+    "eval_every": 500,
+    "eval_batch": 512,
+    "probes": 1,
+    "probe_fills": 256,
+    "gate": 0,
+    "conflict_frac": 0.0,
+    "conflict_batch": 32,
+    "out": "/home/nirbhay/recfreq/results/runs/E2a_h0.01_e0.1_L3_rope_attn_s1"
+  }
+}

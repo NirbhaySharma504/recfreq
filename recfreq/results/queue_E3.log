@@ -1,0 +1,34 @@
+16 runs to do
+11:01:18 start E3_h0.01_e0.1_L2_alibi_learn_attn_st60000_s0 (attempt 1)
+11:01:18 start E3_h0.03_e0.2_L2_alibi_learn_attn_st60000_s0 (attempt 1)
+11:01:18 start E3_h0.01_e0.1_L2_rope_attn_st60000_s0 (attempt 1)
+11:56:27 done  E3_h0.01_e0.1_L2_alibi_learn_attn_st60000_s0
+11:56:27 done  E3_h0.03_e0.2_L2_alibi_learn_attn_st60000_s0
+11:56:27 start E3_h0.03_e0.2_L2_rope_attn_st60000_s0 (attempt 1)
+11:56:27 start E3_h0.01_e0.1_L2_alibi_learn_attn_d256_s0 (attempt 1)
+12:02:37 done  E3_h0.01_e0.1_L2_rope_attn_st60000_s0
+12:02:37 start E3_h0.03_e0.2_L2_alibi_learn_attn_d256_s0 (attempt 1)
+12:33:19 done  E3_h0.01_e0.1_L2_alibi_learn_attn_d256_s0
+12:33:19 start E3_h0.01_e0.1_L2_rope_attn_d256_s0 (attempt 1)
+12:39:34 done  E3_h0.03_e0.2_L2_alibi_learn_attn_d256_s0
+12:39:34 start E3_h0.03_e0.2_L2_rope_attn_d256_s0 (attempt 1)
+12:58:45 done  E3_h0.03_e0.2_L2_rope_attn_st60000_s0
+12:58:45 start E3_h0.01_e0.1_L2_alibi_learn_attn_st60000_s1 (attempt 1)
+13:14:56 done  E3_h0.01_e0.1_L2_rope_attn_d256_s0
+13:14:56 start E3_h0.03_e0.2_L2_alibi_learn_attn_st60000_s1 (attempt 1)
+13:20:56 done  E3_h0.03_e0.2_L2_rope_attn_d256_s0
+13:20:56 start E3_h0.01_e0.1_L2_rope_attn_st60000_s1 (attempt 1)
+13:53:13 done  E3_h0.01_e0.1_L2_alibi_learn_attn_st60000_s1
+13:53:13 start E3_h0.03_e0.2_L2_rope_attn_st60000_s1 (attempt 1)
+14:09:24 done  E3_h0.03_e0.2_L2_alibi_learn_attn_st60000_s1
+14:09:24 start E3_h0.01_e0.1_L2_alibi_learn_attn_d256_s1 (attempt 1)
+14:22:35 done  E3_h0.01_e0.1_L2_rope_attn_st60000_s1
+14:22:35 start E3_h0.03_e0.2_L2_alibi_learn_attn_d256_s1 (attempt 1)
+14:45:11 done  E3_h0.01_e0.1_L2_alibi_learn_attn_d256_s1
+14:45:11 start E3_h0.01_e0.1_L2_rope_attn_d256_s1 (attempt 1)
+14:53:32 done  E3_h0.03_e0.2_L2_rope_attn_st60000_s1
+14:53:32 start E3_h0.03_e0.2_L2_rope_attn_d256_s1 (attempt 1)
+14:56:02 done  E3_h0.03_e0.2_L2_alibi_learn_attn_d256_s1
+15:13:43 done  E3_h0.01_e0.1_L2_rope_attn_d256_s1
+15:15:53 done  E3_h0.03_e0.2_L2_rope_attn_d256_s1
+queue finished

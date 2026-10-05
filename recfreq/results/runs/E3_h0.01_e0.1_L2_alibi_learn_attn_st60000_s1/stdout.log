@@ -1,0 +1,32 @@
+init {'ce': 4.181868553161621, 'acc': 0.01654815673828125, 'ce_rep': 4.18156667778709, 'acc_rep': 0.016713182583789676, 'bayes_ce': 1.2405277349236212, 'bayes_acc': 0.7415542602539062, 'bayes_acc_rep': 0.789905367909713, 'excess': 2.941340818238}
+{"step": 2000, "train_loss": 1.2863, "ce": 1.2775, "acc": 0.7369, "ce_rep": 1.0852, "acc_rep": 0.7849, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0369, "sec": 106.9}
+{"step": 4000, "train_loss": 1.2842, "ce": 1.273, "acc": 0.7371, "ce_rep": 1.0809, "acc_rep": 0.785, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0325, "sec": 215.3}
+{"step": 6000, "train_loss": 1.2661, "ce": 1.2692, "acc": 0.7382, "ce_rep": 1.0766, "acc_rep": 0.7862, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0286, "sec": 325.4}
+{"step": 8000, "train_loss": 1.2806, "ce": 1.2675, "acc": 0.7383, "ce_rep": 1.075, "acc_rep": 0.7863, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.027, "sec": 432.9}
+{"step": 10000, "train_loss": 1.2803, "ce": 1.2668, "acc": 0.7385, "ce_rep": 1.0742, "acc_rep": 0.7867, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0263, "sec": 543.7}
+{"step": 12000, "train_loss": 1.2676, "ce": 1.2659, "acc": 0.7387, "ce_rep": 1.0733, "acc_rep": 0.7869, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0254, "sec": 653.3}
+{"step": 14000, "train_loss": 1.2673, "ce": 1.2651, "acc": 0.7388, "ce_rep": 1.0724, "acc_rep": 0.787, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0245, "sec": 763.4}
+{"step": 16000, "train_loss": 1.273, "ce": 1.2637, "acc": 0.7389, "ce_rep": 1.071, "acc_rep": 0.7871, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0232, "sec": 854.1}
+{"step": 18000, "train_loss": 1.2833, "ce": 1.2636, "acc": 0.739, "ce_rep": 1.0709, "acc_rep": 0.7872, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0231, "sec": 932.0}
+{"step": 20000, "train_loss": 1.2656, "ce": 1.2633, "acc": 0.739, "ce_rep": 1.0706, "acc_rep": 0.7871, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0228, "sec": 1022.3}
+{"step": 22000, "train_loss": 1.2658, "ce": 1.2632, "acc": 0.739, "ce_rep": 1.0705, "acc_rep": 0.7872, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0227, "sec": 1127.3}
+{"step": 24000, "train_loss": 1.2734, "ce": 1.2627, "acc": 0.739, "ce_rep": 1.07, "acc_rep": 0.7872, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0222, "sec": 1216.2}
+{"step": 26000, "train_loss": 1.2596, "ce": 1.2618, "acc": 0.7392, "ce_rep": 1.069, "acc_rep": 0.7874, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0213, "sec": 1298.5}
+{"step": 28000, "train_loss": 1.2656, "ce": 1.2614, "acc": 0.7392, "ce_rep": 1.0685, "acc_rep": 0.7874, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0208, "sec": 1390.8}
+{"step": 30000, "train_loss": 1.2532, "ce": 1.2606, "acc": 0.7393, "ce_rep": 1.0677, "acc_rep": 0.7876, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0201, "sec": 1503.0}
+{"step": 32000, "train_loss": 1.2715, "ce": 1.2607, "acc": 0.7394, "ce_rep": 1.0679, "acc_rep": 0.7876, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0202, "sec": 1607.9}
+{"step": 34000, "train_loss": 1.2552, "ce": 1.2601, "acc": 0.7395, "ce_rep": 1.0673, "acc_rep": 0.7876, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0196, "sec": 1720.4}
+{"step": 36000, "train_loss": 1.2618, "ce": 1.2591, "acc": 0.7397, "ce_rep": 1.0662, "acc_rep": 0.7878, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0186, "sec": 1825.1}
+{"step": 38000, "train_loss": 1.2591, "ce": 1.2589, "acc": 0.7396, "ce_rep": 1.066, "acc_rep": 0.7877, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0184, "sec": 1933.2}
+{"step": 40000, "train_loss": 1.2473, "ce": 1.2583, "acc": 0.7396, "ce_rep": 1.0653, "acc_rep": 0.7879, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0177, "sec": 2039.9}
+{"step": 42000, "train_loss": 1.2569, "ce": 1.2584, "acc": 0.7396, "ce_rep": 1.0654, "acc_rep": 0.7878, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0178, "sec": 2146.4}
+{"step": 44000, "train_loss": 1.2605, "ce": 1.2579, "acc": 0.7397, "ce_rep": 1.0649, "acc_rep": 0.7879, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0174, "sec": 2252.4}
+{"step": 46000, "train_loss": 1.2684, "ce": 1.2577, "acc": 0.7397, "ce_rep": 1.0647, "acc_rep": 0.7879, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0172, "sec": 2360.9}
+{"step": 48000, "train_loss": 1.2549, "ce": 1.2573, "acc": 0.7398, "ce_rep": 1.0643, "acc_rep": 0.7879, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0168, "sec": 2469.2}
+{"step": 50000, "train_loss": 1.26, "ce": 1.2575, "acc": 0.7398, "ce_rep": 1.0644, "acc_rep": 0.7878, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.017, "sec": 2576.1}
+{"step": 52000, "train_loss": 1.2685, "ce": 1.2572, "acc": 0.7397, "ce_rep": 1.0641, "acc_rep": 0.7878, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0166, "sec": 2682.1}
+{"step": 54000, "train_loss": 1.2665, "ce": 1.257, "acc": 0.7397, "ce_rep": 1.064, "acc_rep": 0.7878, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0165, "sec": 2789.1}
+{"step": 56000, "train_loss": 1.2671, "ce": 1.2569, "acc": 0.7399, "ce_rep": 1.0638, "acc_rep": 0.7878, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0163, "sec": 2897.2}
+{"step": 58000, "train_loss": 1.2577, "ce": 1.2567, "acc": 0.7398, "ce_rep": 1.0636, "acc_rep": 0.788, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0162, "sec": 3004.0}
+{"step": 60000, "train_loss": 1.2597, "ce": 1.2567, "acc": 0.7398, "ce_rep": 1.0636, "acc_rep": 0.7879, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0162, "sec": 3110.5}
+done /home/nirbhay/recfreq/results/runs/E3_h0.01_e0.1_L2_alibi_learn_attn_st60000_s1

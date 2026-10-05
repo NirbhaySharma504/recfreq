@@ -1,0 +1,10 @@
+{
+  "exp": "E3",
+  "base": {"layers": 2, "mlp": 0, "eval_every": 2000},
+  "grid": {
+    "seed": [0, 1],
+    "variant": [{"d_model": 128, "heads": 4, "steps": 60000}, {"d_model": 256, "heads": 8, "steps": 20000}],
+    "pe": ["alibi_learn", "rope"],
+    "point": [{"h": 0.01, "eps": 0.1}, {"h": 0.03, "eps": 0.2}]
+  }
+}

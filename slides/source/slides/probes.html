@@ -1,0 +1,25 @@
+<section id="probes" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:48px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">What we built · the main measurement</p>
+<h2 style="margin:16px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1">Conflict probes: old evidence against new</h2>
+</div>
+<div style="display:flex;gap:28px;align-items:flex-start;font-size:30px;text-align:center">
+<div style="flex:3;display:flex;flex-direction:column;gap:14px"><div style="display:flex;gap:10px;justify-content:center"><div style="flex:1;padding:18px 0;background:#DCE6F8;border:2px solid #2B59C3;border-radius:8px">τ c</div><div style="flex:1;padding:18px 0;background:#DCE6F8;border:2px solid #2B59C3;border-radius:8px">τ c</div><div style="flex:1;padding:18px 0;background:#DCE6F8;border:2px solid #2B59C3;border-radius:8px">τ c</div></div><div style="font-size:26px;color:#2B59C3;font-weight:600">n<sub>c</sub> old copies of c</div></div>
+<div style="flex:3;display:flex;flex-direction:column;gap:14px"><div style="display:flex;gap:10px"><div style="flex:1;padding:18px 0;background:#E6E8EE;border-radius:8px;color:#6B7487">· ·</div><div style="flex:1;padding:18px 0;background:#E6E8EE;border-radius:8px;color:#6B7487">· ·</div><div style="flex:1;padding:18px 0;background:#E6E8EE;border-radius:8px;color:#6B7487">· ·</div></div><div style="font-size:26px;color:#3F4A60;font-weight:600">gap of G pairs (other keys)</div></div>
+<div style="flex:2;display:flex;flex-direction:column;gap:14px"><div style="display:flex;gap:10px"><div style="flex:1;padding:18px 0;background:#FBE5D3;border:2px solid #E07A2F;border-radius:8px">τ w</div><div style="flex:1;padding:18px 0;background:#FBE5D3;border:2px solid #E07A2F;border-radius:8px">τ w</div></div><div style="font-size:26px;color:#B85A17;font-weight:600">n<sub>w</sub> recent copies of w = c+1</div></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px"><div style="padding:18px 0;background:#16213A;color:#F5F7FA;border-radius:8px">τ ?</div><div style="font-size:26px;font-weight:600">query</div></div>
+</div>
+<div style="display:grid;grid-template-columns:1.1fr 1fr;gap:40px">
+<div style="background:#FFFFFF;border-radius:12px;padding:32px 40px">
+<p style="margin:0;font-size:28px;font-weight:600;color:#2B59C3">One number per probe</p>
+<p style="margin:14px 0 0;font-size:40px;font-family:'Source Serif 4', Georgia, serif">log p(c) / p(w)</p>
+<p style="margin:14px 0 0;font-size:28px;line-height:1.45">Above 0: trusts the old value (frequency). Below 0: trusts the recent one (recency). Same number from the exact Bayes filter.</p>
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:32px 40px">
+<p style="margin:0;font-size:28px;font-weight:600;color:#2B59C3">The grid</p>
+<p style="margin:14px 0 0;font-size:28px;line-height:1.5">n<sub>c</sub> ∈ {1, 2, 4, 8} × n<sub>w</sub> ∈ {1, …, 4} × G ∈ {2, …, 128}<br><b>= 112 probe types</b>, 256 random fills each, for every model.</p>
+<p style="margin:14px 0 0;font-size:26px;line-height:1.45;color:#3F4A60">w = c+1 looks exactly like a typo of c: the hardest case.</p>
+</div>
+</div>
+<aside>The probe puts the two kinds of evidence head to head. A fresh key τ is shown with value c a few times, then other keys for a gap of G pairs, then with value w a few times, then queried. We read off how much the model prefers c over w, and compare it with the exact Bayes answer. Varying the three knobs gives 112 probe types.</aside>
+</section>

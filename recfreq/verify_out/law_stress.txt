@@ -1,0 +1,59 @@
+36 models, 12 settings
+
+law on all 12 settings: h' = 1.453 h^0.736;  logit eps' = -0.345 + 0.438 logit eps
+
+1. level hold-outs (criterion: median R² >= 0.75 for each held-out level)
+           n  r2_median  r2_min  sign_agree   pass
+held                                              
+eps=0.05   9      0.784   0.743       0.944   True
+eps=0.1    9      0.888   0.858       0.964   True
+eps=0.2    9      0.907   0.746       0.933   True
+eps=0.3    9      0.853   0.610       0.954   True
+h=0.003   12      0.811   0.630       0.905   True
+h=0.01    12      0.886   0.363       0.926   True
+h=0.03    12      0.722   0.508       0.962  False
+
+2. separability: LOSO median R² simple 0.867, with cross terms 0.852 (diff -0.015; keep simple law if < 0.03 -> keep)
+   cross-term law: log h' = -0.30 + 0.736 log h + -0.365 logit eps;  logit eps' = -1.25 + 0.438 logit eps + -0.196 log h
+   corr(h' law residual, logit eps) = -0.83;  corr(eps' law residual, log h) = -0.78
+   R² of the h' law on log setting medians 0.798; of the eps' law on logit medians 0.684
+
+3. h' refitted with eps' fixed at the law value (setting medians)
+            h_free  h_eps_fixed  r2_free  r2_eps_fixed
+h     eps                                             
+0.003 0.05  0.0412       0.0344   0.9343        0.8944
+      0.10  0.0245       0.0239   0.9352        0.9151
+      0.20  0.0139       0.0125   0.8733        0.8431
+      0.30  0.0121       0.0120   0.8777        0.8777
+0.010 0.05  0.0703       0.0734   0.9494        0.9465
+      0.10  0.0595       0.0548   0.9395        0.9367
+      0.20  0.0480       0.0451   0.9353        0.9353
+      0.30  0.0279       0.0345   0.9211        0.9060
+0.030 0.05  0.1221       0.1731   0.9629        0.9330
+      0.10  0.1135       0.1487   0.9484        0.9360
+      0.20  0.1025       0.1102   0.9516        0.9498
+      0.30  0.1050       0.1076   0.9633        0.9609
+   h = 0.003: spread of h' across eps  free x3.41  eps'-fixed x2.87
+   h = 0.01: spread of h' across eps  free x2.52  eps'-fixed x2.13
+   h = 0.03: spread of h' across eps  free x1.19  eps'-fixed x1.61
+   median R² loss from fixing eps': 0.008
+
+4. noise ceiling (medians over models)
+   own Bayes(h', eps') fit 0.938 | other seeds' mean surface 0.980 | law in-sample 0.875 | law leave-one-setting-out 0.867
+   law LOSO as a fraction of the seed ceiling: 0.89
+            r2_own_fit  r2_seed_ceiling  r2_law_insample  r2_loso
+h     eps                                                        
+0.003 0.05       0.934            0.980            0.845    0.821
+      0.10       0.935            0.991            0.877    0.868
+      0.20       0.873            0.993            0.834    0.806
+      0.30       0.878            0.955            0.670    0.570
+0.010 0.05       0.949            0.973            0.912    0.905
+      0.10       0.939            0.968            0.914    0.908
+      0.20       0.935            0.969            0.929    0.923
+      0.30       0.921            0.927            0.818    0.832
+0.030 0.05       0.963            0.987            0.816    0.717
+      0.10       0.948            0.970            0.891    0.876
+      0.20       0.952            0.990            0.946    0.940
+      0.30       0.963            0.991            0.874    0.877
+
+5. decision agreement (sign, cells with |y| > 0.25): law in-sample 0.954; LOSO 0.952

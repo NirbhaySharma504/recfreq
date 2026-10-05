@@ -1,0 +1,15 @@
+<section id="r_bayes" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:96px 128px 112px;display:flex;flex-direction:column;gap:28px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Result 1 · behaviour</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:60px;font-weight:600;line-height:1.1">Models reason like Bayes, but with the wrong beliefs</h2>
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:12px">
+<img src="/_blob/ff65a29fa16f26dd12b2c3c53560f8b0" alt="Model vs Bayes probe curves for 3 encodings and 2 depths at two worlds" style="display:block;width:100%;height:auto">
+</div>
+<div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:24px;font-size:25px;line-height:1.4">
+<div style="border-left:8px solid #2B59C3;padding:6px 0 6px 20px"><b>Bayes with fitted beliefs</b> is the best rule for <b>75 of 84</b> models (24 of 24 in the lr/batch sweep)</div>
+<div style="border-left:8px solid #2B59C3;padding:6px 0 6px 20px">Not just a flexible fit: R² <b>0.95</b> on models vs 0.73 on random smooth curves and 0.74 on random counter mixes</div>
+<div style="border-left:8px solid #E07A2F;padding:6px 0 6px 20px">But the beliefs are off: models act as if <b>switches are more common</b> (h′ &gt; h) and typo rates sit near 0.25</div>
+</div>
+<aside>Solid lines are trained models, dashed is exact Bayes, colours are the number of old copies. Top row is world C (h = 0.01, ε = 0.1), bottom row world D (h = 0.03, ε = 0.2). The models have Bayes's shape: lines for 2, 4 and 8 old copies nearly overlap, as Bayes says they should. But the switch from old to recent happens at the wrong gap and too sharply. The best description is Bayes run with the wrong h and ε. That fit is much better on real models than on random curves or random sums of counters, so it is not just flexibility.</aside>
+</section>

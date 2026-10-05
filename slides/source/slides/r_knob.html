@@ -1,0 +1,15 @@
+<section id="r_knob" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:96px 128px 112px;display:flex;flex-direction:column;gap:28px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Result 3 · cause</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:60px;font-weight:600;line-height:1.1">Fading rate sets the belief, and training chose it</h2>
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:12px;width:1380px;align-self:center">
+<img src="/_blob/6bdb38b3a2dd3809050fe1653798feeb" alt="Slope scale versus effective switch rate and versus loss" style="display:block;width:100%;height:auto">
+</div>
+<div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:24px;font-size:25px;line-height:1.4">
+<div style="border-left:8px solid #2B59C3;padding:6px 0 6px 20px">Turn the slope knob after training: h′ moves with it, <b>h′ ∝ s<sup>k</sup></b>, k ≈ 1.1–1.3 (monotone in 56 of 57 models)</div>
+<div style="border-left:8px solid #2B59C3;padding:6px 0 6px 20px">The trained slope is the <b>loss minimum</b> in 85 of 85 models. A calibrated slope would cost +0.044 nats</div>
+<div style="border-left:8px solid #E07A2F;padding:6px 0 6px 20px">So the miscalibration is <b>what training prefers</b>, not a failure to train. Removing late heads removes the decision (−96%)</div>
+</div>
+<aside>This is the causal test. ALiBi gives each head a learned fading rate (slope). After training we scaled it up or down and measured the model's beliefs again. A faster fade makes the model believe switches are more common, in a near power law. On the right: ordinary-data loss is lowest exactly at the slope training found, in every one of 85 models. So the wrong belief is not slack; it is the loss-optimal setting for these heads.</aside>
+</section>

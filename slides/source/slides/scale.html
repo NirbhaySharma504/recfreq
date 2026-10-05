@@ -1,0 +1,22 @@
+<section id="scale" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">What we ran</p>
+<h2 style="margin:16px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1">Five rounds of experiments and one audit</h2>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:28px">
+<div style="background:#FFFFFF;border-radius:12px;padding:20px 32px"><p style="margin:0;font-family:'Source Serif 4', Georgia, serif;font-size:72px;font-weight:600;color:#2B59C3;line-height:1">155</p><p style="margin:10px 0 0;font-size:28px">trained models</p></div>
+<div style="background:#FFFFFF;border-radius:12px;padding:20px 32px"><p style="margin:0;font-family:'Source Serif 4', Georgia, serif;font-size:72px;font-weight:600;color:#2B59C3;line-height:1">112</p><p style="margin:10px 0 0;font-size:28px">probe types per model</p></div>
+<div style="background:#FFFFFF;border-radius:12px;padding:20px 32px"><p style="margin:0;font-family:'Source Serif 4', Georgia, serif;font-size:72px;font-weight:600;color:#2B59C3;line-height:1">3</p><p style="margin:10px 0 0;font-size:28px">position encodings (ALiBi, RoPE, learned)</p></div>
+<div style="background:#FFFFFF;border-radius:12px;padding:20px 32px"><p style="margin:0;font-family:'Source Serif 4', Georgia, serif;font-size:72px;font-weight:600;color:#2B59C3;line-height:1">2–3</p><p style="margin:10px 0 0;font-size:28px">layers, with and without MLPs</p></div>
+<div style="background:#FFFFFF;border-radius:12px;padding:20px 32px"><p style="margin:0;font-family:'Source Serif 4', Georgia, serif;font-size:72px;font-weight:600;color:#E07A2F;line-height:1">36</p><p style="margin:10px 0 0;font-size:28px">unit tests on the code</p></div>
+<div style="background:#FFFFFF;border-radius:12px;padding:20px 32px"><p style="margin:0;font-family:'Source Serif 4', Georgia, serif;font-size:72px;font-weight:600;color:#E07A2F;line-height:1">31/31</p><p style="margin:10px 0 0;font-size:28px">headline numbers re-derived from raw files</p></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(5, 1fr);gap:16px;font-size:24px;line-height:1.4">
+<div style="border-top:6px solid #2B59C3;padding-top:14px"><b style="font-size:26px">Run 1</b><br>First look: 4 worlds × 3 model types × 3 seeds</div>
+<div style="border-top:6px solid #2B59C3;padding-top:14px"><b style="font-size:26px">Run 2 · overnight</b><br>Encoding controls, full 12-world grid, conflict training</div>
+<div style="border-top:6px solid #2B59C3;padding-top:14px"><b style="font-size:26px">Run 3</b><br>Bigger/longer models, slope surgery, new probe layouts</div>
+<div style="border-top:6px solid #2B59C3;padding-top:14px"><b style="font-size:26px">Runs 4–5</b><br>Inside the model: which paths carry the decision</div>
+<div style="border-top:6px solid #E07A2F;padding-top:14px"><b style="font-size:26px">Audit</b><br>32 retrains, null models, every number and citation checked</div>
+</div>
+<aside>In total we trained 155 small transformers across five rounds and a final audit. Each round's predictions were written down before it ran. The audit retrained models, ran null models and recomputed every headline number from the raw files.</aside>
+</section>

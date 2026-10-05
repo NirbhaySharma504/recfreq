@@ -1,0 +1,12 @@
+init {'ce': 4.2101521492004395, 'acc': 0.01514434814453125, 'ce_rep': 4.210396714321749, 'acc_rep': 0.015150898720066397, 'bayes_ce': 1.2405277349236212, 'bayes_acc': 0.7415542602539062, 'bayes_acc_rep': 0.789905367909713, 'excess': 2.9696244142768182}
+{"step": 2000, "train_loss": 1.2669, "ce": 1.2598, "acc": 0.74, "ce_rep": 1.0664, "acc_rep": 0.7883, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0193, "sec": 228.6}
+{"step": 4000, "train_loss": 1.2659, "ce": 1.2546, "acc": 0.7404, "ce_rep": 1.0612, "acc_rep": 0.7886, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0141, "sec": 426.4}
+{"step": 6000, "train_loss": 1.2478, "ce": 1.2524, "acc": 0.7405, "ce_rep": 1.0589, "acc_rep": 0.7888, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0119, "sec": 586.8}
+{"step": 8000, "train_loss": 1.2616, "ce": 1.2497, "acc": 0.7409, "ce_rep": 1.0561, "acc_rep": 0.7891, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0092, "sec": 738.3}
+{"step": 10000, "train_loss": 1.2623, "ce": 1.2493, "acc": 0.741, "ce_rep": 1.0557, "acc_rep": 0.7892, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0088, "sec": 887.3}
+{"step": 12000, "train_loss": 1.2504, "ce": 1.2483, "acc": 0.7412, "ce_rep": 1.0546, "acc_rep": 0.7893, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0078, "sec": 1036.2}
+{"step": 14000, "train_loss": 1.2497, "ce": 1.247, "acc": 0.7413, "ce_rep": 1.0533, "acc_rep": 0.7894, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0065, "sec": 1185.1}
+{"step": 16000, "train_loss": 1.256, "ce": 1.2464, "acc": 0.7413, "ce_rep": 1.0526, "acc_rep": 0.7895, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0059, "sec": 1334.1}
+{"step": 18000, "train_loss": 1.2642, "ce": 1.2459, "acc": 0.7412, "ce_rep": 1.0521, "acc_rep": 0.7894, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0053, "sec": 1482.9}
+{"step": 20000, "train_loss": 1.2469, "ce": 1.2458, "acc": 0.7414, "ce_rep": 1.052, "acc_rep": 0.7895, "bayes_ce": 1.2405, "bayes_acc": 0.7416, "bayes_acc_rep": 0.7899, "excess": 0.0052, "sec": 1631.8}
+done /home/nirbhay/recfreq/results/runs/E3_h0.01_e0.1_L2_rope_attn_d256_s1

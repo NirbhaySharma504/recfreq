@@ -1,0 +1,36 @@
+max |numpy Bayes - oracle| over all runs and cells: 2.44e-15
+32 runs with a non-flat probe surface (of 32)
+E4h_h0.01_e0.1_L2_alibi_learn_attn_b256_s0           cvRMSE  Btrue 1.557  Bfree 0.807  Cexp 1.906  Cpow 2.284  Add 2.161
+E4h_h0.01_e0.1_L2_alibi_learn_attn_b256_s1           cvRMSE  Btrue 1.757  Bfree 0.794  Cexp 1.969  Cpow 2.388  Add 2.280
+E4h_h0.01_e0.1_L2_alibi_learn_attn_lr0.0003_s0       cvRMSE  Btrue 1.355  Bfree 0.533  Cexp 1.530  Cpow 1.916  Add 1.821
+E4h_h0.01_e0.1_L2_alibi_learn_attn_lr0.0003_s1       cvRMSE  Btrue 1.432  Bfree 0.613  Cexp 1.685  Cpow 2.060  Add 1.949
+E4h_h0.01_e0.1_L2_alibi_learn_attn_lr0.003_s0        cvRMSE  Btrue 1.547  Bfree 0.703  Cexp 1.833  Cpow 2.231  Add 2.101
+E4h_h0.01_e0.1_L2_alibi_learn_attn_lr0.003_s1        cvRMSE  Btrue 1.623  Bfree 0.789  Cexp 1.920  Cpow 2.325  Add 2.190
+E4h_h0.01_e0.1_L2_rope_attn_b256_s0                  cvRMSE  Btrue 1.082  Bfree 0.883  Cexp 1.103  Cpow 1.302  Add 1.217
+E4h_h0.01_e0.1_L2_rope_attn_b256_s1                  cvRMSE  Btrue 0.838  Bfree 0.675  Cexp 1.409  Cpow 1.651  Add 1.525
+E4h_h0.01_e0.1_L2_rope_attn_lr0.0003_s0              cvRMSE  Btrue 1.085  Bfree 1.064  Cexp 1.834  Cpow 2.131  Add 1.982
+E4h_h0.01_e0.1_L2_rope_attn_lr0.0003_s1              cvRMSE  Btrue 1.144  Bfree 1.171  Cexp 1.939  Cpow 2.215  Add 2.084
+E4h_h0.01_e0.1_L2_rope_attn_lr0.003_s0               cvRMSE  Btrue 0.912  Bfree 0.727  Cexp 1.199  Cpow 1.444  Add 1.338
+E4h_h0.01_e0.1_L2_rope_attn_lr0.003_s1               cvRMSE  Btrue 0.833  Bfree 0.695  Cexp 1.405  Cpow 1.634  Add 1.504
+E4h_h0.03_e0.2_L2_alibi_learn_attn_b256_s0           cvRMSE  Btrue 1.052  Bfree 0.404  Cexp 1.129  Cpow 1.466  Add 1.383
+E4h_h0.03_e0.2_L2_alibi_learn_attn_b256_s1           cvRMSE  Btrue 1.030  Bfree 0.393  Cexp 1.014  Cpow 1.367  Add 1.310
+E4h_h0.03_e0.2_L2_alibi_learn_attn_lr0.0003_s0       cvRMSE  Btrue 1.042  Bfree 0.302  Cexp 0.887  Cpow 1.220  Add 1.143
+E4h_h0.03_e0.2_L2_alibi_learn_attn_lr0.0003_s1       cvRMSE  Btrue 1.042  Bfree 0.372  Cexp 0.939  Cpow 1.276  Add 1.191
+E4h_h0.03_e0.2_L2_alibi_learn_attn_lr0.003_s0        cvRMSE  Btrue 1.120  Bfree 0.397  Cexp 0.989  Cpow 1.335  Add 1.243
+E4h_h0.03_e0.2_L2_alibi_learn_attn_lr0.003_s1        cvRMSE  Btrue 1.127  Bfree 0.397  Cexp 0.971  Cpow 1.326  Add 1.244
+E4h_h0.03_e0.2_L2_rope_attn_b256_s0                  cvRMSE  Btrue 1.149  Bfree 0.482  Cexp 1.207  Cpow 1.503  Add 1.383
+E4h_h0.03_e0.2_L2_rope_attn_b256_s1                  cvRMSE  Btrue 1.025  Bfree 0.548  Cexp 1.156  Cpow 1.437  Add 1.317
+E4h_h0.03_e0.2_L2_rope_attn_lr0.0003_s0              cvRMSE  Btrue 1.272  Bfree 0.496  Cexp 1.187  Cpow 1.463  Add 1.340
+E4h_h0.03_e0.2_L2_rope_attn_lr0.0003_s1              cvRMSE  Btrue 1.244  Bfree 0.537  Cexp 1.248  Cpow 1.538  Add 1.422
+E4h_h0.03_e0.2_L2_rope_attn_lr0.003_s0               cvRMSE  Btrue 1.014  Bfree 0.484  Cexp 1.054  Cpow 1.351  Add 1.247
+E4h_h0.03_e0.2_L2_rope_attn_lr0.003_s1               cvRMSE  Btrue 1.055  Bfree 0.448  Cexp 0.969  Cpow 1.245  Add 1.142
+E4r_h0.01_e0.1_L2_alibi_learn_attn_s0                cvRMSE  Btrue 1.528  Bfree 0.835  Cexp 1.892  Cpow 2.277  Add 2.141
+E4r_h0.01_e0.1_L2_alibi_learn_attn_s3                cvRMSE  Btrue 1.660  Bfree 0.816  Cexp 1.926  Cpow 2.316  Add 2.188
+E4r_h0.01_e0.1_L2_alibi_learn_attn_s4                cvRMSE  Btrue 1.488  Bfree 0.731  Cexp 1.810  Cpow 2.177  Add 2.064
+E4r_h0.01_e0.1_L2_rope_attn_s0                       cvRMSE  Btrue 0.943  Bfree 0.685  Cexp 1.097  Cpow 1.250  Add 1.157
+E4r_h0.01_e0.1_L2_rope_attn_s3                       cvRMSE  Btrue 0.790  Bfree 0.697  Cexp 1.365  Cpow 1.540  Add 1.441
+E4r_h0.01_e0.1_L2_rope_attn_s4                       cvRMSE  Btrue 0.915  Bfree 0.674  Cexp 1.149  Cpow 1.352  Add 1.261
+E4r_h0.01_e0.1_L3_alibi_learn_attn_s0                cvRMSE  Btrue 0.876  Bfree 0.617  Cexp 1.179  Cpow 1.360  Add 1.207
+E4r_h0.03_e0.2_L2_alibi_learn_attn_s0                cvRMSE  Btrue 1.123  Bfree 0.451  Cexp 1.144  Cpow 1.492  Add 1.402
+
+32 runs fitted -> figs_fit_E4/fits.csv

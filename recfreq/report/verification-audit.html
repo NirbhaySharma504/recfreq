@@ -1,0 +1,299 @@
+<title>Recency vs Frequency Verification Audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: a single reading column (lab-notebook report) with wide figure and table blocks that may scroll on their own. */
+:root {
+  --bg: #f7f8fa;
+  --surface: #ffffff;
+  --ink: #17202c;
+  --muted: #5a6575;
+  --rule: #d9dee6;
+  --accent: #1f4fb8;
+  --accent-soft: #e6edfb;
+  --bayes: #6b5aa8;
+  --good: #1d7a4a;
+  --good-soft: #e3f3ea;
+  --warn: #9a6200;
+  --warn-soft: #fbf0dc;
+  --bad: #b03a2e;
+  --bad-soft: #f9e4e1;
+  --font-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --step--1: 0.84rem;
+  --step-0: 1rem;
+  --step-1: 1.2rem;
+  --step-2: 1.5rem;
+  --step-3: 2.1rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11151c; --surface: #181e27; --ink: #e4e8ef; --muted: #9aa5b5; --rule: #2c3542;
+    --accent: #8fb0ff; --accent-soft: #1c2a47; --bayes: #b4a6ea;
+    --good: #6fd19c; --good-soft: #15301f; --warn: #f0b85a; --warn-soft: #33270f;
+    --bad: #f08a7e; --bad-soft: #3a1c19; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #11151c; --surface: #181e27; --ink: #e4e8ef; --muted: #9aa5b5; --rule: #2c3542;
+  --accent: #8fb0ff; --accent-soft: #1c2a47; --bayes: #b4a6ea;
+  --good: #6fd19c; --good-soft: #15301f; --warn: #f0b85a; --warn-soft: #33270f;
+  --bad: #f08a7e; --bad-soft: #3a1c19; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6;
+  padding-inline: 16px; padding-block: 0 64px;
+}
+main { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 2.75rem; }
+header { padding-block: 3rem 0; display: flex; flex-direction: column; gap: 0.75rem; }
+.eyebrow { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; text-wrap: balance; margin: 0; line-height: 1.2; }
+h1 { font-size: var(--step-3); }
+h2 { font-size: var(--step-2); padding-bottom: 0.4rem; border-bottom: 1px solid var(--rule); }
+h3 { font-size: var(--step-1); font-weight: 500; }
+p { margin: 0; max-width: 68ch; }
+.meta { color: var(--muted); font-size: var(--step--1); }
+section { display: flex; flex-direction: column; gap: 1rem; }
+ul, ol { margin: 0; padding-left: 1.3rem; display: flex; flex-direction: column; gap: 0.45rem; max-width: 68ch; }
+strong { font-weight: 600; }
+code { font-family: var(--font-mono); font-size: 0.88em; background: var(--accent-soft); padding: 0.05em 0.3em; border-radius: 3px; }
+var { font-family: var(--font-mono); font-style: normal; font-size: 0.92em; }
+.summary { background: var(--surface); border: 1px solid var(--rule); border-left: 3px solid var(--accent); padding: 1.25rem 1.4rem; display: flex; flex-direction: column; gap: 0.8rem; }
+.summary h2 { border: 0; padding: 0; font-size: var(--step-1); }
+.claim { font-size: 1.08rem; line-height: 1.55; }
+.rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+.rule { background: var(--surface); border: 1px solid var(--rule); padding: 1rem 1.1rem; display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
+.rule .tag { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); }
+.formula { font-family: var(--font-mono); font-size: 0.86rem; background: var(--bg); padding: 0.5rem 0.65rem; overflow-x: auto; white-space: nowrap; }
+.table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--rule); }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+th, td { padding: 0.45rem 0.7rem; text-align: right; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+thead th { font-family: var(--font-display); font-weight: 600; font-size: 0.86rem; color: var(--muted); background: var(--bg); }
+tbody tr:last-child td { border-bottom: 0; }
+td { font-variant-numeric: tabular-nums; font-family: var(--font-mono); font-size: 0.84rem; }
+td:first-child { font-family: var(--font-body); font-size: 0.9rem; }
+td.txt { font-family: var(--font-body); font-size: 0.88rem; }
+td.bayes, th.bayes { color: var(--bayes); }
+tr.group td { font-family: var(--font-display); font-weight: 600; background: var(--bg); color: var(--ink); font-size: 0.86rem; }
+.sd { color: var(--muted); }
+.caption { font-size: var(--step--1); color: var(--muted); max-width: 72ch; }
+figure { margin: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+figure .frame { background: #ffffff; border: 1px solid var(--rule); padding: 0.5rem; overflow-x: auto; }
+figure img { display: block; width: 100%; height: auto; }
+figure.wide .frame img { min-width: 640px; }
+.score { display: flex; flex-direction: column; gap: 0.75rem; }
+.verdict { background: var(--surface); border: 1px solid var(--rule); padding: 0.9rem 1.1rem; display: flex; flex-direction: column; gap: 0.4rem; }
+.verdict-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem; }
+.verdict-head h3 { flex: 1 1 260px; min-width: 0; }
+.pill { font-family: var(--font-mono); font-size: 0.76rem; padding: 0.15rem 0.55rem; border-radius: 999px; white-space: nowrap; }
+.pill.good { color: var(--good); background: var(--good-soft); }
+.pill.warn { color: var(--warn); background: var(--warn-soft); }
+.pill.bad { color: var(--bad); background: var(--bad-soft); }
+.callout { border: 1px solid var(--warn); background: var(--warn-soft); padding: 0.9rem 1.1rem; display: flex; flex-direction: column; gap: 0.4rem; }
+.law { background: var(--surface); border: 1px solid var(--rule); padding: 1rem 1.1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.law-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem; }
+.law-head h3 { flex: 1 1 260px; min-width: 0; }
+.run-divider { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; border-top: 2px solid var(--ink); padding-top: 0.6rem; }
+pre { margin: 0; background: var(--surface); border: 1px solid var(--rule); padding: 0.8rem 1rem; overflow-x: auto; font-family: var(--font-mono); font-size: 0.82rem; line-height: 1.55; }
+a { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+footer { color: var(--muted); font-size: var(--step--1); border-top: 1px solid var(--rule); padding-top: 1rem; }
+</style>
+
+<main>
+  <header>
+    <div class="eyebrow">TOLLM project · verification audit</div>
+    <h1>Verification audit of runs 1–5</h1>
+    <p class="meta">Nirbhay Sharma, Gathik Jindal · 5 October 2026 · 155 trained models (123 from runs 1–5 + 32 audit runs), 36 unit tests, 31 recomputed headline numbers · companion to the run reports</p>
+  </header>
+
+  <div class="summary">
+    <h2>Bottom line</h2>
+    <p class="claim">The core results hold up. The code checks out, every headline number reproduces from the raw files, retraining reproduces the models to within a few percent, and the main effect survives new seeds, learning rates, batch size and null models. The audit found <strong>two overstated numbers</strong>, <strong>one wrong interpretation</strong> (the miscalibration is loss-optimal, not "cheap"), <strong>one pre-registered test reported more favourably than its own wording allows</strong>, and <strong>three citation errors</strong>, all corrected below and in the run reports.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Criterion</th><th>Verdict</th><th>In one line</th></tr></thead>
+        <tbody>
+          <tr><td>1 · Made right</td><td><span class="pill good">pass</span></td><td class="txt">36 tests pass; the oracle is calibrated on generator data; an independent Bayes re-implementation agrees exactly; no bugs found in review</td></tr>
+          <tr><td>2 · Done right</td><td><span class="pill good">pass, with caveats</span></td><td class="txt">reproducible to 4%; robust to lr, batch and seeds; probes in-distribution; precision irrelevant; loss not fully converged in 21 of 131 runs (tiny)</td></tr>
+          <tr><td>3 · Results as expected</td><td><span class="pill good">pass, 2 corrections</span></td><td class="txt">31 of 31 numbers reproduce; theory checks pass in their regime; two overstated numbers and one interpretation corrected</td></tr>
+          <tr><td>4 · Supports the claims</td><td><span class="pill good">yes, for the core claims</span></td><td class="txt">behavioural, causal and "not generic" claims pass pre-registered tests; the mechanism is only partly explained</td></tr>
+          <tr><td>5 · Concrete formulation</td><td><span class="pill good">yes</span></td><td class="txt">two laws with confidence intervals that predict a held-out setting's trained models at R² 0.87, plus a causal knob (h′ ∝ slope^k, k ≈ 1.1–1.3)</td></tr>
+          <tr><td>Literature</td><td><span class="pill warn">3 corrections</span></td><td class="txt">17 citations verified; one wrong title, one venue title, one unconfirmed venue; novelty claim holds</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <section id="made">
+    <h2>1 · Was the code made right?</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Check</th><th>Method</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td>Unit tests</td><td class="txt">20 existing + 16 new (calibration, recovery, layouts, positional encodings, mechanism exactness)</td><td class="txt">36 of 36 pass</td></tr>
+          <tr><td>Generator ↔ oracle</td><td class="txt">oracle probabilities vs empirical frequencies on generated data, 4 settings incl. uniform typos</td><td class="txt">calibration error &lt; 0.01; mean log loss = expected entropy (|z| &lt; 4)</td></tr>
+          <tr><td>Independent Bayes code</td><td class="txt">fresh forward filter written for the audit vs the analysis code</td><td class="txt">identical (difference 0.0)</td></tr>
+          <tr><td>Fit recovery</td><td class="txt">recover known (h′, ε′) and counter parameters from noisy synthetic surfaces</td><td class="txt">median error &lt; 25% where identifiable; fits reach the noise floor (≤ 1.11 × noise); λ within 5%</td></tr>
+          <tr><td>Mechanism tools</td><td class="txt">logit decomposition, rebuilt path forward pass, score decomposition on real checkpoints</td><td class="txt">exact to &lt; 10⁻³</td></tr>
+          <tr><td>Positional encodings</td><td class="txt">ALiBi bias values and sign; RoPE depends only on relative position</td><td class="txt">pass</td></tr>
+          <tr><td>Code review</td><td class="txt">line-by-line: generator, oracle, training, probes, enrichment, fitting, decomposition, ablation code</td><td class="txt">no correctness bugs; design notes below</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="caption">Design notes: probe backgrounds use 15 keys (the target key is excluded); the main probe surfaces were scored in bf16 (checked below: no effect); the fitted switch rate h′ is weakly determined when the switch-over lies outside the probed gaps (for example h = 0.003, ε = 0.3: fitted 0.0051 for a true 0.003). One recovery test was first written with an absolute R² threshold, which cannot be met on flat surfaces where noise dominates; after diagnosis it was replaced with a noise-floor criterion.</p>
+  </section>
+
+  <section id="done">
+    <h2>2 · Were the experiments done right?</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Check</th><th>Result</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><td>Completeness</td><td class="txt">155 of 155 runs finished; no non-finite values in any log; results snapshotted with SHA-256 hashes</td><td><span class="pill good">pass</span></td></tr>
+          <tr><td>Reproducibility (same seed)</td><td class="txt">h′ within 4%, ε′ within 2%, probe-surface correlation 0.9998–1.0000, loss to 4 decimals (4 of 4)</td><td><span class="pill good">pass</span></td></tr>
+          <tr><td>New seeds</td><td class="txt">4 of 4 inside the original seeds' range</td><td><span class="pill good">pass</span></td></tr>
+          <tr><td>Learning rate and batch</td><td class="txt">24 runs (lr 3e-4, 3e-3, batch 256): ALiBi h′/h 3.3–6.3 in every run; Bayes beats every counter held-out in 24 of 24; cliff 1.2–3.6× Bayes</td><td><span class="pill good">pass</span></td></tr>
+          <tr><td>Probes in-distribution</td><td class="txt">loss on probe backgrounds vs ordinary data: median +0.004 nats (max 0.016), 20 models</td><td><span class="pill good">pass</span></td></tr>
+          <tr><td>Numerical precision</td><td class="txt">bf16 vs fp32 probe scoring: mean difference 0.0035 log-odds; h′ ×0.995–1.011, ε′ ×1.000 (12 models)</td><td><span class="pill good">no effect</span></td></tr>
+          <tr><td>Convergence</td><td class="txt">21 of 131 runs still improving &gt; 10% in the last quarter of training (median 0.0014, max 0.0054 nats); 3× longer training changes h′ by ×0.76–1.17</td><td><span class="pill warn">loss not fully converged; behaviour stable</span></td></tr>
+          <tr><td>Train/test separation</td><td class="txt">descriptions fitted on probes with one random seed and tested on probes with another; one partial overlap (run 4 B2 used swapped-layout attention to predict swapped-layout behaviour)</td><td><span class="pill good">pass, 1 noted</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>The audit's own predictions (written into the plan before any audit check ran)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Prediction</th><th>Bar</th><th>Result</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><td>Oracle calibrated on generator data</td><td class="txt">ECE &lt; 0.01</td><td class="txt">&lt; 0.01 at all 4 settings</td><td><span class="pill good">pass</span></td></tr>
+          <tr><td>Fits recover known parameters</td><td class="txt">median error &lt; 25%</td><td class="txt">yes, where identifiable</td><td><span class="pill good">pass</span></td></tr>
+          <tr><td>Same-seed retrain reproduces</td><td class="txt">h′, ε′ within 15%; surface r &gt; 0.95</td><td class="txt">within 4% / 2%; r ≥ 0.9998</td><td><span class="pill good">pass</span></td></tr>
+          <tr><td>Robust to learning rate and batch</td><td class="txt">ALiBi h′/h &gt; 2 everywhere; Bayes wins ≥ 90%</td><td class="txt">h′/h ≥ 3.3; Bayes wins 24 of 24</td><td><span class="pill good">pass</span></td></tr>
+          <tr><td>Bayes(h′, ε′) is not a generic fitter</td><td class="txt">generic surfaces R² &lt; 0.80; shuffled &lt; 0.2</td><td class="txt">0.73; 0.07</td><td><span class="pill good">pass</span></td></tr>
+          <tr><td>Laws predict a held-out setting</td><td class="txt">median R² ≥ 0.75 and above true Bayes</td><td class="txt">0.87 vs 0.74</td><td><span class="pill good">pass</span></td></tr>
+          <tr><td>Slope elasticity</td><td class="txt">log-linear R² &gt; 0.9; k in 0.7–1.3</td><td class="txt">R² 0.93; k = 1.29 median, IQR 0.82–2.40</td><td><span class="pill warn">pass on the median, narrowly</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Pre-registration, re-checked strictly</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Test</th><th>Reported</th><th>Strict reading of its own wording</th></tr></thead>
+        <tbody>
+          <tr><td>Run 3 · slope surgery</td><td class="txt">passed</td><td class="txt"><strong>Fails "monotone in all seeds" by one model</strong> (56 of 57). The exception (h 0.01, ε 0.3, seed 1) is a trade-off along the h′–ε′ ridge (ε′ 0.456 → 0.178); the model-free switch-over gap is monotone in 39 of 39 models where it is finite. Now reported as "56 of 57; strictly fails".</td></tr>
+          <tr><td>Run 3 · new layouts</td><td class="txt">passed</td><td class="txt">Passes. The swapped-layout score was changed from R² to absolute error after seeing that Bayes is constant there (R² undefined).</td></tr>
+          <tr><td>Run 3 · copy vs control ablation</td><td class="txt">failed</td><td class="txt">Failed; the control heads were themselves copy-attending heads.</td></tr>
+          <tr><td>Run 5 · 5B-2</td><td class="txt">borderline</td><td class="txt">The criterion did not say "in what share of models"; median 0.58 meets 0.5, but only 63% of models do.</td></tr>
+          <tr><td>All other run 3–5 tests</td><td class="txt">as reported</td><td class="txt">Verdicts confirmed.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="caption">Other deviations, all disclosed in the run reports: NoPE replaced by RoPE before the overnight launch (NoPE did not train); a "light" evaluation mode was switched on and reverted before any affected model ran; the post-hoc P1 analysis first used the wrong counter form (corrected in run 5).</p>
+  </section>
+
+  <section id="expected">
+    <h2>3 · Are the results what they should be?</h2>
+    <ul>
+      <li><strong>Every headline number reproduces.</strong> A claims registry recomputes 31 headline numbers (cliffs, switch-over gaps, learned slopes, win counts, laws, slope surgery, layout tests, scale tests, mechanism) from the per-run raw files with freshly written code: <strong>31 of 31 match</strong>.</li>
+      <li><strong>Theory, checked with independent code.</strong> The Prop. 2 boundary formula is within a median 10–15% of the exact Bayes switch-over gap (up to about 50% when h·G* approaches 3). Old copies beyond two change the exact log-odds by at most 0.11 nats from 2 to 16 copies. The per-copy weight log((1−ε)/ε) is exact to within 2% when h·G* ≤ 0.3, but overstates the exact weight by 30–55% when h·G* ≈ 1–3.</li>
+      <li><strong>The fits are stable.</strong> A second optimizer on a finer grid gives the same h′ in 99% of models and the same ε′ in 100%. Bootstrap 90% intervals span a factor of 1.30 (h′) and 1.14 (ε′). h′ is significantly above the true h in 92% of models. Every fitted scale is positive.</li>
+    </ul>
+    <div class="callout">
+      <strong>Corrections to the run reports</strong>
+      <ul>
+        <li><strong>"Models use about a third of the Bayes evidence per recent copy" overstated the gap.</strong> The 0.31 compared models with the theory value log((1−ε)/ε), which is too large wherever h·G* is not small. Against the exact Bayes weight on the same probes, models carry 0.24–1.06× of it (median 0.46×). Corrected to "about half".</li>
+        <li><strong>Slope-surgery loss changes</strong> are +0.006 (×0.5) and +0.016 (×2) nats, not "+0.01 / +0.02". Corrected.</li>
+        <li><strong>Slope surgery "monotone in all seeds"</strong> is 56 of 57 (see above). Corrected.</li>
+        <li><strong>"The miscalibration is cheap, so training does not pin it down" was wrong.</strong> The finer sweep shows the trained slopes sit at the minimum of ordinary-data loss in every model, and calibrating would cost about 3× the excess loss. The miscalibration is loss-optimal for these heads. Corrected in the run reports.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="claims">
+    <h2>4 · What the paper can claim</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Claim</th><th>Evidence</th><th>Test type</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>C1 · Bayes boundary (Prop. 2)</td><td class="txt">exact oracle, calibrated on generator data; formula within 10–15% in its regime; old copies beyond two ≤ 0.11 nats</td><td class="txt">derivation + numerical check</td><td><span class="pill good">solid</span></td></tr>
+          <tr><td>C2 · Behaviour = Bayes with wrong (h′, ε′)</td><td class="txt">best held-out description for 75 of 84 models and 24 of 24 sweep runs; held-out R² 0.85–0.95; generalizes to unseen layouts (R² 0.93; swapped 94%); optimizer- and seed-stable</td><td class="txt">post-hoc fit + pre-registered generalization and sweep tests</td><td><span class="pill good">solid</span></td></tr>
+          <tr><td>C3 · Not a generic fit</td><td class="txt">Bayes(h′, ε′) on random counter sums 0.74, on random smooth surfaces 0.73, on shuffled surfaces 0.07; on models 0.95</td><td class="txt">pre-registered</td><td><span class="pill good">solid</span></td></tr>
+          <tr><td>C4 · Lawful miscalibration</td><td class="txt">h′ = 1.50 [1.29, 1.78]·h^0.74 [0.71, 0.78]; logit ε′ = −0.33 [−0.47, −0.04] + 0.44 [0.35, 0.57]·logit ε; predicts held-out settings at R² 0.87</td><td class="txt">pre-registered prediction test</td><td><span class="pill good">solid</span></td></tr>
+          <tr><td>C5 · Causal knob</td><td class="txt">scaling the heads' slopes moves h′ (56 of 57) and the switch-over gap (39 of 39); removing all late heads removes the decision (−96%); h′ ∝ s^k with k ≈ 1.1–1.3, log-linear R² 0.93</td><td class="txt">pre-registered intervention</td><td><span class="pill good">solid</span></td></tr>
+          <tr><td>C6 · Mechanism</td><td class="txt">decision = Σ γ_h (A_c − A_w), R² 0.90–0.99 from measured attention; ALiBi kernel = learned slope (r = 0.990); typo signal from one layer-0 head via keys. Not explained: how the attention split becomes Bayes-shaped</td><td class="txt">mixed: several pre-registered mechanism tests failed</td><td><span class="pill warn">partial</span></td></tr>
+          <tr><td>C7 · Loss-optimal and persistent</td><td class="txt">the trained slopes minimize ordinary-data loss in 85 of 85 models; calibrating h′ would cost +0.044 nats (median), about 3× the excess loss; persists with 3× training, new seeds, lr and batch; width narrows it for RoPE (1.3–1.5×) but not ALiBi (2.9–5.3×)</td><td class="txt">pre-registered</td><td><span class="pill good">solid</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>Keep out of the paper, or report as negative results:</strong> "sums of counters with different decays explain the Bayes shape" (refuted); "about a third of the Bayes evidence" (corrected); "the learned slope tracks the switch rate within mixed regimes" (does not); "MLPs or depth make models ignore old copies" (no); "one upstream head produces the Bayes shape" (no); any closed-form content-aware counter (fails).</p>
+  </section>
+
+  <section id="formulation">
+    <h2>5 · The concrete formulation</h2>
+    <div class="law">
+      <div class="law-head"><h3>Prop. 2 · exact Bayes boundary</h3><span class="pill good">verified</span></div>
+      <div class="formula">switch to the recent value  ⇔  log(h·G) &gt; log V − n_w · log((1−ε)/ε)        (small h·G; old copies beyond two irrelevant)</div>
+      <p class="caption">Exact switch-over gaps within a median 10–15% of the formula for h·G* ≤ 3; per-copy weight exact to 2% for h·G* ≤ 0.3.</p>
+    </div>
+    <div class="law">
+      <div class="law-head"><h3>Law 1 · trained models are Bayes with predictable wrong beliefs</h3><span class="pill good">predictive, R² 0.87</span></div>
+      <div class="formula">log p(c)/p(w) ≈ a + b · LO_Bayes(h′, ε′),   h′ = 1.50 · h^0.74,   logit ε′ = −0.33 + 0.44 · logit ε</div>
+      <p class="caption">Fitted on 11 of 12 training settings and used to predict the 12th from its (h, ε) alone, it reproduces the trained models' 112-cell conflict behaviour at median R² 0.87 (pre-registered bar 0.75). Baselines: true Bayes with scale and offset fitted on the held-out models themselves 0.74, the mean surface 0.55, an average counter 0.25. Weakest held-out settings: (h 0.003, ε 0.3) 0.57 and (h 0.03, ε 0.05) 0.72. Scope: 2-layer ALiBi models; RoPE models are closer to calibrated.</p>
+    </div>
+    <div class="law">
+      <div class="law-head"><h3>Law 2 · the fading rate sets the believed switch rate</h3><span class="pill good">causal, k ≈ 1.1–1.3</span></div>
+      <div class="formula">h′ ∝ s^k,   k = 1.29 median (IQR 0.82–2.40) over 85 ALiBi models;  k ≈ 1.1–1.2 for 2-layer attention-only models</div>
+      <p class="caption">Scaling the ALiBi slopes of all late heads by s ∈ {0.25, …, 4}: log h′ is linear in log s (per-model R² median 0.93; pre-registered &gt; 0.9 ✓), with median elasticity 1.29 (pre-registered 0.7–1.3: met by the median, narrowly). The spread is wide: MLP and 3-layer models have k ≈ 1.6–2.3, and 27 models hit the fit floor at the smallest scale; over the central scales ×0.5–×2 the median is 1.15 (IQR 0.76–1.67). Ordinary-data loss is <strong>lowest at the trained slope in 85 of 85 models</strong> (+0.023 / +0.006 / +0.010 / +0.055 nats at ×0.5 / ×0.71 / ×1.41 / ×2). Bringing h′ down to the true h needs about ×0.44 on the slopes and costs a median +0.044 nats (IQR 0.020–0.082), about three times the models' excess loss.</p>
+    </div>
+    <div class="law">
+      <div class="law-head"><h3>Mechanism · decision from measured attention</h3><span class="pill warn">descriptive</span></div>
+      <div class="formula">logit(c) − logit(w) ≈ Σ_heads γ_h · (A_c^h − A_w^h) + const</div>
+      <p class="caption">Median R² 0.90–0.99 across attention-only architectures. What remains open is how each head's attention split A_c / A_w comes to be Bayes-shaped.</p>
+    </div>
+    <p class="caption">Scope of all four statements: one task family (16 keys, 64 values, 256 pairs, structured typos), 2–3 layers, width ≤ 256, 20–60k steps.</p>
+  </section>
+
+  <section id="literature">
+    <h2>6 · Literature</h2>
+    <ul>
+      <li><strong>17 cited works verified</strong> against arXiv and venue pages (titles, authors, arXiv IDs, venues).</li>
+      <li><strong>Corrected:</strong> Zhou, Tian &amp; Diggavi (2410.05493) is titled <em>"An Information-Theoretic Approach to Understanding Transformers' In-Context Learning of Variable-Order Markov Chains"</em> (AISTATS 2026); Makkuva et al. (2402.04161) appeared at ICLR 2025 as <em>"Attention with Markov: A Curious Case of Single-Layer Transformers"</em>; Rajaraman et al.'s NeurIPS 2024 venue is not confirmed on arXiv and should be checked before citing.</li>
+      <li><strong>Novelty:</strong> no prior work found on conflicting old-versus-recent continuations with a Bayes switch-and-typo trade-off for induction heads. The two closest new papers found (copy-head phase transitions, 2606.12058; Markov-chain estimation in context, 2508.03934) do not overlap.</li>
+    </ul>
+  </section>
+
+  <section id="limits">
+    <h2>Remaining limitations</h2>
+    <ul>
+      <li>One synthetic task family; 2–3 layer models up to width 256.</li>
+      <li>Loss had not fully converged in some runs; behaviour was stable under 3× longer training.</li>
+      <li>h′ is weakly determined in settings whose switch-over lies beyond the probed gaps.</li>
+      <li>The mechanism explains <em>where</em> the decision is made and <em>what sets</em> the miscalibration, not <em>how</em> the attention split becomes Bayes-shaped.</li>
+      <li>No pretrained-LLM transfer test.</li>
+    </ul>
+  </section>
+
+  <section id="reproduce">
+    <h2>Reproducing the audit</h2>
+<pre>python -m pytest -q                                   # 36 tests
+python -m recfreq.verify.integrity results/runs
+python -m recfreq.verify.registry                     # 31 recomputed numbers
+python -m recfreq.verify.theory
+python -m recfreq.verify.robustness
+python -m recfreq.verify.nulls
+python -m recfreq.verify.predictive_law
+python scripts/queue.py configs/E4r.json configs/E4h.json --max-parallel 6
+python -m recfreq.verify.e4
+python -m recfreq.verify.gpu_checks ood | precision | slope</pre>
+  </section>
+
+  <footer>Snapshot of all results with SHA-256 manifest: ~/recfreq/snapshots/2026-10-05/. Audit predictions were written into the research plan (§17) before the checks ran.</footer>
+</main>

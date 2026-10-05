@@ -1,0 +1,75 @@
+gate passed, starting E1
+36 runs to do
+19:32:42 start E1_h0.0_e0.2_L2_alibi_learn_attn_s0 (attempt 1)
+19:32:42 start E1_h0.0_e0.2_L2_alibi_learn_attn_s1 (attempt 1)
+19:32:42 start E1_h0.0_e0.2_L2_alibi_learn_attn_s2 (attempt 1)
+19:32:42 start E1_h0.0_e0.2_L2_alibi_learn_mlp_s0 (attempt 1)
+19:55:23 done  E1_h0.0_e0.2_L2_alibi_learn_attn_s0
+19:55:23 done  E1_h0.0_e0.2_L2_alibi_learn_attn_s1
+19:55:23 done  E1_h0.0_e0.2_L2_alibi_learn_attn_s2
+19:55:23 start E1_h0.0_e0.2_L2_alibi_learn_mlp_s1 (attempt 1)
+19:55:23 start E1_h0.0_e0.2_L2_alibi_learn_mlp_s2 (attempt 1)
+19:55:23 start E1_h0.0_e0.2_L3_alibi_learn_attn_s0 (attempt 1)
+20:02:29 done  E1_h0.0_e0.2_L2_alibi_learn_mlp_s0
+20:02:29 start E1_h0.0_e0.2_L3_alibi_learn_attn_s1 (attempt 1)
+20:25:20 done  E1_h0.0_e0.2_L2_alibi_learn_mlp_s1
+20:25:20 done  E1_h0.0_e0.2_L2_alibi_learn_mlp_s2
+20:25:20 start E1_h0.0_e0.2_L3_alibi_learn_attn_s2 (attempt 1)
+20:25:20 start E1_h0.03_e0.0_L2_alibi_learn_attn_s0 (attempt 1)
+20:27:15 done  E1_h0.0_e0.2_L3_alibi_learn_attn_s0
+20:27:15 start E1_h0.03_e0.0_L2_alibi_learn_attn_s1 (attempt 1)
+20:34:30 done  E1_h0.0_e0.2_L3_alibi_learn_attn_s1
+20:34:30 start E1_h0.03_e0.0_L2_alibi_learn_attn_s2 (attempt 1)
+20:48:01 done  E1_h0.03_e0.0_L2_alibi_learn_attn_s0
+20:48:01 start E1_h0.03_e0.0_L2_alibi_learn_mlp_s0 (attempt 1)
+20:49:51 done  E1_h0.03_e0.0_L2_alibi_learn_attn_s1
+20:49:51 start E1_h0.03_e0.0_L2_alibi_learn_mlp_s1 (attempt 1)
+20:56:07 done  E1_h0.0_e0.2_L3_alibi_learn_attn_s2
+20:56:07 start E1_h0.03_e0.0_L2_alibi_learn_mlp_s2 (attempt 1)
+20:56:12 done  E1_h0.03_e0.0_L2_alibi_learn_attn_s2
+20:56:12 start E1_h0.03_e0.0_L3_alibi_learn_attn_s0 (attempt 1)
+21:17:28 done  E1_h0.03_e0.0_L2_alibi_learn_mlp_s0
+21:17:28 start E1_h0.03_e0.0_L3_alibi_learn_attn_s1 (attempt 1)
+21:19:13 done  E1_h0.03_e0.0_L2_alibi_learn_mlp_s1
+21:19:13 start E1_h0.03_e0.0_L3_alibi_learn_attn_s2 (attempt 1)
+21:26:08 done  E1_h0.03_e0.0_L2_alibi_learn_mlp_s2
+21:26:08 start E1_h0.01_e0.1_L2_alibi_learn_attn_s0 (attempt 1)
+21:28:13 done  E1_h0.03_e0.0_L3_alibi_learn_attn_s0
+21:28:13 start E1_h0.01_e0.1_L2_alibi_learn_attn_s1 (attempt 1)
+21:48:25 done  E1_h0.03_e0.0_L3_alibi_learn_attn_s1
+21:48:25 done  E1_h0.01_e0.1_L2_alibi_learn_attn_s0
+21:48:25 start E1_h0.01_e0.1_L2_alibi_learn_attn_s2 (attempt 1)
+21:48:25 start E1_h0.01_e0.1_L2_alibi_learn_mlp_s0 (attempt 1)
+21:49:20 done  E1_h0.03_e0.0_L3_alibi_learn_attn_s2
+21:49:20 start E1_h0.01_e0.1_L2_alibi_learn_mlp_s1 (attempt 1)
+21:49:40 done  E1_h0.01_e0.1_L2_alibi_learn_attn_s1
+21:49:40 start E1_h0.01_e0.1_L2_alibi_learn_mlp_s2 (attempt 1)
+22:12:01 done  E1_h0.01_e0.1_L2_alibi_learn_attn_s2
+22:12:01 start E1_h0.01_e0.1_L3_alibi_learn_attn_s0 (attempt 1)
+22:18:01 done  E1_h0.01_e0.1_L2_alibi_learn_mlp_s0
+22:18:01 start E1_h0.01_e0.1_L3_alibi_learn_attn_s1 (attempt 1)
+22:18:51 done  E1_h0.01_e0.1_L2_alibi_learn_mlp_s1
+22:18:51 start E1_h0.01_e0.1_L3_alibi_learn_attn_s2 (attempt 1)
+22:19:11 done  E1_h0.01_e0.1_L2_alibi_learn_mlp_s2
+22:19:11 start E1_h0.03_e0.2_L2_alibi_learn_attn_s0 (attempt 1)
+22:42:48 done  E1_h0.03_e0.2_L2_alibi_learn_attn_s0
+22:42:48 start E1_h0.03_e0.2_L2_alibi_learn_attn_s1 (attempt 1)
+22:43:13 done  E1_h0.01_e0.1_L3_alibi_learn_attn_s0
+22:43:13 start E1_h0.03_e0.2_L2_alibi_learn_attn_s2 (attempt 1)
+22:49:43 done  E1_h0.01_e0.1_L3_alibi_learn_attn_s1
+22:49:43 start E1_h0.03_e0.2_L2_alibi_learn_mlp_s0 (attempt 1)
+22:50:48 done  E1_h0.01_e0.1_L3_alibi_learn_attn_s2
+22:50:48 start E1_h0.03_e0.2_L2_alibi_learn_mlp_s1 (attempt 1)
+23:04:29 done  E1_h0.03_e0.2_L2_alibi_learn_attn_s1
+23:04:29 start E1_h0.03_e0.2_L2_alibi_learn_mlp_s2 (attempt 1)
+23:04:54 done  E1_h0.03_e0.2_L2_alibi_learn_attn_s2
+23:04:54 start E1_h0.03_e0.2_L3_alibi_learn_attn_s0 (attempt 1)
+23:19:20 done  E1_h0.03_e0.2_L2_alibi_learn_mlp_s0
+23:19:20 start E1_h0.03_e0.2_L3_alibi_learn_attn_s1 (attempt 1)
+23:20:20 done  E1_h0.03_e0.2_L2_alibi_learn_mlp_s1
+23:20:20 start E1_h0.03_e0.2_L3_alibi_learn_attn_s2 (attempt 1)
+23:34:41 done  E1_h0.03_e0.2_L2_alibi_learn_mlp_s2
+23:36:21 done  E1_h0.03_e0.2_L3_alibi_learn_attn_s0
+23:43:01 done  E1_h0.03_e0.2_L3_alibi_learn_attn_s1
+23:43:06 done  E1_h0.03_e0.2_L3_alibi_learn_attn_s2
+queue finished

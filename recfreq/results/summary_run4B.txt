@@ -1,0 +1,20 @@
+54 models with run-3 and run-4 data
+
+median R² (sp4 in-sample; sp2, sp8 held out):
+        bf     b1     b2     c2
+sp4  0.938  0.899  0.390  0.834
+sp2  0.913  0.850  0.362  0.788
+sp8  0.921  0.771  0.368  0.769
+
+median absolute error:
+          bf     b1     b2     c2
+sp4    0.334  0.295  1.207  0.622
+sp2    0.436  0.427  1.267  0.731
+sp8    0.388  0.533  1.146  0.662
+swap4  0.536  1.438  2.446  3.491
+
+B1 pre-registered: R² gap to Bayes(h', eps') on sp2/sp8 = 0.106 (pass if <= 0.03); swap4 error ratio = 4.40 (pass if <= 1.5)
+B2 pre-registered: median R² on sp2/sp8 = 0.365 (pass if >= 0.8; against if < 0.6)
+B2 post-hoc diagnostic: fitted kernel vs measured attention fraction, median R² -0.491; same readout with measured attention (sp4) R² 0.973
+
+B1 fitted content terms (median):  {'b1.r': -2.084, 'b1.rho': -2.261, 'b1.eta': 0.29, 'b1.kappa': -2.0}

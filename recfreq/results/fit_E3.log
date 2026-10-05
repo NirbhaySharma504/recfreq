@@ -1,0 +1,20 @@
+max |numpy Bayes - oracle| over all runs and cells: 2.44e-15
+16 runs with a non-flat probe surface (of 16)
+E3_h0.01_e0.1_L2_alibi_learn_attn_d256_s0            cvRMSE  Btrue 1.512  Bfree 1.054  Cexp 2.109  Cpow 2.477  Add 2.341
+E3_h0.01_e0.1_L2_alibi_learn_attn_d256_s1            cvRMSE  Btrue 1.532  Bfree 1.021  Cexp 2.100  Cpow 2.473  Add 2.340
+E3_h0.01_e0.1_L2_alibi_learn_attn_st60000_s0         cvRMSE  Btrue 1.666  Bfree 1.235  Cexp 2.146  Cpow 2.474  Add 2.350
+E3_h0.01_e0.1_L2_alibi_learn_attn_st60000_s1         cvRMSE  Btrue 1.729  Bfree 0.600  Cexp 1.647  Cpow 2.122  Add 2.084
+E3_h0.01_e0.1_L2_rope_attn_d256_s0                   cvRMSE  Btrue 0.860  Bfree 0.870  Cexp 1.555  Cpow 1.756  Add 1.564
+E3_h0.01_e0.1_L2_rope_attn_d256_s1                   cvRMSE  Btrue 0.860  Bfree 0.796  Cexp 1.503  Cpow 1.677  Add 1.507
+E3_h0.01_e0.1_L2_rope_attn_st60000_s0                cvRMSE  Btrue 0.878  Bfree 0.835  Cexp 1.487  Cpow 1.755  Add 1.616
+E3_h0.01_e0.1_L2_rope_attn_st60000_s1                cvRMSE  Btrue 0.892  Bfree 0.765  Cexp 1.353  Cpow 1.631  Add 1.495
+E3_h0.03_e0.2_L2_alibi_learn_attn_d256_s0            cvRMSE  Btrue 1.188  Bfree 0.598  Cexp 1.329  Cpow 1.625  Add 1.519
+E3_h0.03_e0.2_L2_alibi_learn_attn_d256_s1            cvRMSE  Btrue 1.195  Bfree 0.601  Cexp 1.446  Cpow 1.773  Add 1.666
+E3_h0.03_e0.2_L2_alibi_learn_attn_st60000_s0         cvRMSE  Btrue 1.186  Bfree 0.431  Cexp 1.156  Cpow 1.502  Add 1.402
+E3_h0.03_e0.2_L2_alibi_learn_attn_st60000_s1         cvRMSE  Btrue 1.084  Bfree 0.444  Cexp 1.138  Cpow 1.492  Add 1.415
+E3_h0.03_e0.2_L2_rope_attn_d256_s0                   cvRMSE  Btrue 0.936  Bfree 0.786  Cexp 1.431  Cpow 1.694  Add 1.570
+E3_h0.03_e0.2_L2_rope_attn_d256_s1                   cvRMSE  Btrue 0.913  Bfree 0.737  Cexp 1.349  Cpow 1.604  Add 1.479
+E3_h0.03_e0.2_L2_rope_attn_st60000_s0                cvRMSE  Btrue 0.975  Bfree 0.483  Cexp 1.236  Cpow 1.526  Add 1.420
+E3_h0.03_e0.2_L2_rope_attn_st60000_s1                cvRMSE  Btrue 1.069  Bfree 0.453  Cexp 1.191  Cpow 1.497  Add 1.393
+
+16 runs fitted -> figs_fit_E3/fits.csv

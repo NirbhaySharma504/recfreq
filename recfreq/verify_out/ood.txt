@@ -1,0 +1,17 @@
+{'run': 'E1_h0.01_e0.1_L2_alibi_learn_attn_s0', 'repeat_ce_ordinary': 1.0645021200180054, 'repeat_ce_probe_background': 1.0590933805560196}
+{'run': 'E1_h0.01_e0.1_L2_alibi_learn_mlp_s0', 'repeat_ce_ordinary': 1.0526604652404785, 'repeat_ce_probe_background': 1.0477904508522016}
+{'run': 'E1_h0.01_e0.1_L3_alibi_learn_attn_s0', 'repeat_ce_ordinary': 1.0536047220230103, 'repeat_ce_probe_background': 1.0489091122117553}
+{'run': 'E1_h0.03_e0.2_L2_alibi_learn_attn_s0', 'repeat_ce_ordinary': 1.9086251258850098, 'repeat_ce_probe_background': 1.9246924346227754}
+{'run': 'E1_h0.03_e0.2_L2_alibi_learn_mlp_s0', 'repeat_ce_ordinary': 1.8947222232818604, 'repeat_ce_probe_background': 1.9091130603016124}
+{'run': 'E1_h0.03_e0.2_L3_alibi_learn_attn_s0', 'repeat_ce_ordinary': 1.8923470973968506, 'repeat_ce_probe_background': 1.908407461462946}
+{'run': 'E2a_h0.01_e0.1_L2_learned_abs_attn_s0', 'repeat_ce_ordinary': 1.0700743198394775, 'repeat_ce_probe_background': 1.0646662569711338}
+{'run': 'E2a_h0.01_e0.1_L2_rope_attn_s0', 'repeat_ce_ordinary': 1.0595730543136597, 'repeat_ce_probe_background': 1.0537059114953213}
+{'run': 'E2a_h0.01_e0.1_L3_learned_abs_attn_s0', 'repeat_ce_ordinary': 1.0561323165893555, 'repeat_ce_probe_background': 1.0507879078243796}
+{'run': 'E2a_h0.01_e0.1_L3_rope_attn_s0', 'repeat_ce_ordinary': 1.052977204322815, 'repeat_ce_probe_background': 1.0474779900158744}
+{'run': 'E2a_h0.03_e0.2_L2_learned_abs_attn_s0', 'repeat_ce_ordinary': 1.9138883352279663, 'repeat_ce_probe_background': 1.928838757937171}
+{'run': 'E2a_h0.03_e0.2_L2_rope_attn_s0', 'repeat_ce_ordinary': 1.9035353660583496, 'repeat_ce_probe_background': 1.9188527067319743}
+{'run': 'E2a_h0.03_e0.2_L3_learned_abs_attn_s0', 'repeat_ce_ordinary': 1.8928881883621216, 'repeat_ce_probe_background': 1.9083127180111121}
+{'run': 'E2a_h0.03_e0.2_L3_rope_attn_s0', 'repeat_ce_ordinary': 1.8939151763916016, 'repeat_ce_probe_background': 1.9087892746365611}
+{'run': 'E2b_h0.003_e0.05_L2_alibi_learn_attn_s0', 'repeat_ce_ordinary': 0.5024393200874329, 'repeat_ce_probe_background': 0.4972399564761049}
+{'run': 'E2b_h0.03_e0.3_L2_alibi_learn_attn_s0', 'repeat_ce_ordinary': 2.0010972023010254, 'repeat_ce_probe_background': 2.0145218246094077}
+probe-background minus ordinary repeat-sighting loss: median +0.0044 nats, max |diff| 0.0161

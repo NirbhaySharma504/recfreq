@@ -1,0 +1,6 @@
+2 runs to do
+19:21:23 start E0_h0.0_e0.0_L2_alibi_learn_attn_s0 (attempt 1)
+19:21:23 start E0_h0.0_e0.0_L2_alibi_learn_attn_s1 (attempt 1)
+19:32:13 done  E0_h0.0_e0.0_L2_alibi_learn_attn_s0
+19:32:13 done  E0_h0.0_e0.0_L2_alibi_learn_attn_s1
+queue finished

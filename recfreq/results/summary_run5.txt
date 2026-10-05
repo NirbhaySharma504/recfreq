@@ -1,0 +1,41 @@
+models: 70
+
+=== 5A: combination ablations of layer-0 heads ===
+5A-1: induction still works (loss + < 1 nat) with all non-previous-token layer-0 heads removed: 62 of 70 models (0.89); median loss change +0.219
+5A-2: Bayes advantage (R² gap) falls below 0.05 in 0.08 of 62 working models; median gap base 0.238 -> 0.391
+
+by condition (median over models):
+              d_ce  gap_base    gap  r2_bayes  h_eff_base  h_eff  swap_slope
+cond                                                                        
+base         0.000     0.236  0.236     0.941       0.059  0.059      -0.006
+nonprev_all  0.219     0.236  0.369     0.951       0.059  0.055       0.004
+nonprev_k    0.034     0.236  0.182     0.951       0.059  0.063       0.004
+nonprev_q    0.051     0.236  0.353     0.928       0.059  0.040       0.026
+nonprev_v    0.118     0.236  0.278     0.913       0.059  0.061      -0.005
+pair01_all   0.200     0.242  0.287     0.918       0.059  0.053      -0.002
+pair02_all   0.171     0.238  0.371     0.943       0.063  0.057       0.005
+pair03_all   0.165     0.209  0.212     0.815       0.069  0.048       0.036
+pair12_all   0.072     0.236  0.249     0.911       0.059  0.056      -0.004
+pair13_all   0.186     0.134  0.101     0.749       0.045  0.017       0.048
+pair23_all   0.195     0.181  0.211     0.855       0.063  0.043       0.017
+
+nonprev_all by architecture:
+              d_ce  gap_base    gap  r2_bayes
+arch                                         
+ALiBi        0.219     0.282  0.388     0.954
+RoPE         0.160     0.179  0.396     0.957
+learned abs  1.071     0.199 -0.057     0.147
+
+=== 5B: score decomposition in slow copy heads (normal layout, G = 2..64) ===
+5B-1: content part of the old-minus-recent split varies by > 1 nat over G in 0.64 of 70 models (median range 1.53; LSE version 1.53; distance part range 6.71)
+   direction: content split rises with G (compensates distance) in 0.54 of models
+5B-2: key side, share of the G-dependence from layer-0 head outputs: median 0.58; >= 0.5 in 0.63 of models
+
+key-side and query-side shares (median over models), by architecture:
+             kside.share.emb  kside.share.prev  kside.share.lnb  kside.share.other0  qside.share.emb  qside.share.prev  qside.share.lnb  qside.share.other0
+arch                                                                                                                                                       
+ALiBi                   0.38             -0.27             0.00                0.78             1.24              0.05            -0.02               -0.34
+RoPE                    0.29              0.56             0.11                0.02             0.80             -0.00             0.01                0.18
+learned abs             0.78             -0.28             0.00                0.68            -0.42             -0.03             0.05                1.47
+
+(RoPE caveat: position enters through rotation of every component, so 'emb' vs layer-0 is confounded.)

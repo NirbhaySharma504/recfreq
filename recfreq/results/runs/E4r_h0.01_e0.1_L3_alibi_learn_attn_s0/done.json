@@ -1,0 +1,114 @@
+{
+  "final": {
+    "ce": 1.2449098825454712,
+    "acc": 0.7415084838867188,
+    "ce_rep": 1.0510450316118376,
+    "acc_rep": 0.7896775348462534,
+    "bayes_ce": 1.2405277349236212,
+    "bayes_acc": 0.7415542602539062,
+    "bayes_acc_rep": 0.789905367909713,
+    "excess": 0.004382147621849963
+  },
+  "heads": [
+    {
+      "layer": 0,
+      "head": 0,
+      "ind_score": 0.030071554705500603,
+      "slope": 0.00884650181978941
+    },
+    {
+      "layer": 0,
+      "head": 1,
+      "ind_score": 0.08430372923612595,
+      "slope": 0.0036280567292124033
+    },
+    {
+      "layer": 0,
+      "head": 2,
+      "ind_score": 0.08609070628881454,
+      "slope": 0.028029602020978928
+    },
+    {
+      "layer": 0,
+      "head": 3,
+      "ind_score": 7.32210828573443e-05,
+      "slope": 2.896801233291626
+    },
+    {
+      "layer": 1,
+      "head": 0,
+      "ind_score": 0.39452630281448364,
+      "slope": 0.0038837045431137085
+    },
+    {
+      "layer": 1,
+      "head": 1,
+      "ind_score": 0.7285000085830688,
+      "slope": 0.027312230318784714
+    },
+    {
+      "layer": 1,
+      "head": 2,
+      "ind_score": 0.793317437171936,
+      "slope": 0.1727643460035324
+    },
+    {
+      "layer": 1,
+      "head": 3,
+      "ind_score": 0.14324036240577698,
+      "slope": 1.3138660192489624
+    },
+    {
+      "layer": 2,
+      "head": 0,
+      "ind_score": 0.9997517466545105,
+      "slope": 0.05649089440703392
+    },
+    {
+      "layer": 2,
+      "head": 1,
+      "ind_score": 0.9993972182273865,
+      "slope": 0.08747880905866623
+    },
+    {
+      "layer": 2,
+      "head": 2,
+      "ind_score": 0.23974362015724182,
+      "slope": 0.11550991982221603
+    },
+    {
+      "layer": 2,
+      "head": 3,
+      "ind_score": 0.3714674413204193,
+      "slope": 0.22516502439975739
+    }
+  ],
+  "args": {
+    "h": 0.01,
+    "eps": 0.1,
+    "typo": "structured",
+    "K": 16,
+    "V": 64,
+    "n_pairs": 256,
+    "key_dist": "zipf",
+    "layers": 3,
+    "mlp": 0,
+    "pe": "alibi_learn",
+    "d_model": 128,
+    "heads": 4,
+    "seed": 0,
+    "steps": 20000,
+    "batch": 128,
+    "lr": 0.001,
+    "warmup": 500,
+    "wd": 0.01,
+    "eval_every": 500,
+    "eval_batch": 512,
+    "probes": 1,
+    "probe_fills": 256,
+    "gate": 0,
+    "conflict_frac": 0.0,
+    "conflict_batch": 32,
+    "out": "/home/nirbhay/recfreq/results/runs/E4r_h0.01_e0.1_L3_alibi_learn_attn_s0"
+  }
+}

@@ -1,0 +1,28 @@
+<section id="r_law" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:44px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Result 2 · a predictive law</p>
+<h2 style="margin:16px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1">The wrong beliefs follow two simple laws</h2>
+</div>
+<div style="display:grid;grid-template-columns:720px 1fr;gap:48px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:24px">
+<div style="background:#FFFFFF;border-radius:12px;padding:24px 32px">
+<p style="margin:0;font-size:26px;font-weight:600;color:#2B59C3">Believed switch rate</p>
+<p style="margin:10px 0 0;font-size:36px;font-family:'Source Serif 4', Georgia, serif">h′ = 1.50 · h<sup>0.74</sup></p>
+<p style="margin:8px 0 0;font-size:24px;color:#3F4A60">Always above the true rate in our range</p>
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:24px 32px">
+<p style="margin:0;font-size:26px;font-weight:600;color:#2B59C3">Believed typo rate</p>
+<p style="margin:10px 0 0;font-size:36px;font-family:'Source Serif 4', Georgia, serif">logit ε′ = −0.33 + 0.44 · logit ε</p>
+<p style="margin:8px 0 0;font-size:24px;color:#3F4A60">Pulled toward about 0.25 whatever the true rate</p>
+</div>
+<div style="background:#16213A;color:#F5F7FA;border-radius:12px;padding:24px 32px">
+<p style="margin:0;font-size:28px;line-height:1.45">Fit on 11 worlds, predict the 12th from (h, ε) alone: <b style="color:#F2B27E">R² 0.87</b> <span style="font-size:24px;color:#C9D6EC">(target set in advance: ≥ 0.75)</span></p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px">
+<div style="background:#FFFFFF;border-radius:12px;padding:12px"><img src="/_blob/064138d8c4b843a42c451fa939e9ec41" alt="Fitted h-prime and epsilon-prime against true h and epsilon" style="display:block;width:100%;height:auto"></div>
+<p style="margin:0;font-size:24px;line-height:1.45;color:#3F4A60">Each recent copy counts about <b>half</b> as much as Bayes says (median 0.46×). Scope: 2-layer ALiBi models, width 128; 95% intervals in the paper.</p>
+</div>
+</div>
+<aside>Given only the world's true switch and typo rates, these two formulas predict how a trained model will behave. We tested that by leaving one world out, fitting the laws on the other eleven, and predicting the held-out world's trained models: R² 0.87. Confidence intervals: 1.50 [1.29, 1.78], exponent 0.74 [0.71, 0.78], intercept −0.33 [−0.47, −0.04], slope 0.44 [0.35, 0.57].</aside>
+</section>

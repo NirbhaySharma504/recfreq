@@ -1,0 +1,18 @@
+<section id="scorecard" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#E07A2F;font-weight:600">Honest status</p>
+<h2 style="margin:16px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1">Hypothesis scorecard</h2>
+</div>
+<table style="width:100%;border-collapse:collapse;font-size:25px;line-height:1.35;background:#FFFFFF;border-radius:12px;overflow:hidden">
+<thead><tr style="background:#16213A;color:#F5F7FA;text-align:left"><th style="padding:12px 24px;width:33%">Question</th><th style="padding:12px 24px;width:22%">Verdict</th><th style="padding:12px 24px">Evidence</th></tr></thead>
+<tbody>
+<tr style="border-bottom:2px solid #E6E8EE"><td style="padding:12px 24px">(a) 2-layer attention-only models count old copies</td><td style="padding:12px 24px"><span style="background:#FBF0DC;color:#8A5A12;border-radius:6px;padding:4px 12px;font-weight:600">Depends on encoding</span></td><td style="padding:12px 24px">ALiBi over-counts the 2nd old copy; 3-layer RoPE is close to Bayes</td></tr>
+<tr style="border-bottom:2px solid #E6E8EE"><td style="padding:12px 24px">(b) MLPs or a 3rd layer move toward Bayes</td><td style="padding:12px 24px"><span style="background:#FBF0DC;color:#8A5A12;border-radius:6px;padding:4px 12px;font-weight:600">Partly</span></td><td style="padding:12px 24px">3rd layer lowers loss and halves the ALiBi cliff; MLPs lower loss but keep the cliff</td></tr>
+<tr style="border-bottom:2px solid #E6E8EE"><td style="padding:12px 24px">(c) Fading rate rises with switch rate h</td><td style="padding:12px 24px"><span style="background:#FBF0DC;color:#8A5A12;border-radius:6px;padding:4px 12px;font-weight:600">Between extremes only</span></td><td style="padding:12px 24px">Clear for typos-only vs switches-only; not within the mixed grid</td></tr>
+<tr style="border-bottom:2px solid #E6E8EE"><td style="padding:12px 24px">Counter rule or Bayes rule?</td><td style="padding:12px 24px"><span style="background:#E3F2EA;color:#22744A;border-radius:6px;padding:4px 12px;font-weight:600">Bayes, wrong beliefs</span></td><td style="padding:12px 24px">Best for 75/84 models; laws predict held-out worlds (R² 0.87)</td></tr>
+<tr style="border-bottom:2px solid #E6E8EE"><td style="padding:12px 24px">Is each head a fading counter?</td><td style="padding:12px 24px"><span style="background:#E3F2EA;color:#22744A;border-radius:6px;padding:4px 12px;font-weight:600">Yes</span></td><td style="padding:12px 24px">Decision from attention R² 0.90–0.99; fade = learned slope</td></tr>
+<tr><td style="padding:12px 24px">Is the main finding robust?</td><td style="padding:12px 24px"><span style="background:#E3F2EA;color:#22744A;border-radius:6px;padding:4px 12px;font-weight:600">Yes</span></td><td style="padding:12px 24px">Encodings, depth, seeds, lr, batch, width, 3× training; 31/31 numbers reproduce</td></tr>
+</tbody>
+</table>
+<aside>Our three original bets came out mixed, which is fine: they were written to be testable, not to be confirmed. The bigger questions came out clearly. Behaviour has the Bayes shape with wrong beliefs, each copy head is a fading counter, and the result survives every control we tried.</aside>
+</section>

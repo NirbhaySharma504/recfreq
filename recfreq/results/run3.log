@@ -1,0 +1,85 @@
+E1_h0.01_e0.1_L2_alibi_learn_attn_s0               copy [(1, 1), (1, 0)] ctrl [(1, 3), (1, 2)]  repeat-CE base 1.069 -> ablate copy 2.168, control 2.313
+E1_h0.01_e0.1_L2_alibi_learn_attn_s1               copy [(1, 0), (1, 1)] ctrl [(1, 2), (1, 3)]  repeat-CE base 1.073 -> ablate copy 2.160, control 1.727
+E1_h0.01_e0.1_L2_alibi_learn_attn_s2               copy [(1, 1), (1, 0)] ctrl [(1, 3), (1, 2)]  repeat-CE base 1.068 -> ablate copy 2.240, control 2.287
+E1_h0.01_e0.1_L2_alibi_learn_mlp_s0                copy [(1, 0), (1, 1)] ctrl [(1, 2), (1, 3)]  repeat-CE base 1.056 -> ablate copy 1.276, control 2.996
+E1_h0.01_e0.1_L2_alibi_learn_mlp_s1                copy [(1, 0), (1, 1)] ctrl [(1, 3), (1, 2)]  repeat-CE base 1.056 -> ablate copy 1.267, control 3.068
+E1_h0.01_e0.1_L2_alibi_learn_mlp_s2                copy [(1, 0), (1, 1)] ctrl [(1, 2), (1, 3)]  repeat-CE base 1.056 -> ablate copy 1.442, control 2.645
+E1_h0.01_e0.1_L3_alibi_learn_attn_s0               copy [(2, 0), (2, 1)] ctrl [(1, 3), (1, 0)]  repeat-CE base 1.056 -> ablate copy 2.431, control 1.094
+E1_h0.01_e0.1_L3_alibi_learn_attn_s1               copy [(2, 0), (2, 1)] ctrl [(1, 3), (1, 0)]  repeat-CE base 1.057 -> ablate copy 2.437, control 1.094
+E1_h0.01_e0.1_L3_alibi_learn_attn_s2               copy [(2, 0), (2, 1)] ctrl [(1, 3), (1, 2)]  repeat-CE base 1.057 -> ablate copy 2.461, control 1.072
+E1_h0.03_e0.2_L2_alibi_learn_attn_s0               copy [(1, 1), (1, 0)] ctrl [(1, 3), (1, 2)]  repeat-CE base 1.912 -> ablate copy 2.562, control 2.681
+E1_h0.03_e0.2_L2_alibi_learn_attn_s1               copy [(1, 1), (1, 0)] ctrl [(1, 3), (1, 2)]  repeat-CE base 1.914 -> ablate copy 2.569, control 2.363
+E1_h0.03_e0.2_L2_alibi_learn_attn_s2               copy [(1, 0), (1, 1)] ctrl [(1, 2), (1, 3)]  repeat-CE base 1.913 -> ablate copy 2.574, control 2.501
+E1_h0.03_e0.2_L2_alibi_learn_mlp_s0                copy [(1, 0), (1, 1)] ctrl [(1, 3), (1, 2)]  repeat-CE base 1.897 -> ablate copy 2.052, control 3.635
+E1_h0.03_e0.2_L2_alibi_learn_mlp_s1                copy [(1, 0), (1, 1)] ctrl [(1, 2), (1, 3)]  repeat-CE base 1.896 -> ablate copy 2.066, control 3.704
+E1_h0.03_e0.2_L2_alibi_learn_mlp_s2                copy [(1, 0), (1, 1)] ctrl [(1, 2), (1, 3)]  repeat-CE base 1.896 -> ablate copy 2.053, control 3.622
+E1_h0.03_e0.2_L3_alibi_learn_attn_s0               copy [(2, 0), (2, 1)] ctrl [(1, 3), (1, 1)]  repeat-CE base 1.895 -> ablate copy 2.532, control 1.981
+E1_h0.03_e0.2_L3_alibi_learn_attn_s1               copy [(2, 0), (2, 1)] ctrl [(1, 3), (1, 0)]  repeat-CE base 1.896 -> ablate copy 2.556, control 1.910
+E1_h0.03_e0.2_L3_alibi_learn_attn_s2               copy [(2, 0), (2, 1)] ctrl [(1, 3), (1, 2)]  repeat-CE base 1.895 -> ablate copy 2.612, control 1.949
+E2a_h0.01_e0.1_L2_learned_abs_attn_s0              copy [(1, 0), (1, 1), (1, 2)] ctrl [(1, 3)]  repeat-CE base 1.073 -> ablate copy 3.031, all late heads 4.278
+E2a_h0.01_e0.1_L2_learned_abs_attn_s1              copy [(1, 1), (1, 0), (1, 3)] ctrl [(1, 2)]  repeat-CE base 1.074 -> ablate copy 3.050, all late heads 4.234
+E2a_h0.01_e0.1_L2_learned_abs_attn_s2              copy [(1, 0), (1, 2), (1, 1)] ctrl [(1, 3)]  repeat-CE base 1.072 -> ablate copy 3.022, all late heads 4.278
+E2a_h0.01_e0.1_L2_rope_attn_s0                     copy [(1, 2), (1, 1), (1, 3)] ctrl [(1, 0)]  repeat-CE base 1.062 -> ablate copy 2.425, all late heads 4.319
+E2a_h0.01_e0.1_L2_rope_attn_s1                     copy [(1, 0), (1, 2)] ctrl [(1, 1), (1, 3)]  repeat-CE base 1.064 -> ablate copy 2.025, all late heads 4.362
+E2a_h0.01_e0.1_L2_rope_attn_s2                     copy [(1, 0), (1, 2), (1, 1)] ctrl [(1, 3)]  repeat-CE base 1.063 -> ablate copy 2.381, all late heads 4.326
+E2a_h0.01_e0.1_L3_learned_abs_attn_s0              copy [(2, 3), (2, 1)] ctrl [(1, 3), (1, 0)]  repeat-CE base 1.059 -> ablate copy 2.411, all late heads 4.245
+E2a_h0.01_e0.1_L3_learned_abs_attn_s1              copy [(2, 2), (2, 1), (2, 3)] ctrl [(1, 2), (1, 1), (2, 0)]  repeat-CE base 1.059 -> ablate copy 3.121, all late heads 4.254
+E2a_h0.01_e0.1_L3_learned_abs_attn_s2              copy [(2, 1), (2, 3), (2, 2)] ctrl [(1, 0), (1, 1), (1, 2)]  repeat-CE base 1.061 -> ablate copy 3.972, all late heads 4.290
+E2a_h0.01_e0.1_L3_rope_attn_s0                     copy [(2, 0), (2, 2), (1, 3), (1, 2)] ctrl [(2, 1), (1, 0), (1, 1), (2, 3)]  repeat-CE base 1.056 -> ablate copy 2.316, all late heads 4.187
+E2a_h0.01_e0.1_L3_rope_attn_s1                     copy [(2, 3), (2, 0), (2, 1)] ctrl [(1, 1), (1, 0), (2, 2)]  repeat-CE base 1.055 -> ablate copy 1.667, all late heads 4.206
+E2a_h0.01_e0.1_L3_rope_attn_s2                     copy [(2, 3), (2, 2), (1, 1)] ctrl [(1, 0), (2, 1), (1, 3)]  repeat-CE base 1.055 -> ablate copy 1.982, all late heads 4.264
+E2a_h0.03_e0.2_L2_learned_abs_attn_s0              copy [(1, 3), (1, 1)] ctrl [(1, 2), (1, 0)]  repeat-CE base 1.917 -> ablate copy 2.468, all late heads 4.266
+E2a_h0.03_e0.2_L2_learned_abs_attn_s1              copy [(1, 1), (1, 0), (1, 3)] ctrl [(1, 2)]  repeat-CE base 1.915 -> ablate copy 3.981, all late heads 4.433
+E2a_h0.03_e0.2_L2_learned_abs_attn_s2              copy [(1, 2), (1, 3)] ctrl [(1, 0), (1, 1)]  repeat-CE base 1.915 -> ablate copy 2.510, all late heads 4.297
+E2a_h0.03_e0.2_L2_rope_attn_s0                     copy [(1, 0), (1, 2), (1, 3)] ctrl [(1, 1)]  repeat-CE base 1.905 -> ablate copy 2.673, all late heads 4.361
+E2a_h0.03_e0.2_L2_rope_attn_s1                     copy [(1, 1), (1, 2)] ctrl [(1, 0), (1, 3)]  repeat-CE base 1.905 -> ablate copy 2.376, all late heads 4.342
+E2a_h0.03_e0.2_L2_rope_attn_s2                     copy [(1, 0), (1, 1)] ctrl [(1, 3), (1, 2)]  repeat-CE base 1.904 -> ablate copy 2.435, all late heads 4.308
+E2a_h0.03_e0.2_L3_learned_abs_attn_s0              copy [(1, 2), (2, 0), (2, 1), (2, 3), (2, 2)] ctrl [(1, 1), (1, 3), (1, 0)]  repeat-CE base 1.895 -> ablate copy 2.920, all late heads 4.196
+E2a_h0.03_e0.2_L3_learned_abs_attn_s1              copy [(2, 1), (2, 2), (2, 0)] ctrl [(2, 3), (1, 1), (1, 0)]  repeat-CE base 1.897 -> ablate copy 3.644, all late heads 4.214
+E2a_h0.03_e0.2_L3_learned_abs_attn_s2              copy [(2, 1), (2, 2), (1, 2), (2, 3)] ctrl [(2, 0), (1, 3), (1, 1), (1, 0)]  repeat-CE base 1.896 -> ablate copy 3.457, all late heads 4.201
+E2a_h0.03_e0.2_L3_rope_attn_s0                     copy [(2, 2), (1, 1), (1, 3), (1, 2)] ctrl [(2, 1), (2, 3), (2, 0), (1, 0)]  repeat-CE base 1.895 -> ablate copy 2.478, all late heads 4.186
+E2a_h0.03_e0.2_L3_rope_attn_s1                     copy [(2, 3), (2, 0)] ctrl [(2, 2), (1, 1)]  repeat-CE base 1.895 -> ablate copy 2.316, all late heads 4.207
+E2a_h0.03_e0.2_L3_rope_attn_s2                     copy [(2, 3), (2, 1), (1, 1)] ctrl [(2, 2), (2, 0), (1, 2)]  repeat-CE base 1.893 -> ablate copy 2.313, all late heads 4.178
+E2c_h0.01_e0.1_L2_alibi_learn_attn_cf0.2_s0        copy [(1, 1), (1, 0), (1, 2), (1, 3)] ctrl []  repeat-CE base 1.095 -> ablate copy 4.367, all late heads 4.367
+E2c_h0.01_e0.1_L2_alibi_learn_attn_cf0.2_s1        copy [(1, 1), (1, 0), (1, 2), (1, 3)] ctrl []  repeat-CE base 1.094 -> ablate copy 4.352, all late heads 4.352
+E2c_h0.01_e0.1_L2_alibi_learn_attn_cf0.2_s2        copy [(1, 1), (1, 0), (1, 2), (1, 3)] ctrl []  repeat-CE base 1.093 -> ablate copy 4.294, all late heads 4.294
+E2c_h0.01_e0.1_L3_alibi_learn_attn_cf0.2_s0        copy [(2, 0), (2, 1), (2, 2)] ctrl [(1, 3), (1, 2), (1, 1)]  repeat-CE base 1.073 -> ablate copy 2.800, all late heads 4.329
+E2c_h0.01_e0.1_L3_alibi_learn_attn_cf0.2_s1        copy [(2, 0), (2, 1), (2, 2)] ctrl [(1, 3), (1, 2), (1, 1)]  repeat-CE base 1.073 -> ablate copy 2.817, all late heads 4.301
+E2c_h0.01_e0.1_L3_alibi_learn_attn_cf0.2_s2        copy [(2, 0), (2, 1), (2, 2)] ctrl [(1, 3), (1, 2), (1, 1)]  repeat-CE base 1.074 -> ablate copy 2.796, all late heads 4.296
+E2c_h0.03_e0.2_L2_alibi_learn_attn_cf0.2_s0        copy [(1, 1), (1, 0)] ctrl [(1, 3), (1, 2)]  repeat-CE base 1.935 -> ablate copy 2.230, all late heads 4.312
+E2c_h0.03_e0.2_L2_alibi_learn_attn_cf0.2_s1        copy [(1, 1), (1, 0)] ctrl [(1, 3), (1, 2)]  repeat-CE base 1.936 -> ablate copy 2.226, all late heads 4.339
+E2c_h0.03_e0.2_L2_alibi_learn_attn_cf0.2_s2        copy [(1, 0), (1, 1)] ctrl [(1, 3), (1, 2)]  repeat-CE base 1.934 -> ablate copy 2.245, all late heads 4.235
+E2c_h0.03_e0.2_L3_alibi_learn_attn_cf0.2_s0        copy [(2, 1), (2, 0), (2, 2)] ctrl [(1, 3), (2, 3), (1, 2)]  repeat-CE base 1.913 -> ablate copy 3.121, all late heads 4.207
+E2c_h0.03_e0.2_L3_alibi_learn_attn_cf0.2_s1        copy [(2, 1), (2, 0), (2, 2)] ctrl [(1, 3), (1, 0), (2, 3)]  repeat-CE base 1.912 -> ablate copy 3.205, all late heads 4.253
+E2c_h0.03_e0.2_L3_alibi_learn_attn_cf0.2_s2        copy [(2, 1), (2, 0), (2, 2)] ctrl [(1, 3), (2, 3), (1, 2)]  repeat-CE base 1.913 -> ablate copy 3.080, all late heads 4.184
+E2b_h0.003_e0.05_L2_alibi_learn_attn_s0            copy [(1, 1), (1, 0)] ctrl [(1, 3), (1, 2)]  repeat-CE base 0.509 -> ablate copy 1.855, all late heads 4.225
+E2b_h0.003_e0.05_L2_alibi_learn_attn_s1            copy [(1, 1), (1, 0)] ctrl [(1, 3), (1, 2)]  repeat-CE base 0.508 -> ablate copy 2.098, all late heads 4.202
+E2b_h0.003_e0.05_L2_alibi_learn_attn_s2            copy [(1, 1), (1, 0)] ctrl [(1, 3), (1, 2)]  repeat-CE base 0.508 -> ablate copy 2.267, all late heads 4.191
+E2b_h0.003_e0.1_L2_alibi_learn_attn_s0             copy [(1, 1), (1, 0)] ctrl [(1, 3), (1, 2)]  repeat-CE base 0.642 -> ablate copy 1.964, all late heads 4.237
+E2b_h0.003_e0.1_L2_alibi_learn_attn_s1             copy [(1, 0), (1, 1)] ctrl [(1, 3), (1, 2)]  repeat-CE base 0.642 -> ablate copy 2.180, all late heads 4.203
+E2b_h0.003_e0.1_L2_alibi_learn_attn_s2             copy [(1, 0), (1, 1)] ctrl [(1, 3), (1, 2)]  repeat-CE base 0.642 -> ablate copy 2.103, all late heads 4.206
+E2b_h0.003_e0.2_L2_alibi_learn_attn_s0             copy [(1, 1), (1, 0)] ctrl [(1, 3), (1, 2)]  repeat-CE base 0.825 -> ablate copy 1.790, all late heads 4.266
+E2b_h0.003_e0.2_L2_alibi_learn_attn_s1             copy [(1, 0), (1, 1)] ctrl [(1, 3), (1, 2)]  repeat-CE base 0.824 -> ablate copy 1.961, all late heads 4.236
+E2b_h0.003_e0.2_L2_alibi_learn_attn_s2             copy [(1, 1), (1, 0)] ctrl [(1, 3), (1, 2)]  repeat-CE base 0.824 -> ablate copy 1.785, all late heads 4.246
+E2b_h0.003_e0.3_L2_alibi_learn_attn_s0             copy [(1, 0), (1, 1)] ctrl [(1, 3), (1, 2)]  repeat-CE base 0.942 -> ablate copy 1.550, all late heads 4.265
+E2b_h0.003_e0.3_L2_alibi_learn_attn_s1             copy [(1, 0), (1, 1)] ctrl [(1, 3), (1, 2)]  repeat-CE base 0.941 -> ablate copy 1.663, all late heads 4.229
+E2b_h0.003_e0.3_L2_alibi_learn_attn_s2             copy [(1, 0), (1, 1), (1, 2)] ctrl [(1, 3)]  repeat-CE base 0.943 -> ablate copy 2.342, all late heads 4.260
+E2b_h0.01_e0.05_L2_alibi_learn_attn_s0             copy [(1, 1), (1, 0)] ctrl [(1, 3), (1, 2)]  repeat-CE base 0.939 -> ablate copy 1.855, all late heads 4.192
+E2b_h0.01_e0.05_L2_alibi_learn_attn_s1             copy [(1, 1), (1, 0)] ctrl [(1, 3), (1, 2)]  repeat-CE base 0.942 -> ablate copy 1.720, all late heads 4.257
+E2b_h0.01_e0.05_L2_alibi_learn_attn_s2             copy [(1, 1), (1, 0)] ctrl [(1, 3), (1, 2)]  repeat-CE base 0.939 -> ablate copy 2.078, all late heads 4.167
+E2b_h0.01_e0.2_L2_alibi_learn_attn_s0              copy [(1, 0), (1, 1)] ctrl [(1, 3), (1, 2)]  repeat-CE base 1.244 -> ablate copy 2.071, all late heads 4.199
+E2b_h0.01_e0.2_L2_alibi_learn_attn_s1              copy [(1, 0), (1, 1)] ctrl [(1, 3), (1, 2)]  repeat-CE base 1.247 -> ablate copy 2.209, all late heads 4.275
+E2b_h0.01_e0.2_L2_alibi_learn_attn_s2              copy [(1, 0), (1, 1)] ctrl [(1, 3), (1, 2)]  repeat-CE base 1.243 -> ablate copy 2.090, all late heads 4.184
+E2b_h0.01_e0.3_L2_alibi_learn_attn_s0              copy [(1, 1), (1, 0)] ctrl [(1, 3), (1, 2)]  repeat-CE base 1.353 -> ablate copy 2.012, all late heads 4.187
+E2b_h0.01_e0.3_L2_alibi_learn_attn_s1              copy [(1, 0), (1, 1)] ctrl [(1, 3), (1, 2)]  repeat-CE base 1.355 -> ablate copy 2.098, all late heads 4.316
+E2b_h0.01_e0.3_L2_alibi_learn_attn_s2              copy [(1, 0), (1, 1)] ctrl [(1, 3), (1, 2)]  repeat-CE base 1.350 -> ablate copy 2.043, all late heads 4.209
+E2b_h0.03_e0.05_L2_alibi_learn_attn_s0             copy [(1, 0), (1, 1)] ctrl [(1, 3), (1, 2)]  repeat-CE base 1.641 -> ablate copy 2.510, all late heads 4.203
+E2b_h0.03_e0.05_L2_alibi_learn_attn_s1             copy [(1, 0), (1, 1)] ctrl [(1, 3), (1, 2)]  repeat-CE base 1.644 -> ablate copy 2.244, all late heads 4.168
+E2b_h0.03_e0.05_L2_alibi_learn_attn_s2             copy [(1, 0), (1, 1)] ctrl [(1, 2), (1, 3)]  repeat-CE base 1.640 -> ablate copy 2.403, all late heads 4.212
+E2b_h0.03_e0.1_L2_alibi_learn_attn_s0              copy [(1, 0), (1, 1)] ctrl [(1, 2), (1, 3)]  repeat-CE base 1.756 -> ablate copy 2.673, all late heads 4.292
+E2b_h0.03_e0.1_L2_alibi_learn_attn_s1              copy [(1, 1), (1, 0)] ctrl [(1, 3), (1, 2)]  repeat-CE base 1.759 -> ablate copy 2.373, all late heads 4.194
+E2b_h0.03_e0.1_L2_alibi_learn_attn_s2              copy [(1, 0), (1, 1)] ctrl [(1, 3), (1, 2)]  repeat-CE base 1.759 -> ablate copy 2.420, all late heads 4.183
+E2b_h0.03_e0.3_L2_alibi_learn_attn_s0              copy [(1, 0), (1, 1), (1, 2)] ctrl [(1, 3)]  repeat-CE base 2.006 -> ablate copy 3.777, all late heads 4.174
+E2b_h0.03_e0.3_L2_alibi_learn_attn_s1              copy [(1, 0), (1, 1), (1, 2)] ctrl [(1, 3)]  repeat-CE base 2.007 -> ablate copy 3.745, all late heads 4.285
+E2b_h0.03_e0.3_L2_alibi_learn_attn_s2              copy [(1, 1), (1, 0), (1, 2)] ctrl [(1, 3)]  repeat-CE base 2.004 -> ablate copy 3.900, all late heads 4.274
+run3 finished Mon  5 Oct 14:36:16 IST 2026

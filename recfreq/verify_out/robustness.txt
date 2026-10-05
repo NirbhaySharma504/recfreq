@@ -1,0 +1,6 @@
+models: 84
+1. second optimizer: |log(h'_fine / h')| median 0.000, within 25% in 0.99; eps' within 25% in 1.00
+2. bootstrap 90% interval width for h' (ratio hi/lo): median 1.30; for eps': median 1.14
+   h' interval excludes the true h in 0.92 of models (h' > h significantly)
+3. fitted scale b > 0 in 1.00 of models (min b 0.503)
+4. laws (seed-resampled, 95% CI): h' = 1.50 [1.29, 1.78] * h^0.74 [0.71, 0.78];  logit eps' = -0.33 [-0.47, -0.04] + 0.44 [0.35, 0.57] * logit eps

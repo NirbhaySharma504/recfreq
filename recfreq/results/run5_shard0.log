@@ -1,0 +1,27 @@
+/home/nirbhay/recfreq/recfreq/run5.py:135: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  base["decay"] = [float(slopes[int(h)]) * 2 if slopes is not None else float(b) for h, b in zip(base["head"], base.b_d)]
+E1_h0.01_e0.1_L2_alibi_learn_attn_s0                 prev 3 slow [0, 1] decomp err 3.4e-05  CE base 1.073 nonprev_all 1.261
+E1_h0.03_e0.2_L2_alibi_learn_attn_s0                 prev 3 slow [0, 3] decomp err 2.7e-05  CE base 1.927 nonprev_all 2.745
+E2a_h0.01_e0.1_L2_learned_abs_attn_s0                prev 0 slow [0, 3] decomp err 5.2e-05  CE base 1.079 nonprev_all 1.638
+E2a_h0.01_e0.1_L2_rope_attn_s0                       prev 0 slow [2, 3] decomp err 2.3e-05  CE base 1.066 nonprev_all 1.184
+E2a_h0.03_e0.2_L2_learned_abs_attn_s0                prev 1 slow [0, 1] decomp err 4.6e-05  CE base 1.931 nonprev_all 3.060
+E2a_h0.03_e0.2_L2_rope_attn_s0                       prev 1 slow [2, 3] decomp err 2.1e-05  CE base 1.921 nonprev_all 2.085
+E2b_h0.003_e0.05_L2_alibi_learn_attn_s0              prev 3 slow [0, 1] decomp err 4.6e-05  CE base 0.500 nonprev_all 0.803
+E2b_h0.003_e0.1_L2_alibi_learn_attn_s0               prev 3 slow [0, 1] decomp err 4.6e-05  CE base 0.638 nonprev_all 0.924
+E2b_h0.003_e0.2_L2_alibi_learn_attn_s0               prev 3 slow [0, 1] decomp err 5.3e-05  CE base 0.820 nonprev_all 1.235
+E2b_h0.003_e0.3_L2_alibi_learn_attn_s0               prev 3 slow [0, 1] decomp err 5.3e-05  CE base 0.935 nonprev_all 1.020
+E2b_h0.01_e0.05_L2_alibi_learn_attn_s0               prev 3 slow [0, 1] decomp err 3.4e-05  CE base 0.941 nonprev_all 1.226
+E2b_h0.01_e0.2_L2_alibi_learn_attn_s0                prev 3 slow [0, 1] decomp err 3.8e-05  CE base 1.247 nonprev_all 1.484
+E2b_h0.01_e0.3_L2_alibi_learn_attn_s0                prev 3 slow [0, 1] decomp err 4.6e-05  CE base 1.354 nonprev_all 1.483
+E2b_h0.03_e0.05_L2_alibi_learn_attn_s0               prev 3 slow [0, 1] decomp err 2.8e-05  CE base 1.654 nonprev_all 2.045
+E2b_h0.03_e0.1_L2_alibi_learn_attn_s0                prev 3 slow [0, 3] decomp err 2.1e-05  CE base 1.770 nonprev_all 2.068
+E2b_h0.03_e0.3_L2_alibi_learn_attn_s0                prev 3 slow [0, 1] decomp err 2.5e-05  CE base 2.018 nonprev_all 3.657
+E2c_h0.01_e0.1_L2_alibi_learn_attn_cf0.2_s0          prev 3 slow [0, 1] decomp err 1.5e-05  CE base 1.098 nonprev_all 1.318
+E2c_h0.03_e0.2_L2_alibi_learn_attn_cf0.2_s0          prev 3 slow [0, 1] decomp err 2.0e-05  CE base 1.951 nonprev_all 2.036
+E3_h0.01_e0.1_L2_alibi_learn_attn_d256_s0            prev 7 slow [0, 1, 2, 3] decomp err 4.6e-05  CE base 1.064 nonprev_all 1.446
+E3_h0.01_e0.1_L2_alibi_learn_attn_st60000_s1         prev 3 slow [0, 1] decomp err 1.1e-04  CE base 1.076 nonprev_all 1.418
+E3_h0.01_e0.1_L2_rope_attn_st60000_s0                prev 0 slow [1, 3] decomp err 2.6e-05  CE base 1.064 nonprev_all 1.304
+E3_h0.03_e0.2_L2_alibi_learn_attn_d256_s1            prev 7 slow [0, 1, 2, 3] decomp err 3.1e-05  CE base 1.915 nonprev_all 2.334
+E3_h0.03_e0.2_L2_rope_attn_d256_s0                   prev 0 slow [1, 2, 4, 7] decomp err 3.3e-05  CE base 1.912 nonprev_all 2.051
+E3_h0.03_e0.2_L2_rope_attn_st60000_s1                prev 2 slow [0, 3] decomp err 2.7e-05  CE base 1.918 nonprev_all 2.804

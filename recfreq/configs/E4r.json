@@ -1,0 +1,16 @@
+{
+  "exp": "E4r",
+  "base": {"steps": 20000, "mlp": 0},
+  "grid": {
+    "combo": [
+      {"h": 0.01, "eps": 0.1, "layers": 2, "pe": "alibi_learn", "seed": 0},
+      {"h": 0.03, "eps": 0.2, "layers": 2, "pe": "alibi_learn", "seed": 0},
+      {"h": 0.01, "eps": 0.1, "layers": 2, "pe": "rope", "seed": 0},
+      {"h": 0.01, "eps": 0.1, "layers": 3, "pe": "alibi_learn", "seed": 0},
+      {"h": 0.01, "eps": 0.1, "layers": 2, "pe": "alibi_learn", "seed": 3},
+      {"h": 0.01, "eps": 0.1, "layers": 2, "pe": "alibi_learn", "seed": 4},
+      {"h": 0.01, "eps": 0.1, "layers": 2, "pe": "rope", "seed": 3},
+      {"h": 0.01, "eps": 0.1, "layers": 2, "pe": "rope", "seed": 4}
+    ]
+  }
+}

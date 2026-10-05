@@ -1,0 +1,15 @@
+3 finished runs: ['E2u']
+
+== fit, slope, cliff, evidence weights (mean ± sd over seeds) ==
+                         seeds       excess     lambda_hat          agree  maxdrop_model maxdrop_bayes percopy_model percopy_bayes   nc1to2_model nc1to2_bayes   nc4to8_model nc4to8_bayes
+h   eps arch                                                                                                                                                                              
+0.0 0.2 L2 uniform-typo      3  0.005 ± 0.0  0.011 ± 0.002  0.902 ± 0.006  0.063 ± 0.014     0.0 ± 0.0     nan ± nan     nan ± nan  2.343 ± 0.011  2.591 ± 0.0  1.929 ± 0.133  1.557 ± 0.0
+
+== switch-over gap G* at n_c = 2 (pairs; 0 = before G=2, inf = after G=128) ==
+                        Gstar_model_nw1 Gstar_bayes_nw1 Gstar_model_nw2 Gstar_bayes_nw2 Gstar_model_nw3 Gstar_bayes_nw3 Gstar_model_nw4 Gstar_bayes_nw4
+h   eps arch                                                                                                                                           
+0.0 0.2 L2 uniform-typo       inf ± nan       inf ± nan       0.0 ± 0.0     9.075 ± 0.0       0.0 ± 0.0       0.0 ± 0.0       0.0 ± 0.0       0.0 ± 0.0
+
+theory G* for structured typos (n_w=1..4):
+  h=0.0 eps=0.2: [inf, inf, inf, inf]
+figures -> figs_E2u

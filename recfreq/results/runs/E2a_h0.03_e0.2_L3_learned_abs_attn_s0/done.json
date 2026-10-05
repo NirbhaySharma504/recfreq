@@ -1,0 +1,114 @@
+{
+  "final": {
+    "ce": 2.0470690727233887,
+    "acc": 0.5357513427734375,
+    "ce_rep": 1.906589969649381,
+    "acc_rep": 0.5702661578394916,
+    "bayes_ce": 2.0411747729859586,
+    "bayes_acc": 0.5360870361328125,
+    "bayes_acc_rep": 0.5707950560225229,
+    "excess": 0.005894299737430053
+  },
+  "heads": [
+    {
+      "layer": 0,
+      "head": 0,
+      "ind_score": 0.07530194520950317,
+      "slope": null
+    },
+    {
+      "layer": 0,
+      "head": 1,
+      "ind_score": 0.006247128825634718,
+      "slope": null
+    },
+    {
+      "layer": 0,
+      "head": 2,
+      "ind_score": 0.05842135474085808,
+      "slope": null
+    },
+    {
+      "layer": 0,
+      "head": 3,
+      "ind_score": 0.07426584511995316,
+      "slope": null
+    },
+    {
+      "layer": 1,
+      "head": 0,
+      "ind_score": 0.5763974189758301,
+      "slope": null
+    },
+    {
+      "layer": 1,
+      "head": 1,
+      "ind_score": 0.16600258648395538,
+      "slope": null
+    },
+    {
+      "layer": 1,
+      "head": 2,
+      "ind_score": 0.6471469402313232,
+      "slope": null
+    },
+    {
+      "layer": 1,
+      "head": 3,
+      "ind_score": 0.9199345707893372,
+      "slope": null
+    },
+    {
+      "layer": 2,
+      "head": 0,
+      "ind_score": 0.9873067736625671,
+      "slope": null
+    },
+    {
+      "layer": 2,
+      "head": 1,
+      "ind_score": 0.9879910349845886,
+      "slope": null
+    },
+    {
+      "layer": 2,
+      "head": 2,
+      "ind_score": 0.988197386264801,
+      "slope": null
+    },
+    {
+      "layer": 2,
+      "head": 3,
+      "ind_score": 0.988208532333374,
+      "slope": null
+    }
+  ],
+  "args": {
+    "h": 0.03,
+    "eps": 0.2,
+    "typo": "structured",
+    "K": 16,
+    "V": 64,
+    "n_pairs": 256,
+    "key_dist": "zipf",
+    "layers": 3,
+    "mlp": 0,
+    "pe": "learned_abs",
+    "d_model": 128,
+    "heads": 4,
+    "seed": 0,
+    "steps": 20000,
+    "batch": 128,
+    "lr": 0.001,
+    "warmup": 500,
+    "wd": 0.01,
+    "eval_every": 500,
+    "eval_batch": 512,
+    "probes": 1,
+    "probe_fills": 256,
+    "gate": 0,
+    "conflict_frac": 0.0,
+    "conflict_batch": 32,
+    "out": "/home/nirbhay/recfreq/results/runs/E2a_h0.03_e0.2_L3_learned_abs_attn_s0"
+  }
+}

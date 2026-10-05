@@ -1,0 +1,138 @@
+{
+  "final": {
+    "ce": 1.2457517385482788,
+    "acc": 0.7414016723632812,
+    "ce_rep": 1.0520041681245271,
+    "acc_rep": 0.7895392076291529,
+    "bayes_ce": 1.2405277349236212,
+    "bayes_acc": 0.7415542602539062,
+    "bayes_acc_rep": 0.789905367909713,
+    "excess": 0.0052240036246575805
+  },
+  "heads": [
+    {
+      "layer": 0,
+      "head": 0,
+      "ind_score": 0.054800987243652344,
+      "slope": null
+    },
+    {
+      "layer": 0,
+      "head": 1,
+      "ind_score": 0.13920551538467407,
+      "slope": null
+    },
+    {
+      "layer": 0,
+      "head": 2,
+      "ind_score": 0.05575740709900856,
+      "slope": null
+    },
+    {
+      "layer": 0,
+      "head": 3,
+      "ind_score": 0.04548704996705055,
+      "slope": null
+    },
+    {
+      "layer": 0,
+      "head": 4,
+      "ind_score": 0.05337558314204216,
+      "slope": null
+    },
+    {
+      "layer": 0,
+      "head": 5,
+      "ind_score": 0.039594296365976334,
+      "slope": null
+    },
+    {
+      "layer": 0,
+      "head": 6,
+      "ind_score": 0.008750244975090027,
+      "slope": null
+    },
+    {
+      "layer": 0,
+      "head": 7,
+      "ind_score": 0.060028430074453354,
+      "slope": null
+    },
+    {
+      "layer": 1,
+      "head": 0,
+      "ind_score": 0.9758469462394714,
+      "slope": null
+    },
+    {
+      "layer": 1,
+      "head": 1,
+      "ind_score": 0.8692265748977661,
+      "slope": null
+    },
+    {
+      "layer": 1,
+      "head": 2,
+      "ind_score": 0.9602663516998291,
+      "slope": null
+    },
+    {
+      "layer": 1,
+      "head": 3,
+      "ind_score": 0.9942870140075684,
+      "slope": null
+    },
+    {
+      "layer": 1,
+      "head": 4,
+      "ind_score": 0.9846768379211426,
+      "slope": null
+    },
+    {
+      "layer": 1,
+      "head": 5,
+      "ind_score": 0.3315376937389374,
+      "slope": null
+    },
+    {
+      "layer": 1,
+      "head": 6,
+      "ind_score": 0.9566988945007324,
+      "slope": null
+    },
+    {
+      "layer": 1,
+      "head": 7,
+      "ind_score": 0.5237272381782532,
+      "slope": null
+    }
+  ],
+  "args": {
+    "h": 0.01,
+    "eps": 0.1,
+    "typo": "structured",
+    "K": 16,
+    "V": 64,
+    "n_pairs": 256,
+    "key_dist": "zipf",
+    "layers": 2,
+    "mlp": 0,
+    "pe": "rope",
+    "d_model": 256,
+    "heads": 8,
+    "seed": 1,
+    "steps": 20000,
+    "batch": 128,
+    "lr": 0.001,
+    "warmup": 500,
+    "wd": 0.01,
+    "eval_every": 2000,
+    "eval_batch": 512,
+    "probes": 1,
+    "probe_fills": 256,
+    "gate": 0,
+    "conflict_frac": 0.0,
+    "conflict_batch": 32,
+    "out": "/home/nirbhay/recfreq/results/runs/E3_h0.01_e0.1_L2_rope_attn_d256_s1"
+  }
+}

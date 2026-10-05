@@ -1,0 +1,10 @@
+{
+  "exp": "E2a",
+  "base": {"steps": 20000, "mlp": 0},
+  "grid": {
+    "seed": [0, 1, 2],
+    "point": [{"h": 0.01, "eps": 0.1}, {"h": 0.03, "eps": 0.2}],
+    "pe": ["rope", "learned_abs"],
+    "layers": [2, 3]
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "exp": "E2u",
+  "base": {"steps": 20000, "mlp": 0, "pe": "alibi_learn", "layers": 2, "h": 0.0, "eps": 0.2, "typo": "uniform"},
+  "grid": {"seed": [0, 1, 2]}
+}

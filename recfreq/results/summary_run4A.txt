@@ -1,0 +1,45 @@
+models: 70
+
+=== A1 (sanity): previous-token head, key path ===
+repeat-sighting loss rises by > 1 nat in 0.99 of 70 models (median rise 2.57)
+
+=== A2: best single non-previous-token head on the query or key path ===
+[any] models where one head removes >= 50% of the discount: 0.84 of 70 (median best removal 0.79)
+   which path: {'k': 52, 'q': 7}
+                n  pass  median_removed  median_d_ce
+arch                                                
+ALiBi        36.0  0.86            0.85         0.02
+ALiBi 60k     4.0  1.00            0.71         0.07
+ALiBi d256    4.0  0.50            0.51         0.04
+ALiBi enr     6.0  1.00            1.02         0.03
+RoPE          6.0  0.67            0.69         0.03
+RoPE 60k      4.0  1.00            0.69         0.08
+RoPE d256     4.0  0.50            0.46         0.00
+learned abs   6.0  1.00            0.95         0.05
+[model still works (loss +< 0.5 nat)] models where one head removes >= 50% of the discount: 0.83 of 70 (median best removal 0.78)
+   which path: {'k': 51, 'q': 7}
+                n  pass  median_removed  median_d_ce
+arch                                                
+ALiBi        36.0  0.83            0.82         0.02
+ALiBi 60k     4.0  1.00            0.71         0.07
+ALiBi d256    4.0  0.50            0.51         0.04
+ALiBi enr     6.0  1.00            1.02         0.03
+RoPE          6.0  0.67            0.69         0.03
+RoPE 60k      4.0  1.00            0.69         0.08
+RoPE d256     4.0  0.50            0.46         0.00
+learned abs   6.0  1.00            0.95         0.05
+
+median discount removed, by path, best non-previous head per model:
+path
+all    0.84
+k      0.77
+q      0.09
+v      0.00
+
+=== A3: does removing the discount make behaviour counter-like? ===
+59 models: swapped-layout n_c slope rises by >= 0.2 in 0.07 (median change +0.011); Bayes-minus-counter R² gap shrinks in 0.54 (median change -0.005)
+
+all single-head ablations: largest swapped-layout n_c slope increase per model (any path, model still works):
+median +0.036; >= 0.2 in 0.10 of models; paths: {'all': 28, 'q': 21, 'k': 15, 'v': 6}
+
+base swapped-layout n_c slope (Bayes: 0): -0.006

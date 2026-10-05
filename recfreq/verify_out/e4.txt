@@ -1,0 +1,31 @@
+=== 2.3 reproducibility ===
+                                  run  seed  h_new  eps_new  excess_new                                 orig  h_orig  eps_orig  excess_orig  surface_corr  orig_h_min  orig_h_max  orig_eps_min  orig_eps_max
+E4r_h0.01_e0.1_L2_alibi_learn_attn_s0     0 0.0583   0.2185      0.0141 E1_h0.01_e0.1_L2_alibi_learn_attn_s0  0.0583    0.2195       0.0141        1.0000         NaN         NaN           NaN           NaN
+E4r_h0.01_e0.1_L2_alibi_learn_attn_s3     3 0.0635   0.2391      0.0143                                  NaN     NaN       NaN          NaN           NaN      0.0583      0.0673        0.2195        0.3249
+E4r_h0.01_e0.1_L2_alibi_learn_attn_s4     4 0.0576   0.2170      0.0145                                  NaN     NaN       NaN          NaN           NaN      0.0583      0.0673        0.2195        0.3249
+       E4r_h0.01_e0.1_L2_rope_attn_s0     0 0.0147   0.0565      0.0091       E2a_h0.01_e0.1_L2_rope_attn_s0  0.0153    0.0573       0.0090        0.9999         NaN         NaN           NaN           NaN
+       E4r_h0.01_e0.1_L2_rope_attn_s3     3 0.0240   0.0879      0.0105                                  NaN     NaN       NaN          NaN           NaN      0.0153      0.0253        0.0573        0.0865
+       E4r_h0.01_e0.1_L2_rope_attn_s4     4 0.0215   0.0690      0.0105                                  NaN     NaN       NaN          NaN           NaN      0.0153      0.0253        0.0573        0.0865
+E4r_h0.01_e0.1_L3_alibi_learn_attn_s0     0 0.0199   0.0672      0.0044 E1_h0.01_e0.1_L3_alibi_learn_attn_s0  0.0189    0.0655       0.0045        0.9998         NaN         NaN           NaN           NaN
+E4r_h0.03_e0.2_L2_alibi_learn_attn_s0     0 0.1000   0.2328      0.0198 E1_h0.03_e0.2_L2_alibi_learn_attn_s0  0.0999    0.2323       0.0197        1.0000         NaN         NaN           NaN           NaN
+same-seed retrains within 15% on h' and eps' with surface corr > 0.95: 4 of 4
+new seeds with h' inside the original seeds' range +-30%: 4 of 4
+
+=== 2.4 hyperparameters ===
+                     ratio  bayes_free.cv_r2  best_counter_cv  cliff_ratio
+pe    variant  h                                                          
+ALiBi b256     0.01  5.898             0.909            0.466        3.588
+               0.03  3.433             0.952            0.651        1.516
+      lr0.0003 0.01  6.225             0.946            0.576        2.940
+               0.03  3.268             0.963            0.728        1.288
+      lr0.003  0.01  6.251             0.923            0.513        3.504
+               0.03  3.555             0.953            0.713        1.452
+RoPE  b256     0.01  2.223             0.924            0.800        2.084
+               0.03  2.036             0.939            0.683        1.240
+      lr0.0003 0.01  4.195             0.842            0.552        2.551
+               0.03  2.325             0.942            0.679        1.206
+      lr0.003  0.01  2.300             0.938            0.791        1.872
+               0.03  1.817             0.945            0.743        1.184
+
+pre-registered: ALiBi h'/h > 2 in every run: True (min 3.26); Bayes beats best counter held-out in 1.00 of 24 runs (pass if >= 0.90)
+against: any setting with h'/h <= 1.5: False

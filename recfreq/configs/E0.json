@@ -1,0 +1,5 @@
+{
+  "exp": "E0",
+  "base": {"h": 0.0, "eps": 0.0, "layers": 2, "mlp": 0, "pe": "alibi_learn", "steps": 20000, "gate": 1, "probes": 0},
+  "grid": {"seed": [0, 1]}
+}
