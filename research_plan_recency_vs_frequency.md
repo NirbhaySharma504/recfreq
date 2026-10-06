@@ -738,3 +738,85 @@ Graded criteria are unchanged:
 - **S6:** uses 1 seed at the 10 new RoPE settings, plus the 3 existing seeds at C and D.
 
 Trimmed configs: `configs/E5n_trim.json`, `E5d_trim_a.json`, `E5d_trim_b.json`, `E5r_trim.json`. The originals are kept as the full design.
+
+### 18.1 Run 6 results against the §18 predictions (written as each part finished, 6 Oct 2026)
+
+**E5a, new (h, ε) — finished 02:53.** 21 models. One model at (0.01, 0.4) has a flat surface (variance 0.03) and is excluded from R². Frozen law, medians over seeds:
+
+| Setting | Kind | Law R² | Fitted h′ / law h′ | logit ε′ error (abs.) | Own Bayes fit R² | Verdict |
+|---|---|---|---|---|---|---|
+| (0.005, 0.07) | interp. | 0.91 | 1.64 | 0.19 | 0.94 | holds |
+| (0.02, 0.15) | interp. | 0.94 | 1.04 | 0.10 | 0.95 | holds |
+| (0.007, 0.25) | interp. | 0.89 | 0.63 | 0.00 | 0.93 | holds |
+| (0.01, 0.02) | extrap. | 0.88 | 1.72 | 0.12 | 0.95 | holds |
+| (0.001, 0.1) | extrap. | 0.72 | 1.51 | 0.59 | 0.87 | fails (narrowly) |
+| (0.06, 0.1) | extrap. | 0.73 | 0.98 | 0.84 | 0.97 | fails (narrowly) |
+| (0.01, 0.4) | extrap. | −2.96 | 0.46 | 0.17 | 0.91 | fails |
+
+- **S1: PASS (3/3).** All three interior settings meet R² ≥ 0.75, h′ within ×2 and logit error < 0.5.
+- **S2: the law holds at 1 of 4 extrapolation settings** (ε = 0.02). The pre-stated expectation (holds at h = 0.001 and 0.06) was wrong for both, narrowly (0.72, 0.73).
+- **S3: PASS.** Bayes(h′, ε′) beats both counters on held-out gaps in 20/20 new models.
+- Over all 20 new models, the frozen law's median R² is 0.87. This equals the leave-one-setting-out estimate made before these runs existed (0.867).
+
+**Post-hoc diagnosis** (`verify/law_scope_posthoc.py`; chosen after seeing the S2 failures):
+- **The output scale is the main failure, not the beliefs.** The law fixes the affine scale at b = 1.43.
+  - (0.01, 0.4): the models' surfaces are nearly flat (sd 0.36 nats), so R² is unstable. The law's absolute error is ordinary there (RMSE 0.71 nats vs 0.68 on the original grid). With a and b fitted per model, the law's beliefs reach R² 0.79, against 0.86 for the true (h, ε). The models' own scale is 0.87.
+  - (0.001, 0.1): the models' scale is 4.8. With a and b fitted, the law's beliefs reach 0.74; true Bayes reaches 0.51.
+- **ε′ also depends on h.** At (0.06, 0.1) the fitted h′ matches the law (0.18 vs 0.18), but ε′ is 0.105 against 0.21 predicted. The cross-term law, fitted on the original 12 settings only, so still out of sample, predicts this setting at R² 0.93 with frozen a and b. Over all new models, the cross-term law gives median R² 0.90 (frozen a, b) and 0.94 (a, b fitted), against 0.87 and 0.91 for the separable law. It is worse at h = 0.001 (0.44).
+- **Summary.** The believed-parameter part of Law 1 transfers to new settings, including most extrapolations. The fixed output scale does not transfer to the edges (ε = 0.4, h = 0.001). A complete law needs a model of the scale b, and an h-dependence of ε′.
+
+**E5n, context length — finished 04:53.** 12 models: h ∈ {0.003, 0.01, 0.03} at ε = 0.1, N ∈ {192, 512}, 2 seeds. The N = 256 baseline has 3 seeds.
+
+| N | h′ at h = 0.003 | h′ at 0.01 | h′ at 0.03 | β_N (3-point slope) | Frozen-law R² (median) |
+|---|---|---|---|---|---|
+| 192 | 0.029 | 0.063 | 0.123 | 0.63 | 0.90 |
+| 256 | 0.025 | 0.060 | 0.114 | 0.67 | 0.90 |
+| 512 | 0.025 | 0.063 | 0.103 | 0.62 | 0.90 |
+
+- **S4: H_N REFUTED by the pre-registered rule.** h′(N = 512)/h′(N = 256) at (0.003, 0.1) is 1.02, not ≤ 0.77. β_512 − β_256 = −0.05, not ≥ +0.1.
+- The N = 192 side moved the way H_N said, but only slightly: h′ is 1.17× higher, and β is 0.03 lower.
+- **Interpretation:** context length is not what sets h′ or the exponent in 192–512 pairs. h′ is invariant to doubling the context.
+- **Positive scope result:** the frozen law transfers across context length (R² 0.90 at every N), and Bayes beats both counters in 12/12 models.
+
+**E5d (part a), vocabulary and number of keys — finished 06:35.** 16 models: V ∈ {32, 128} and K ∈ {8, 32}, at C (0.01, 0.1) and D (0.03, 0.2), 2 seeds each. The frozen law is evaluated with the Bayes rule for the model's own V.
+
+| Variant | Law R² at C, D | h′ / baseline h′ at C, D | Own Bayes fit R² | Verdict |
+|---|---|---|---|---|
+| V = 32 | 0.92, 0.94 | 0.89, 0.90 | 0.94, 0.96 | transfers |
+| V = 128 | 0.91, 0.91 | 1.13, 1.15 | 0.93, 0.95 | transfers |
+| K = 8 | 0.89, 0.92 | 1.10, 0.97 | 0.94, 0.96 | transfers |
+| K = 32 | 0.92, 0.93 | 0.95, 1.07 | 0.94, 0.96 | transfers |
+
+- **S5 (V, K): the constants TRANSFER for all four variants.** The law holds at both points, and h′ is within ×1.5 of baseline; in fact within 0.89–1.15.
+- The expectation "K shifts h′" was wrong: h′ does not depend on the number of keys in 8–32.
+- Bayes(h′, ε′) beats both counters in 16/16, and in 48/48 new models so far.
+- **Post-hoc reading of the V result.** If the models ignored V, matching them with the V-aware Bayes rule would need h′ to scale roughly like V/64, i.e. ×0.5 at V = 32 and ×2 at V = 128. The observed change is ×0.9 and ×1.14, about a fifth of that. So the models' switch-over shifts with log V much as the Bayes boundary does.
+
+**E5r, RoPE grid — finished 07:26.** 10 new settings × 1 seed (trimmed), plus C and D from E2a (3 seeds each).
+
+- **S6: FAIL by the pre-registered rule.**
+  - The h′ power law fits RoPE's 12 setting medians with R² 0.68 (needed ≥ 0.8).
+  - The ε′ law fits with R² 0.91 ✓.
+  - Leave-one-setting-out with RoPE's own constants gives a median R² of 0.89 ✓.
+- **Post-hoc diagnosis of the failure.** One fit is not identifiable: (0.003, 0.3), one seed. It returned h′ = 0.0003 with scale b = 128 and offset −81. Without it, RoPE gives h′ = 1.26·h^0.88 with R² 0.89. The ALiBi grid's h′ law has R² 0.82 by the same computation.
+- **Expectation met:** RoPE's h′/h is below ALiBi's at 12/12 settings. RoPE is 1.7–4.4×, excluding the unidentified point; ALiBi is 2.8–13.7×.
+- **New:** RoPE's typo belief is almost calibrated, with logit ε′ = 0.01 + 1.02·logit ε. ALiBi's is compressed (slope 0.44).
+- Bayes(h′, ε′) is again the best description: own-fit R² 0.93–0.97, and it beats both counters in every RoPE model.
+- The frozen ALiBi law does not transfer to RoPE (median R² 0.73), as expected given the different constants.
+
+**E5d (part b), key and typo distributions — finished 07:36.** 1 seed each, at C and D.
+- **Uniform key frequencies: constants TRANSFER.** Law R² 0.93 and 0.83; h′ at 0.92× and 0.69× of baseline, inside ×1.5.
+- **Uniform typos: constants do NOT transfer.** Law R² 0.17 and 0.34, as expected. The bigger finding: Bayes(h′, ε′) loses to the counters on held-out gaps in both models, and its fitted ε′ sits at the 0.5 cap.
+- **Post-hoc check (`verify/uniform_typo_check.py`).** The 0.5 cap is right for structured typos but not for uniform ones, so we refitted all 5 uniform-typo models with ε′ up to 0.95: the 3 E2u models (h = 0, ε = 0.2) and these 2. ε′ moves to 0.72–0.88 and R² rises to 0.88–0.95, but the counters still win on held-out gaps in 4 of 5 (the exception is the E5d model at C).
+- **Conclusion:** "Bayes with miscalibrated beliefs" describes models trained with structured typos (w = c + 1). With uniform typos, a discounted counter describes them better.
+- **Interpretation (not tested):** run 3 found that the copy heads discount typo-variant copies by content. With uniform typos there is no recognisable variant to discount, so the heads stay counters.
+
+**S3 final:** Bayes(h′, ε′) beats both counters in 60/62 new models with non-flat surfaces; the 2 exceptions are the uniform-typo models. **PASS.**
+
+**Run 6 summary.**
+- **The law predicts new models.** Median R² 0.87 over new (h, ε), 0.89–0.94 inside the fitted range.
+- **Transfers unchanged:** context length 192–512, V 32–128, K 8–32, uniform key frequencies.
+- **Extrapolates partially:** 1 of 4 out-of-range settings hold. The beliefs transfer; the single output scale does not.
+- **Positional encoding:** RoPE needs its own constants (nearly calibrated ε′; h′ 1.7–4.4× h).
+- **Limit:** the description holds only for structured typos.
+- **Refuted:** the context-length explanation of the too-high h′.

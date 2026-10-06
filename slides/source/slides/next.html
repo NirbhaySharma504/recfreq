@@ -6,23 +6,23 @@
 <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:32px">
 <div style="background:#22305A;border-radius:12px;padding:32px 36px;border-top:8px solid #6FCF97">
 <p style="margin:0;font-size:30px;font-weight:600;color:#9BE3B8">Ready</p>
-<p style="margin:16px 0 0;font-size:26px;line-height:1.5">Full LaTeX draft (Overleaf): story, 2 propositions, 4 results, failures, audit appendix, 26 checked references.</p>
+<p style="margin:16px 0 0;font-size:26px;line-height:1.5">Full LaTeX draft (Overleaf), now with run 6: the formula tested on 63 new models.</p>
 <p style="margin:16px 0 0;font-size:26px;line-height:1.5">Core claims are pre-registered, audited and reproduced.</p>
 </div>
 <div style="background:#22305A;border-radius:12px;padding:32px 36px;border-top:8px solid #F2B27E">
 <p style="margin:0;font-size:30px;font-weight:600;color:#F2B27E">To finish the draft</p>
 <p style="margin:16px 0 0;font-size:26px;line-height:1.5">Names, affiliation, emails</p>
-<p style="margin:8px 0 0;font-size:26px;line-height:1.5">Code and audit link</p>
+<p style="margin:8px 0 0;font-size:26px;line-height:1.5">Code link: github.com/NirbhaySharma504/recfreq</p>
 <p style="margin:8px 0 0;font-size:26px;line-height:1.5">Confirm one citation’s venue (Rajaraman et al.)</p>
 <p style="margin:8px 0 0;font-size:26px;line-height:1.5">Trim to the workshop page limit</p>
 </div>
 <div style="background:#22305A;border-radius:12px;padding:32px 36px;border-top:8px solid #9FB6E0">
-<p style="margin:0;font-size:30px;font-weight:600;color:#C9D6EC">Optional, in parallel</p>
-<p style="margin:16px 0 0;font-size:26px;line-height:1.5">Context length 128 / 256 / 512: does it set the 0.74 exponent?</p>
-<p style="margin:8px 0 0;font-size:26px;line-height:1.5">Full grid with RoPE: do the laws hold beyond ALiBi?</p>
-<p style="margin:8px 0 0;font-size:26px;line-height:1.5">Split the copy heads’ query·key to answer the open question</p>
+<p style="margin:0;font-size:30px;font-weight:600;color:#C9D6EC">Open questions</p>
+<p style="margin:16px 0 0;font-size:26px;line-height:1.5">What sets the output scale, the part of the law that fails at the edges?</p>
+<p style="margin:8px 0 0;font-size:26px;line-height:1.5">Why ALiBi heads believe in too many switches (not context length)</p>
+<p style="margin:8px 0 0;font-size:26px;line-height:1.5">How the copy heads’ query·key makes the Bayes shape</p>
 </div>
 </div>
-<p style="margin:0;font-size:30px;line-height:1.45;color:#C9D6EC">None of the optional runs block the paper. They widen its scope or sharpen the open question, and can be added as they finish.</p>
-<aside>Our recommendation is to start writing now. The draft exists and the core claims are verified. The remaining items are small edits. Three optional experiments could run on the GPU while we write: context length (our suspect for the 0.74 exponent), the full grid with RoPE, and a finer look inside the copy heads.</aside>
+<p style="margin:0;font-size:30px;line-height:1.45;color:#C9D6EC">The planned scope runs are done. The open questions are follow-up work, not blockers for the workshop paper.</p>
+<aside>We recommend writing now. Run 6 tested the formula on 63 new models: it transfers across context length, vocabulary and number of keys, and its beliefs extrapolate, but its output scale and its ALiBi constants do not. The remaining questions are follow-up work.</aside>
 </section>

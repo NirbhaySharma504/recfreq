@@ -1,0 +1,23 @@
+63 runs found, 21 to fit
+max |layouts Bayes - stored oracle| over all runs: 6.7e-15
+flat surfaces (excluded from R²): E5a_h0.01_e0.4_L2_alibi_learn_attn_s2
+
+baseline (E1+E2b L2 ALiBi, this pipeline): 36 models; law R² median 0.875; Bayes wins 1.00
+
+S1/S2: new (h, eps), frozen law
+            n  h_law  h_fit  eps_law  eps_fit  r2_law  r2_own  r2_true_bayes  bayes_wins  h_ratio  logit_err    kind  law_holds  S1_pass
+h     eps                                                                                                                               
+0.001 0.10  3  0.009  0.014    0.213    0.329   0.719   0.869          0.507         1.0    1.513      0.593  extrap      False    False
+0.005 0.07  3  0.029  0.048    0.186    0.216   0.907   0.944          0.671         1.0    1.640      0.189  interp       True     True
+0.007 0.25  3  0.038  0.024    0.304    0.305   0.886   0.926          0.833         1.0    0.627      0.001  interp       True     True
+0.010 0.02  3  0.049  0.084    0.114    0.126   0.880   0.952          0.705         1.0    1.718      0.115  extrap       True     True
+      0.40  2  0.049  0.022    0.372    0.334  -2.956   0.912          0.859         1.0    0.456      0.166  extrap      False    False
+0.020 0.15  3  0.082  0.085    0.249    0.230   0.943   0.950          0.786         1.0    1.042      0.102  interp       True     True
+0.060 0.10  3  0.183  0.179    0.213    0.105   0.734   0.971          0.849         1.0    0.978      0.836  extrap      False    False
+S1 (interpolation): PASS (3/3 settings)
+S2 (extrapolation): law holds at 1/4: (0.001, 0.1): fails, (0.01, 0.02): holds, (0.01, 0.4): fails, (0.06, 0.1): fails
+
+S3 (form): Bayes(h', eps') beats both counters on leave-one-G-out RMSE in 20/20 = 1.00 of new runs (pass if >= 0.80): PASS
+     sum  size
+exp           
+E5a   20    20

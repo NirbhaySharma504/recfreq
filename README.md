@@ -29,7 +29,12 @@ Trained 2–3 layer transformers (ALiBi, RoPE, learned positions) behave like th
 
 See the audit report for details. Failed predictions are reported alongside the successes.
 
-**Status:** run 6 is in progress (§18, law scope). It tests the law on new (h, ε) values, context lengths N = 192 and 512, V = 32 and 128, K = 8 and 32, uniform keys and typos, and a RoPE grid. Its results will be added here when the runs finish.
+**How far the law reaches (run 6, 63 new models, §18).** The law was frozen and tested on settings it never saw.
+- **Prediction:** median R² 0.87 on new models, 0.89–0.94 inside the fitted range.
+- **Transfers unchanged** to context lengths of 192–512 pairs, 32–128 values and 8–32 keys.
+- **Extrapolation is partial** (1 of 4 out-of-range settings), mainly because one output scale does not hold at the edges.
+- **RoPE** follows the same Bayes form with its own, nearly calibrated, constants.
+- **Refuted:** our guess that context length causes the too-high switch rate.
 
 ## Repository layout
 

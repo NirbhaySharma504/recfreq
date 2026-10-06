@@ -107,13 +107,13 @@ footer { color: var(--muted); font-size: var(--step--1); border-top: 1px solid v
 
 <main>
   <header>
-    <div class="eyebrow">TOLLM project · run reports 1–5</div>
+    <div class="eyebrow">TOLLM project · run reports 1–6</div>
     <h1>Recency vs. frequency in induction heads: first results</h1>
-    <p class="meta">Nirbhay Sharma, Gathik Jindal · updated 5 October 2026 · 123 trained models on one RTX A6000 (2 gate + 36 first run + 69 overnight + 16 scale runs), with 84 re-tested in run 3</p>
+    <p class="meta">Nirbhay Sharma, Gathik Jindal · updated 6 October 2026 · 218 trained models on one RTX A6000 (2 gate + 36 first run + 69 overnight + 16 scale runs + 32 audit + 63 law-scope runs), with 84 re-tested in run 3</p>
   </header>
 
   <div class="summary">
-    <h2>Result after run 3</h2>
+    <h2>Result after run 6</h2>
     <p class="claim">Small transformers on this task behave like a <strong>Bayes filter tuned to the wrong world</strong>: they act as if values change 3–14× more often than they do, and their typo rate is pulled toward about 0.2–0.3 (less so with RoPE). The decision is computed by late-layer attention heads that each work like a <strong>discounted counter</strong>. Turning a head's fading rate up or down moves the model's effective switch rate the predicted way. The trained fading rates sit at the minimum of ordinary-data loss, and calibrating the switch rate would cost loss, so the miscalibration is what training settles on for these heads (corrected by the audit; an earlier version called it "cheap"). What makes the heads add up to something Bayes-shaped rather than counter-shaped is that their attention is <strong>not purely distance-based</strong>: it also discounts typo-variant copies.</p>
     <ul>
       <li><strong>Behaviour.</strong> Bayes with fitted h′, ε′ is the best description for 75 of 84 models (held-out R² 0.85–0.95 vs 0.37–0.74 for a counter). Fitted on one probe layout, it predicts unseen spacings (R² ≈ 0.93) and the swapped layout, and refits to the same h′, ε′ in 97% of cases.</li>
@@ -123,6 +123,7 @@ footer { color: var(--muted); font-size: var(--step--1); border-top: 1px solid v
       <li><strong>Training and size.</strong> 3× longer training leaves h′ unchanged (×0.8–1.2). 2× width helps somewhat: ALiBi stays 2.9–5.3× too high, RoPE gets to 1.3–1.5×.</li>
       <li><strong>Theory confirmed.</strong> The oracle reproduces Prop. 2 (2.948 vs 2.944 nats per recent copy; old copies stop mattering after two).</li>
       <li><strong>Did not hold:</strong> the pre-registered copy-vs-control ablation (bad control); the "faster head → more recency" rule beyond 2 layers; the learned slope tracking h within mixed regimes. Two earlier explanations in this report were wrong and are corrected below.</li>
+      <li><strong>Run 6 (how far the law reaches, 63 new models).</strong> Frozen and tested on settings it never saw, the law predicts new models at median R² 0.87 (0.89–0.94 inside the fitted range). It transfers unchanged to context lengths 192–512, 32–128 values and 8–32 keys. It extrapolates partly (1 of 4 out-of-range settings), mainly because one output scale does not hold at the edges. RoPE models follow the same Bayes form with their own, nearly calibrated, constants. Our guess that context length causes the too-high switch rate was refuted.</li>
       <li><strong>Runs 4–5 (where the Bayes shape comes from): narrowed down, not solved.</strong> A typo-variant attention signal enters the copy heads' keys from one layer-0 head (84% of models), but removing it, or every layer-0 head except the previous-token head, leaves the Bayes shape intact. So it is computed inside the layer-1 copy heads from the previous-token match, distance and token identity. No closed-form counter reproduces it; slow ALiBi and RoPE heads' attention splits are moderately better fit by Bayes than by a counter.</li>
     </ul>
   </div>
@@ -155,6 +156,52 @@ footer { color: var(--muted); font-size: var(--step--1); border-top: 1px solid v
       <li><strong>Probes.</strong> For a fresh key: <var>n_c</var> ∈ {1, 2, 4, 8} copies of <var>c</var>, a gap of <var>G</var> ∈ {2, …, 128} pairs, <var>n_w</var> ∈ {1, …, 4} copies of <var>w</var>, then the query; 256 random fills per cell. We compare log p(c)/p(w) from the model with the oracle's.</li>
       <li><strong>Measures.</strong> <em>Cliff</em>: the largest fall in log-odds when the gap doubles (how abrupt the switch is). <em>G*</em>: the gap where log-odds cross zero. <em>Per-copy weight</em>: how much one extra recent copy shrinks ln G*.</li>
     </ul>
+  </section>
+
+  <div class="run-divider">Run 6 · how far does the law reach? · 6 October · 63 new models</div>
+
+  <section id="run6">
+    <h2>Pre-registered tests, run 6 (law scope)</h2>
+    <p>Predictions in the plan (§18), written before any run-6 model trained.
+    We froze the law on the original 12-setting grid (h′ = 1.45·h<sup>0.74</sup>, logit ε′ = −0.35 + 0.44·logit ε, with a fixed scale and offset). We then asked how well it predicts models trained in settings it never saw.
+    The score is the R² of the predicted probe surface, per model, with a median ≥ 0.75 counting as "holds".
+    The queue was trimmed from 89 to 63 runs before any result was analysed; this is recorded in the plan.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Test</th><th>Prediction</th><th>Result</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><td>S1 · New (h, ε) inside the fitted range</td><td class="txt">law holds at all 3 settings; h′ within ×2</td><td class="txt">R² 0.91, 0.94, 0.89; h′ ratio 0.63–1.64</td><td><span class="pill good">passed</span></td></tr>
+          <tr><td>S2 · New (h, ε) outside the range</td><td class="txt">expected to hold at h = 0.001 and 0.06</td><td class="txt">holds at ε = 0.02 (0.88); narrowly misses at h = 0.001 (0.72) and h = 0.06 (0.73); fails at ε = 0.4 (flat surfaces)</td><td><span class="pill warn">1 of 4</span></td></tr>
+          <tr><td>S3 · Bayes form in new models</td><td class="txt">beats both counters in ≥ 80%</td><td class="txt">60 of 62 new models; the 2 exceptions are the uniform-typo models</td><td><span class="pill good">passed</span></td></tr>
+          <tr><td>S4 · Context length sets the exponent</td><td class="txt">at N = 512: h′(h = 0.003) ≤ 0.77× its N = 256 value and exponent +0.1</td><td class="txt">h′ 1.02×; exponent 0.62 vs 0.67; law holds at N = 192, 256, 512 (R² 0.90 each)</td><td><span class="pill bad">refuted</span></td></tr>
+          <tr><td>S5 · Vocabulary and number of keys</td><td class="txt">law holds at C and D; h′ within ×1.5 of the default task</td><td class="txt">V = 32, 128 and K = 8, 32: R² 0.89–0.94; h′ 0.89–1.15× default</td><td><span class="pill good">transfers</span></td></tr>
+          <tr><td>S5 · Key and typo distributions (1 seed)</td><td class="txt">uniform keys transfer; uniform typos do not (expected)</td><td class="txt">uniform keys: R² 0.93, 0.83. Uniform typos: R² 0.17, 0.34, and a counter fits better than Bayes</td><td><span class="pill warn">keys yes, typos no</span></td></tr>
+          <tr><td>S6 · RoPE follows the same form of law</td><td class="txt">power law in h and logit-linear ε′, each R² ≥ 0.8; held-out R² ≥ 0.75</td><td class="txt">ε′ law 0.91, held-out 0.89, but h′ law 0.68 (one unidentifiable fit; 0.89 without it). RoPE h′/h below ALiBi at 12/12 settings</td><td><span class="pill bad">failed (post-hoc: one bad fit)</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>What we learn</h3>
+    <ul>
+      <li><strong>The law predicts new models as well as we said it would.</strong> Over all 20 new-setting models, its median R² is 0.87. That equals the leave-one-setting-out estimate made before these runs existed.</li>
+      <li><strong>The beliefs transfer; the output scale does not.</strong> A post-hoc check fitted only the scale and offset per model and kept the law's beliefs. That works well even at the failed settings (0.74–0.83). The models' own scale ranges from 0.87 at ε = 0.4 to 4.8 at h = 0.001, against a fixed 1.43. At ε = 0.4 the law's absolute error (0.71 nats) is no worse than on the original grid; the surfaces are just nearly flat.</li>
+      <li><strong>ε′ also depends on h.</strong> At h = 0.06 the predicted h′ is right (0.18 vs 0.18), but ε′ is half the prediction. A version of the law with cross terms, fitted on the original grid only, predicts that setting at 0.93.</li>
+      <li><strong>Context length is not the cause of the too-high switch rate.</strong> Doubling the context leaves h′ unchanged, so our suspected explanation for the exponent below 1 is wrong. As a result, the law's constants do not depend on context length between 192 and 512 pairs.</li>
+      <li><strong>Vocabulary and number of keys do not change the constants.</strong> With 32 or 128 values, or 8 or 32 keys, the frozen law predicts the models at R² 0.89–0.94, and h′ moves by at most 15%. Had the models ignored V, h′ would have had to halve or double; the models instead shift their switch-over with log V, as the Bayes boundary does.</li>
+      <li><strong>RoPE models are close to calibrated.</strong> Their typo belief is nearly exact (logit ε′ = 0.01 + 1.02·logit ε), and their switch rate is 1.7–4.4× too high against ALiBi's 2.8–14×. The pre-registered "same form" test failed on one unidentifiable fit; without it, RoPE follows h′ = 1.26·h<sup>0.88</sup> (R² 0.89). The ALiBi constants do not carry over to RoPE.</li>
+      <li><strong>The Bayes-like behaviour needs structured typos.</strong> With uniformly random typos, a discounted counter predicts held-out gaps better than Bayes at fitted parameters in 4 of 5 models. This holds even when the fit may use any typo rate up to 0.95. With "+1" typos the copy heads can recognise and discount a typo-variant copy (run 3); with random typos there is nothing to recognise. That link is our interpretation, not tested.</li>
+    </ul>
+    <figure class="wide">
+      <div class="frame"><img src="img/scope_r2.png" alt="Median R² of the frozen law per group of new models, with interquartile bars and each group's own-fit ceiling; all groups except extrapolation and RoPE lie above the 0.75 threshold." loading="lazy"></div>
+      <figcaption class="caption">The frozen law on 63 models trained after it was fixed. Ticks: each model's own Bayes(h′, ε′) fit. The RoPE row applies the ALiBi constants; RoPE's own constants reach 0.89 held out.</figcaption>
+    </figure>
+    <figure class="wide">
+      <div class="frame"><img src="img/scope_surfaces.png" alt="Probe curves at two old copies for the seven new settings: model, frozen-law prediction and true Bayes." loading="lazy"></div>
+      <figcaption class="caption">New settings, two old copies: model (solid, seed mean), frozen law (dashed) and true Bayes (dotted). The ε = 0.4 models barely leave zero, so a small absolute error gives a negative R².</figcaption>
+    </figure>
+    <figure class="wide">
+      <div class="frame"><img src="img/scope_context.png" alt="Fitted h-prime against h and fitted epsilon-prime against epsilon for context lengths 192, 256 and 512; the three lengths overlap." loading="lazy"></div>
+      <figcaption class="caption">Context length: h′ and its slope in h are the same at 192, 256 and 512 pairs, refuting the idea that a finite context causes the too-high switch rate.</figcaption>
+    </figure>
   </section>
 
   <div class="run-divider">Run 5 · inside the copy heads · 5 October · 70 models, no new training</div>

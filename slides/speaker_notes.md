@@ -20,9 +20,9 @@ We generate our own data so that we know the right answer exactly. Each key has 
 
 The probe puts the two kinds of evidence head to head. A fresh key τ is shown with value c a few times, then other keys for a gap of G pairs, then with value w a few times, then queried. We read off how much the model prefers c over w, and compare it with the exact Bayes answer. Varying the three knobs gives 112 probe types.
 
-## 6. Five rounds of experiments and one audit
+## 6. Six rounds of experiments and one audit
 
-In total we trained 155 small transformers across five rounds and a final audit. Each round's predictions were written down before it ran. The audit retrained models, ran null models and recomputed every headline number from the raw files.
+In total we trained 218 small transformers across six rounds and an audit. Each round's predictions were written down before it ran. The audit retrained models, ran null models and recomputed every headline number from the raw files.
 
 ## 7. The main tests in plain words
 
@@ -44,14 +44,18 @@ This is the causal test. ALiBi gives each head a learned fading rate (slope). Af
 
 Inside the model the decision is simple: a few copy heads each look back at old and recent copies, their attention fades at the learned ALiBi slope, and their outputs add up. That sum predicts the model's choice almost perfectly. What we cannot yet explain is how the heads' attention ends up Bayes-shaped; it survives removing every layer-0 head except the previous-token head.
 
-## 12. What failed, or changed our story
+## 12. How far does the formula reach?
+
+We froze the formula and trained 63 new models in settings it had never seen. Inside the original range it predicts them as well as on the original grid. It also transfers unchanged to other context lengths, vocabulary sizes and numbers of keys. Outside the range, the beliefs still transfer but the fixed output scale does not, which breaks 3 of 4 extrapolations. RoPE models follow the same Bayes shape with their own, much better calibrated, constants. With random instead of +1 typos the models are counter-like, so the Bayes description needs structured typos. Our idea that a finite context causes the too-high switch rate was wrong: doubling the context changed nothing.
+
+## 13. What failed, or changed our story
 
 We report failures as clearly as successes. Several predictions we made did not hold, and two earlier claims had to be corrected by the audit. All of these are in the paper's limitations and appendix; none of them undercut the main result.
 
-## 13. Hypothesis scorecard
+## 14. Hypothesis scorecard
 
 Our three original bets came out mixed, which is fine: they were written to be testable, not to be confirmed. The bigger questions came out clearly. Behaviour has the Bayes shape with wrong beliefs, each copy head is a fading counter, and the result survives every control we tried.
 
-## 14. Recommendation: start writing the paper now
+## 15. Recommendation: start writing the paper now
 
-Our recommendation is to start writing now. The draft exists and the core claims are verified. The remaining items are small edits. Three optional experiments could run on the GPU while we write: context length (our suspect for the 0.74 exponent), the full grid with RoPE, and a finer look inside the copy heads.
+We recommend writing now. Run 6 tested the formula on 63 new models: it transfers across context length, vocabulary and number of keys, and its beliefs extrapolate, but its output scale and its ALiBi constants do not. The remaining questions are follow-up work.

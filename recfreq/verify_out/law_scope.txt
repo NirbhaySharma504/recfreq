@@ -1,0 +1,87 @@
+105 runs found, 3 to fit
+max |layouts Bayes - stored oracle| over all runs: 6.7e-15
+flat surfaces (excluded from R²): E5a_h0.01_e0.4_L2_alibi_learn_attn_s2
+
+baseline (E1+E2b L2 ALiBi, this pipeline): 36 models; law R² median 0.875; Bayes wins 1.00
+
+S1/S2: new (h, eps), frozen law
+            n  h_law  h_fit  eps_law  eps_fit  r2_law  r2_own  r2_true_bayes  bayes_wins  h_ratio  logit_err    kind  law_holds  S1_pass
+h     eps                                                                                                                               
+0.001 0.10  3  0.009  0.014    0.213    0.329   0.719   0.869          0.507         1.0    1.513      0.593  extrap      False    False
+0.005 0.07  3  0.029  0.048    0.186    0.216   0.907   0.944          0.671         1.0    1.640      0.189  interp       True     True
+0.007 0.25  3  0.038  0.024    0.304    0.305   0.886   0.926          0.833         1.0    0.627      0.001  interp       True     True
+0.010 0.02  3  0.049  0.084    0.114    0.126   0.880   0.952          0.705         1.0    1.718      0.115  extrap       True     True
+      0.40  2  0.049  0.022    0.372    0.334  -2.956   0.912          0.859         1.0    0.456      0.166  extrap      False    False
+0.020 0.15  3  0.082  0.085    0.249    0.230   0.943   0.950          0.786         1.0    1.042      0.102  interp       True     True
+0.060 0.10  3  0.183  0.179    0.213    0.105   0.734   0.971          0.849         1.0    0.978      0.836  extrap      False    False
+S1 (interpolation): PASS (3/3 settings)
+S2 (extrapolation): law holds at 1/4: (0.001, 0.1): fails, (0.01, 0.02): holds, (0.01, 0.4): fails, (0.06, 0.1): fails
+
+S3 (form): Bayes(h', eps') beats both counters on leave-one-G-out RMSE in 60/62 = 0.97 of new runs (pass if >= 0.80): PASS
+     sum  size
+exp           
+E5a   20    20
+E5d   18    20
+E5n   12    12
+E5r   10    10
+
+S4: context length
+                n   h_fit  eps_fit  r2_law  bayes_wins
+N   h     eps                                         
+192 0.003 0.10  2  0.0286   0.3044  0.7831         1.0
+    0.010 0.10  2  0.0631   0.2433  0.9378         1.0
+    0.030 0.10  2  0.1230   0.1746  0.9007         1.0
+256 0.003 0.10  3  0.0245   0.2565  0.8767         1.0
+    0.010 0.05  3  0.0703   0.1557  0.9121         1.0
+          0.10  3  0.0595   0.2338  0.9142         1.0
+          0.20  3  0.0480   0.2867  0.9289         1.0
+          0.30  3  0.0279   0.2916  0.8175         1.0
+    0.030 0.10  3  0.1135   0.1777  0.8916         1.0
+512 0.003 0.10  2  0.0249   0.2872  0.8373         1.0
+    0.010 0.10  2  0.0626   0.2522  0.9185         1.0
+    0.030 0.10  2  0.1034   0.1389  0.8954         1.0
+  N=192: law R² median 0.901; beta_N 0.634; delta_N nan; h'(0.003, 0.1) 0.0286
+  N=256: law R² median 0.899; beta_N 0.667; delta_N 0.386; h'(0.003, 0.1) 0.0245
+  N=512: law R² median 0.895; beta_N 0.621; delta_N nan; h'(0.003, 0.1) 0.0249
+  H_N: h'(N=512)/h'(N=256) = 1.02; beta_512 - beta_256 = -0.046 -> REFUTED
+  N=192: h' ratio 1.17 (H_N: >= 1.1); beta_192 - beta_256 = -0.033 (H_N: <= 0)
+
+S5: task dimensions (baseline = V64 K16 N256 Zipf structured, same pipeline)
+          variant     h  eps  n  h_fit  h_base  eps_fit  r2_law  r2_own  bayes_wins  h_ratio
+0            K=32  0.01  0.1  2  0.057   0.060    0.231   0.924   0.944         1.0    0.951
+1            K=32  0.03  0.2  2  0.110   0.102    0.253   0.934   0.955         1.0    1.075
+2             K=8  0.01  0.1  2  0.066   0.060    0.199   0.889   0.937         1.0    1.102
+3             K=8  0.03  0.2  2  0.100   0.102    0.213   0.920   0.955         1.0    0.974
+4           V=128  0.01  0.1  2  0.067   0.060    0.227   0.908   0.931         1.0    1.125
+5           V=128  0.03  0.2  2  0.118   0.102    0.239   0.911   0.951         1.0    1.154
+6            V=32  0.01  0.1  2  0.053   0.060    0.230   0.921   0.943         1.0    0.887
+7            V=32  0.03  0.2  2  0.092   0.102    0.228   0.942   0.963         1.0    0.902
+8    uniform keys  0.01  0.1  1  0.055   0.060    0.196   0.933   0.941         1.0    0.922
+9    uniform keys  0.03  0.2  1  0.070   0.102    0.179   0.832   0.942         1.0    0.685
+10  uniform typos  0.01  0.1  1  0.032   0.060    0.500   0.166   0.878         0.0    0.531
+11  uniform typos  0.03  0.2  1  0.056   0.102    0.500   0.338   0.857         0.0    0.544
+  K=32: constants TRANSFER (law R² 0.92, 0.93; h' ratio 0.95, 1.07)
+  K=8: constants TRANSFER (law R² 0.89, 0.92; h' ratio 1.10, 0.97)
+  V=128: constants TRANSFER (law R² 0.91, 0.91; h' ratio 1.13, 1.15)
+  V=32: constants TRANSFER (law R² 0.92, 0.94; h' ratio 0.89, 0.90)
+  uniform keys: constants TRANSFER (law R² 0.93, 0.83; h' ratio 0.92, 0.69)
+  uniform typos: constants do not transfer (law R² 0.17, 0.34; h' ratio 0.53, 0.54)
+
+S6: RoPE grid
+            n  h_law  h_fit  eps_law  eps_fit  r2_law  r2_own  r2_true_bayes  bayes_wins  h_ratio  logit_err  h_over_h_rope  h_over_h_alibi
+h     eps                                                                                                                                  
+0.003 0.05  1  0.020  0.013    0.163    0.061   0.534   0.934          0.918         1.0    0.656      1.099          4.417          13.743
+      0.10  1  0.020  0.007    0.213    0.138   0.676   0.942          0.925         1.0    0.365      0.521          2.461           8.155
+      0.20  1  0.020  0.006    0.278    0.248   0.777   0.944          0.925         1.0    0.295      0.154          1.986           4.625
+      0.30  1  0.020  0.000    0.328    0.344   0.694   0.935          0.930         1.0    0.017      0.070          0.113           4.034
+0.010 0.05  1  0.049  0.027    0.163    0.051   0.678   0.949          0.912         1.0    0.548      1.285          2.687           7.028
+      0.10  3  0.049  0.018    0.213    0.081   0.685   0.947          0.920         1.0    0.371      1.120          1.817           5.952
+      0.20  1  0.049  0.017    0.278    0.189   0.831   0.930          0.915         1.0    0.353      0.506          1.730           4.797
+      0.30  1  0.049  0.012    0.328    0.270   0.760   0.963          0.955         1.0    0.238      0.277          1.164           2.788
+0.030 0.05  1  0.110  0.052    0.163    0.029   0.609   0.961          0.892         1.0    0.474      1.863          1.740           4.071
+      0.10  1  0.110  0.062    0.213    0.095   0.818   0.971          0.921         1.0    0.561      0.950          2.056           3.782
+      0.20  3  0.110  0.076    0.278    0.191   0.918   0.964          0.867         1.0    0.687      0.493          2.518           3.415
+      0.30  1  0.110  0.063    0.328    0.240   0.920   0.967          0.814         1.0    0.573      0.437          2.100           3.498
+  RoPE law: h' = 4.703 h^1.224 (R² 0.681);  logit eps' = 0.006 + 1.019 logit eps (R² 0.911)
+  RoPE leave-one-setting-out median R² 0.886; RoPE h'/h below ALiBi at 12/12 settings
+  S6: FAIL  [h' law R² 0.68, eps' law R² 0.91, LOSO 0.89]; frozen ALiBi law on RoPE models: R² median 0.727
