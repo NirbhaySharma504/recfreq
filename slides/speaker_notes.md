@@ -50,12 +50,8 @@ We froze the formula and trained 63 new models in settings it had never seen. In
 
 ## 13. What failed, or changed our story
 
-We report failures as clearly as successes. Several predictions we made did not hold, and two earlier claims had to be corrected by the audit. All of these are in the paper's limitations and appendix; none of them undercut the main result.
+We report failures as clearly as successes. Several predictions we made did not hold. All of these are in the paper's limitations and appendix; none of them undercut the main result.
 
 ## 14. Hypothesis scorecard
 
 Our three original bets came out mixed, which is fine: they were written to be testable, not to be confirmed. The bigger questions came out clearly. Behaviour has the Bayes shape with wrong beliefs, each copy head is a fading counter, and the result survives every control we tried.
-
-## 15. Recommendation: start writing the paper now
-
-We recommend writing now. Run 6 tested the formula on 63 new models: it transfers across context length, vocabulary and number of keys, and its beliefs extrapolate, but its output scale and its ALiBi constants do not. The remaining questions are follow-up work.

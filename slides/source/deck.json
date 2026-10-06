@@ -20,8 +20,7 @@
     "r_inside",
     "r_scope",
     "notwork",
-    "scorecard",
-    "next"
+    "scorecard"
   ],
   "sections": {
     "s1": {
@@ -37,7 +36,7 @@
       "start": "r_bayes"
     },
     "s4": {
-      "description": "Honest status and next steps",
+      "description": "Honest status",
       "start": "notwork"
     }
   },
