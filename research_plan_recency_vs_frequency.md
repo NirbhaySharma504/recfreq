@@ -1006,7 +1006,7 @@ If H-ctx holds, both ratios lie in [0.8, 1.25]. K = 64 is exploratory.
 
 **R3-P4.** On E6 models not yet read (remaining seed 0 and all of seed 1), Spearman(log h, w) ≥ 0.6.
 
-**R3-P2 verdict (05:38 IST): FAIL.** Survival probes on the low-h E6 models show a calibrated single-sighting clock even far beyond the gaps training contains:
+**R3-P2 verdict (05:17 IST): FAIL.** Survival probes on the low-h E6 models show a calibrated single-sighting clock even far beyond the gaps training contains:
 
 | Model (seed 0) | max \|s_model − s_Bayes\|, d ≤ 32 | median (s_Bayes − s_model), d ∈ [128, 248] |
 |---|---|---|
