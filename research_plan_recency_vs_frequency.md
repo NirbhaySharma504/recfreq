@@ -977,3 +977,31 @@ RoPE's near-calibration in Bayes coordinates is mainly a larger evidence weight.
 **E8 design:** N = 512 at h ∈ {0.0003, 0.001}, ε = 0.1, seeds 0 and 1. Compare with N = 256: E6 at 0.0003 and E5a at 0.001.
 
 **R3-P1.** If H-ctx holds, the geometric mean over seeds of G*_model at n_w = 3 and 4 rises to at least 1.3× its N = 256 value, at both h. If the ratio stays within [0.8, 1.25] at both h, the edge is not set by context length.
+
+## 19.6 Round 4: what sets the low-h edge, gap support or context length? (pre-registered 27 Oct 05:12 IST)
+
+**Read before writing this:** the region map on 16 of 25 E6 seed-0 models (`verify/region_map.py`) and per-model switch-point spacing (`verify/switch_points.py`). **Not read:** survival probes on E6 (running now), any E7 or E8 model, E6 seed 1.
+
+**What the partial map shows:**
+- **h′ extrapolates well.** The frozen h′ law matches the fitted h′ from h = 0.002 to 0.15 (h = 0.045 / 0.06 / 0.1 / 0.15: fitted 0.156 / 0.18 / 0.27 / 0.34 vs law 0.148 / 0.18 / 0.27 / 0.36).
+- **Below h ≈ 0.002, h′ levels off at about 0.01** (fitted 0.013 / 0.009 at h = 0.0003, ε = 0.1 / 0.2).
+- **ε′ is what fails away from the fitted h range.** It depends on h, which the separable law ignores. At ε = 0.1, ε′ falls from about 0.33 (h ≤ 0.001) to 0.08 (h = 0.15). The run-6 cross-term law (fitted on the original 12 settings, so out of sample here) has half the ε′ error, but still misses the drop at h ≥ 0.06.
+- **Evidence weight rises with h.** Per-model evidence weight w = (switch-point spacing in log G per recent copy) / log((1−ε)/ε) rises with h: 0.10 / 0.27 / 0.34 / 0.46 / 0.74 at h = 0.001 / 0.003 / 0.01 / 0.03 / 0.1 (Spearman with log h 0.80, n = 58). The clock slope near the crossing (d LO / d log G) matches Bayes where it can be measured. So "evidence at about 1/3" (§19.3) is an average over an h-dependent weight.
+
+**H-gap (new, competing with H-ctx).** The model's clock is calibrated only over gaps that training data contains often enough. With Zipf keys, K = 16 and N = 256, only 0.3% of repeat gaps are ≥ 128 pairs. At low h, Bayes still trusts a 128-pair-old copy (s ≈ 0.96), but the model has almost no training signal there, so its clock falls away beyond G ≈ 100. This gives the switch near G ≈ 100 seen at h ≤ 0.001. Each key switches at rate h on its own, so K changes long-gap support (P(gap ≥ 128) = 0.0001 / 0.0034 / 0.016 / 0.031 for K = 8 / 16 / 32 / 64) without changing the switches per key per context, hN. H-ctx predicts no effect of K. (N = 512 doubles long-gap support, so E8 alone cannot tell the two apart.)
+
+**R3-P2 (E6 survival probes, H-gap).** For h ≤ 0.001 (the 3 seed-0 models at ε = 0.1 and 0.2):
+- the model's single-sighting survival s(d) is within 0.10 of Bayes at d ≤ 32;
+- it is at least 0.15 below Bayes on median over d ∈ [128, 248].
+
+For h ≥ 0.045, median |s_model − s_Bayes| over d ≤ 248 is ≤ 0.10.
+
+**E9 design:** K ∈ {8, 32, 64}, Zipf keys, N = 256, h ∈ {0.0003, 0.001}, ε = 0.1, seeds 0 and 1 (12 runs). The K = 16 references are E6 (h = 0.0003) and E5a (h = 0.001). Switch points are read with the standard and wide-window probes.
+
+**R3-P3.** Take the geometric mean over seeds and over n_w = 3, 4 of G*_model. If H-gap holds, then at both h:
+- K = 32 gives at least 1.3× the K = 16 value;
+- K = 8 gives at most 0.8×.
+
+If H-ctx holds, both ratios lie in [0.8, 1.25]. K = 64 is exploratory.
+
+**R3-P4.** On E6 models not yet read (remaining seed 0 and all of seed 1), Spearman(log h, w) ≥ 0.6.
