@@ -36,8 +36,11 @@ class Lay:
         self.yc, self.yw = (1, 0) if swap else (0, 1)
 
     # ---- exact Bayes -----------------------------------------------------------------------------------------
-    def bayes(self, hs, es, typo: str = "structured") -> np.ndarray:
+    def bayes(self, hs, es, typo: str = "structured", surv=None) -> np.ndarray:
+        """surv: optional function distance -> survival probability, replacing (1-h)^d (plan §19 surrogate);
+        hs then only sets the number of rows."""
         hs, es = np.asarray(hs, float)[:, None], np.asarray(es, float)[:, None]
+        sv = (lambda d: (1 - hs) ** d) if surv is None else surv
         P, V = hs.shape[0], self.V
 
         def em(y):
@@ -55,12 +58,12 @@ class Lay:
             prev = None
             for d, which in obs:
                 if prev is not None:
-                    s = (1 - hs) ** (prev - d)
+                    s = sv(prev - d)
                     b = s * b + (1 - s) / V
                 b = b * (Ec if which == 0 else Ew)
                 b /= b.sum(1, keepdims=True)
                 prev = d
-            s = (1 - hs) ** prev
+            s = sv(prev)
             prior = s * b + (1 - s) / V
             out[:, k] = np.log(np.clip((prior * Ec).sum(1), 1e-300, None)) - \
                 np.log(np.clip((prior * Ew).sum(1), 1e-300, None))

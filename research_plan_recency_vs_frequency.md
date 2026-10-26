@@ -820,3 +820,92 @@ Trimmed configs: `configs/E5n_trim.json`, `E5d_trim_a.json`, `E5d_trim_b.json`, 
 - **Positional encoding:** RoPE needs its own constants (nearly calibrated ε′; h′ 1.7–4.4× h).
 - **Limit:** the description holds only for structured typos.
 - **Refuted:** the context-length explanation of the too-high h′.
+
+## 19. Region of validity and explanation (run 7). Pre-registration started 27 Oct 2026, before any E6 run was trained
+
+**Why.** After the progress talk, sir asked three things:
+- Is the law correct, and is the derivation (Prop. 2) correct?
+- Where exactly does the law work?
+- Why does it work inside that region and fail outside it?
+
+This round is open-ended and iterative. Each round's predictions are added here, dated, before that round's results are read.
+
+**The law under test (frozen, §18):**
+- h′ = 1.453·h^0.736
+- logit ε′ = −0.345 + 0.438·logit ε
+- a = 0.215, b = 1.433
+
+**When does the law "work" at a setting (h, ε)?** The test uses 2-layer ALiBi models, V = 64, K = 16, N = 256, Zipf keys and structured typos. The decision is made on the median over seeds.
+- **(i) Error:** the law's RMSE over the 112 probe cells is ≤ 1.25 × the RMSE of the models' own 4-parameter Bayes(h′, ε′) fit.
+- **(ii) Measurability:** under the law's (h′, ε′), the exact Bayes switch point (LO = 0) lies inside G ∈ [2, 128] for at least 2 of the 4 values of n_w. Where (ii) fails, the setting is marked "not measurable with these probes" and only RMSE is reported, not R².
+
+**E6 sweep.** 25 new settings × 2 seeds; seed 0 of every setting is trained first.
+- h axis at ε = 0.1: h ∈ {0.0003, 0.002, 0.045, 0.1, 0.15}. Run 6 already has 0.001 and 0.06.
+- h axis at ε = 0.2: h ∈ {0.0003, 0.001, 0.002, 0.045, 0.06, 0.1, 0.15}.
+- ε axis at h = 0.01: ε ∈ {0.01, 0.35, 0.45}. Run 6 already has 0.02 and 0.4.
+- ε axis at h = 0.003 and at h = 0.03: ε ∈ {0.01, 0.02, 0.35, 0.4, 0.45}.
+
+**Prior expectation** (from the run-6 pattern, before any E6 result):
+- At ε = 0.1, the law works for h from about 0.002 to 0.045 and fails beyond.
+- Along ε, it works from 0.02 to 0.3 and becomes unmeasurable above about 0.35.
+
+**Candidate explanation H-lin** (to be tested with a CPU surrogate and survival probes; its numerical predictions will be added here before E6 results are read):
+- ALiBi copy heads can only make the log-odds "the old value is still current" linear in distance.
+- Bayes needs that log-odds to fall roughly with log-distance.
+- The loss-optimal line, fitted over the short repeat gaps of ordinary data, falls too fast at the probe gaps. This gives h′ > h, and the switch points for different n_w get re-spaced, which distorts ε′.
+
+### 19.1 Round 1 results (27 Oct, 02:26–02:48 IST server time; no E6 result read)
+
+**A. Prop. 2 redone** (`verify/prop2_exact.py`, `verify_out/prop2_exact.csv`). The two-path logic is right, but the paper's boundary drops three terms:
+- **(a) Same-value redraw.** "No change" has prior s + (1−s)/V, not s.
+- **(b) The old copies could all be typos of c−1** after a switch: a factor of 1 + ρ^{n_c}, with ρ = ε/(1−ε).
+- **(c) The probes measure observed-token odds.** LO = 0 at P_c/P_w = (1−ε)/(1−2ε), not at 1.
+
+The corrected boundary is s/(1−s) = [R(1+ρ^{n_c})(1−ε)/(1−2ε) − 1]/V, with R = ((1−ε)/ε)^{n_w}.
+
+Against the exact oracle (920 cases with G* ≥ 4 pairs; h 1e-4–0.2, ε 0.01–0.45, n_c 1/2/8, n_w 1–6):
+
+| Version | Median error | Cases within 10% |
+|---|---|---|
+| Corrected | 0.9% | 91% |
+| Paper (exact s) | 38% | 20% |
+| Paper (small-hG form) | far off | 3% |
+
+- **Where the paper's version fails:** at ε ≥ 0.3 it is within 10% in only 2% of cases. Even at ε ≤ 0.2 it is within 10% in only 53%.
+- **Corrected log-odds on the grid's probe cells:** median difference 0.012 nats, 90th percentile 0.13.
+- **Remaining corrected-formula errors:** only where G* < 10, because it ignores switches inside the recent block.
+
+**C1/C2 for H-lin: REFUTED as the main cause.**
+- **(5) Direct test (survival probes, E1 C s0):** the model's belief that a single old copy is still current tracks exact Bayes within about 0.08 from d = 1 to 192 pairs. It is not "linear in distance, too fast".
+- **The linear-survival surrogate** (Bayes filter with s = σ(c0 − λg), fitted by cross-entropy):
+  - gives h′/h of only 1.0–3.7 (models: 3–14);
+  - gives a log–log slope of 0.94 (models: 0.69);
+  - gets the ε dependence of h′ with the wrong sign (+0.14 vs models' −0.38);
+  - Spearman of h′ against the models is 0.80, which meets the criterion, but the magnitudes and the ε sign fail.
+
+**What the probes actually show:**
+- For n_w ≤ 3, the models hold a plateau near log((1−ε)/ε) up to G ≈ 16–32, then fall steeply between G = 32 and 128 to a floor of about −4 to −5 nats (−2.4 at ε = 0.3).
+- Per extra recent copy, the switch point moves by a factor of about 2 (Bayes: about 9).
+- The slowest copy-head ALiBi slope scales as h^0.375 (R² 0.86) and slightly *rises* with ε.
+
+**New hypothesis H-support (post hoc, from existing data).** The models are calibrated where ordinary data contains the probe situation, and deviate where it is rare. We counted generator events matching each cell: a run of n_w sightings of w preceded by c = w−1, with the gap binned like G (`verify/support.py`).
+- Over all 532 setting × cell combinations: Spearman(|LO_model − LO_bayes|, log rate) = −0.71.
+- **Within each cell, across the 19 settings:** the median Spearman is −0.73, and 26 of 28 cells are negative.
+- With cell fixed effects and |LO_bayes| controlled, each 10× increase in rate cuts the deviation by 1.2 nats.
+- Cells with rate > 1e-3 per query deviate by 0.05–0.11 nats; cells with rate < 1e-4 deviate by 1.2–1.5 nats.
+- This is consistent with E2c, where 20% Bayes-labelled conflict sequences halved the excess abruptness.
+
+## 19.2 Round 2: pre-registered predictions (27 Oct 02:48 IST, before the E6 results and the dose runs are read)
+
+**R2-P1, dose-response (causal test of H-support).**
+- **Design:** retrain at C (0.01, 0.1) and D (0.03, 0.2) with conflict fraction f ∈ {0.01, 0.03, 0.1, 0.4} × 2 seeds, as config E7. The existing data are f = 0 (E1/E2b) and f = 0.2 (E2c).
+- **Predictions, at both settings over the six doses:**
+  - the seed-mean median over cells of |LO_model − LO_bayes| falls with f (Spearman ≤ −0.8);
+  - h′/h at f = 0.4 is below h′/h at f = 0;
+  - |logit ε′ − logit ε| at f = 0.4 is below its value at f = 0.
+
+**R2-P2, collapse on new settings.**
+- **The model:** dev = cell fixed effect + β·log10(rate), with β = −1.22, fitted on the 19 old settings (n_c = 2 cells).
+- **Predictions:** it predicts the E6 models' per-cell deviations from their generator rates alone, with Spearman(predicted, observed) ≥ 0.6 over all E6 cells. Refitting β on E6 alone gives a value within ±50% of −1.22.
+
+**Note.** A setting-level support summary (rate of n_w ≥ 2 conflicts) is dominated by typo runs and barely depends on h. So H-support in this form says nothing at the setting level about the h axis. That is a known gap, to be addressed with the per-cell, G-binned rates.

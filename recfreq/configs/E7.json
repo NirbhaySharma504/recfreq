@@ -1,0 +1,9 @@
+{
+  "exp": "E7",
+  "base": {"steps": 20000, "mlp": 0, "pe": "alibi_learn", "layers": 2},
+  "grid": {
+    "seed": [0, 1],
+    "conflict_frac": [0.4, 0.1, 0.03, 0.01],
+    "point": [{"h": 0.01, "eps": 0.1}, {"h": 0.03, "eps": 0.2}]
+  }
+}
