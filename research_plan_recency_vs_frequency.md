@@ -978,7 +978,7 @@ RoPE's near-calibration in Bayes coordinates is mainly a larger evidence weight.
 
 **R3-P1.** If H-ctx holds, the geometric mean over seeds of G*_model at n_w = 3 and 4 rises to at least 1.3× its N = 256 value, at both h. If the ratio stays within [0.8, 1.25] at both h, the edge is not set by context length.
 
-## 19.6 Round 4: what sets the low-h edge, gap support or context length? (pre-registered 27 Oct 05:12 IST)
+## 19.6 Round 4: what sets the low-h edge, gap support or context length? (pre-registered 27 Oct 05:08 IST)
 
 **Read before writing this:** the region map on 16 of 25 E6 seed-0 models (`verify/region_map.py`) and per-model switch-point spacing (`verify/switch_points.py`). **Not read:** survival probes on E6 (running now), any E7 or E8 model, E6 seed 1.
 
