@@ -67,6 +67,17 @@ def train_procs():
     return outs
 
 
+def mem_available_mb():
+    """MemAvailable from /proc/meminfo in MB (Linux); a large number elsewhere."""
+    try:
+        for line in open("/proc/meminfo"):
+            if line.startswith("MemAvailable:"):
+                return int(line.split()[1]) // 1024
+    except OSError:
+        pass
+    return 1 << 30
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("configs", nargs="+")
@@ -74,6 +85,8 @@ def main():
     p.add_argument("--retries", type=int, default=3)
     p.add_argument("--max-gpu-jobs", type=int, default=0,
                    help="cap on recfreq.train processes machine-wide, counting runs started elsewhere (0 = off)")
+    p.add_argument("--min-free-mb", type=int, default=3000,
+                   help="start a job only while this much RAM is available (each job holds about 1.3 GB)")
     p.add_argument("--results", default=os.path.join(ROOT, "results", "runs"))
     a = p.parse_args()
     todo = []
@@ -91,6 +104,8 @@ def main():
         for _ in range(len(todo)):
             if len(running) >= a.max_parallel or (a.max_gpu_jobs and len(alive) >= a.max_gpu_jobs):
                 break
+            if mem_available_mb() < a.min_free_mb:
+                break
             rid, args, out = todo.pop(0)
             if os.path.exists(os.path.join(out, "done.json")):
                 continue  # finished by a process this queue did not start
@@ -101,7 +116,9 @@ def main():
             cmd = [sys.executable, "-m", "recfreq.train", "--out", out] + sum(
                 [[f"--{k}", str(v)] for k, v in args.items()], [])
             logf = open(os.path.join(out, "stdout.log"), "a")
-            running[rid] = (subprocess.Popen(cmd, cwd=ROOT, stdout=logf, stderr=subprocess.STDOUT), args, out, logf)
+            # own session: the job survives the queue's terminal closing
+            proc = subprocess.Popen(cmd, cwd=ROOT, stdout=logf, stderr=subprocess.STDOUT, start_new_session=True)
+            running[rid] = (proc, args, out, logf)
             attempts[rid] += 1
             print(time.strftime("%H:%M:%S"), "start", rid, f"(attempt {attempts[rid]})", flush=True)
             alive.append(os.path.abspath(out))
