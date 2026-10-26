@@ -22,13 +22,13 @@ import torch
 
 from .mech import load_model
 from .probes import NC, NW, GAPS, key_predictive, probe_batch
-from .oracle import bayes_predictive
+from .verify.theory import exact_lo
 
 DISTS = (1, 2, 3, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128, 160, 192, 224, 248)
 
 
 @torch.no_grad()
-def survival(model, task, device, fills=512, seed=99):
+def survival(model, task, device, fills=256, seed=99):
     g = torch.Generator(device=device).manual_seed(seed)
     V, N = task.V, task.n_pairs
     q, qtok = N - 1, 1 + 2 * (N - 1)
@@ -77,10 +77,10 @@ def wide(model, task, device, fills=256, seed=777):
         with torch.autocast("cuda", dtype=torch.bfloat16, enabled=device.type == "cuda"):
             lg = model(tok)[:, qtok, 1 + task.K: 1 + task.K + task.V].float()
         lp = lg.log_softmax(-1)
-        bp = bayes_predictive(task, keys, vals)[:, -1].clamp_min(1e-300).log()
         ar = torch.arange(fills, device=device)
+        lo_b = exact_lo(task.h, task.eps, n_c, n_w, G) if task.V == 64 else float("nan")
         rows.append({"n_c": n_c, "n_w": n_w, "G": G, "lo_model": (lp[ar, c] - lp[ar, w]).mean().item(),
-                     "lo_model_sd": (lp[ar, c] - lp[ar, w]).std().item(), "lo_bayes": (bp[ar, c] - bp[ar, w]).mean().item()})
+                     "lo_model_sd": (lp[ar, c] - lp[ar, w]).std().item(), "lo_bayes": lo_b})
     return pd.DataFrame(rows)
 
 
@@ -90,6 +90,7 @@ def main():
     ap.add_argument("--match", default="E1_,E2b_,E5a_,E5r_,E2a_,E6_")
     ap.add_argument("--device", default="cuda")
     ap.add_argument("--redo", type=int, default=0)
+    ap.add_argument("--seeds", default="0")
     a = ap.parse_args()
     dev = torch.device(a.device)
     for d in sorted(glob.glob(os.path.join(a.runs, "*"))):
@@ -99,6 +100,8 @@ def main():
         if not (os.path.exists(os.path.join(d, "ckpt.pt")) and os.path.exists(os.path.join(d, "done.json"))):
             continue
         args = json.load(open(os.path.join(d, "done.json")))["args"]
+        if str(args["seed"]) not in a.seeds.split(","):
+            continue
         if args["layers"] != 2 or args["mlp"] or args.get("typo", "structured") != "structured" or args["h"] <= 0 or args["eps"] <= 0:
             continue
         if not a.redo and os.path.exists(os.path.join(d, "survival.parquet")) and os.path.exists(os.path.join(d, "probes_wide.parquet")):

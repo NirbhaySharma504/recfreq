@@ -909,3 +909,27 @@ Against the exact oracle (920 cases with G* ≥ 4 pairs; h 1e-4–0.2, ε 0.01�
 - **Predictions:** it predicts the E6 models' per-cell deviations from their generator rates alone, with Spearman(predicted, observed) ≥ 0.6 over all E6 cells. Refitting β on E6 alone gives a value within ±50% of −1.22.
 
 **Note.** A setting-level support summary (rate of n_w ≥ 2 conflicts) is dominated by typo runs and barely depends on h. So H-support in this form says nothing at the setting level about the h axis. That is a known gap, to be addressed with the per-cell, G-binned rates.
+
+### 19.3 Round 2b: the probes' own coordinates, and an E6 pre-registration (27 Oct 02:55 IST; no E6 or E7 result read)
+
+**Switch points** (`verify/switch_points.py`). For each model and n_w (n_c = 2), G* is the gap where its log-odds cross 0 (log-linear interpolation). We compare it with the exact Bayes G*. On the 19 old settings:
+- **Over h:** the model's G*(n_w = 2) scales as h^−0.93 (Bayes: h^−1).
+- **Over n_w:** each extra recent copy moves the model's switch point by about 0.5× as much as it moves Bayes's.
+- **Over V:** at C, G*(n_w = 2) is 34 / 38 / 42 for V = 32 / 64 / 128 (Bayes: roughly ∝ V).
+- **Over K:** the effect is small and inconsistent between C and D.
+- **Survival probes** (round 1): the single-sighting time belief is near-Bayes.
+
+**Natural law** (fitted on the 19 old settings, 170 model × n_w crossings inside the window):
+
+  log G*_model = −0.739 + 0.933·log(1/h) + 0.327·log(1/r_B)
+
+with r_B = [R(1+ρ²)(1−ε)/(1−2ε) − 1]/V, the corrected-Prop. 2 threshold for s/(1−s). Since Bayes has log G* ≈ log(1/h) + log(1/r_B), this reads: **the models get the time scale nearly right but weigh the evidence terms at about 1/3 strength.** The evidence terms are the recent copies, the typo channel and the prior 1/V of switching to exactly that value.
+- In-sample R² 0.90; leave-one-setting-out median |log error| 0.155 (factor 1.17).
+- **Interpretation (post hoc):** the frozen law in Bayes coordinates (h′ ∝ h^0.74, ε′ pulled toward 0.25, ε′ depending on h) is how "right time scale, under-weighted evidence" looks when forced into Bayes's (h′, ε′, a, b).
+
+**R2-P3** (natural law on E6). With the coefficients frozen above, on the E6 models (n_c = 2, n_w = 1–4):
+- **(a) Accuracy:** for crossings inside [2, 128], the median |log G*_obs − log G*_pred| is ≤ 0.30.
+- **(b) Inside or outside the window:** whether a crossing exists in [2, 128] is predicted correctly for ≥ 80% of (model, n_w) pairs.
+- **(c) Comparison with the frozen law:** on the same crossings, the natural law's median error is smaller than that of the frozen Bayes-coordinate law (the crossing of a + b·Bayes(h′_law, ε′_law)).
+
+**R2-P4** (the frozen law's region, prior expectation). On E6, the frozen law meets criterion (i) at fewer than half of the 25 settings. Its error grows at the h and ε extremes. The natural law's error does not grow with h, because h enters with a fixed exponent.
