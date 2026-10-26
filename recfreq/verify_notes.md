@@ -58,3 +58,18 @@ Other deviations: NoPE replaced by RoPE before the overnight launch (NoPE did no
 ## Phase 6 · Literature
 - 17 citations checked. Corrections: Zhou et al. 2410.05493 title is "An Information-Theoretic Approach to Understanding Transformers' In-Context Learning of Variable-Order Markov Chains" (AISTATS 2026); Makkuva et al. 2402.04161 published at ICLR 2025 as "Attention with Markov: A Curious Case of Single-Layer Transformers"; Rajaraman et al. NeurIPS 2024 venue not confirmed from arXiv. Selective Induction Heads = ICLR 2025 ✓ (proceedings). Qin et al. = arXiv 2604.10946, ICLR 2026 ✓. Hegazy et al. title "Recency Biased Causal Attention for Time-series Forecasting", AISTATS 2026 ✓. Crosbie & Shutova NAACL Findings 2025 ✓. Behrens, Biggio, Zdeborová ICML 2025 ✓.
 - Novelty: no prior work found on conflicting old/recent continuations with a Bayes switch/typo trade-off for induction heads; checked 2606.12058 (copy-head phase transitions) and 2508.03934 (Markov estimation): no overlap.
+
+# Run 7 — region of validity and explanation (27 Oct 2026, overnight, iterative; plan §19)
+
+## Round 1 (02:26–02:48)
+- Prop. 2 redone: the paper's boundary dropped three terms (same-value redraw, old copies as typos of c−1, observed-token odds). Corrected: within 10% of exact in 91% of 920 cases (median 0.9%); the paper's: 20% (median 47% off; 77% off at ε ≥ 0.3).
+- H-lin ("ALiBi's linear distance distorts the sense of time"): refuted. The linear-survival surrogate gives h′/h of only 1–3.7, and the survival probes show calibrated time.
+- H-support: per-cell deviation from Bayes falls as the situation becomes more frequent in training (within-cell Spearman −0.73 across 19 settings). Post hoc.
+
+## Round 2 (02:48–03:10)
+- Switch points: the models' G* ∝ h^−0.93, nearly calibrated, but extra recent copies move it only ~0.5× as much as in Bayes.
+- Natural law (frozen 02:55, before E6): log G* = −0.739 + 0.933·log(1/h) + 0.327·log(1/r_B). Plain reading: the clock is right, evidence counts at about 1/3.
+- RoPE has the same form with evidence weight 0.70.
+- Wide window: ε = 0.4 models are not flat. Their floor (−1.5 nats) lies outside Bayes's range (±0.41), which is why the Bayes-form law fails there.
+- GPU: E6 (50 runs, region sweep) and E7 (16 runs, conflict-dose) queued at 02:26 and 02:49.
+- Next: E6 → R2-P2, R2-P3, R2-P4 and the region map; E7 → R2-P1 and R2-P5.

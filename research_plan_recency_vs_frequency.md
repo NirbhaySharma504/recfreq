@@ -865,13 +865,13 @@ The corrected boundary is s/(1−s) = [R(1+ρ^{n_c})(1−ε)/(1−2ε) − 1]/V,
 
 Against the exact oracle (920 cases with G* ≥ 4 pairs; h 1e-4–0.2, ε 0.01–0.45, n_c 1/2/8, n_w 1–6):
 
-| Version | Median error | Cases within 10% |
+| Version | Median error in G* | Cases within 10% |
 |---|---|---|
 | Corrected | 0.9% | 91% |
-| Paper (exact s) | 38% | 20% |
-| Paper (small-hG form) | far off | 3% |
+| Paper (exact s) | 47% (median \|log ratio\| 0.38) | 20% |
+| Paper (small-hG form) | ×5.8 | 3% |
 
-- **Where the paper's version fails:** at ε ≥ 0.3 it is within 10% in only 2% of cases. Even at ε ≤ 0.2 it is within 10% in only 53%.
+- **Where the paper's version fails:** at ε ≥ 0.3 its median error is 77% and it is within 10% in only 2% of cases. Even at ε ≤ 0.2 it is within 10% in only 53%.
 - **Corrected log-odds on the grid's probe cells:** median difference 0.012 nats, 90th percentile 0.13.
 - **Remaining corrected-formula errors:** only where G* < 10, because it ignores switches inside the recent block.
 
@@ -939,3 +939,28 @@ with r_B = [R(1+ρ²)(1−ε)/(1−2ε) − 1]/V, the corrected-Prop. 2 threshol
 - **Caveat:** C1 cannot be estimated from only 2 h values, so the time slope is not tested here.
 
 The idea behind this test: time is learned from abundant ordinary repeats, while evidence-combination is learned from rare conflicts. Extra Bayes-labelled conflicts should therefore mainly fix the evidence weight.
+
+### 19.4 Round 2 interim results (27 Oct 03:10 IST; still no E6 or E7 result read)
+
+**B1 survival probes** (`survival_probes.py`; 33 seed-0 models, `verify_out/survival_summary.csv`).
+- **What was measured:** each model's belief that a value seen once d pairs ago still holds, read off as s = (M − 3/V)/(1 − 3/V) with M the mass on c−1, c, c+1.
+- **ALiBi:** it tracks exact Bayes in all 19 settings, including the settings where the law fails (h = 0.001, h = 0.06, ε = 0.4). RMSE in s is 0.014–0.068 (median 0.048); the largest gap at any d ≤ 192 is 0.16.
+- **RoPE:** RMSE 0.010–0.031.
+- **C2.5 (pre-registered direction for H-lin): FAIL.** For ALiBi, logit s is closer to linear in log d than to linear in d in 13 of 19 models.
+- **Conclusion:** the models' sense of time is calibrated. The miscalibration is not in time.
+
+**B1 wide window** (G ∈ {192, 224}, n_w ∈ {5, 6}).
+- **ε = 0.4:** the models are not flat. They have clear switch points (G* ≈ 140, 80, 51, 35 for n_w = 1–4 at h = 0.01) and fall to about −1.5 nats. Bayes's log-odds there stay within about ±0.41, so a + b·Bayes cannot follow them, whatever the beliefs.
+- **h = 0.001:** n_w = 1 never crosses by G = 224 (LO still +1.0); n_w = 2 crosses at G ≈ 149.
+- **The natural law on these unseen crossings** (n_w = 5, 6 or G > 128): median |log error| 0.32 (factor 1.38; n = 23), against 0.14 on the crossings it was fitted on.
+
+**Natural-law slopes by encoding** (exploratory). Using log G* = c + a·log(1/h) + b·log(1/r_B):
+- ALiBi: a = 0.93, b = 0.33 (R² 0.90).
+- RoPE: a = 0.84, b = 0.70 (R² 0.91).
+- Learned absolute: a = 0.49, b = 0.28. Only 2 h values, so its a is not identifiable.
+
+RoPE's near-calibration in Bayes coordinates is mainly a larger evidence weight.
+
+**Attention and evidence** (post hoc, `verify/attn_evidence.py`, run-3 attention, short gaps G ≤ 8).
+- In ALiBi copy heads, the old/recent attention split moves by 0.41× Bayes's per-copy evidence per extra recent copy (median per model; heads 0.30–0.54). This is close to ALiBi's behavioural evidence weight of 0.33.
+- RoPE heads show about the same attention sensitivity (0.36×), yet weigh evidence at 0.70 behaviourally. So attention alone does not explain the encoding difference; the value/output side must contribute. Open.

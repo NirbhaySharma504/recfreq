@@ -1,0 +1,36 @@
+<section id="d_derivation" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:96px 128px;display:flex;flex-direction:column;gap:26px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Follow-up 1 · is the derivation right?</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:56px;font-weight:600;line-height:1.1">Prop. 2 redone: right logic, three dropped terms</h2>
+</div>
+<div style="display:grid;grid-template-columns:1.15fr 1fr;gap:40px;font-size:25px;line-height:1.45">
+<div style="background:#FFFFFF;border-radius:12px;padding:26px 34px">
+<p style="margin:0 0 10px;font-weight:600">Probe: n<sub>c</sub> old copies of c · gap G · n<sub>w</sub> recent copies of w = c+1</p>
+<p style="margin:0">Survival over the gap: s = (1−h)<sup>G</sup>. Two paths explain the data:</p>
+<p style="margin:10px 0 0"><b>No change</b>: prior <b style="color:#D9822B">s + (1−s)/V</b> (a redraw can land on c again) · recent copies are typos: ε<sup>n<sub>w</sub></sup></p>
+<p style="margin:8px 0 0"><b>Switched to w in the gap</b>: prior (1−s)/V · recent copies clean: (1−ε)<sup>n<sub>w</sub></sup> · old copies from c or <b style="color:#D9822B">c−1</b>: (1−ε)<sup>n<sub>c</sub></sup> + ε<sup>n<sub>c</sub></sup></p>
+<p style="margin:16px 0 0;font-size:26px;background:#EEF2FA;border-radius:8px;padding:10px 16px">P(c) / P(w) = (1 + sV/(1−s)) / ( R·(1 + ρ<sup>n<sub>c</sub></sup>) ), &nbsp; R = ((1−ε)/ε)<sup>n<sub>w</sub></sup>, ρ = ε/(1−ε)</p>
+<p style="margin:14px 0 0">The probes read the <b style="color:#D9822B">observed token</b>, so log-odds = 0 at P(c)/P(w) = (1−ε)/(1−2ε). Switch point:</p>
+<p style="margin:10px 0 0;font-size:26px;background:#16213A;color:#F5F7FA;border-radius:8px;padding:10px 16px">s/(1−s) = [ R(1+ρ<sup>n<sub>c</sub></sup>)(1−ε)/(1−2ε) − 1 ] / V</p>
+<p style="margin:10px 0 0;color:#5A6377">Paper: s/(1−s) = R/V (the three orange terms dropped).</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:22px">
+<table style="width:100%;border-collapse:collapse;background:#FFFFFF;border-radius:12px;overflow:hidden;font-size:24px">
+<thead><tr style="background:#16213A;color:#F5F7FA;text-align:left"><th style="padding:10px 20px">vs exact oracle (920 cases)</th><th style="padding:10px 20px">median error</th><th style="padding:10px 20px">within 10%</th></tr></thead>
+<tbody>
+<tr style="border-bottom:2px solid #E6E8EE"><td style="padding:8px 20px"><b>Corrected</b></td><td style="padding:8px 20px"><b>0.9%</b></td><td style="padding:8px 20px"><b>91%</b></td></tr>
+<tr style="border-bottom:2px solid #E6E8EE"><td style="padding:8px 20px">Paper's Prop. 2</td><td style="padding:8px 20px">47%</td><td style="padding:8px 20px">20%</td></tr>
+<tr style="border-bottom:2px solid #E6E8EE"><td style="padding:8px 20px">… at ε ≥ 0.3</td><td style="padding:8px 20px">77%</td><td style="padding:8px 20px">2%</td></tr>
+<tr><td style="padding:8px 20px">Paper's small-hG form</td><td style="padding:8px 20px">×5.8</td><td style="padding:8px 20px">3%</td></tr>
+</tbody>
+</table>
+<div style="background:#FFFFFF;border-radius:12px;padding:20px 28px;font-size:24px;line-height:1.45">
+<b>What survives:</b> the boundary ignores old copies beyond 2 (ρ<sup>n<sub>c</sub></sup> ≈ 0), depends on the gap through log G, and each recent copy shifts it by log((1−ε)/ε). <b>What changes:</b> the numbers, most at large ε.
+</div>
+<div style="background:#16213A;color:#F5F7FA;border-radius:12px;padding:20px 28px;font-size:24px;line-height:1.45">
+<b style="color:#F2B27E">The law itself</b> (h′ = 1.45·h<sup>0.74</sup>, …) is <b>fitted, not derived</b>: 4 constants from 12 settings, a single decade of h. Next slides: where it holds, and why.
+</div>
+</div>
+</div>
+<aside>Sir asked whether the derivation is right. The two-hypothesis logic is right, but our boundary formula dropped three terms. First, when a value is redrawn it can land on the same value, so "no change" has prior s plus (1 minus s) over V. Second, after a switch, the old copies could all have been typos of c minus 1. Third, and largest, our probes measure the odds of the observed token, which includes the typo channel, so the switch point is where the posterior odds equal (1 minus eps) over (1 minus 2 eps), not 1. With these three terms the formula matches the exact oracle to 0.9% median error; the paper's version is off by 47% median and almost always wrong at large eps. The qualitative conclusions stay. Also important: the law for h' and eps' is an empirical fit, not a derivation.</aside>
+</section>
