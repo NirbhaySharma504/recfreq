@@ -934,7 +934,7 @@ with r_B = [R(1+ρ²)(1−ε)/(1−2ε) − 1]/V, the corrected-Prop. 2 threshol
 
 **R2-P4** (the frozen law's region, prior expectation). On E6, the frozen law meets criterion (i) at fewer than half of the 25 settings. Its error grows at the h and ε extremes. The natural law's error does not grow with h, because h enters with a fixed exponent.
 
-**R2-P5** (dose and the natural law; written 27 Oct 02:59 IST, no E7 result read). Fit the natural law's two slopes separately per conflict fraction f, pooling C and D and seeds; only the intercept is shared within each f. The f values are 0 (E1/E2b, at C and D), 0.01, 0.03, 0.1, 0.4 (E7) and 0.2 (E2c).
+**R2-P5** (dose and the natural law; written 27 Oct 02:55 IST, no E7 result read). Fit the natural law's two slopes separately per conflict fraction f, pooling C and D and seeds; only the intercept is shared within each f. The f values are 0 (E1/E2b, at C and D), 0.01, 0.03, 0.1, 0.4 (E7) and 0.2 (E2c).
 - The evidence slope C2 rises with f: Spearman over f ≥ 0.8, and C2(f = 0.4) > 1.5 × C2(f = 0).
 - **Caveat:** C1 cannot be estimated from only 2 h values, so the time slope is not tested here.
 
