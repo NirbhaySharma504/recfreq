@@ -1005,3 +1005,19 @@ For h ≥ 0.045, median |s_model − s_Bayes| over d ≤ 248 is ≤ 0.10.
 If H-ctx holds, both ratios lie in [0.8, 1.25]. K = 64 is exploratory.
 
 **R3-P4.** On E6 models not yet read (remaining seed 0 and all of seed 1), Spearman(log h, w) ≥ 0.6.
+
+**R3-P2 verdict (05:38 IST): FAIL.** Survival probes on the low-h E6 models show a calibrated single-sighting clock even far beyond the gaps training contains:
+
+| Model (seed 0) | max \|s_model − s_Bayes\|, d ≤ 32 | median (s_Bayes − s_model), d ∈ [128, 248] |
+|---|---|---|
+| h = 0.0003, ε = 0.1 | 0.011 | −0.013 |
+| h = 0.0003, ε = 0.2 | 0.018 | −0.021 |
+| h = 0.001, ε = 0.2 | 0.014 | −0.036 |
+
+The model is slightly *above* Bayes at long range, not 0.15 below. So H-gap, in its clock form, is refuted: a single old memory is trusted correctly out to d = 248 even at h = 0.0003.
+
+What breaks at low h is how an old memory and new copies are combined. At h = 0.0003, ε = 0.1:
+- one extra recent copy moves the log-odds by about 0.05 nats at G ≤ 32, but by 1.4 nats at G = 128 (n_w 3 → 4);
+- Bayes moves it by about 2.2 nats at every G.
+
+So time and evidence interact in the model, whereas Bayes adds them. R3-P3 (E9) stays as registered, since it is a test about the conflict switch points, not the clock.
