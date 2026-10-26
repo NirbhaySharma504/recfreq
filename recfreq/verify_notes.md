@@ -73,3 +73,34 @@ Other deviations: NoPE replaced by RoPE before the overnight launch (NoPE did no
 - Wide window: ε = 0.4 models are not flat. Their floor (−1.5 nats) lies outside Bayes's range (±0.41), which is why the Bayes-form law fails there.
 - GPU: E6 (50 runs, region sweep) and E7 (16 runs, conflict-dose) queued at 02:26 and 02:49.
 - Next: E6 → R2-P2, R2-P3, R2-P4 and the region map; E7 → R2-P1 and R2-P5.
+
+## Round 3 (03:18; E8 pre-registered: context length at the low-h edge)
+- E8: N = 512 at h ∈ {0.0003, 0.001}; R3-P1 in plan §19.5.
+
+## Round 4 (04:58–05:25)
+- Ops: the server reached 31/31 GB RAM with 27 parallel jobs, and 4 E7 jobs were OOM-killed (they resume from checkpoints). Two fixes in `queue.py`: no new job while free RAM < 3 GB, and jobs run in their own session so stopping a queue no longer kills them. Earlier, killing the old E6/E7 queues killed their jobs through tmux hangup; they resumed from checkpoints and lost at most 500 steps each.
+- Region map on 16/25 E6 seed-0 models (`verify/region_map.py`):
+  - **h′ extrapolates.** The frozen h′ law matches the fitted h′ from h = 0.002 to 0.15. Below that, h′ levels off at about 0.01.
+  - **ε′ fails off the fitted range** because it depends on h (0.33 at h ≤ 0.001 down to 0.08 at h = 0.15, at ε = 0.1).
+  - **Cross-term law:** the run-6 cross-term law (out of sample) halves the ε′ error but misses the drop at h ≥ 0.06.
+- **Evidence weight** (`verify/evidence_weight.py`). w = switch-point shift per recent copy ÷ Bayes's, in clock units h·G*. For ALiBi it rises with h:
+
+  | h | 0.001 | 0.003 | 0.01 | 0.03 | 0.06 | 0.1 |
+  |---|---|---|---|---|---|---|
+  | w | 0.10 | 0.26 | 0.40 | 0.61 | 0.78 | ≥ 1 |
+
+  Spearman with log h is 0.77 (n = 65). w also rises with ε. RoPE: 0.8–1.1.
+- **The switch point at zero net evidence** (x_ref, in units of 1/h) is 0.4–0.6 across h = 0.005–0.06. The model switches about 2× earlier than Bayes, by a constant factor.
+- **R3-P2 FAIL.** The single-sighting survival at h = 0.0003–0.001 is calibrated out to d = 248. The low-h failure is in combining an old copy with new ones: at h = 0.0003 an extra recent copy moves the log-odds by 0.05 nats at G ≤ 32 and by 1.4 nats at G = 128. Time and evidence interact, where Bayes adds them.
+- **Excess time × evidence interaction** (additive-fit residual, model minus Bayes) does *not* line up with where the law fails (Spearman −0.40). Dropped.
+- **Restricted Bayes fits** (`verify/clock_fixed.py`). RMSE relative to the free (h′, ε′, a, b) fit, ALiBi medians:
+
+  | Fit | RMSE ratio |
+  |---|---|
+  | true h, free ε′ | 1.86 |
+  | free h′, true ε | 1.35 |
+  | true h, free V_eff and ε′ | 1.24 (V_eff at the grid edge of 4 for h ≥ 0.003) |
+  | true h and ε | 2.09 |
+
+  So within the Bayes family the probe surfaces want h′ > h even though the single-sighting clock is right. h′ stands for "switches early, by a near-constant factor", not "forgets faster". RoPE: every restriction is within ×1.13.
+- E9 launched (K ∈ {8, 32, 64} at h ∈ {0.0003, 0.001}; R3-P3).
