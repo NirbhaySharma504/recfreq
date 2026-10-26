@@ -964,3 +964,16 @@ RoPE's near-calibration in Bayes coordinates is mainly a larger evidence weight.
 **Attention and evidence** (post hoc, `verify/attn_evidence.py`, run-3 attention, short gaps G ≤ 8).
 - In ALiBi copy heads, the old/recent attention split moves by 0.41× Bayes's per-copy evidence per extra recent copy (median per model; heads 0.30–0.54). This is close to ALiBi's behavioural evidence weight of 0.33.
 - RoPE heads show about the same attention sensitivity (0.36×), yet weigh evidence at 0.70 behaviourally. So attention alone does not explain the encoding difference; the value/output side must contribute. Open.
+
+## 19.5 Round 3: the low-h edge (pre-registered 27 Oct 03:25 IST, before any E8 run)
+
+**Partial E6 read so far:** only wave 1, 8 seed-0 models on the h axis.
+- **At h ≥ 0.045,** the natural law's switch points hold (n_w = 1: 18 / 8.0 / 5.3 observed vs 16 / 7.7 / 5.3 predicted at h = 0.045 / 0.1 / 0.15).
+- **At h ≤ 0.001,** the models switch much earlier than the law's h^−0.93 scaling: at h = 0.0003, n_w = 4, observed 101 vs predicted 195. The model's clock stops slowing down below h ≈ 0.002.
+- **The copy-head slopes still fall with h** (0.044 / 0.032 / 0.022 at h = 0.003 / 0.001 / 0.0003; about 0.002 at h = 0). So this is not a slope floor.
+
+**H-ctx.** At very small h a key switches less than about once per context (hN < 0.5), so the long time scale gets little training signal.
+
+**E8 design:** N = 512 at h ∈ {0.0003, 0.001}, ε = 0.1, seeds 0 and 1. Compare with N = 256: E6 at 0.0003 and E5a at 0.001.
+
+**R3-P1.** If H-ctx holds, the geometric mean over seeds of G*_model at n_w = 3 and 4 rises to at least 1.3× its N = 256 value, at both h. If the ratio stays within [0.8, 1.25] at both h, the edge is not set by context length.
