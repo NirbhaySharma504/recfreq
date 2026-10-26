@@ -965,7 +965,7 @@ RoPE's near-calibration in Bayes coordinates is mainly a larger evidence weight.
 - In ALiBi copy heads, the old/recent attention split moves by 0.41× Bayes's per-copy evidence per extra recent copy (median per model; heads 0.30–0.54). This is close to ALiBi's behavioural evidence weight of 0.33.
 - RoPE heads show about the same attention sensitivity (0.36×), yet weigh evidence at 0.70 behaviourally. So attention alone does not explain the encoding difference; the value/output side must contribute. Open.
 
-## 19.5 Round 3: the low-h edge (pre-registered 27 Oct 03:25 IST, before any E8 run)
+## 19.5 Round 3: the low-h edge (pre-registered 27 Oct 03:18 IST, before any E8 run)
 
 **Partial E6 read so far:** only wave 1, 8 seed-0 models on the h axis.
 - **At h ≥ 0.045,** the natural law's switch points hold (n_w = 1: 18 / 8.0 / 5.3 observed vs 16 / 7.7 / 5.3 predicted at h = 0.045 / 0.1 / 0.15).
