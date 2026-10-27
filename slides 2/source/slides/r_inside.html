@@ -1,0 +1,19 @@
+<section id="r_inside" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:96px 128px 112px;display:flex;flex-direction:column;gap:28px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Result 4 · inside the model</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:60px;font-weight:600;line-height:1.1">Copy heads are fading counters that add up</h2>
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:12px;width:1520px;align-self:center">
+<img src="/_blob/c68cc4eafd1341b3eaf1ceba440193c6" alt="Attention decay equals learned slope; head effect linear in attention; decision predicted from attention" style="display:block;width:100%;height:auto">
+</div>
+<div style="display:grid;grid-template-columns:1.25fr 1fr;gap:32px;align-items:stretch">
+<div style="background:#FFFFFF;border-radius:12px;padding:20px 28px">
+<p style="margin:0;font-size:30px;font-family:'Source Serif 4', Georgia, serif">logit(c) − logit(w) ≈ Σ<sub>heads</sub> γ<sub>h</sub> · (A<sub>old c</sub> − A<sub>recent w</sub>)</p>
+<p style="margin:10px 0 0;font-size:25px;color:#3F4A60">2–3 copy heads; R² 0.90–0.99 across models; fade = learned slope (r = 0.990)</p>
+</div>
+<div style="background:#FBE5D3;border-radius:12px;padding:20px 28px">
+<p style="margin:0;font-size:25px;line-height:1.45"><b style="color:#B85A17">Open question:</b> each head’s attention split is already Bayes-shaped and is computed inside the layer-1 copy heads. We have not found how yet.</p>
+</div>
+</div>
+<aside>Inside the model the decision is simple: a few copy heads each look back at old and recent copies, their attention fades at the learned ALiBi slope, and their outputs add up. That sum predicts the model's choice almost perfectly. What we cannot yet explain is how the heads' attention ends up Bayes-shaped; it survives removing every layer-0 head except the previous-token head.</aside>
+</section>

@@ -1,0 +1,24 @@
+<section id="hypothesis" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:32px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">The idea · what we expected</p>
+<h2 style="margin:16px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1">Two candidate rules, and our bets</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+<div style="background:#FFFFFF;border-radius:12px;padding:36px 40px;border-top:10px solid #6B7487">
+<p style="margin:0;font-size:36px;font-weight:600">Counter rule <span style="color:#6B7487;font-weight:500">(Prop. 1)</span></p>
+<p style="margin:16px 0 0;font-size:28px;line-height:1.45">What one attention head naturally does: every past copy is a <b>vote that fades with distance</b>.</p>
+<p style="margin:20px 0 0;font-size:28px;line-height:1.45;color:#3F4A60">→ More old copies <b>always</b> pull harder toward the old value.</p>
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:36px 40px;border-top:10px solid #2B59C3">
+<p style="margin:0;font-size:36px;font-weight:600">Ideal rule <span style="color:#2B59C3;font-weight:500">(Bayes, Prop. 2)</span></p>
+<p style="margin:16px 0 0;font-size:28px;line-height:1.45">Weigh “typo” against “real change”. Switch to the recent value when</p>
+<p style="margin:16px 0 0;font-size:32px;font-family:'Source Serif 4', Georgia, serif;background:#EEF2FA;border-radius:8px;padding:12px 20px;display:inline-block">log(h·G) &gt; log V − n<sub>w</sub>·log((1−ε)/ε)</p>
+<p style="margin:16px 0 0;font-size:28px;line-height:1.45;color:#3F4A60">→ After 2 old copies, extra ones <b>don’t matter</b>. The gap and the recent copies do.</p>
+</div>
+</div>
+<div style="background:#16213A;color:#F5F7FA;border-radius:12px;padding:28px 40px">
+<p style="margin:0;font-size:28px;line-height:1.5"><b style="color:#F2B27E">Bets written down before running:</b> (a) 2-layer attention-only models count old copies &nbsp;·&nbsp; (b) MLPs or a 3rd layer move them toward Bayes &nbsp;·&nbsp; (c) the heads’ fading rate rises with the switch rate h</p>
+</div>
+<p style="margin:0;font-size:24px;color:#6B7487">h = switch rate · ε = typo rate · G = gap since the old copies · n<sub>w</sub> = number of recent copies · V = 64 possible values</p>
+<aside>Two rules make different predictions. A counter, which is what a single head can compute, keeps getting more confident as old copies pile up. The exact Bayes answer stops caring after two old copies: what decides is how long ago they were (G) and how many recent copies there are. We wrote down three bets before running anything.</aside>
+</section>

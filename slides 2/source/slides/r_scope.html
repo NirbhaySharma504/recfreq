@@ -1,0 +1,22 @@
+<section id="r_scope" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:112px 128px;display:flex;flex-direction:column;gap:32px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Result 5 · run 6, 63 new models</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:60px;font-weight:600;line-height:1.1">How far does the formula reach?</h2>
+</div>
+<table style="width:100%;border-collapse:collapse;font-size:24px;line-height:1.3;background:#FFFFFF;border-radius:12px;overflow:hidden">
+<thead><tr style="background:#16213A;color:#F5F7FA;text-align:left"><th style="padding:12px 24px;width:34%">Frozen formula, new models</th><th style="padding:12px 24px">Result</th><th style="padding:12px 24px;width:18%">Verdict</th></tr></thead>
+<tbody>
+<tr style="border-bottom:2px solid #E6E8EE"><td style="padding:8px 24px">New (h, ε) inside the range</td><td style="padding:8px 24px">R² 0.89–0.94</td><td style="padding:8px 24px"><span style="background:#E3F2EA;color:#22744A;border-radius:6px;padding:3px 12px;font-weight:600">holds</span></td></tr>
+<tr style="border-bottom:2px solid #E6E8EE"><td style="padding:8px 24px">New (h, ε) outside the range</td><td style="padding:8px 24px">1 of 4 hold; the fixed output scale breaks at the edges</td><td style="padding:8px 24px"><span style="background:#FBF0DC;color:#8A5A12;border-radius:6px;padding:3px 12px;font-weight:600">partly</span></td></tr>
+<tr style="border-bottom:2px solid #E6E8EE"><td style="padding:8px 24px">Context 192 / 256 / 512 pairs</td><td style="padding:8px 24px">R² 0.90 at each; h′ unchanged</td><td style="padding:8px 24px"><span style="background:#E3F2EA;color:#22744A;border-radius:6px;padding:3px 12px;font-weight:600">transfers</span></td></tr>
+<tr style="border-bottom:2px solid #E6E8EE"><td style="padding:8px 24px">Vocabulary V = 32 / 128</td><td style="padding:8px 24px">R² 0.91–0.94; models track log V like Bayes</td><td style="padding:8px 24px"><span style="background:#E3F2EA;color:#22744A;border-radius:6px;padding:3px 12px;font-weight:600">transfers</span></td></tr>
+<tr style="border-bottom:2px solid #E6E8EE"><td style="padding:8px 24px">Keys K = 8 / 32</td><td style="padding:8px 24px">R² 0.89–0.93</td><td style="padding:8px 24px"><span style="background:#E3F2EA;color:#22744A;border-radius:6px;padding:3px 12px;font-weight:600">transfers</span></td></tr>
+<tr style="border-bottom:2px solid #E6E8EE"><td style="padding:8px 24px">Uniform keys / random typos</td><td style="padding:8px 24px">keys: R² 0.93, 0.83; random typos: a counter fits better than Bayes</td><td style="padding:8px 24px"><span style="background:#FBF0DC;color:#8A5A12;border-radius:6px;padding:3px 12px;font-weight:600">keys yes, typos no</span></td></tr>
+<tr><td style="padding:8px 24px">RoPE instead of ALiBi</td><td style="padding:8px 24px">Bayes shape again; nearly calibrated (ε′ ≈ ε, h′ 1.7–4.4× h)</td><td style="padding:8px 24px"><span style="background:#FBF0DC;color:#8A5A12;border-radius:6px;padding:3px 12px;font-weight:600">own constants</span></td></tr>
+</tbody>
+</table>
+<div style="background:#16213A;color:#F5F7FA;border-radius:12px;padding:22px 36px">
+<p style="margin:0;font-size:27px;line-height:1.45"><b style="color:#F2B27E">Takeaway:</b> the believed (h′, ε′) part is general across task size; the output scale, the encoding and the typo structure are not (random typos give counter-like models). Our guess that context length causes the too-high h′ was <b>refuted</b>.</p>
+</div>
+<aside>We froze the formula and trained 63 new models in settings it had never seen. Inside the original range it predicts them as well as on the original grid. It also transfers unchanged to other context lengths, vocabulary sizes and numbers of keys. Outside the range, the beliefs still transfer but the fixed output scale does not, which breaks 3 of 4 extrapolations. RoPE models follow the same Bayes shape with their own, much better calibrated, constants. With random instead of +1 typos the models are counter-like, so the Bayes description needs structured typos. Our idea that a finite context causes the too-high switch rate was wrong: doubling the context changed nothing.</aside>
+</section>

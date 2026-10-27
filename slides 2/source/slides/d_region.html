@@ -1,19 +1,19 @@
 <section id="d_region" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:80px 112px;display:flex;flex-direction:column;gap:22px">
 <div>
-<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Follow-up 2 · where does the law work? (run 7, 35 settings, 25 new)</p>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Follow-up 2 · where does the law work? (run 7: 44 settings, 25 new)</p>
 <h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:54px;font-weight:600;line-height:1.1">The switch-rate half transfers; the typo-rate half does not</h2>
 </div>
 <img src="img/region_slide.png" alt="Region map of the frozen law, and h-prime and epsilon-prime against h" style="width:100%;background:#FFFFFF;border-radius:12px;padding:10px 14px">
 <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:26px;font-size:24px;line-height:1.42">
 <div style="background:#FFFFFF;border-radius:12px;padding:20px 26px;border-top:6px solid #2E8B57">
-<b>Works</b> (error no worse than on its own fitting grid): <b>h ≈ 0.001–0.03, ε ≈ 0.05–0.3</b>. This is a decade wider than we fitted on, at the low-h side.
+<b>Works</b> (error no worse than inside its own fitting box): <b>h ≈ 0.001–0.045 at ε ≈ 0.05–0.25</b>. That reaches half a decade below the fitted h range. At h = 0.0003 the switch points leave the window.
 </div>
 <div style="background:#FFFFFF;border-radius:12px;padding:20px 26px;border-top:6px solid #2B59C3">
-<b>h′ = 1.45·h<sup>0.74</sup> holds from h = 0.002 to 0.15</b> (75× range). Below 0.002 it stops: h′ levels off at ≈ 0.01, and at h = 0.0003 the switch points leave the probe window.
+<b>h′ = 1.45·h<sup>0.74</sup> holds from h = 0.002 to 0.15</b> (a 75× range). Below 0.002 it stops: h′ levels off at ≈ 0.01.
 </div>
 <div style="background:#FFFFFF;border-radius:12px;padding:20px 26px;border-top:6px solid #D9822B">
-<b>Fails where ε′ moves:</b> ε′ is not a function of ε alone. It falls with h (0.33 → 0.08 at ε = 0.1), so at h ≥ 0.045 the error grows to ×2–8. At ε ≥ 0.35 the models switch much harder than Bayes allows.
+<b>Fails where ε′ moves:</b> ε′ depends on h as well as ε (0.33 → 0.08 at ε = 0.1), so at h ≥ 0.06 the error is ×2.6–6.5. ε ≥ 0.35: ×2.7–12. ε ≤ 0.02: ×1.9–2.9.
 </div>
 </div>
-<aside>Sir asked for the exact region where the formula works. We froze the formula and trained new models over a cross in the h and epsilon plane, two decades in h and from 0.01 to 0.45 in epsilon. The colour is the formula's error divided by the error of the best Bayes fit to that model; inside the box we fitted on, the ratio is about 1.4, so that is our yardstick. The formula works on a band from h of about 0.001 to 0.03 for typo rates from 0.05 to 0.3. The two halves of the formula behave differently. The believed switch rate follows the formula over two decades of h, and only stops below h of 0.002. The believed typo rate is the problem: it is not a function of the typo rate alone, it falls as h grows, and the formula has no h in it. That is the whole failure at large h. At epsilon of 0.35 and above, the models switch far harder than Bayes allows, so no Bayes form fits.</aside>
+<aside>Sir asked for the exact region where the formula works. We froze the formula and trained new models over a cross in the h and epsilon plane, two decades in h and from 0.01 to 0.45 in epsilon. The colour is the formula's error divided by the error of the best Bayes fit to that model; inside the box we fitted on, the ratio is about 1.4, so that is our yardstick. Our pre-registered test, 1.25 times, turned out stricter than the formula manages even on its own fitting grid, so we judge it against how it does there. It works on a band from h of about 0.001 to 0.045 for typo rates from 0.05 to 0.25. The two halves of the formula behave differently. The believed switch rate follows the formula over two decades of h, and only stops below h of 0.002. The believed typo rate is the problem: it is not a function of the typo rate alone, it falls as h grows, and the formula has no h in it. That is the whole failure at large h. At epsilon of 0.35 and above, the models switch far harder than Bayes allows, so no Bayes form fits.</aside>
 </section>

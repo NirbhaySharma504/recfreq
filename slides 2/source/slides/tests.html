@@ -1,0 +1,18 @@
+<section id="tests" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">What we ran</p>
+<h2 style="margin:16px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1">The main tests in plain words</h2>
+</div>
+<table style="width:100%;border-collapse:collapse;font-size:26px;line-height:1.35;background:#FFFFFF;border-radius:12px;overflow:hidden">
+<thead><tr style="background:#16213A;color:#F5F7FA;text-align:left"><th style="padding:12px 28px;width:22%">Test</th><th style="padding:12px 28px;width:39%">The question</th><th style="padding:12px 28px">How</th></tr></thead>
+<tbody>
+<tr style="border-bottom:2px solid #E6E8EE"><td style="padding:12px 28px;font-weight:600;color:#2B59C3">1 · Conflict probes</td><td style="padding:12px 28px">Which copy does the model trust, versus the ideal?</td><td style="padding:12px 28px">112 probe types per model, compared with exact Bayes</td></tr>
+<tr style="border-bottom:2px solid #E6E8EE"><td style="padding:12px 28px;font-weight:600;color:#2B59C3">2 · Rule fitting</td><td style="padding:12px 28px">Which formula best describes its choices?</td><td style="padding:12px 28px">Counter rules vs Bayes with free beliefs (h′, ε′), scored on held-out probes</td></tr>
+<tr style="border-bottom:2px solid #E6E8EE"><td style="padding:12px 28px;font-weight:600;color:#2B59C3">3 · Controls</td><td style="padding:12px 28px">Is it an artifact of encoding, size or training settings?</td><td style="padding:12px 28px">3 encodings, depth, MLPs, 2× width, 3× training, lr and batch, new seeds</td></tr>
+<tr style="border-bottom:2px solid #E6E8EE"><td style="padding:12px 28px;font-weight:600;color:#2B59C3">4 · Slope surgery</td><td style="padding:12px 28px">Is the heads’ fading rate the cause?</td><td style="padding:12px 28px">Rescale trained ALiBi slopes ×0.25 to ×4, measure again</td></tr>
+<tr style="border-bottom:2px solid #E6E8EE"><td style="padding:12px 28px;font-weight:600;color:#2B59C3">5 · Inside the model</td><td style="padding:12px 28px">Which heads make the decision, and how?</td><td style="padding:12px 28px">Split the output by head; cut paths between layers</td></tr>
+<tr><td style="padding:12px 28px;font-weight:600;color:#E07A2F">6 · Audit</td><td style="padding:12px 28px">Are the code and the numbers right?</td><td style="padding:12px 28px">Unit tests, retrains, null models, numbers recomputed</td></tr>
+</tbody>
+</table>
+<aside>Six kinds of test. The probes measure behaviour. Rule fitting asks which formula explains it. Controls rule out the obvious artifacts. Slope surgery is the causal test. The mechanism work looks inside. The audit checks that everything we report is real.</aside>
+</section>
