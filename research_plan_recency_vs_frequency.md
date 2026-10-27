@@ -1161,3 +1161,15 @@ where the 20k references are the same models as in R5-P1, with λ taken from the
 - **Some models drop out** of the comparison: w is not measurable for ×2 at h ≥ 0.06, where the switch points fall below G = 2.
 
 **H-tie survives as a partial cause.** The slope sets the evidence weight in both directions; the size of the effect is about 0.6–0.8× of what the run-3 numbers suggested.
+
+**R3-P3 final verdict (27 Oct 09:21 IST; E9 seeds 0 and 1, standard + wide probes): FAIL for H-gap.** Ratio of G* (n_w = 3, 4) to K = 16:
+
+| K | h = 0.0003 | h = 0.001 |
+|---|---|---|
+| 32 | 1.07 | 1.24 |
+| 64 | 1.10 | 1.27 |
+| 8 | 0.62 | 0.88 |
+
+H-gap required K = 32 ≥ 1.3 at both h, which fails. The K = 16 reference at h = 0.0003 is E6 seed 0 only; seed 1 is still training.
+
+**Conclusion:** long-gap support helps only when it is nearly absent. Neither context length (R3-P1) nor long-gap support sets the low-h edge.
