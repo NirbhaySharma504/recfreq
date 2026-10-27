@@ -1279,7 +1279,7 @@ Both pooled values are inside the R5-P3 bands. The registered verdict stays the 
 | 0 | 1.26 | move with n_w | −2.0 |
 | 1 | 0.08 | flat at G ≈ 133 for every n_w | +0.23 (never switches) |
 
-At ε = 0.4 and 0.45, the h = 0.003 and h = 0.01 seed-1 models also never switch. So the training loss barely constrains probe behaviour in this regime.
+The seed-1 models at (h, ε) = (0.003, 0.4), (0.003, 0.45) and (0.01, 0.45) also stay above 0, where seed 0 dips to −0.24, −0.02 and 0.00. So the training loss barely constrains probe behaviour in this regime.
 
 The direction is the same in both seeds, measured directly as the per-copy step in observed log-odds at n_c = 2, median over G:
 - at ε ≥ 0.35, the models' per-copy step is 0.01–0.26 nats against Bayes's 0.00–0.07 (over-counted);

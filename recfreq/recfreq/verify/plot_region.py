@@ -110,6 +110,15 @@ def region_slide_fig(csv, out):
     fig.tight_layout(); fig.savefig(os.path.join(out, "region_slide.png"), dpi=150); plt.close(fig)
 
 
+def slope_table(ew="verify_out/evidence_weight.csv", out="verify_out/slope_vs_w.csv", runs="results/runs"):
+    """ALiBi rows of evidence_weight.csv plus lam, the geometric-mean layer-1 copy-head slope (verify/long_train.py)."""
+    from .long_train import lam
+    M = pd.read_csv(ew)
+    M = M[M.pe == "alibi_learn"].copy()
+    M["lam"] = [lam(r) if os.path.exists(os.path.join(runs, r, "done.json")) else np.nan for r in M.run]
+    M.to_csv(out, index=False)
+
+
 def mech_fig(out, sw="verify_out/slope_vs_w.csv", surg="verify_out/surgery_E6.csv"):
     """(a) trained copy-head slope vs h; (b) evidence weight vs slope; (c) slope surgery on unseen models."""
     from matplotlib.ticker import NullFormatter
@@ -148,7 +157,7 @@ def mech_fig(out, sw="verify_out/slope_vs_w.csv", surg="verify_out/surgery_E6.cs
         ax.plot(i, q[1], "o", c=BLUE, ms=10)
         ax.text(i + 0.12, q[1], f"{q[1]:.2f}\n(n = {len(r)})", va="center", fontsize=12)
     ax.set_xticks([0, 1, 2]); ax.set_xticklabels(["×0.5", "×1", "×2"]); ax.set_xlim(-0.4, 2.7)
-    ax.set_xlabel("slope surgery on 25 unseen models"); ax.set_ylabel("w ÷ w unedited (median, IQR)")
+    ax.set_xlabel(f"slope surgery on {S.run.nunique()} unseen models"); ax.set_ylabel("w ÷ w unedited (median, IQR)")
     ax.set_title("(c) editing the slope moves w")
     fig.tight_layout(); fig.savefig(os.path.join(out, "mech_slope.png"), dpi=150); plt.close(fig)
 
@@ -165,6 +174,7 @@ def main():
     if os.path.exists(a.region_csv):
         region_slide_fig(a.region_csv, a.figs)
     if os.path.exists("verify_out/surgery_E6.csv"):
+        slope_table(runs=a.runs)
         mech_fig(a.figs)
 
 
