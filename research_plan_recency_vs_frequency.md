@@ -1097,3 +1097,20 @@ If both low-h ratios lie in [0.8, 1.25], the low-h weighting is what training co
 - **H-ctx's no-effect band** [0.8, 1.25] holds for K = 32 and 64, but not for K = 8 at h = 0.0003.
 
 **Reading:** long-gap support matters only when it is almost absent (K = 8). Beyond the K = 16 level, 9× more long-gap data barely moves the switch point. So the low-h edge is set by neither context length nor long-gap support. Final after seed 1.
+
+### 19.9 Dose verdicts (27 Oct 08:21 IST; E7 seed 0 complete, seed 1 still training; f = 0 and 0.2 have 3 seeds)
+
+**R2-P1** (`verify/dose.py`)
+
+| Setting | a: dev falls with f (Spearman ≤ −0.8) | b: h′/h lower at f = 0.4 | c: ε′ closer to ε at f = 0.4 |
+|---|---|---|---|
+| C | **FAIL**: Spearman +0.31; dev 0.74 / 0.32 / 0.34 / 0.66 / 0.74 / 0.70 at f = 0 / 0.01 / 0.03 / 0.1 / 0.2 / 0.4 | **PASS**: 5.95 → 4.66 | **PASS**: \|Δlogit\| 1.01 → 0.31 |
+| D | **FAIL**: dev *rises*, Spearman +0.83, 0.31 → 0.35 | **PASS**: 3.42 → 2.73 | **FAIL**: 0.36 → 0.57 |
+
+**R2-P5: FAIL.** The evidence slope C2 is 0.35 / 0.48 / 0.54 / 0.47 / 0.48 / 0.50 at f = 0 / 0.01 / 0.03 / 0.1 / 0.2 / 0.4. That is a step up at any nonzero f, not a graded rise: Spearman 0.54, C2(0.4) / C2(0) = 1.41.
+
+**Reading:**
+- Extra Bayes-labelled conflict training raises the evidence weight a little (about 0.35 → 0.5) and lowers h′/h by about 20%. More of it does not help further.
+- Even at f = 0.4 the models stay far from Bayes (h′/h 2.7–4.7).
+- So rarity of conflicts in training is a real but partial cause. It predicts *which* cells deviate on unseen settings (R2-P2 PASS), but adding conflicts does not remove the deviation.
+- The rest looks like a limit of what 2-layer ALiBi attention learns to represent: RoPE models reach w ≈ 1 on ordinary data.
