@@ -1312,3 +1312,41 @@ The f = 0 baselines (seed medians) are:
 - **P1 and P2 hold:** the low-h edge is a loss-weight effect, which is causal and shared across encodings. The edge row moves from "partly" to "explained".
 - **P1 passes for RoPE but fails for ALiBi:** conflicts can teach the weighing, but ALiBi's slope tie prevents it at low h. That is H-tie at the edge.
 - **P1 fails for both:** H-weight is dropped for the low-h edge, and the edge stays partly explained.
+
+**Round 7 verdicts (27 Oct 16:40 IST; E12, 8 models)**
+
+| Encoding | h | w at f = 0 | w at f = 0.1 (seeds) | Ratio |
+|---|---|---|---|---|
+| ALiBi | 0.0003 | 0.14 | **0.14** (0.15, 0.13) | ×1.0 |
+| ALiBi | 0.001 | 0.10 | **0.40** (0.41, 0.38) | ×4.0 |
+| RoPE | 0.0003 | 0.23 | **0.48** (0.47, 0.49) | ×2.1 |
+| RoPE | 0.001 | 0.60 | **0.59** (0.62, 0.55) | ×1.0 |
+
+- **R7-P1: FAIL.** Only 1 of 4 cells reaches w ≥ 0.5 (RoPE h = 0.001, which was already there). RoPE at h = 0.0003 reaches 0.48.
+- **R7-P2: FAIL.** The ALiBi ratio is ×1.0 at h = 0.0003, against a required ≥ 2.3. It passes at h = 0.001 (×4.0).
+- **R7-P3: PASS.** The single-memory clock has median |Δs| ≤ 0.013 in all 8 models.
+
+**H-weight (simple form) is not supported.** Extra Bayes-labelled conflict data does not reliably lift w at very low h:
+- it helps ALiBi at h = 0.001 and RoPE at h = 0.0003;
+- it does nothing for ALiBi at h = 0.0003, and nothing for RoPE at h = 0.001.
+
+**Caveat on the design** (noted after the result; not a rescue). The conflict sequences use G 2–128 and n_w 1–4. At h = 0.0003, ε = 0.1, Bayes's switch points for n_w = 1–4 are G* = 6900 / 1771 / 247 / 28, so only n_w = 4 has a decision boundary inside the trained gaps (at h = 0.001: n_w = 3, 4; at h = 0.01: n_w = 2–4). The conflict data therefore carries less boundary information the lower h goes.
+
+**Further facts (post hoc):**
+- Conflict training *lowers* the ALiBi copy-head slope λ in every cell (h = 0.0003: 0.055 → 0.023; 0.001: 0.071 → 0.025; 0.01: 0.133 → 0.043), yet w rises at h = 0.001 and 0.01. Conflict data moves w through something other than the slope, as already seen for E2c/E7.
+- **ALiBi at h = 0.0003 has a floor of w ≈ 0.14.** None of these moved it:
+  - 2× context (E8);
+  - 9× long-gap data (E9);
+  - 4× training (E10);
+  - slope surgery ×2 (0.14 → 0.14, 0.15 → 0.17);
+  - 10% conflict data (E12).
+
+  Its clock stays exact throughout. Its crossings do lie inside the window for all n_w = 1–6 (G* 196 → 35), so the model really does switch at G ≈ 196 on a single recent copy, where Bayes needs about 6900. This is not a measurement artifact.
+
+**Untested idea for next time.** A softmax head adds recent copies as attention *mass*, so the old-versus-new score moves with log n_w. Bayes multiplies the odds by (1−ε)/ε per copy, so its score moves with n_w. In the E12 h = 0.0003 ALiBi models, G* falls by about 90 pairs per unit of log n_w, about 1/λ, as a single-head "mass" mechanism would give.
+
+**Status of the low-h edge:** still **partly explained**. What is established:
+- the clock is exact;
+- w is low in both encodings;
+- RoPE's w can be raised by conflict data;
+- ALiBi's w at h = 0.0003 cannot be raised by anything tried.
