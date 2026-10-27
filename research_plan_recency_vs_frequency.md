@@ -1068,7 +1068,7 @@ For comparison, the cell effect alone gives Spearman −0.25. So a model's per-c
 
 H-ctx required ≥ 1.3 at both h, so it fails. The no-effect outcome also did not occur at both h. So context length has at most a small effect, and only at h = 0.0003. N = 512 also doubles long-gap training data (P(gap ≥ 128) from 0.0034 to 0.0065), so this small effect is equally consistent with H-gap's support story. R3-P3 (E9) separates the two.
 
-## 19.8 Round 5: is the low-h edge undertraining? (pre-registered 27 Oct 07:48 IST, before any E10 run)
+## 19.8 Round 5: is the low-h edge undertraining? (pre-registered 27 Oct 07:46 IST, before any E10 run)
 
 **What was read before writing this:**
 - **R3-P1:** context length has a small effect (×1.34 / ×1.13).
