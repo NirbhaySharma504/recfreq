@@ -25,9 +25,9 @@ INK, BLUE, ORANGE, GREEN, GREY = "#16213A", "#2B59C3", "#D9822B", "#2E8B57", "#9
 
 def survival_fig(runs, out):
     fig, axs = plt.subplots(1, 3, figsize=(15, 4.4), sharey=True)
-    picks = [("E2b_h0.003_e0.1_L2_alibi_learn_attn_s0", "h = 0.003, ε = 0.1"),
+    picks = [("E6_h0.0003_e0.1_L2_alibi_learn_attn_s0", "h = 0.0003, ε = 0.1"),
              ("E1_h0.01_e0.1_L2_alibi_learn_attn_s0", "h = 0.01, ε = 0.1"),
-             ("E2b_h0.03_e0.1_L2_alibi_learn_attn_s0", "h = 0.03, ε = 0.1")]
+             ("E6_h0.1_e0.1_L2_alibi_learn_attn_s0", "h = 0.1, ε = 0.1")]
     for ax, (run, title) in zip(axs, picks):
         f = os.path.join(runs, run, "survival.parquet")
         if not os.path.exists(f):
@@ -41,7 +41,8 @@ def survival_fig(runs, out):
             r = pd.read_parquet(rope[0]); r = r[r.n == 1]
             ax.plot(r.d, r.s_model, "s-", c=ORANGE, lw=1.5, ms=4, label="RoPE model")
         ax.set_xscale("log"); ax.set_title(title); ax.set_xlabel("distance to the single old copy (pairs)")
-    axs[0].set_ylabel("belief that the old value still holds"); axs[0].legend(frameon=False)
+        if rope: ax.legend(frameon=False, loc="lower left")
+    axs[0].set_ylabel("belief that the old value still holds"); axs[0].legend(frameon=False, loc="lower left")
     fig.tight_layout(); fig.savefig(os.path.join(out, "survival.png"), dpi=140); plt.close(fig)
 
 
