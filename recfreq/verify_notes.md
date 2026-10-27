@@ -118,3 +118,14 @@ Other deviations: NoPE replaced by RoPE before the overnight launch (NoPE did no
   - The early-switch factor x_ref (0.36–0.67) is untouched by conflict training.
 - **V runs (E5d).** The model's G* moves little with V (34 / 40 / 42 at C for V = 32 / 64 / 128) while Bayes's moves a lot (30 / 53 / 87). That fits the value prior log V being weighted by the same w as the copy evidence: log(h·G*_model) ≈ α + w·log(h·G*_Bayes).
 - **Tried and dropped:** a law with exact clock units and w = w0 + w1·log h + w2·logit ε, fitted on pre-run-7 models. It is worse in-sample than the natural law (0.22 vs about 0.15 median |log err|), because switch gaps scale as h^−0.93, not h^−1. Not pre-registered and not kept: it would be curve-fitting.
+
+## Round 5 (06:36–07:50)
+- **E6 seed 0 complete** (25 models). Verdicts in plan §19.7:
+  - R2-P3: a PASS, b FAIL, c FAIL (the frozen law beats the natural law on new crossings);
+  - R2-P2: PASS (per-cell deviation predicted from training-data rates on unseen settings, Spearman 0.67).
+- **Region map.** The pre-registered 1.25× criterion is stricter than the law manages on its own fitting grid (4/12). Post hoc, "as good as inside the box" (ratio ≤ 1.51) covers h ≈ 0.001–0.045 at ε ≈ 0.05–0.25. Fails at ε ≥ 0.35 (×2.7–12), ε ≤ 0.02 (×1.9–2.9) and h ≥ 0.06 (×2.6–6.5). h = 0.0003 is not measurable.
+- **Survival** calibrated in all 58 default-task models (median |Δs| ≤ 0.041).
+- **R3-P1 FAIL** (E8, context 512): G* moves ×1.34 at h = 0.0003 and ×1.13 at h = 0.001.
+- **R3-P3 interim** (E9 seed 0): K = 32 moves G* by ×1.12 / ×1.16; K = 8 by ×0.65 at h = 0.0003. Long-gap support is not the main cause of the low-h edge.
+- **E10 pre-registered** (R5-P1: is the low-h evidence weight just undertrained? 80k steps).
+- Ops: E7 and E9 seed 1 are paused (SIGSTOP) to give E7 s0, E9 s0 and E10 the GPU. Resume with `scripts/sigjobs.sh CONT '^E(7|9)_.*_s1$'`.
