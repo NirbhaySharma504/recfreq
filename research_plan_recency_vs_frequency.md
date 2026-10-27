@@ -1233,3 +1233,82 @@ Spearman(log h, w) over 20 RoPE models is 0.68 (criterion < 0.5). Single-memory 
 - E7 at C: extra conflict data raised w from 0.34 to 0.84;
 - E10: longer training on the same data mix did not change w at h = 0.0003;
 - the encoding difference: ALiBi's slope tie makes the compromise worse.
+
+### 19.12 Seed-1 finals (27 Oct 13:40 IST; E6 and E7 seed 1 complete, 50 E6 models)
+
+**Region map with both seeds** (`verify/region_map.py`). Edges are stable. No setting changes side under either:
+- the pre-registered criterion (8/44 works, as with seed 0);
+- the post-hoc ≤ 1.51× yardstick.
+
+Updated failure ranges:
+- h ≥ 0.06: ×2.6–5.1;
+- ε ≥ 0.35: ×3.2–15;
+- ε ≤ 0.02: ×1.8–2.8, except (0.01, 0.02) at ×1.47.
+
+The stopping rule's edge-stability condition is met.
+
+| Prediction | Result | Verdict |
+|---|---|---|
+| R2-P3a (natural law on E6) | median \|log err\| 0.279 (≤ 0.30) | PASS |
+| R2-P3b | inside/outside window correct 0.76 (≥ 0.80) | FAIL |
+| R2-P3c | natural 0.276 vs frozen law 0.212, on 94 crossings | FAIL |
+| R2-P2a (support collapse, 50 models, 1400 cells) | Spearman 0.664 (≥ 0.6) | PASS |
+| R2-P2b | β refit −1.058 (−0.61 … −1.83) | PASS |
+| R3-P4 (E6 seed 1, all unread) | Spearman(log h, w) 0.67 on 22 models with a w (≥ 0.6) | **PASS**. All 50 E6: 0.64 |
+
+**Slope surgery on seed 1** (replication, not separately pre-registered):
+
+| Seed | Halving | Doubling |
+|---|---|---|
+| 1 | w ×0.56 (15/17 down) | w ×1.37 (15/16 up) |
+| 0 | ×0.64 | ×1.28 |
+| Pooled | ×0.57 | ×1.33 |
+
+Both pooled values are inside the R5-P3 bands. The registered verdict stays the seed-0 one.
+
+**Correlations with more models:**
+- slope vs h: Spearman 0.93 (119 ALiBi models);
+- w vs slope: 0.84 (96 models, ε ≤ 0.3).
+
+**Single-memory clock:** median |s_model − s_Bayes| ≤ 0.042 in all 124 models with survival probes. These cover h 0.0003–0.15, ε 0.01–0.45, 3 encodings and conflict-trained models.
+
+**New observation (post hoc): seed dependence at ε ≥ 0.35.** At h = 0.01, ε = 0.35, the two seeds reach the same loss (excess 0.019 vs 0.016 nats) but behave differently on the conflict probes:
+
+| Seed | w | Crossings | Lowest log-odds |
+|---|---|---|---|
+| 0 | 1.26 | move with n_w | −2.0 |
+| 1 | 0.08 | flat at G ≈ 133 for every n_w | +0.23 (never switches) |
+
+At ε = 0.4 and 0.45, the h = 0.003 and h = 0.01 seed-1 models also never switch. So the training loss barely constrains probe behaviour in this regime.
+
+The direction is the same in both seeds, measured directly as the per-copy step in observed log-odds at n_c = 2, median over G:
+- at ε ≥ 0.35, the models' per-copy step is 0.01–0.26 nats against Bayes's 0.00–0.07 (over-counted);
+- at ε ≤ 0.02, it is 0.3–1.7 against Bayes's 1.8–4.2 (under-counted).
+
+The earlier slide figure "0.5–1.3 nats" was log((1−ε′)/ε′) from the fitted ε′, i.e. Bayes-fit coordinates. It is replaced by the direct measure.
+
+### 19.13 Round 7: does conflict data lift w at very low h? (pre-registered 27 Oct 13:41 IST, before any E12 run)
+
+**H-weight** is the post-hoc reading of §19.11, now made testable: w is low wherever the old-versus-new weighing carries little training loss. Low h is such a place, for ALiBi and RoPE alike.
+
+If so, raising the share of conflict configurations in training should lift w at very low h, for both encodings. At h = 0.01, f = 0.1 lifted ALiBi from 0.34 to 0.79 (×2.3).
+
+**E12 design:** ε = 0.1, h ∈ {0.0003, 0.001}, conflict_frac f = 0.1, pe ∈ {alibi_learn, rope}, seeds 0 and 1 (8 runs, 20k steps). w is read as in `verify/evidence_weight.py`.
+
+The f = 0 baselines (seed medians) are:
+
+| | h = 0.0003 | h = 0.001 |
+|---|---|---|
+| ALiBi | 0.14 | 0.10 |
+| RoPE | 0.23 | 0.60 |
+
+**R7-P1.** At f = 0.1, the seed-median w is ≥ 0.5 in each of the 4 (encoding, h) cells.
+
+**R7-P2.** For ALiBi, w(f = 0.1) / w(f = 0) is ≥ 2.3 (the h = 0.01 ratio) at both h.
+
+**R7-P3.** The single-memory clock stays calibrated: median |s_model − s_Bayes| ≤ 0.05 in all 8 models.
+
+**Reading the outcome:**
+- **P1 and P2 hold:** the low-h edge is a loss-weight effect, which is causal and shared across encodings. The edge row moves from "partly" to "explained".
+- **P1 passes for RoPE but fails for ALiBi:** conflicts can teach the weighing, but ALiBi's slope tie prevents it at low h. That is H-tie at the edge.
+- **P1 fails for both:** H-weight is dropped for the low-h edge, and the edge stays partly explained.

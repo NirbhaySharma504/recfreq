@@ -1,0 +1,9 @@
+{
+  "exp": "E12",
+  "base": {"steps": 20000, "mlp": 0, "layers": 2, "conflict_frac": 0.1},
+  "grid": {
+    "seed": [0, 1],
+    "pe": ["alibi_learn", "rope"],
+    "point": [{"h": 0.0003, "eps": 0.1}, {"h": 0.001, "eps": 0.1}]
+  }
+}
