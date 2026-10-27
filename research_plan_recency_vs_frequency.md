@@ -1067,3 +1067,20 @@ For comparison, the cell effect alone gives Spearman −0.25. So a model's per-c
 | 0.001 | 86 | 77 (E5a, 3 seeds) | **1.13** | ≥ 1.3 ✗ (inside the no-effect band [0.8, 1.25]) |
 
 H-ctx required ≥ 1.3 at both h, so it fails. The no-effect outcome also did not occur at both h. So context length has at most a small effect, and only at h = 0.0003. N = 512 also doubles long-gap training data (P(gap ≥ 128) from 0.0034 to 0.0065), so this small effect is equally consistent with H-gap's support story. R3-P3 (E9) separates the two.
+
+## 19.8 Round 5: is the low-h edge undertraining? (pre-registered 27 Oct 07:48 IST, before any E10 run)
+
+**What was read before writing this:**
+- **R3-P1:** context length has a small effect (×1.34 / ×1.13).
+- **R3-P3 interim** (seed 0, wide probes): K = 32 moves G* by only ×1.12 / ×1.16, despite ≈ 4.6× more long-gap training data. So gap support is not the main cause either.
+- **Training curves:** the excess loss over Bayes is still falling at 20k steps at every h (h = 0.0003: 0.0067 → 0.0053 → 0.0040 at 10k / 15k / 20k).
+
+**H-signal.** The evidence weight w is learned from switch events. Their number per training step is proportional to h. At low h, 20k steps contain too few of them, so w stays low (0.10–0.17 at h ≤ 0.001, against 0.34 at h = 0.01).
+
+**E10 design:** 80k steps (4×, same LR schedule stretched) at h ∈ {0.0003, 0.001, 0.01}, ε = 0.1, seed 0. w is read with the standard and wide probes, exactly as in `verify/evidence_weight.py`. The 20k-step references are the medians of E6 s0 (h = 0.0003, w = 0.135), E5a (h = 0.001, 0.102) and E1 (h = 0.01, 0.338).
+
+**R5-P1.** If H-signal holds:
+- w(80k) / w(20k) ≥ 1.5 at both h = 0.0003 and h = 0.001;
+- each of those ratios exceeds the h = 0.01 ratio.
+
+If both low-h ratios lie in [0.8, 1.25], the low-h weighting is what training converges to, not undertraining.
