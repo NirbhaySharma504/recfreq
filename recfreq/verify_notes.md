@@ -104,3 +104,17 @@ Other deviations: NoPE replaced by RoPE before the overnight launch (NoPE did no
 
   So within the Bayes family the probe surfaces want h′ > h even though the single-sighting clock is right. h′ stands for "switches early, by a near-constant factor", not "forgets faster". RoPE: every restriction is within ×1.13.
 - E9 launched (K ∈ {8, 32, 64} at h ∈ {0.0003, 0.001}; R3-P3).
+
+## Round 4b (05:55–06:05)
+- **First E7 models** (dose 0.4 at C and D, dose 0.1 at C; read before the low doses exist; verdicts later). Medians:
+
+  | | f = 0 | f = 0.1 | f = 0.2 (E2c) | f = 0.4 |
+  |---|---|---|---|---|
+  | w at C (h = 0.01, ε = 0.1) | 0.34 | 0.81 | 0.87 | 0.84 |
+  | w at D (h = 0.03, ε = 0.2) | 0.66 | — | 0.59 | 0.51 |
+
+  - At C, extra conflict training *raises* the evidence weight w; at D it doesn't.
+  - Deviation from Bayes doesn't fall at either setting.
+  - The early-switch factor x_ref (0.36–0.67) is untouched by conflict training.
+- **V runs (E5d).** The model's G* moves little with V (34 / 40 / 42 at C for V = 32 / 64 / 128) while Bayes's moves a lot (30 / 53 / 87). That fits the value prior log V being weighted by the same w as the copy evidence: log(h·G*_model) ≈ α + w·log(h·G*_Bayes).
+- **Tried and dropped:** a law with exact clock units and w = w0 + w1·log h + w2·logit ε, fitted on pre-run-7 models. It is worse in-sample than the natural law (0.22 vs about 0.15 median |log err|), because switch gaps scale as h^−0.93, not h^−1. Not pre-registered and not kept: it would be curve-fitting.
