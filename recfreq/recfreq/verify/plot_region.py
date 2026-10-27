@@ -110,6 +110,49 @@ def region_slide_fig(csv, out):
     fig.tight_layout(); fig.savefig(os.path.join(out, "region_slide.png"), dpi=150); plt.close(fig)
 
 
+def mech_fig(out, sw="verify_out/slope_vs_w.csv", surg="verify_out/surgery_E6.csv"):
+    """(a) trained copy-head slope vs h; (b) evidence weight vs slope; (c) slope surgery on unseen models."""
+    from matplotlib.ticker import NullFormatter
+    from scipy.stats import spearmanr
+    M = pd.read_csv(sw)
+    o = M[(M.cf == 0)].dropna(subset=["lam"])
+    fig, axs = plt.subplots(1, 3, figsize=(17, 5), gridspec_kw={"width_ratios": [1, 1, 0.75]})
+    ax = axs[0]
+    ax.scatter(o.h, o.lam, c=BLUE, s=30, alpha=0.7, edgecolor="white", lw=0.5)
+    rho = spearmanr(np.log(o.h), np.log(o.lam)).statistic
+    ax.set_xscale("log"); ax.set_yscale("log"); ax.set_xlabel("switch rate h"); ax.set_ylabel("copy-head ALiBi slope λ")
+    ax.set_title(f"(a) the clock sets the slope (ρ = {rho:.2f})")
+    ax = axs[1]
+    d = o.dropna(subset=["w"])
+    d = d[d.eps <= 0.3]
+    rho = spearmanr(d.lam, d.w).statistic
+    ax.scatter(d.lam, d.w, c=BLUE, s=30, alpha=0.8, edgecolor="white", lw=0.5, label=f"trained (ε ≤ 0.3), ρ = {rho:.2f}")
+    c = M[M.cf > 0].dropna(subset=["w", "lam"])
+    ax.scatter(c.lam, c.w, c=ORANGE, marker="s", s=36, label="trained with extra conflicts")
+    ax.axhline(1, ls="--", c=INK, lw=1.2); ax.text(0.031, 1.05, "Bayes", color=INK)
+    ax.set_xscale("log"); ax.set_yscale("log"); ax.set_xlabel("copy-head ALiBi slope λ"); ax.set_ylabel("evidence weight w")
+    for axis in (ax.xaxis, ax.yaxis):
+        axis.set_minor_formatter(NullFormatter())
+    ax.set_xticks([0.03, 0.1, 0.3]); ax.set_xticklabels(["0.03", "0.1", "0.3"])
+    ax.set_yticks([0.1, 0.3, 1]); ax.set_yticklabels(["0.1", "0.3", "1"])
+    ax.set_title("(b) the slope tracks the evidence weight"); ax.legend(frameon=False, fontsize=11, loc="lower right")
+    ax = axs[2]
+    S = pd.read_csv(surg)
+    for i, (cond, lab) in enumerate((("w_x0.5", "×0.5"), (None, "×1"), ("w_x2.0", "×2"))):
+        if cond is None:
+            ax.plot(i, 1, "o", c=INK, ms=9)
+            continue
+        r = (S[cond] / S.w_base).dropna()
+        q = r.quantile([0.25, 0.5, 0.75]).values
+        ax.plot([i, i], [q[0], q[2]], c=BLUE, lw=6, alpha=0.4)
+        ax.plot(i, q[1], "o", c=BLUE, ms=10)
+        ax.text(i + 0.12, q[1], f"{q[1]:.2f}\n(n = {len(r)})", va="center", fontsize=12)
+    ax.set_xticks([0, 1, 2]); ax.set_xticklabels(["×0.5", "×1", "×2"]); ax.set_xlim(-0.4, 2.7)
+    ax.set_xlabel("slope surgery on 25 unseen models"); ax.set_ylabel("w ÷ w unedited (median, IQR)")
+    ax.set_title("(c) editing the slope moves w")
+    fig.tight_layout(); fig.savefig(os.path.join(out, "mech_slope.png"), dpi=150); plt.close(fig)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--runs", default="results/runs")
@@ -121,6 +164,8 @@ def main():
     natural_fig(a.runs, a.figs)
     if os.path.exists(a.region_csv):
         region_slide_fig(a.region_csv, a.figs)
+    if os.path.exists("verify_out/surgery_E6.csv"):
+        mech_fig(a.figs)
 
 
 if __name__ == "__main__":

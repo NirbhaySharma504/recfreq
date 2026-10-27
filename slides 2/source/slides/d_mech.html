@@ -1,0 +1,19 @@
+<section id="d_mech" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:72px 112px;display:flex;flex-direction:column;gap:22px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Follow-up 3b · why the evidence weight follows h</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:54px;font-weight:600;line-height:1.1">One ALiBi slope does two jobs: the clock and the evidence weight</h2>
+</div>
+<img src="img/mech_slope.png" alt="Copy-head slope against h, evidence weight against slope, and slope surgery" style="width:100%;background:#FFFFFF;border-radius:12px;padding:10px 14px">
+<div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:24px;font-size:23px;line-height:1.42">
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #2B59C3">
+<b>(a) Clock → slope.</b> How fast a copy head's attention decays with distance is learned to match how fast values change. Its slope grows with h across 75 models.
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #2B59C3">
+<b>(b, c) Slope → evidence.</b> The same slope sets how much each extra recent copy tips the balance. Editing it in 25 unseen models moves w: ×0.64 when halved (20/20 models), ×1.28 when doubled (14/16). This was pre-registered: the halving test passed, and the doubling test just missed its ×1.3 bound.
+</div>
+<div style="background:#16213A;color:#F5F7FA;border-radius:12px;padding:18px 24px">
+<b style="color:#F2B27E">So:</b> Bayes keeps time and evidence separate, but ALiBi ties both to one slope. The clock pins the slope, so w moves with h, and the law's h-free ε′ fails off its fitted range. Extra conflict training (orange) lifts w only partly, by another route.
+</div>
+</div>
+<aside>This is the explanation for why the evidence weight depends on h. In an ALiBi copy head, a single learned slope sets how fast attention to an old copy decays with distance. Training tunes that slope so that a single old memory fades exactly as fast as values really change, which is why the clock is calibrated, and so the slope grows with h. But the same slope also decides how much each extra recent copy shifts the balance between old and new. Across our models the evidence weight tracks the slope, and when we edit the slope by hand in 25 models we had not used before, the evidence weight moves with it: down by a third when we halve it, up by about a quarter when we double it. We had predicted at least 30 percent for doubling, so that half just missed. Bayes treats time and evidence separately; ALiBi ties them through one number. That is why a law with h in the switch-rate part but no h in the typo part works only near where it was fitted. Training with extra conflict examples raises the weight somewhat, by a route other than the slope, but does not reach Bayes.</aside>
+</section>
