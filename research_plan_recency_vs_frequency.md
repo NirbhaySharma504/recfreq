@@ -1350,3 +1350,42 @@ The f = 0 baselines (seed medians) are:
 - w is low in both encodings;
 - RoPE's w can be raised by conflict data;
 - ALiBi's w at h = 0.0003 cannot be raised by anything tried.
+
+## 19.14 Round 8: do copy heads weigh old vs new by attention mass? (pre-registered 27 Oct 17:05 IST, before any mass_probe output on a real run is read)
+
+**H-mass.** The layer-1 copy heads decide old-versus-new by the attention *mass* on the old copies against the recent copies. In a softmax head, k recent copies add mass, so the log mass ratio moves by about log k. Bayes instead moves the odds by k·log((1−ε)/ε).
+
+**Why this would give the h-trend in w.** Let x be the log mass ratio of old to new. At the model's switch point, the gap G*_1 has already cost the old copy A = x(G = 2) − x(G*_1) nats of log mass, its "distance budget". An extra copy then moves log G* by about (Δx per copy) / A.
+
+The clock forces G*_1 to scale about as 1/h, while the ALiBi slope rises only slowly with h (λ ∝ h^0.24). So A grows as h falls, and each copy counts for less in clock units: w falls at low h.
+
+**Probe** (`recfreq/mass_probe.py`; eval only; checkpoints on the server):
+- **Cells:** n_c ∈ {1, 2, 4, 8}, n_w 1–6, G ∈ {2, 4, …, 224}, where the layout fits; 128 fills.
+- **Per cell:**
+  - lo_model and lo_bayes;
+  - for each layer-1 copy head (induction score > 0.9), the log attention mass from the query key token to the old-copy and recent-copy pairs (logsumexp of pre-softmax scores).
+- **Mass ratio:** x = mean over copy heads of (lc − lw).
+- **Boost** (n_c = 2, k ∈ {2, 3, 4}, every G): run the n_w = 1 cell at gap G + 4(k−1), so the old copies sit at the same distances as in the real k-copy cell. Add β_h to copy head h's scores at the single recent copy, chosen so that its log mass ratio equals the real k-copy cell's. Record lo_boost.
+- **Models:**
+  - *primary:* all ordinarily trained 2-layer ALiBi models at the default task (E1, E2b, E5a, E6; seeds 0–2);
+  - *exploratory:* RoPE (E2a, E5r, E11) and conflict-trained models (E12).
+
+**Predictions (primary set, ALiBi, cf = 0):**
+
+**R8-P1 (mass explains the decision).** Per model, regress lo_model on x across all cells, giving R²_mass. Compare with R²_bayes from lo_model on lo_bayes.
+- The median R²_mass is ≥ 0.8.
+- R²_mass > R²_bayes in ≥ 75% of models.
+
+**R8-P2 (causal: matching the mass reproduces the extra copies).** Per boost pair with |lo_real − lo_one| ≥ 0.3 nats, f = (lo_boost − lo_one) / (lo_real − lo_one). The median over models of each model's median f lies in [0.8, 1.25].
+- A lower f means the extra copies act through something besides the copy heads' mass: other heads, layer 0, or the readout.
+
+**R8-P3 (the distance budget sets w).** Per model, A = x(n_c = 2, n_w = 1, G = 2) − x at the model's crossing G*_1 (n_c = 2, n_w = 1; x interpolated in log G; only models whose G*_1 lies in [2, 224]).
+- Spearman(A, w) ≤ −0.6, with w from `verify_out/evidence_weight.csv`.
+- Spearman(log h, A) ≤ −0.6.
+
+**Reading the outcome:**
+- **All three pass:** H-mass explains the low-h edge. Copies are counted as mass, and the calibrated clock forces a large distance budget at low h. The low-h row becomes "explained".
+- **P1 and P2 pass, P3 fails:** the mechanism is right, but it is not why w falls with h.
+- **P2 fails:** evidence also flows outside the copy-head mass, and H-mass is at most partial.
+
+The RoPE and E12 results are reported without predictions.

@@ -74,6 +74,8 @@ class Attention(nn.Module):
         if self.cfg.pe == "rope":
             q, k = self.rope(q), self.rope(k)
         bias = self.bias(T, x.device).to(q.dtype)
+        if getattr(self, "extra_bias", None) is not None:  # analysis hook (mass_probe.py); unset in training
+            bias = bias + self.extra_bias.to(q.dtype)
         if return_attn or head_mask is not None:
             scores = (q @ k.transpose(-1, -2)) / math.sqrt(self.dh) + bias
             attn = scores.float().softmax(-1).to(q.dtype)
