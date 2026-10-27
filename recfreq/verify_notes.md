@@ -185,7 +185,7 @@ The R7-P1 and R7-P2 FAILs above are new. R7-P3 PASS (clock exact).
 - **Conflict training lowers λ** while raising w where it works.
 - **Low-h edge:** stays "partly explained". The slide is updated.
 
-## Round 11 (27 Oct 16:49 IST): H-mass (copy-head attention mass), pre-registered 16:40
+## Round 11 (27 Oct 16:47 IST): H-mass (copy-head attention mass), pre-registered 16:40
 
 `recfreq/mass_probe.py` (143 models, eval only, about 5 min) and `verify/mass_score.py`. All three predictions FAIL:
 - R8-P1: R²_mass 0.57 vs R²_bayes 0.71.

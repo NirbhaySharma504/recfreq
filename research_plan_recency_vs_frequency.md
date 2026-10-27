@@ -1390,7 +1390,7 @@ The clock forces G*_1 to scale about as 1/h, while the ALiBi slope rises only sl
 
 The RoPE and E12 results are reported without predictions.
 
-**Round 8 verdicts** (27 Oct 16:49 IST; `verify/mass_score.py`; 143 models probed; primary set 110 ordinary ALiBi models)
+**Round 8 verdicts** (27 Oct 16:47 IST; `verify/mass_score.py`; 143 models probed; primary set 110 ordinary ALiBi models)
 
 - **R8-P1: FAIL.** The median R²_mass is 0.57, against R²_bayes 0.71. R²_mass > R²_bayes in only 36% of models.
 - **R8-P2: FAIL.** Matching one recent copy's copy-head log mass ratio to that of k real copies reproduces a median **11%** of their effect on lo (IQR 0–25%, 103 models). By h: 14–28% at h ≤ 0.005, and about 0 at h ≥ 0.02.
