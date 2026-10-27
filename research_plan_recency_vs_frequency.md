@@ -1187,3 +1187,15 @@ H-gap required K = 32 ≥ 1.3 at both h, which fails. The K = 16 reference at h 
 **R5-P2: FAIL.** Observed / predicted w ratio is 0.65, 1.54 and 1.00. The slope change predicts the w change at h = 0.01 but not at low h.
 
 **Low-h edge, summary.** It is not context length (R3-P1), not long-gap support (R3-P3) and not training length (R5-P1). It is consistent with H-tie at its extreme: the trained slopes are smallest there (λ ≈ 0.05), and so is w (≈ 0.13–0.2). But no manipulation of the training data moved it. Status: partly explained.
+
+## 19.11 Round 7: is the drift ALiBi-specific? (pre-registered 27 Oct 09:54 IST, before any E11 run)
+
+**H-tie predicts** that an encoding without a single distance slope does not tie the evidence weight to the clock. RoPE models have w = 0.8–1.1 at h = 0.003–0.03, against ALiBi's 0.26–0.67. But RoPE was never trained at the edges.
+
+**E11 design:** RoPE, 2 layers, ε = 0.1, h ∈ {0.0003, 0.001, 0.1}, seeds 0 and 1 (6 runs). w is read exactly as for ALiBi (standard + wide probes, `verify/evidence_weight.py`).
+
+**R6-P1.** If H-tie holds:
+- **Edges:** the RoPE seed-median w at each of h = 0.0003, 0.001 and 0.1 lies in [0.6, 1.4]. ALiBi's is 0.13–0.2 at low h and ≥ 0.8 at h = 0.1.
+- **Trend:** over all default-task RoPE models (old + E11), Spearman(log h, w) is below 0.5. ALiBi's is 0.74.
+
+If RoPE's w also falls to ≤ 0.3 at h ≤ 0.001, the low-h under-weighting is not specific to ALiBi's slope.
