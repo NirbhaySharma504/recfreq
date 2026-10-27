@@ -129,3 +129,12 @@ Other deviations: NoPE replaced by RoPE before the overnight launch (NoPE did no
 - **R3-P3 interim** (E9 seed 0): K = 32 moves G* by ×1.12 / ×1.16; K = 8 by ×0.65 at h = 0.0003. Long-gap support is not the main cause of the low-h edge.
 - **E10 pre-registered** (R5-P1: is the low-h evidence weight just undertrained? 80k steps).
 - Ops: E7 and E9 seed 1 are paused (SIGSTOP) to give E7 s0, E9 s0 and E10 the GPU. Resume with `scripts/sigjobs.sh CONT '^E(7|9)_.*_s1$'`.
+
+## Round 6 (08:10–08:37)
+- **R3-P3 interim FAIL** (E9 seed 0): 4.6–9× more long-gap training data moves G* by only ×1.11–1.20. K = 8 (almost no long gaps) moves it ×0.65 / ×0.83.
+- **R2-P1, R2-P5** (E7 seed 0 complete): conflict dose does not lower the deviation from Bayes (a FAIL at C and D). It does lower h′/h (b PASS at both). C2 steps 0.35 → about 0.5 at any f > 0 (R2-P5 FAIL: not graded).
+- **Key post-hoc finding** (run-3 surfaces): rescaling layer-1 ALiBi slopes moves w (×2 → w ×1.57; ×0.5 → ×0.59) and moves x_ref the opposite way.
+  - Correlational: λ rises with h (ρ 0.89), and w tracks λ (ρ 0.72–0.75). Conflict-trained models break this tie: high w at small λ.
+- **H-tie** (pre-registered R5-P2, R5-P3): one slope sets both the clock and the evidence weight.
+- **R5-P3** (surgery on 25 unseen E6 models): ×0.5 PASS (w ×0.64, 20/20); ×2 FAIL narrowly (×1.28 against the ≥ 1.3 bound; 14/16 in the right direction).
+- New slide d_mech ("One ALiBi slope does two jobs").
