@@ -138,3 +138,10 @@ Other deviations: NoPE replaced by RoPE before the overnight launch (NoPE did no
 - **H-tie** (pre-registered R5-P2, R5-P3): one slope sets both the clock and the evidence weight.
 - **R5-P3** (surgery on 25 unseen E6 models): ×0.5 PASS (w ×0.64, 20/20); ×2 FAIL narrowly (×1.28 against the ≥ 1.3 bound; 14/16 in the right direction).
 - New slide d_mech ("One ALiBi slope does two jobs").
+
+## Round 7 (09:17–09:55)
+- **R3-P3 final** (both E9 seeds): FAIL. K = 32 / 64 move G* by only ×1.07–1.27. Long-gap support is not the low-h cause.
+- **E10** (80k steps, all GPU given to it, about 1,245 steps/min per job): **R5-P1 FAIL** (w ×0.92 at h = 0.0003, ×1.79 at h = 0.001, ×1.10 at h = 0.01) and **R5-P2 FAIL**. Training length is not the low-h cause either.
+- **Low-h edge:** consistent with the slope tie at its extreme (smallest λ, smallest w), but no data-side change moves it.
+- **E11 pre-registered** (R6-P1): RoPE at h = 0.0003 / 0.001 / 0.1. If w stays in [0.6, 1.4], the drift is specific to ALiBi.
+- Ops lesson: the GPU is time-sliced and the CPU has 14 cores, so total throughput is about one job's worth. Pausing low-priority jobs (SIGSTOP) gives the priority job about 8× speed.
