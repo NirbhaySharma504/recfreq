@@ -1147,3 +1147,17 @@ Bayes keeps these independent. Since the clock forces λ to grow with h, w grows
 w(80k) / w(20k) within a factor of 1.5 of (λ(80k) / λ(20k))^1.22
 
 where the 20k references are the same models as in R5-P1, with λ taken from their done.json.
+
+**R5-P3 verdict (27 Oct 08:35 IST)**
+
+| Slope scale | Median w ratio | Direction right | Criterion | Verdict |
+|---|---|---|---|---|
+| ×0.5 | **0.64** | 20/20 | 0.45–0.8 | **PASS** |
+| ×2 | **1.28** | 14/16 (88%) | 1.3–2.2 | **FAIL** (narrowly) |
+
+- **The causal direction holds** across the whole new map, h = 0.0003–0.1 and ε = 0.01–0.45.
+- **x_ref moves the opposite way:** about ×2 under ×0.5, about ×0.35 under ×2. So the slope controls the early bias too.
+- **The upward effect is weaker than registered**, and smallest at the lowest h (h = 0.0003, ε = 0.1: ×1.0).
+- **Some models drop out** of the comparison: w is not measurable for ×2 at h ≥ 0.06, where the switch points fall below G = 2.
+
+**H-tie survives as a partial cause.** The slope sets the evidence weight in both directions; the size of the effect is about 0.6–0.8× of what the run-3 numbers suggested.
