@@ -1200,7 +1200,7 @@ H-gap required K = 32 ≥ 1.3 at both h, which fails. The K = 16 reference at h 
 
 If RoPE's w also falls to ≤ 0.3 at h ≤ 0.001, the low-h under-weighting is not specific to ALiBi's slope.
 
-**R6-P1 verdict (27 Oct 10:37 IST; E11, 6 RoPE models): FAIL.**
+**R6-P1 verdict (27 Oct 10:36 IST; E11, 6 RoPE models): FAIL.**
 
 | h | RoPE seed-median w | Criterion [0.6, 1.4] |
 |---|---|---|
