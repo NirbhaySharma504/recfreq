@@ -102,8 +102,7 @@ def plot(M, out):
         ax.scatter(x.h, x.w, c=c, marker=m, s=34, alpha=0.75, label=lab, edgecolor="white", lw=0.5)
         g = x.groupby("h").w.agg(["median", "count"])
         g = g[g["count"] >= 2]["median"]
-        if pe == "alibi_learn":
-            ax.plot(g.index, g.values, "-", c=c, lw=2)
+        ax.plot(g.index, g.values, "-", c=c, lw=2)
     ax.axhline(1, ls="--", c=INK, lw=1.5)
     ax.text(0.12, 1.03, "Bayes", color=INK, ha="right")
     ax.axvspan(0.003, 0.03, color="#E6E8EE", zorder=-1)
