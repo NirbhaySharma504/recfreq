@@ -1026,7 +1026,7 @@ So time and evidence interact in the model, whereas Bayes adds them. R3-P3 (E9) 
 
 Across every seed-0 model with survival probes (49 models; h 0.0003–0.15, ε 0.01–0.45; ALiBi, RoPE and learned absolute positions), the median |s_model − s_Bayes| is ≤ 0.041. This includes every setting where the law fails. **The single-memory clock is calibrated over the whole map**, so the law's failures cannot come from the model's sense of time for one memory.
 
-### 19.7 E6 seed-0 verdicts (27 Oct 06:40 IST; all 25 seed-0 models; seed 1 still training)
+### 19.7 E6 seed-0 verdicts (27 Oct 06:39 IST; all 25 seed-0 models; seed 1 still training)
 
 **R2-P3 (natural law on E6)**
 
