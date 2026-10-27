@@ -19,12 +19,12 @@ import pandas as pd
 from .natural_law import g_frozen_law, g_natural
 from .switch_points import model_rows
 
-plt.rcParams.update({"font.size": 12, "axes.spines.top": False, "axes.spines.right": False})
+plt.rcParams.update({"font.size": 15, "axes.spines.top": False, "axes.spines.right": False})
 INK, BLUE, ORANGE, GREEN, GREY = "#16213A", "#2B59C3", "#D9822B", "#2E8B57", "#9AA3B5"
 
 
 def survival_fig(runs, out):
-    fig, axs = plt.subplots(1, 3, figsize=(15, 4.4), sharey=True)
+    fig, axs = plt.subplots(1, 3, figsize=(15, 4.6), sharey=True)
     picks = [("E6_h0.0003_e0.1_L2_alibi_learn_attn_s0", "h = 0.0003, ε = 0.1"),
              ("E1_h0.01_e0.1_L2_alibi_learn_attn_s0", "h = 0.01, ε = 0.1"),
              ("E6_h0.1_e0.1_L2_alibi_learn_attn_s0", "h = 0.1, ε = 0.1")]
@@ -40,9 +40,9 @@ def survival_fig(runs, out):
         if rope:
             r = pd.read_parquet(rope[0]); r = r[r.n == 1]
             ax.plot(r.d, r.s_model, "s-", c=ORANGE, lw=1.5, ms=4, label="RoPE model")
-        ax.set_xscale("log"); ax.set_title(title); ax.set_xlabel("distance to the single old copy (pairs)")
+        ax.set_xscale("log"); ax.set_title(title); ax.set_xlabel("distance to the old copy (pairs)")
         if rope: ax.legend(frameon=False, loc="lower left")
-    axs[0].set_ylabel("belief that the old value still holds"); axs[0].legend(frameon=False, loc="lower left")
+    axs[0].set_ylabel("belief: old value still holds"); axs[0].legend(frameon=False, loc="lower left")
     fig.tight_layout(); fig.savefig(os.path.join(out, "survival.png"), dpi=140); plt.close(fig)
 
 
@@ -78,7 +78,7 @@ def region_slide_fig(csv, out):
     """Slide figure: (a) where the frozen law works; (b) h'/h against h; (c) eps' against h. From region_map.csv."""
     from .law_scope import law
     R = pd.read_csv(csv)
-    fig, axs = plt.subplots(1, 3, figsize=(16, 4.8), gridspec_kw={"width_ratios": [1.25, 1, 1]})
+    fig, axs = plt.subplots(1, 3, figsize=(17, 5.2), gridspec_kw={"width_ratios": [1.25, 1, 1]})
     ax = axs[0]
     ax.add_patch(plt.Rectangle((0.003, 0.05), 0.027, 0.25, fill=False, ls="--", ec=INK, lw=1.2))
     ref = R[R.in_fit_grid].ratio.median()
@@ -90,7 +90,7 @@ def region_slide_fig(csv, out):
     cb = fig.colorbar(sc, ax=ax, ticks=[0, 1, 2, 3])
     cb.ax.set_yticklabels(["×1", "×2", "×4", "≥×8"]); cb.set_label("law error ÷ model's own Bayes fit")
     ax.set_xscale("log"); ax.set_xlabel("switch rate h"); ax.set_ylabel("typo rate ε")
-    ax.set_title(f"(a) law error (box: fitted range, ×{ref:.1f} there)"); ax.legend(frameon=False, fontsize=9, loc="upper right")
+    ax.set_title(f"(a) law error (box: fitted range, ×{ref:.1f} there)"); ax.legend(frameon=False, fontsize=12, loc="lower left", bbox_to_anchor=(0, -0.02))
     hs = np.exp(np.linspace(np.log(2e-4), np.log(0.2), 50))
     for e, c, m in ((0.1, BLUE, "o"), (0.2, ORANGE, "s")):
         d = R[np.isclose(R.eps, e)].sort_values("h")

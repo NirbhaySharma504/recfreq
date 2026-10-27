@@ -93,23 +93,24 @@ def plot(M, out):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    plt.rcParams.update({"font.size": 13, "axes.spines.top": False, "axes.spines.right": False})
+    plt.rcParams.update({"font.size": 16, "axes.spines.top": False, "axes.spines.right": False})
     INK, BLUE, ORANGE = "#16213A", "#2B59C3", "#D9822B"
     d = M[(M.cf == 0) & (M.K == 16) & (M.N == 256)].dropna(subset=["w"])
     fig, ax = plt.subplots(figsize=(7.5, 5))
     for pe, c, m, lab in (("alibi_learn", BLUE, "o", "ALiBi models"), ("rope", ORANGE, "s", "RoPE models")):
         x = d[d.pe == pe]
         ax.scatter(x.h, x.w, c=c, marker=m, s=34, alpha=0.75, label=lab, edgecolor="white", lw=0.5)
-        g = x.groupby("h").w.median()
+        g = x.groupby("h").w.agg(["median", "count"])
+        g = g[g["count"] >= 2]["median"]
         if pe == "alibi_learn":
             ax.plot(g.index, g.values, "-", c=c, lw=2)
     ax.axhline(1, ls="--", c=INK, lw=1.5)
-    ax.text(1.2e-3, 1.03, "Bayes: w = 1", color=INK)
+    ax.text(0.12, 1.03, "Bayes", color=INK, ha="right")
     ax.axvspan(0.003, 0.03, color="#E6E8EE", zorder=-1)
-    ax.text(0.0035, 0.02, "law fitted here", color="#5A6377", fontsize=11)
-    ax.set_xscale("log"); ax.set_xlabel("switch rate h"); ax.set_ylim(0, 1.25)
-    ax.set_ylabel("evidence weight w\n(switch-point shift per recent copy ÷ Bayes)")
-    ax.legend(frameon=False, loc="upper left")
+    ax.text(0.0034, 0.03, "law fitted here", color="#5A6377", fontsize=13)
+    ax.set_xscale("log"); ax.set_xlabel("switch rate h"); ax.set_ylim(0, 1.6)
+    ax.set_ylabel("evidence weight w (÷ Bayes)")
+    ax.legend(frameon=False, loc="upper left", fontsize=14)
     fig.tight_layout(); fig.savefig(os.path.join(out, "evidence_weight.png"), dpi=150); plt.close(fig)
 
 
