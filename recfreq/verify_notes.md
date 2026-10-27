@@ -145,3 +145,15 @@ Other deviations: NoPE replaced by RoPE before the overnight launch (NoPE did no
 - **Low-h edge:** consistent with the slope tie at its extreme (smallest λ, smallest w), but no data-side change moves it.
 - **E11 pre-registered** (R6-P1): RoPE at h = 0.0003 / 0.001 / 0.1. If w stays in [0.6, 1.4], the drift is specific to ALiBi.
 - Ops lesson: the GPU is time-sliced and the CPU has 14 cores, so total throughput is about one job's worth. Pausing low-priority jobs (SIGSTOP) gives the priority job about 8× speed.
+
+## Round 8 (27 Oct 12:55 IST): E7 seed 1, final dose verdicts
+
+`python -m recfreq.verify.dose` with both E7 seeds. Every verdict is the same as with seed 0:
+- **R2-P1a:** FAIL in C and D.
+- **R2-P1b:** PASS in both.
+- **R2-P1c:** PASS in C, FAIL in D.
+- **R2-P5:** FAIL. C2 now rises monotonically with f (Spearman 1.00), but by only ×1.41 (needed > ×1.5).
+
+Conflict data raises the evidence weight a little, with most of the gain at the first 1%. It does not bring the models to Bayes.
+
+Next: E6 seed 1 (region edge stability; R2-P2, R2-P3 and R3-P4 finals).

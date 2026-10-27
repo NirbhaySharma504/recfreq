@@ -1115,6 +1115,20 @@ If both low-h ratios lie in [0.8, 1.25], the low-h weighting is what training co
 - So rarity of conflicts in training is a real but partial cause. It predicts *which* cells deviate on unseen settings (R2-P2 PASS), but adding conflicts does not remove the deviation.
 - The rest looks like a limit of what 2-layer ALiBi attention learns to represent: RoPE models reach w ≈ 1 on ordinary data.
 
+**Final, with E7 seed 1** (27 Oct 12:55 IST; 2 seeds per E7 dose, 3 at f = 0 and 0.2). Every verdict is unchanged.
+
+| Setting | a | b | c |
+|---|---|---|---|
+| C | FAIL: Spearman +0.31 (dev 0.74 / 0.42 / 0.53 / 0.67 / 0.74 / 0.72) | PASS: 5.95 → 4.61 | PASS: 1.01 → 0.25 |
+| D | FAIL: Spearman +0.83 (0.31 → 0.37) | PASS: 3.42 → 2.72 | FAIL: 0.36 → 0.52 |
+
+**R2-P5: FAIL.** C2 is 0.35 / 0.44 / 0.45 / 0.46 / 0.48 / 0.50 at f = 0 / 0.01 / 0.03 / 0.1 / 0.2 / 0.4.
+- With both seeds, the rise is now monotone (Spearman 1.00).
+- But C2(0.4) / C2(0) = 1.41, below the pre-registered 1.5.
+- Most of the rise comes at the first step (f = 0.01).
+
+The reading above stands: conflict data is a real but partial cause.
+
 ## 19.10 Round 6: one slope, two jobs (pre-registered 27 Oct 08:24 IST, before any surgery on E6 or any E10 result)
 
 **Post-hoc finding** (run-3 surfaces, 12 in-grid ALiBi models; `figs_run3/*.surf.parquet`, re-read in clock units). Rescaling the ALiBi slopes of the layer-1 heads changes the evidence weight w:
