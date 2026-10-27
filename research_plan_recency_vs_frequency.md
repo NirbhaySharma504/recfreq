@@ -1084,3 +1084,16 @@ H-ctx required ≥ 1.3 at both h, so it fails. The no-effect outcome also did no
 - each of those ratios exceeds the h = 0.01 ratio.
 
 If both low-h ratios lie in [0.8, 1.25], the low-h weighting is what training converges to, not undertraining.
+
+**R3-P3 interim verdict (27 Oct 08:13 IST; seed 0 only, standard + wide probes): FAIL for H-gap.** Ratio of G* (n_w = 3, 4) to K = 16:
+
+| K | Long-gap support vs K = 16 | h = 0.0003 | h = 0.001 |
+|---|---|---|---|
+| 32 | ≈ 4.6× | 1.12 | 1.16 |
+| 64 | ≈ 9× | 1.11 | 1.20 |
+| 8 | ≈ 0.03× | 0.65 | 0.83 |
+
+- **H-gap required** K = 32 ≥ 1.3 at both h, and K = 8 ≤ 0.8 at both h. Only K = 8 at h = 0.0003 meets its part.
+- **H-ctx's no-effect band** [0.8, 1.25] holds for K = 32 and 64, but not for K = 8 at h = 0.0003.
+
+**Reading:** long-gap support matters only when it is almost absent (K = 8). Beyond the K = 16 level, 9× more long-gap data barely moves the switch point. So the low-h edge is set by neither context length nor long-gap support. Final after seed 1.
