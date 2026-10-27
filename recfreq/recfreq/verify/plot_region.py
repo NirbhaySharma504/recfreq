@@ -86,11 +86,12 @@ def region_slide_fig(csv, out):
     sc = ax.scatter(m.h, m.eps, c=np.log2(m.ratio.clip(1, 8)), cmap="RdYlGn_r", vmin=0, vmax=3, s=110,
                     edgecolor=INK, lw=0.6)
     d = R[~R.measurable]
-    ax.scatter(d.h, d.eps, marker="x", c=GREY, s=70, label="switch point outside the probe window")
+    ax.scatter(d.h, d.eps, marker="x", c=GREY, s=70)
+    ax.text(0.00026, 0.255, "× not\nmeasurable", color="#5A6377", fontsize=11)
     cb = fig.colorbar(sc, ax=ax, ticks=[0, 1, 2, 3])
     cb.ax.set_yticklabels(["×1", "×2", "×4", "≥×8"]); cb.set_label("law error ÷ model's own Bayes fit")
     ax.set_xscale("log"); ax.set_xlabel("switch rate h"); ax.set_ylabel("typo rate ε")
-    ax.set_title(f"(a) law error (box: fitted range, ×{ref:.1f} there)"); ax.legend(frameon=False, fontsize=12, loc="lower left", bbox_to_anchor=(0, -0.02))
+    ax.set_title(f"(a) law error (box: fitted range, ×{ref:.1f} there)")
     hs = np.exp(np.linspace(np.log(2e-4), np.log(0.2), 50))
     for e, c, m in ((0.1, BLUE, "o"), (0.2, ORANGE, "s")):
         d = R[np.isclose(R.eps, e)].sort_values("h")

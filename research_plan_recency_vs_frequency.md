@@ -1058,3 +1058,12 @@ For comparison, the cell effect alone gives Spearman −0.25. So a model's per-c
 | h = 0.0003 | — | not measurable |
 
 **Evidence weight w at the ε edges** (new models): w = 1.03–1.86 at ε ≥ 0.35 (h = 0.003 and 0.03), and 0.19–0.45 at ε = 0.02. R3-P4 is not decidable on seed 0 alone: only 6 new models have a w, at 2 values of h. It waits for seed 1.
+
+**R3-P1 verdict (27 Oct 07:18 IST): FAIL.** E8, 4 models, with crossings read from the standard and wide-window probes. Geometric mean G* at n_w = 3, 4:
+
+| h | N = 512 | N = 256 | Ratio | Needed under H-ctx |
+|---|---|---|---|---|
+| 0.0003 | 157 | 117 (E6 seed 0 only; seed 1 pending) | **1.34** | ≥ 1.3 ✓ |
+| 0.001 | 86 | 77 (E5a, 3 seeds) | **1.13** | ≥ 1.3 ✗ (inside the no-effect band [0.8, 1.25]) |
+
+H-ctx required ≥ 1.3 at both h, so it fails. The no-effect outcome also did not occur at both h. So context length has at most a small effect, and only at h = 0.0003. N = 512 also doubles long-gap training data (P(gap ≥ 128) from 0.0034 to 0.0065), so this small effect is equally consistent with H-gap's support story. R3-P3 (E9) separates the two.
