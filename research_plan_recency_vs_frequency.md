@@ -1114,3 +1114,36 @@ If both low-h ratios lie in [0.8, 1.25], the low-h weighting is what training co
 - Even at f = 0.4 the models stay far from Bayes (h′/h 2.7–4.7).
 - So rarity of conflicts in training is a real but partial cause. It predicts *which* cells deviate on unseen settings (R2-P2 PASS), but adding conflicts does not remove the deviation.
 - The rest looks like a limit of what 2-layer ALiBi attention learns to represent: RoPE models reach w ≈ 1 on ordinary data.
+
+## 19.10 Round 6: one slope, two jobs (pre-registered 27 Oct 08:24 IST, before any surgery on E6 or any E10 result)
+
+**Post-hoc finding** (run-3 surfaces, 12 in-grid ALiBi models; `figs_run3/*.surf.parquet`, re-read in clock units). Rescaling the ALiBi slopes of the layer-1 heads changes the evidence weight w:
+
+| Slope scale | Median w ratio | Median x_ref ratio | Direction |
+|---|---|---|---|
+| ×2 | 1.57 | 0.40 | w rises in 11/11 |
+| ×0.5 | 0.59 | 2.0 | w falls in 9/9 |
+
+So the slope does two jobs.
+
+**Correlational support** (75 ordinarily trained ALiBi models):
+- the trained copy-head slope rises with h (Spearman 0.89);
+- w rises with the slope (Spearman 0.72; log w ≈ 1.73 + 1.22 log λ, with λ the geometric-mean slope of the layer-1 heads with induction score > 0.9).
+
+Conflict-trained models (E2c, E7) break this relation: they reach w ≈ 0.8–0.9 at small λ.
+
+**H-tie.** In an ALiBi copy head, one learned slope sets both:
+- how fast a single memory fades (the clock, which training calibrates; survival probes);
+- how strongly extra recent copies tip the old-versus-new balance (the evidence weight).
+
+Bayes keeps these independent. Since the clock forces λ to grow with h, w grows with h, and a Bayes fit reports this as an ε′ that drifts with h. This is the separable law's failure off its fitted h range.
+
+**R5-P3 (slope surgery on the 25 E6 seed-0 models, none used before; `recfreq/slope_surgery.py`).** Scale all layer-1 slopes by ×0.5 and ×2. Read w exactly as in `verify/evidence_weight.py` (clock units, at least 2 crossing n_w in the standard and wide windows), on models where w is measurable in both conditions being compared.
+- ×2: median w ratio in [1.3, 2.2], and > 1 in ≥ 80% of models.
+- ×0.5: median w ratio in [0.45, 0.8], and < 1 in ≥ 80% of models.
+
+**R5-P2 (E10, alongside R5-P1).** If H-tie holds, for each E10 model the change in w from the 20k reference follows the change in λ:
+
+w(80k) / w(20k) within a factor of 1.5 of (λ(80k) / λ(20k))^1.22
+
+where the 20k references are the same models as in R5-P1, with λ taken from their done.json.
