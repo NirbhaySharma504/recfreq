@@ -1173,3 +1173,17 @@ where the 20k references are the same models as in R5-P1, with λ taken from the
 H-gap required K = 32 ≥ 1.3 at both h, which fails. The K = 16 reference at h = 0.0003 is E6 seed 0 only; seed 1 is still training.
 
 **Conclusion:** long-gap support helps only when it is nearly absent. Neither context length (R3-P1) nor long-gap support sets the low-h edge.
+
+**R5-P1 and R5-P2 verdicts (27 Oct 09:53 IST; E10, one 80k-step model per h; `verify/long_train.py`)**
+
+| h | w, 20k → 80k | w ratio | λ ratio | (λ ratio)^1.22 | x_ref, 20k → 80k |
+|---|---|---|---|---|---|
+| 0.0003 | 0.135 → 0.124 | ×0.92 | ×1.33 | ×1.42 | 0.060 → 0.064 |
+| 0.001 | 0.102 → 0.184 | ×1.79 | ×1.13 | ×1.16 | 0.115 → 0.139 |
+| 0.01 | 0.338 → 0.372 | ×1.10 | ×1.08 | ×1.10 | 0.59 → 0.87 |
+
+**R5-P1: FAIL** (neither registered outcome). At h = 0.0003, 4× training leaves w and x_ref unchanged. At h = 0.001, w rises, but 0.184 is within the E5a seed spread at 20k (0.095–0.17), so it is not clear evidence.
+
+**R5-P2: FAIL.** Observed / predicted w ratio is 0.65, 1.54 and 1.00. The slope change predicts the w change at h = 0.01 but not at low h.
+
+**Low-h edge, summary.** It is not context length (R3-P1), not long-gap support (R3-P3) and not training length (R5-P1). It is consistent with H-tie at its extreme: the trained slopes are smallest there (λ ≈ 0.05), and so is w (≈ 0.13–0.2). But no manipulation of the training data moved it. Status: partly explained.
