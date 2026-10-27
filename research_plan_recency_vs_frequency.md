@@ -1351,7 +1351,7 @@ The f = 0 baselines (seed medians) are:
 - RoPE's w can be raised by conflict data;
 - ALiBi's w at h = 0.0003 cannot be raised by anything tried.
 
-## 19.14 Round 8: do copy heads weigh old vs new by attention mass? (pre-registered 27 Oct 17:05 IST, before any mass_probe output on a real run is read)
+## 19.14 Round 8: do copy heads weigh old vs new by attention mass? (pre-registered 27 Oct 16:40 IST, before any mass_probe output on a real run is read)
 
 **H-mass.** The layer-1 copy heads decide old-versus-new by the attention *mass* on the old copies against the recent copies. In a softmax head, k recent copies add mass, so the log mass ratio moves by about log k. Bayes instead moves the odds by k·log((1−ε)/ε).
 
