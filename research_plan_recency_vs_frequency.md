@@ -1021,3 +1021,40 @@ What breaks at low h is how an old memory and new copies are combined. At h = 0.
 - Bayes moves it by about 2.2 nats at every G.
 
 So time and evidence interact in the model, whereas Bayes adds them. R3-P3 (E9) stays as registered, since it is a test about the conflict switch points, not the clock.
+
+**R3-P2, second part (05:30 IST): PASS** for h ≥ 0.045. The median |s_model − s_Bayes| is 0.003–0.011 for all 7 models, against a limit of ≤ 0.10.
+
+Across every seed-0 model with survival probes (49 models; h 0.0003–0.15, ε 0.01–0.45; ALiBi, RoPE and learned absolute positions), the median |s_model − s_Bayes| is ≤ 0.041. This includes every setting where the law fails. **The single-memory clock is calibrated over the whole map**, so the law's failures cannot come from the model's sense of time for one memory.
+
+### 19.7 E6 seed-0 verdicts (27 Oct 06:40 IST; all 25 seed-0 models; seed 1 still training)
+
+**R2-P3 (natural law on E6)**
+
+| Part | Result | Criterion | Verdict |
+|---|---|---|---|
+| a | median \|log err\| 0.290 | ≤ 0.30 | **PASS** |
+| b | inside/outside window correct 0.76 | ≥ 0.80 | **FAIL** |
+| c | on 49 shared crossings, natural 0.284 vs frozen law 0.245 | natural < frozen | **FAIL** (the frozen law is better) |
+
+**R2-P2 (support collapse on E6, 25 models, 700 cells)**
+
+| Part | Result | Criterion | Verdict |
+|---|---|---|---|
+| a | Spearman(predicted, observed deviation) 0.668 | ≥ 0.6 | **PASS** |
+| b | β refitted on E6 = −1.03 | within ±50% of −1.22 | **PASS** |
+
+For comparison, the cell effect alone gives Spearman −0.25. So a model's per-cell deviation from Bayes is predicted, on unseen settings, by how often training data contains that conflict configuration.
+
+**The pre-registered "works" criterion (§19) is too strict.** It requires law RMSE ≤ 1.25× the model's own fit. The law passes it in only 4 of its own 12 fitting settings (median ratio 1.43 there), and in 8 of 44 settings overall.
+
+**Post-hoc criterion** (labelled as such): "as good as inside its fitting box", meaning the ratio is ≤ 1.51, the 75th percentile of the in-box ratios. Under it, 8 of 32 outside-box settings qualify:
+
+| Region | Ratio | Qualifies |
+|---|---|---|
+| h ∈ [0.001, 0.045] at ε = 0.07–0.25 | — | yes, for all except h = 0.002 and 0.045 at ε = 0.1 (1.61, 2.42) |
+| ε ≥ 0.35 | 2.7–11.7 | none |
+| ε ≤ 0.02 | 1.9–2.9 | none, except (0.01, 0.02) at 1.47 |
+| h ≥ 0.06 | 2.6–6.5 | none |
+| h = 0.0003 | — | not measurable |
+
+**Evidence weight w at the ε edges** (new models): w = 1.03–1.86 at ε ≥ 0.35 (h = 0.003 and 0.03), and 0.19–0.45 at ε = 0.02. R3-P4 is not decidable on seed 0 alone: only 6 new models have a w, at 2 values of h. It waits for seed 1.
