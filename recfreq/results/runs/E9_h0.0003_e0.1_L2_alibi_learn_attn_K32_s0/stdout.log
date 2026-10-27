@@ -1,0 +1,65 @@
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/nirbhay/recfreq/recfreq/train.py", line 219, in <module>
+    main()
+  File "/home/nirbhay/recfreq/recfreq/train.py", line 142, in main
+    model = Transformer(mcfg).to(device)
+  File "/home/nirbhay/recfreq/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1384, in to
+    return self._apply(convert)
+  File "/home/nirbhay/recfreq/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 934, in _apply
+    module._apply(fn)
+  File "/home/nirbhay/recfreq/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 965, in _apply
+    param_applied = fn(param)
+  File "/home/nirbhay/recfreq/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1370, in convert
+    return t.to(
+torch.AcceleratorError: CUDA error: out of memory
+Search for `cudaErrorMemoryAllocation' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+init {'ce': 4.181931495666504, 'acc': 0.01511383056640625, 'ce_rep': 4.181879112448093, 'acc_rep': 0.015093063779247688, 'bayes_ce': 0.8701319853028894, 'bayes_acc': 0.7788467407226562, 'bayes_acc_rep': 0.8830179192204662, 'excess': 3.3117995103636146}
+{"step": 500, "train_loss": 0.9655, "ce": 0.9646, "acc": 0.753, "ce_rep": 0.5257, "acc_rep": 0.8536, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0944, "sec": 82.9}
+{"step": 1000, "train_loss": 0.9035, "ce": 0.9008, "acc": 0.776, "ce_rep": 0.455, "acc_rep": 0.8797, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0307, "sec": 165.5}
+{"step": 1500, "train_loss": 0.8886, "ce": 0.8934, "acc": 0.7769, "ce_rep": 0.4475, "acc_rep": 0.8807, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0233, "sec": 248.0}
+{"step": 2000, "train_loss": 0.8796, "ce": 0.8893, "acc": 0.7774, "ce_rep": 0.4433, "acc_rep": 0.8812, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0192, "sec": 331.7}
+{"step": 2500, "train_loss": 0.8816, "ce": 0.8867, "acc": 0.7778, "ce_rep": 0.44, "acc_rep": 0.8818, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0166, "sec": 421.5}
+{"step": 3000, "train_loss": 0.8702, "ce": 0.886, "acc": 0.7775, "ce_rep": 0.4395, "acc_rep": 0.8813, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0159, "sec": 511.3}
+{"step": 3500, "train_loss": 0.8769, "ce": 0.8842, "acc": 0.7778, "ce_rep": 0.4374, "acc_rep": 0.8819, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.014, "sec": 603.5}
+{"step": 4000, "train_loss": 0.8754, "ce": 0.8841, "acc": 0.7775, "ce_rep": 0.4375, "acc_rep": 0.8814, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.014, "sec": 696.4}
+{"step": 4500, "train_loss": 0.8715, "ce": 0.8821, "acc": 0.7777, "ce_rep": 0.4353, "acc_rep": 0.8816, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0119, "sec": 795.5}
+{"step": 5000, "train_loss": 0.8859, "ce": 0.8811, "acc": 0.7778, "ce_rep": 0.434, "acc_rep": 0.8818, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.011, "sec": 898.9}
+{"step": 5500, "train_loss": 0.8797, "ce": 0.8815, "acc": 0.7781, "ce_rep": 0.4344, "acc_rep": 0.8819, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0113, "sec": 1001.9}
+{"step": 6000, "train_loss": 0.8683, "ce": 0.8803, "acc": 0.7779, "ce_rep": 0.4333, "acc_rep": 0.882, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0102, "sec": 1104.8}
+{"step": 6500, "train_loss": 0.8758, "ce": 0.8799, "acc": 0.7784, "ce_rep": 0.4328, "acc_rep": 0.8821, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0098, "sec": 1207.8}
+{"step": 7000, "train_loss": 0.87, "ce": 0.8794, "acc": 0.7784, "ce_rep": 0.4323, "acc_rep": 0.8823, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0093, "sec": 1310.7}
+{"step": 7500, "train_loss": 0.8852, "ce": 0.8791, "acc": 0.7784, "ce_rep": 0.4319, "acc_rep": 0.8822, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0089, "sec": 1413.7}
+{"step": 8000, "train_loss": 0.8764, "ce": 0.8785, "acc": 0.7783, "ce_rep": 0.4312, "acc_rep": 0.8822, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0084, "sec": 1516.7}
+{"step": 8500, "train_loss": 0.8782, "ce": 0.8784, "acc": 0.7783, "ce_rep": 0.4312, "acc_rep": 0.8822, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0083, "sec": 1609.6}
+{"step": 9000, "train_loss": 0.8737, "ce": 0.8774, "acc": 0.7785, "ce_rep": 0.43, "acc_rep": 0.8824, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0073, "sec": 1681.1}
+{"step": 9500, "train_loss": 0.8683, "ce": 0.8773, "acc": 0.7783, "ce_rep": 0.4299, "acc_rep": 0.8823, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0072, "sec": 1752.6}
+{"step": 10000, "train_loss": 0.8744, "ce": 0.8771, "acc": 0.7785, "ce_rep": 0.4296, "acc_rep": 0.8824, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0069, "sec": 1824.1}
+{"step": 10500, "train_loss": 0.871, "ce": 0.8765, "acc": 0.7785, "ce_rep": 0.4291, "acc_rep": 0.8823, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0064, "sec": 1895.6}
+{"step": 11000, "train_loss": 0.8594, "ce": 0.8764, "acc": 0.7786, "ce_rep": 0.429, "acc_rep": 0.8824, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0063, "sec": 1967.1}
+{"step": 11500, "train_loss": 0.8699, "ce": 0.8763, "acc": 0.7787, "ce_rep": 0.4289, "acc_rep": 0.8825, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0062, "sec": 2038.8}
+{"step": 12000, "train_loss": 0.8736, "ce": 0.8757, "acc": 0.7783, "ce_rep": 0.4282, "acc_rep": 0.8824, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0056, "sec": 2110.5}
+{"step": 12500, "train_loss": 0.8641, "ce": 0.8761, "acc": 0.7784, "ce_rep": 0.4285, "acc_rep": 0.8824, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0059, "sec": 2182.2}
+{"step": 13000, "train_loss": 0.87, "ce": 0.8754, "acc": 0.7786, "ce_rep": 0.4279, "acc_rep": 0.8825, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0053, "sec": 2253.7}
+{"step": 13500, "train_loss": 0.8744, "ce": 0.8752, "acc": 0.7788, "ce_rep": 0.4277, "acc_rep": 0.8825, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0051, "sec": 2325.3}
+{"step": 14000, "train_loss": 0.8765, "ce": 0.8757, "acc": 0.7787, "ce_rep": 0.4282, "acc_rep": 0.8825, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0056, "sec": 2396.8}
+{"step": 14500, "train_loss": 0.8725, "ce": 0.8752, "acc": 0.7786, "ce_rep": 0.4276, "acc_rep": 0.8825, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0051, "sec": 2468.3}
+{"step": 15000, "train_loss": 0.86, "ce": 0.875, "acc": 0.7786, "ce_rep": 0.4274, "acc_rep": 0.8825, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0049, "sec": 2540.0}
+{"step": 15500, "train_loss": 0.8677, "ce": 0.8749, "acc": 0.7785, "ce_rep": 0.4273, "acc_rep": 0.8825, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0048, "sec": 2611.6}
+{"step": 16000, "train_loss": 0.8717, "ce": 0.8745, "acc": 0.7787, "ce_rep": 0.4269, "acc_rep": 0.8825, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0044, "sec": 2688.9}
+{"step": 16500, "train_loss": 0.8687, "ce": 0.8748, "acc": 0.7785, "ce_rep": 0.4271, "acc_rep": 0.8826, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0046, "sec": 2786.7}
+{"step": 17000, "train_loss": 0.8782, "ce": 0.8745, "acc": 0.7783, "ce_rep": 0.4269, "acc_rep": 0.8826, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0044, "sec": 2884.5}
+{"step": 17500, "train_loss": 0.8696, "ce": 0.8745, "acc": 0.7789, "ce_rep": 0.4268, "acc_rep": 0.8826, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0044, "sec": 2977.8}
+{"step": 18000, "train_loss": 0.8852, "ce": 0.8742, "acc": 0.7785, "ce_rep": 0.4265, "acc_rep": 0.8826, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0041, "sec": 3070.1}
+{"step": 18500, "train_loss": 0.8748, "ce": 0.8743, "acc": 0.7788, "ce_rep": 0.4267, "acc_rep": 0.8826, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0042, "sec": 3162.4}
+{"step": 19000, "train_loss": 0.8751, "ce": 0.8742, "acc": 0.7787, "ce_rep": 0.4265, "acc_rep": 0.8826, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0041, "sec": 3254.7}
+{"step": 19500, "train_loss": 0.8692, "ce": 0.8743, "acc": 0.7787, "ce_rep": 0.4266, "acc_rep": 0.8826, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.0042, "sec": 3347.0}
+{"step": 20000, "train_loss": 0.8763, "ce": 0.8742, "acc": 0.7786, "ce_rep": 0.4265, "acc_rep": 0.8826, "bayes_ce": 0.8701, "bayes_acc": 0.7788, "bayes_acc_rep": 0.883, "excess": 0.004, "sec": 3439.2}
+done /home/nirbhay/recfreq/results/runs/E9_h0.0003_e0.1_L2_alibi_learn_attn_K32_s0

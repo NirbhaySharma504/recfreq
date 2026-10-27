@@ -11,3 +11,6 @@ __pycache__/
 
 # model checkpoints (~400 MB; kept on the training server)
 *.pt
+
+# checkpoints (large; kept on the server)
+ckpt.pt
