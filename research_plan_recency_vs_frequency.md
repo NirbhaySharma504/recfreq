@@ -1313,7 +1313,7 @@ The f = 0 baselines (seed medians) are:
 - **P1 passes for RoPE but fails for ALiBi:** conflicts can teach the weighing, but ALiBi's slope tie prevents it at low h. That is H-tie at the edge.
 - **P1 fails for both:** H-weight is dropped for the low-h edge, and the edge stays partly explained.
 
-**Round 7 verdicts (27 Oct 16:40 IST; E12, 8 models)**
+**Round 7 verdicts (27 Oct 16:31 IST; E12, 8 models)**
 
 | Encoding | h | w at f = 0 | w at f = 0.1 (seeds) | Ratio |
 |---|---|---|---|---|
