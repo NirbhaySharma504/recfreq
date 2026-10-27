@@ -1199,3 +1199,23 @@ H-gap required K = 32 ≥ 1.3 at both h, which fails. The K = 16 reference at h 
 - **Trend:** over all default-task RoPE models (old + E11), Spearman(log h, w) is below 0.5. ALiBi's is 0.74.
 
 If RoPE's w also falls to ≤ 0.3 at h ≤ 0.001, the low-h under-weighting is not specific to ALiBi's slope.
+
+**R6-P1 verdict (27 Oct 10:37 IST; E11, 6 RoPE models): FAIL.**
+
+| h | RoPE seed-median w | Criterion [0.6, 1.4] |
+|---|---|---|
+| 0.0003 | **0.23** (0.20, 0.26) | ✗ |
+| 0.001 | **0.60** (0.38, 0.82) | ✗ (just below) |
+| 0.1 | **1.04** (one seed measurable) | ✓ |
+
+Spearman(log h, w) over 20 RoPE models is 0.68 (criterion < 0.5). Single-memory survival is still calibrated in all six (median |Δs| ≤ 0.010). So the registered fallback applies: **the low-h under-weighting is not specific to ALiBi's slope.**
+
+**What changes:**
+- H-tie remains a real causal channel *in ALiBi*: slope surgery moves w (R5-P3).
+- But it is not the general cause of w rising with h. RoPE shows the same rise, shifted: it reaches w ≈ 1 by h ≈ 0.003–0.01, while ALiBi needs h ≈ 0.06–0.1.
+
+**Interpretation (post hoc, not tested as such).** w looks like the compromise each architecture reaches within ordinary training. It is low where the old-versus-new weighing carries little loss, which is low h. This fits:
+- R2-P2 PASS: deviations track the training frequency of the situation;
+- E7 at C: extra conflict data raised w from 0.34 to 0.84;
+- E10: longer training on the same data mix did not change w at h = 0.0003;
+- the encoding difference: ALiBi's slope tie makes the compromise worse.

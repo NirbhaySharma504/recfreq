@@ -74,7 +74,7 @@ def main():
     ap.add_argument("--out", default="verify_out")
     ap.add_argument("--figs", default="")
     a = ap.parse_args()
-    M = model_table(a.runs, ("E1_", "E2b_", "E5a_", "E5r_", "E2a_", "E2c_", "E6_", "E7_", "E8_", "E9_"))
+    M = model_table(a.runs, ("E1_", "E2b_", "E5a_", "E5r_", "E2a_", "E2c_", "E6_", "E7_", "E8_", "E9_", "E11_"))
     M.to_csv(os.path.join(a.out, "evidence_weight.csv"), index=False)
     pd.set_option("display.width", 220)
     base = M[(M.cf == 0) & (M.K == 16) & (M.N == 256)]
