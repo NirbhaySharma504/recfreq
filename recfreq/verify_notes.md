@@ -184,3 +184,12 @@ The R7-P1 and R7-P2 FAILs above are new. R7-P3 PASS (clock exact).
 - **ALiBi at h = 0.0003 is immovable** (w ≈ 0.14) under every intervention tried, including slope surgery.
 - **Conflict training lowers λ** while raising w where it works.
 - **Low-h edge:** stays "partly explained". The slide is updated.
+
+## Round 11 (27 Oct 16:49 IST): H-mass (copy-head attention mass), pre-registered 16:40
+
+`recfreq/mass_probe.py` (143 models, eval only, about 5 min) and `verify/mass_score.py`. All three predictions FAIL:
+- R8-P1: R²_mass 0.57 vs R²_bayes 0.71.
+- R8-P2: matching the mass reproduces 11% of the effect of extra copies.
+- R8-P3: Spearman(A, w) −0.26.
+
+The copy-head attention split does not carry the copy count. At high h it is saturated on the recent copy (≈ 99%), yet more copies still move the decision. The low-h edge stays partly explained, with one more mechanism ruled out.

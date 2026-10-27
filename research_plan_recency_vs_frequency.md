@@ -1389,3 +1389,34 @@ The clock forces G*_1 to scale about as 1/h, while the ALiBi slope rises only sl
 - **P2 fails:** evidence also flows outside the copy-head mass, and H-mass is at most partial.
 
 The RoPE and E12 results are reported without predictions.
+
+**Round 8 verdicts** (27 Oct 16:49 IST; `verify/mass_score.py`; 143 models probed; primary set 110 ordinary ALiBi models)
+
+- **R8-P1: FAIL.** The median R²_mass is 0.57, against R²_bayes 0.71. R²_mass > R²_bayes in only 36% of models.
+- **R8-P2: FAIL.** Matching one recent copy's copy-head log mass ratio to that of k real copies reproduces a median **11%** of their effect on lo (IQR 0–25%, 103 models). By h: 14–28% at h ≤ 0.005, and about 0 at h ≥ 0.02.
+- **R8-P3: FAIL.** Spearman(log h, A) is −0.76, so the distance budget does grow as h falls. But Spearman(A, w) is only −0.26.
+- **Exploratory:**
+  - RoPE: R²_mass 0.67 against R²_bayes 0.84; f 0.46.
+  - E12 conflict-trained: R²_mass 0.80 against R²_bayes 0.64; f 0.62.
+
+**H-mass is refuted for ALiBi:** the copy heads' old-versus-new attention split is not the channel through which extra recent copies change the decision.
+
+Post hoc, at n_c = 2 and G = 32, the copy heads' attention mass on the recent copies is:
+
+| h | n_w = 1 | n_w = 4 |
+|---|---|---|
+| ≤ 0.003 | 0.4–2% | 7–31% |
+| ≥ 0.045 | ≈ 99% | ≈ 99% |
+
+So at low h the selected heads spend little attention on the probe key's copies at all. At high h the split is already saturated, yet n_w = 4 still moves lo by 1–2 nats beyond n_w = 1. The count of recent copies must be computed elsewhere: other heads, layer 0, or the composition of value vectors.
+
+**Caveat:** heads were chosen by induction score on ordinary data (> 0.9). The heads that carry the conflict decision on probe sequences may be different.
+
+**Status:** the low-h edge stays **partly explained**. Two candidate mechanisms are now ruled out:
+- conflict-loss weight in its simple form (R7);
+- copy-head mass counting (R8).
+
+The established facts are unchanged:
+- the clock is exact;
+- w is low in both encodings;
+- ALiBi's w at h = 0.0003 is immovable under every intervention tried.
