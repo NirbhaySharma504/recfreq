@@ -1,0 +1,21 @@
+<section id="v_result" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:72px 112px;display:flex;flex-direction:column;gap:24px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Result 1 · E13, 72 new models at 24 new settings</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:54px;font-weight:600;line-height:1.1">Every pre-registered test passed: the band holds</h2>
+</div>
+<div style="display:grid;grid-template-columns:1.1fr 1fr;gap:30px;align-items:start">
+<table style="border-collapse:collapse;font-size:23px;line-height:1.35;background:#FFFFFF;border-radius:12px;overflow:hidden">
+<tr style="background:#16213A;color:#F5F7FA"><th style="padding:12px 16px;text-align:left">Test</th><th style="padding:12px 16px;text-align:left">Result</th><th style="padding:12px 16px;text-align:left">Needed</th><th style="padding:12px 10px"></th></tr>
+<tr><td style="padding:11px 16px"><b>P1</b> fit quality</td><td style="padding:11px 16px">median R² <b>0.89</b>; 92% ≥ 0.7</td><td style="padding:11px 16px;color:#5A6377;white-space:nowrap">≥ 0.80; ≥ 85%</td><td style="padding:11px 10px;color:#2E8B57;font-weight:600">PASS</td></tr>
+<tr style="background:#F7F8FB"><td style="padding:11px 16px"><b>P2</b> error size</td><td style="padding:11px 16px">median <b>0.68 nats</b>; 90% ≤ 0.93</td><td style="padding:11px 16px;color:#5A6377;white-space:nowrap">≤ 0.85; ≤ 1.1</td><td style="padding:11px 10px;color:#2E8B57;font-weight:600">PASS</td></tr>
+<tr><td style="padding:11px 16px"><b>P3</b> believed rates</td><td style="padding:11px 16px">h′ within ×2 in <b>99%</b>; ε′ in <b>100%</b></td><td style="padding:11px 16px;color:#5A6377;white-space:nowrap">≥ 90%; ≥ 85%</td><td style="padding:11px 10px;color:#2E8B57;font-weight:600">PASS</td></tr>
+<tr style="background:#F7F8FB"><td style="padding:11px 16px"><b>P4</b> old yardstick, now prospective</td><td style="padding:11px 16px"><b>19 / 24</b> settings ≤ 1.51×</td><td style="padding:11px 16px;color:#5A6377;white-space:nowrap">≥ 17</td><td style="padding:11px 10px;color:#2E8B57;font-weight:600">PASS</td></tr>
+<tr><td style="padding:11px 16px"><b>P5</b> kind of error</td><td style="padding:11px 16px">bias &gt; noise at 96%; replicate ratio 1.76</td><td style="padding:11px 16px;color:#5A6377;white-space:nowrap">≥ 80%; ≥ 1.5</td><td style="padding:11px 10px;color:#2E8B57;font-weight:600">PASS</td></tr>
+</table>
+<div style="background:#FFFFFF;border-radius:12px;padding:12px 16px">
+<img src="img/r2_hist.png" alt="Histogram of the frozen law's R-squared over the 72 new models" style="width:100%">
+</div>
+</div>
+<p style="margin:0;font-size:24px;line-height:1.45;color:#3A4560">The three low-R² models are all at (h, ε) = (0.001, 0.25), where the probe surfaces are nearly flat; their absolute error is small (0.32 nats).</p>
+<aside>The formula was never refitted. On 72 models at 24 settings it had never seen, the median R² is 0.89, and 92% of models are at 0.7 or above. The typical error is 0.68 nats over the probe cells. The believed switch rate lands within a factor of two of the formula in 71 of 72 models. And the yardstick from last time, now used before seeing the data, passes at 19 of 24 settings. P5 is not a test of quality but of what kind of error it is; we predicted it would be mostly bias, and it is. The low tail of the histogram is one setting, the corner at the lowest h and highest epsilon, where the surfaces are so flat that R² says little.</aside>
+</section>

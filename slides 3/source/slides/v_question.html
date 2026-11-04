@@ -1,0 +1,20 @@
+<section id="v_question" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:80px 112px;display:flex;flex-direction:column;gap:28px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">The question · from the last meeting</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:54px;font-weight:600;line-height:1.1">"It works in this range, with this variability": can we say that and defend it?</h2>
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:26px 34px;border-left:8px solid #2B59C3;font-size:28px;line-height:1.55">
+<b>The formula under test</b>, frozen since run 6 and never refitted:<br>
+believed switch rate <b>h′ = 1.453 · h<sup>0.736</sup></b> &nbsp;·&nbsp; believed typo rate <b>logit ε′ = −0.345 + 0.438 · logit ε</b><br>
+predicted probe log-odds = 0.215 + 1.433 · Bayes(h′, ε′), on 112 conflict-probe cells
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;font-size:25px;line-height:1.45">
+<div style="background:#FFFFFF;border-radius:12px;padding:22px 28px;border-top:6px solid #D9822B">
+<b>What was weak before.</b> The band h ≈ 0.001–0.045, ε ≈ 0.05–0.25 came from a yardstick picked after seeing the results (error ≤ 1.51× the model's own Bayes fit). It had no number for how much models vary.
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:22px 28px;border-top:6px solid #2E8B57">
+<b>What we did this round.</b> Fixed the band, the pass criteria and the grading code first, and saved their hashes with timestamps (00:20 and 00:34 IST). Then trained 148 models at settings never used before and graded them as registered.
+</div>
+</div>
+<aside>The formula has two parts: a believed switch rate that is a power law in the true switch rate, and a believed typo rate that is linear in logit space. We plug those into the exact Bayes rule to predict the probe log-odds. The problem with our last answer was that the band came from a yardstick we chose after looking. So this time everything was written down and hashed before training: the band is exactly the one on the follow-up slides, and the code that grades it was fixed too.</aside>
+</section>

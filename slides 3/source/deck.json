@@ -1,0 +1,32 @@
+{
+  "v": 4,
+  "lists": "css",
+  "title": "Recency vs Frequency: Validating the Formula",
+  "order": [
+    "cover",
+    "v_question",
+    "v_design",
+    "v_result",
+    "v_band",
+    "v_variability",
+    "v_robust",
+    "v_weight",
+    "v_claim"
+  ],
+  "sections": {
+    "s1": {"description": "What we set out to test", "start": "cover"},
+    "s2": {"description": "Results", "start": "v_result"},
+    "s3": {"description": "The claim", "start": "v_claim"}
+  },
+  "faces": {
+    "source-serif-4": {
+      "family": "Source Serif 4",
+      "href": "https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400..700&display=swap"
+    },
+    "ibm-plex-sans": {
+      "family": "IBM Plex Sans",
+      "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+    }
+  },
+  "designSystems": []
+}

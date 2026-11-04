@@ -1,0 +1,23 @@
+<section id="v_weight" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:72px 112px;display:flex;flex-direction:column;gap:22px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Bonus · exploratory, not pre-registered</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:54px;font-weight:600;line-height:1.1">On new models, the evidence weight rises with h more cleanly than before</h2>
+</div>
+<div style="display:grid;grid-template-columns:1.25fr 1fr;gap:30px;align-items:start">
+<div style="background:#FFFFFF;border-radius:12px;padding:12px 16px">
+<img src="img/evidence_e13.png" alt="Evidence weight w against switch rate h: earlier models and the 72 new models" style="width:100%">
+</div>
+<div style="display:flex;flex-direction:column;gap:20px;font-size:24px;line-height:1.45">
+<div style="background:#FFFFFF;border-radius:12px;padding:20px 26px;border-top:6px solid #2B59C3">
+<b>w climbs smoothly</b> from ≈ 0.2 at h = 0.001 to 0.72 at h = 0.045: Spearman(log h, w) = <b>0.91</b> over 72 models (0.64–0.74 before).
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:20px 26px;border-top:6px solid #D9822B">
+<b>Median w = 0.35</b> (IQR 0.27–0.47), inside the 0.25–0.65 range the ε′ formula averages over. That is why it works here.
+</div>
+<div style="background:#16213A;color:#F5F7FA;border-radius:12px;padding:20px 26px">
+Same mechanism as the follow-ups: the clock is exact, recent copies are under-counted, and less so as h grows.
+</div>
+</div>
+</div>
+<aside>After training we ran the survival and wide-window probes on every new model, so we could measure the evidence weight, how much an extra recent copy counts compared with Bayes. This was not part of the pre-registration. The trend from the follow-up slides shows up again and more cleanly: w rises steadily with h, and its typical value inside the band sits in the range that the typo-rate formula averages over. That is the explanation from last time, now on models it was not derived from.</aside>
+</section>

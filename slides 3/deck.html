@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recency vs Frequency: Validating the Formula</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400..700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+*{box-sizing:border-box} html,body{margin:0;background:#0d1426}
+section{width:1920px;height:1080px;overflow:hidden;position:relative}
+section aside{display:none}
+img{max-width:100%}
+.pageno{position:absolute;right:64px;bottom:44px;font-size:24px;color:#6B7487;font-variant-numeric:tabular-nums}
+@media screen{
+  html,body{height:100%;overflow:hidden}
+  .frame{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform:translate(-50%,-50%) scale(var(--s,0.5));display:none}
+  .frame.on{display:block}
+}
+@media print{
+  @page{size:1920px 1080px;margin:0}
+  .frame{width:1920px;height:1080px;page-break-after:always;break-after:page}
+}
+</style></head><body>
+<div class="frame"><section id="cover" data-transition="fade" style="background:#16213A;color:#F5F7FA;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:space-between">
+<p style="font-size:28px;color:#9FB6E0;letter-spacing:2px;text-transform:uppercase">TOLLM project · validation round (run 8)</p>
+<div style="display:flex;flex-direction:column;gap:32px">
+<h1 style="font-family:'Source Serif 4', Georgia, serif;font-size:96px;font-weight:600;line-height:1.08;color:#F5F7FA">Does the formula hold<br>across the band?</h1>
+<p style="font-size:44px;line-height:1.3;color:#C9D6EC">A pre-registered test on 148 newly trained models:<br>where it works, how much it varies, what it ignores</p>
+</div>
+<p style="font-size:28px;color:#C9D6EC">Nirbhay Sharma · Gathik Jindal · 5 November 2026</p>
+<aside>Last time Sir asked for a concrete statement: the formula works in this range, with this much variability. This deck is that test. We fixed the range, the pass criteria and the scoring code before training anything, then trained 148 new models overnight and graded them.</aside>
+</section>
+</div>
+<div class="frame"><section id="v_question" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:80px 112px;display:flex;flex-direction:column;gap:28px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">The question · from the last meeting</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:54px;font-weight:600;line-height:1.1">"It works in this range, with this variability": can we say that and defend it?</h2>
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:26px 34px;border-left:8px solid #2B59C3;font-size:28px;line-height:1.55">
+<b>The formula under test</b>, frozen since run 6 and never refitted:<br>
+believed switch rate <b>h′ = 1.453 · h<sup>0.736</sup></b> &nbsp;·&nbsp; believed typo rate <b>logit ε′ = −0.345 + 0.438 · logit ε</b><br>
+predicted probe log-odds = 0.215 + 1.433 · Bayes(h′, ε′), on 112 conflict-probe cells
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;font-size:25px;line-height:1.45">
+<div style="background:#FFFFFF;border-radius:12px;padding:22px 28px;border-top:6px solid #D9822B">
+<b>What was weak before.</b> The band h ≈ 0.001–0.045, ε ≈ 0.05–0.25 came from a yardstick picked after seeing the results (error ≤ 1.51× the model's own Bayes fit). It had no number for how much models vary.
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:22px 28px;border-top:6px solid #2E8B57">
+<b>What we did this round.</b> Fixed the band, the pass criteria and the grading code first, and saved their hashes with timestamps (00:20 and 00:34 IST). Then trained 148 models at settings never used before and graded them as registered.
+</div>
+</div>
+<aside>The formula has two parts: a believed switch rate that is a power law in the true switch rate, and a believed typo rate that is linear in logit space. We plug those into the exact Bayes rule to predict the probe log-odds. The problem with our last answer was that the band came from a yardstick we chose after looking. So this time everything was written down and hashed before training: the band is exactly the one on the follow-up slides, and the code that grades it was fixed too.</aside>
+<div class="pageno">2 / 9</div>
+</section>
+</div>
+<div class="frame"><section id="v_design" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:80px 112px;display:flex;flex-direction:column;gap:26px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Design · 148 runs on the college GPUs, 00:30–04:50 IST, 0 failures</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:54px;font-weight:600;line-height:1.1">Fresh random settings, three seeds each, and a replicate as the yardstick</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;font-size:25px;line-height:1.45">
+<div style="background:#FFFFFF;border-radius:12px;padding:24px 30px;border-top:6px solid #2B59C3">
+<b style="font-size:28px">E13 · validation sweep (72 models)</b><br>
+24 (h, ε) points drawn by Latin hypercube over the band (log h × logit ε, fixed seed), none on an earlier grid. 3 seeds each. Default recipe: 2-layer attention-only ALiBi, width 128, 20k steps.
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:24px 30px;border-top:6px solid #2E8B57">
+<b style="font-size:28px">E14 · recipe robustness (76 models)</b><br>
+4 fixed points in the band. Change one thing at a time, 2 seeds: lr ÷2 / ×2, batch ×2, steps ×2, width 64 / 256. Exploratory: MLPs on, 3 layers.
+</div>
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:24px 30px;font-size:25px;line-height:1.5">
+<b style="font-size:28px">How we measure variability</b>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:26px;margin-top:10px">
+<div><b style="color:#8A93A6">Seed noise</b>: how much two training runs of the same recipe differ, per probe cell.</div>
+<div><b style="color:#D9822B">Law bias</b>: the formula against the mean of the seeds, with seed noise removed.</div>
+<div><b style="color:#2B59C3">Replicate ratio</b>: the formula's error ÷ the difference between two seeds. 1 = as good as rerunning the training.</div>
+</div>
+</div>
+<aside>E13 is the main test: 24 points spread at random across the band, not on any grid we had used before, three seeds each so that we can measure seed noise at every point. E14 asks whether the constants depend on the training recipe: at four points we change one thing at a time. Adding MLPs or a third layer changes the architecture, so those two were marked exploratory, with no prediction. The yardstick for variability is a replicate: how far apart two seeds are. That splits the formula's error into seed noise, which no formula can remove, and bias, which is the formula's own miss.</aside>
+<div class="pageno">3 / 9</div>
+</section>
+</div>
+<div class="frame"><section id="v_result" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:72px 112px;display:flex;flex-direction:column;gap:24px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Result 1 · E13, 72 new models at 24 new settings</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:54px;font-weight:600;line-height:1.1">Every pre-registered test passed: the band holds</h2>
+</div>
+<div style="display:grid;grid-template-columns:1.1fr 1fr;gap:30px;align-items:start">
+<table style="border-collapse:collapse;font-size:23px;line-height:1.35;background:#FFFFFF;border-radius:12px;overflow:hidden">
+<tr style="background:#16213A;color:#F5F7FA"><th style="padding:12px 16px;text-align:left">Test</th><th style="padding:12px 16px;text-align:left">Result</th><th style="padding:12px 16px;text-align:left">Needed</th><th style="padding:12px 10px"></th></tr>
+<tr><td style="padding:11px 16px"><b>P1</b> fit quality</td><td style="padding:11px 16px">median R² <b>0.89</b>; 92% ≥ 0.7</td><td style="padding:11px 16px;color:#5A6377;white-space:nowrap">≥ 0.80; ≥ 85%</td><td style="padding:11px 10px;color:#2E8B57;font-weight:600">PASS</td></tr>
+<tr style="background:#F7F8FB"><td style="padding:11px 16px"><b>P2</b> error size</td><td style="padding:11px 16px">median <b>0.68 nats</b>; 90% ≤ 0.93</td><td style="padding:11px 16px;color:#5A6377;white-space:nowrap">≤ 0.85; ≤ 1.1</td><td style="padding:11px 10px;color:#2E8B57;font-weight:600">PASS</td></tr>
+<tr><td style="padding:11px 16px"><b>P3</b> believed rates</td><td style="padding:11px 16px">h′ within ×2 in <b>99%</b>; ε′ in <b>100%</b></td><td style="padding:11px 16px;color:#5A6377;white-space:nowrap">≥ 90%; ≥ 85%</td><td style="padding:11px 10px;color:#2E8B57;font-weight:600">PASS</td></tr>
+<tr style="background:#F7F8FB"><td style="padding:11px 16px"><b>P4</b> old yardstick, now prospective</td><td style="padding:11px 16px"><b>19 / 24</b> settings ≤ 1.51×</td><td style="padding:11px 16px;color:#5A6377;white-space:nowrap">≥ 17</td><td style="padding:11px 10px;color:#2E8B57;font-weight:600">PASS</td></tr>
+<tr><td style="padding:11px 16px"><b>P5</b> kind of error</td><td style="padding:11px 16px">bias &gt; noise at 96%; replicate ratio 1.76</td><td style="padding:11px 16px;color:#5A6377;white-space:nowrap">≥ 80%; ≥ 1.5</td><td style="padding:11px 10px;color:#2E8B57;font-weight:600">PASS</td></tr>
+</table>
+<div style="background:#FFFFFF;border-radius:12px;padding:12px 16px">
+<img src="img/r2_hist.png" alt="Histogram of the frozen law's R-squared over the 72 new models" style="width:100%">
+</div>
+</div>
+<p style="margin:0;font-size:24px;line-height:1.45;color:#3A4560">The three low-R² models are all at (h, ε) = (0.001, 0.25), where the probe surfaces are nearly flat; their absolute error is small (0.32 nats).</p>
+<aside>The formula was never refitted. On 72 models at 24 settings it had never seen, the median R² is 0.89, and 92% of models are at 0.7 or above. The typical error is 0.68 nats over the probe cells. The believed switch rate lands within a factor of two of the formula in 71 of 72 models. And the yardstick from last time, now used before seeing the data, passes at 19 of 24 settings. P5 is not a test of quality but of what kind of error it is; we predicted it would be mostly bias, and it is. The low tail of the histogram is one setting, the corner at the lowest h and highest epsilon, where the surfaces are so flat that R² says little.</aside>
+<div class="pageno">4 / 9</div>
+</section>
+</div>
+<div class="frame"><section id="v_band" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:72px 112px;display:flex;flex-direction:column;gap:22px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Result 2 · where inside the band it is weakest</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:54px;font-weight:600;line-height:1.1">The 5 weaker settings sit at both ends of the h range</h2>
+</div>
+<div style="display:grid;grid-template-columns:1.25fr 1fr;gap:30px;align-items:start">
+<div style="background:#FFFFFF;border-radius:12px;padding:12px 16px">
+<img src="img/band_map.png" alt="Band map: 24 new settings, passing in blue and failing in orange, with earlier settings as squares" style="width:100%">
+</div>
+<div style="display:flex;flex-direction:column;gap:20px;font-size:24px;line-height:1.45">
+<div style="background:#FFFFFF;border-radius:12px;padding:20px 26px;border-top:6px solid #D9822B">
+<b>Fail the 1.51× yardstick:</b> (0.001, 0.25), (0.0029, 0.058), (0.0032, 0.07) at low h; (0.036, 0.11), (0.045, 0.13) at high h. Even these keep R² 0.36–0.92.
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:20px 26px;border-top:6px solid #2B59C3">
+<b>R² is lowest at h ≤ 0.002</b> (0.36–0.80 per setting), but the surfaces are flatter there, so the absolute error is small (0.32–0.77 nats).
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:20px 26px;border-top:6px solid #8A93A6">
+<b>Our guess was wrong:</b> we expected failures in the high-h, low-ε corner. Only 1 of 5 is there. Reported as found; it was not graded.
+</div>
+</div>
+</div>
+<aside>Blue circles pass, orange circles fail the yardstick from last time; the squares are the earlier settings, pale blue if they passed and pale orange if not. The weak points are at the two ends of the switch-rate range, not where we guessed. At the low end, R² drops, but that is partly because there is little structure to explain: the surfaces are nearly flat and the absolute errors are small. Inside the middle of the band, roughly h from 0.004 to 0.03, every setting passes.</aside>
+<div class="pageno">5 / 9</div>
+</section>
+</div>
+<div class="frame"><section id="v_variability" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:72px 112px;display:flex;flex-direction:column;gap:22px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Result 3 · the variability, in numbers</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:54px;font-weight:600;line-height:1.1">The formula's error is a stable bias, about twice the seed noise</h2>
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:10px 16px">
+<img src="img/bias_noise.png" alt="Seed noise and law bias at each of the 24 new settings" style="width:100%;max-height:470px;object-fit:contain">
+</div>
+<div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:24px;font-size:24px;line-height:1.42">
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #D9822B">
+<b>Bias 0.59 nats vs. noise 0.26</b> (medians). Bias is larger at 23 of 24 settings. Rerunning the training predicts a model 1.76× better than the formula does.
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #2B59C3">
+<b>The bias is reproducible:</b> seeds agree on the believed switch rate h′ to ±9%. The miss is the formula's, not noise.
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #2E8B57">
+<b>90% intervals for a new model:</b> h′ at ×0.80–×1.74 of the formula; logit ε′ within −0.38…+0.51; error ≤ 0.93 nats.
+</div>
+</div>
+<aside>This is the variability statement Sir asked for. Grey is how much two seeds of the same recipe differ; orange is how far the formula is from the average model, after taking that seed noise out. The formula's bias is about 0.6 nats, the seed noise about 0.25, so the formula is not as good as rerunning the training. But the bias is stable: different seeds agree on the believed switch rate within about 9 percent. And for a new model in the band we can now give a 90 percent interval: its believed switch rate will be between 0.8 and 1.74 times the formula's value, and its error under about 0.93 nats.</aside>
+<div class="pageno">6 / 9</div>
+</section>
+</div>
+<div class="frame"><section id="v_robust" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:72px 112px;display:flex;flex-direction:column;gap:22px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Result 4 · E14, does the training recipe matter? (76 models)</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:54px;font-weight:600;line-height:1.1">The training recipe barely matters; the architecture does</h2>
+</div>
+<div style="display:grid;grid-template-columns:1.25fr 1fr;gap:30px;align-items:start">
+<div style="background:#FFFFFF;border-radius:12px;padding:12px 16px">
+<img src="img/robustness.png" alt="Law error under each recipe change, relative to the default recipe" style="width:100%">
+</div>
+<div style="display:flex;flex-direction:column;gap:20px;font-size:24px;line-height:1.45">
+<div style="background:#FFFFFF;border-radius:12px;padding:20px 26px;border-top:6px solid #2E8B57">
+<b>5 of 6 recipe changes transfer</b> (needed 4): learning rate ×4 range, batch ×2, steps ×2, width 64 are all within ×1.07 of the default.
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:20px 26px;border-top:6px solid #D9822B">
+<b>Width 256 just misses</b>: ×1.255 against a ×1.25 limit, although its believed rates are the closest to the formula of any variant.
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:20px 26px;border-top:6px solid #8A93A6">
+<b>* Exploratory:</b> MLPs (×1.37) and a third layer (×1.56) shift the surfaces. The formula is a 2-layer attention-only law.
+</div>
+</div>
+</div>
+<aside>At four points we changed one training setting at a time. Halving or doubling the learning rate, doubling the batch, doubling the training length and halving the width all leave the formula's error within 7 percent of the default. Width 256 misses our pre-registered limit by half a percent, and its believed rates are actually the closest to the formula, so this is a near-miss on the overall error, not a different belief. Changing the architecture, adding MLPs or a third layer, does move the models away from the formula; those were exploratory and we only claim the formula for 2-layer attention-only models.</aside>
+<div class="pageno">7 / 9</div>
+</section>
+</div>
+<div class="frame"><section id="v_weight" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:72px 112px;display:flex;flex-direction:column;gap:22px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Bonus · exploratory, not pre-registered</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:54px;font-weight:600;line-height:1.1">On new models, the evidence weight rises with h more cleanly than before</h2>
+</div>
+<div style="display:grid;grid-template-columns:1.25fr 1fr;gap:30px;align-items:start">
+<div style="background:#FFFFFF;border-radius:12px;padding:12px 16px">
+<img src="img/evidence_e13.png" alt="Evidence weight w against switch rate h: earlier models and the 72 new models" style="width:100%">
+</div>
+<div style="display:flex;flex-direction:column;gap:20px;font-size:24px;line-height:1.45">
+<div style="background:#FFFFFF;border-radius:12px;padding:20px 26px;border-top:6px solid #2B59C3">
+<b>w climbs smoothly</b> from ≈ 0.2 at h = 0.001 to 0.72 at h = 0.045: Spearman(log h, w) = <b>0.91</b> over 72 models (0.64–0.74 before).
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:20px 26px;border-top:6px solid #D9822B">
+<b>Median w = 0.35</b> (IQR 0.27–0.47), inside the 0.25–0.65 range the ε′ formula averages over. That is why it works here.
+</div>
+<div style="background:#16213A;color:#F5F7FA;border-radius:12px;padding:20px 26px">
+Same mechanism as the follow-ups: the clock is exact, recent copies are under-counted, and less so as h grows.
+</div>
+</div>
+</div>
+<aside>After training we ran the survival and wide-window probes on every new model, so we could measure the evidence weight, how much an extra recent copy counts compared with Bayes. This was not part of the pre-registration. The trend from the follow-up slides shows up again and more cleanly: w rises steadily with h, and its typical value inside the band sits in the range that the typo-rate formula averages over. That is the explanation from last time, now on models it was not derived from.</aside>
+<div class="pageno">8 / 9</div>
+</section>
+</div>
+<div class="frame"><section id="v_claim" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:72px 112px;display:flex;flex-direction:column;gap:24px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">The claim for the paper</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:54px;font-weight:600;line-height:1.1">What we can now state, and what it does not cover</h2>
+</div>
+<div style="background:#16213A;color:#F5F7FA;border-radius:12px;padding:30px 38px;font-size:29px;line-height:1.55">
+For 2-layer attention-only ALiBi models with h ∈ [0.001, 0.045] and ε ∈ [0.05, 0.25], the frozen formula predicts a newly trained model with <b style="color:#F2B27E">median R² 0.89</b> and <b style="color:#F2B27E">error 0.68 nats (90% ≤ 0.93)</b>. Its believed switch rate lands within <b style="color:#F2B27E">×0.80–×1.74</b> for 90% of models. This holds across learning rate, batch size, training length and width 64.
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;font-size:24px;line-height:1.45">
+<div style="background:#FFFFFF;border-radius:12px;padding:20px 28px;border-top:6px solid #D9822B">
+<b>Limits we will state</b><br>
+· the bias is about 2× seed noise: a stable description, not replicate-level<br>
+· weakest at both ends of the h range<br>
+· 2-layer attention-only; MLPs and depth shift it<br>
+· below h = 0.001 the edge is only partly explained
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:20px 28px;border-top:6px solid #2E8B57">
+<b>Next</b><br>
+· write the paper around this claim, with the corrected Prop. 2 and "fitted, not derived"<br>
+· one figure per result slide in this deck<br>
+· optional: the same validation for RoPE, and a depth-aware version of the formula
+</div>
+</div>
+<aside>This is the sentence we propose to put in the paper. Every number in it comes from models the formula never saw, graded against criteria written before training. The limits are part of the claim: the formula has a consistent bias, it is weaker at the two ends of the switch-rate range, it is for two-layer attention-only models, and the very low switch-rate edge is still only partly explained. We think this is enough to start writing, and we would like Sir's view on whether to add the RoPE validation first.</aside>
+<div class="pageno">9 / 9</div>
+</section>
+</div>
+<script>
+// One slide at a time: arrows / PageUp / PageDown / space to move, Home / End, F for fullscreen; #n in the URL
+var frames=[].slice.call(document.querySelectorAll('.frame')),cur=0;
+function fit(){document.documentElement.style.setProperty('--s',Math.min(innerWidth/1920,innerHeight/1080));}
+function show(n){cur=Math.max(0,Math.min(frames.length-1,n));
+  frames.forEach(function(f,k){f.classList.toggle('on',k===cur);});
+  try{history.replaceState(null,'','#'+(cur+1));}catch(e){}}
+addEventListener('resize',fit);
+addEventListener('keydown',function(e){
+  if(e.metaKey||e.ctrlKey||e.altKey)return;var k=e.key;
+  if(k==='ArrowRight'||k==='ArrowDown'||k==='PageDown'||(k===' '&&!e.shiftKey)){e.preventDefault();show(cur+1);}
+  else if(k==='ArrowLeft'||k==='ArrowUp'||k==='PageUp'||(k===' '&&e.shiftKey)){e.preventDefault();show(cur-1);}
+  else if(k==='Home'){e.preventDefault();show(0);}
+  else if(k==='End'){e.preventDefault();show(frames.length-1);}
+  else if(k==='f'||k==='F'){if(document.fullscreenElement)document.exitFullscreen();else document.documentElement.requestFullscreen();}
+});
+var tx=null;
+addEventListener('touchstart',function(e){tx=e.changedTouches[0].clientX;},{passive:true});
+addEventListener('touchend',function(e){if(tx===null)return;var dx=e.changedTouches[0].clientX-tx;tx=null;
+  if(Math.abs(dx)>40)show(cur+(dx<0?1:-1));},{passive:true});
+addEventListener('hashchange',function(){var n=parseInt(location.hash.slice(1),10);if(n&&n-1!==cur)show(n-1);});
+fit();show((parseInt(location.hash.slice(1),10)||1)-1);
+</script>
+</body></html>
