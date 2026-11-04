@@ -1,0 +1,90 @@
+{
+  "final": {
+    "ce": 1.178894281387329,
+    "acc": 0.7081375122070312,
+    "ce_rep": 0.9806038033882031,
+    "acc_rep": 0.7542169458977843,
+    "bayes_ce": 1.1632367626630118,
+    "bayes_acc": 0.7100143432617188,
+    "bayes_acc_rep": 0.7561291162518207,
+    "excess": 0.01565751872431731
+  },
+  "heads": [
+    {
+      "layer": 0,
+      "head": 0,
+      "ind_score": 0.03076609969139099,
+      "slope": 0.007615535985678434
+    },
+    {
+      "layer": 0,
+      "head": 1,
+      "ind_score": 0.01910964772105217,
+      "slope": 0.006038459483534098
+    },
+    {
+      "layer": 0,
+      "head": 2,
+      "ind_score": 0.06289330869913101,
+      "slope": 0.031238006427884102
+    },
+    {
+      "layer": 0,
+      "head": 3,
+      "ind_score": 0.1403890699148178,
+      "slope": 3.6800827980041504
+    },
+    {
+      "layer": 1,
+      "head": 0,
+      "ind_score": 0.9999985098838806,
+      "slope": 0.07714605331420898
+    },
+    {
+      "layer": 1,
+      "head": 1,
+      "ind_score": 0.9706563353538513,
+      "slope": 0.06443728506565094
+    },
+    {
+      "layer": 1,
+      "head": 2,
+      "ind_score": 0.9999808073043823,
+      "slope": 0.3209584653377533
+    },
+    {
+      "layer": 1,
+      "head": 3,
+      "ind_score": 0.3979108929634094,
+      "slope": 0.11170143634080887
+    }
+  ],
+  "args": {
+    "h": 0.006,
+    "eps": 0.17,
+    "typo": "structured",
+    "K": 16,
+    "V": 64,
+    "n_pairs": 256,
+    "key_dist": "zipf",
+    "layers": 2,
+    "mlp": 0,
+    "pe": "alibi_learn",
+    "d_model": 128,
+    "heads": 4,
+    "seed": 2,
+    "steps": 20000,
+    "batch": 128,
+    "lr": 0.001,
+    "warmup": 500,
+    "wd": 0.01,
+    "eval_every": 500,
+    "eval_batch": 512,
+    "probes": 1,
+    "probe_fills": 256,
+    "gate": 0,
+    "conflict_frac": 0.0,
+    "conflict_batch": 32,
+    "out": "/home/gathik/recfreq/results/runs/E13_h0.006_e0.17_L2_alibi_learn_attn_s2"
+  }
+}

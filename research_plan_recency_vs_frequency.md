@@ -1420,3 +1420,132 @@ The established facts are unchanged:
 - the clock is exact;
 - w is low in both encodings;
 - ALiBi's w at h = 0.0003 is immovable under every intervention tried.
+
+## 20. Validity band with stated variability (run 8). Design written 4 Nov 2026 00:20 IST, before any E13 or E14 run was trained
+
+**Why.** Sir wants a claim of the form "the formula works across this range, with this variability". The band from §19 (h ≈ 0.001–0.045, ε ≈ 0.05–0.25) rests on a yardstick chosen after the fact (≤ 1.51× the model's own fit). This round tests that band on fresh models, against a yardstick fixed in advance.
+
+**The law under test:** frozen, unchanged since §18 (h′ = 1.453·h^0.736; logit ε′ = −0.345 + 0.438·logit ε; a = 0.215, b = 1.433).
+
+**The band B:** h ∈ [0.001, 0.045], ε ∈ [0.05, 0.25], exactly the band stated on the follow-up slides.
+
+**Yardstick: a replicate.** At a setting with seeds i = 1..n (probe surfaces y_i over the 112 cells; law prediction p):
+- rep = median over seed pairs of RMSE(y_i, y_j): how far two runs of the same recipe differ.
+- err = median over seeds of RMSE(y_i, p): how far the law is from a run.
+- ratio = err / rep. ratio ≤ 1 means the law predicts a new model as well as rerunning the training does.
+- noise = per-cell seed sd (pooled); sys = the law's bias after removing seed noise from the seed mean.
+- Believed parameters from each model's own Bayes(h′, ε′) fit: dlh = log10(h_fit / h_law), dle = logit ε_fit − logit ε_law.
+
+Code: `recfreq/verify/validity.py` (written before any E13/E14 run; `baseline` mode on existing models, `score` mode for E13/E14).
+
+**Runs** (`scripts/make_e13_e14.py`, all on the college server):
+- **E13 (validation sweep):** 24 (h, ε) points by Latin hypercube in (log10 h, logit ε) over B (scipy, seed 20261104), 3 seeds, default recipe (2-layer attention-only ALiBi, width 128, 20k steps, V 64, K 16, N 256, Zipf keys, structured typos). 72 runs.
+- **E14 (recipe robustness)** at 4 fixed points in B, off every earlier grid: (0.0015, 0.08), (0.004, 0.18), (0.012, 0.12), (0.025, 0.22).
+  - E14_base: default recipe, 3 seeds (12 runs).
+  - E14_hp: one change at a time, 2 seeds: width 64 / 256; lr 5e-4 / 2e-3; batch 256; 40k steps (48 runs).
+  - E14_arch (exploratory): MLPs on; 3 layers (16 runs).
+- Order: E13, then E14_base and E14_hp, then E14_arch.
+
+**Predictions:** to be added below (§20.1) from the `baseline` numbers on existing models, before any E13 or E14 result is read.
+
+### 20.1 Predictions (written 4 Nov 2026 00:34 IST; E13 seed 0 is training, no E13 or E14 output read)
+
+**What the existing models say** (`validity baseline`; 49 default-recipe ALiBi models at the 18 earlier settings inside B):
+- Law R² per model: median 0.886, 10th percentile 0.72; 92% of models ≥ 0.7.
+- Law RMSE per model: median 0.73 nats, 90th percentile 1.00 nats.
+- Believed parameters: |dlh| ≤ 0.3 (h′ within ×2 of the law) in 94% of models; |dle| ≤ 0.6 in 94%.
+- Fit ratio (law RMSE / own-fit RMSE) ≤ 1.51 at 15 of 18 settings.
+- **The law's error is mostly bias, not seed noise.** At the setting level, sys has a median of 0.62 nats and noise 0.24; sys > noise at 17 of 18 settings. The replicate ratio err / rep has a median of 2.2. A rerun of the training predicts a model about twice as well as the law does.
+- Seeds agree closely on the believed parameters: the median within-setting sd of dlh is 0.024 (about ±6% in h′), and of dle 0.10.
+- 9 of the 18 settings are in the fitting grid; out of grid, R² is slightly lower (median 0.85).
+
+**Predictions for E13** (72 models at 24 new settings in B; graded on all models whose surface variance is ≥ 0.05):
+- **P1 (fit quality).** Median law R² ≥ 0.80, and ≥ 85% of models have R² ≥ 0.7.
+- **P2 (absolute error).** Median law RMSE ≤ 0.85 nats, and the 90th percentile ≤ 1.1 nats.
+- **P3 (beliefs).** |dlh| ≤ 0.3 in ≥ 90% of models; |dle| ≤ 0.6 in ≥ 85%.
+- **P4 (the §19 yardstick, now prospective).** Fit ratio ≤ 1.51 at ≥ 17 of the 24 settings (≥ 70%).
+- **P5 (what kind of error).**
+  - sys > noise at ≥ 80% of settings.
+  - The median replicate ratio is ≥ 1.5. That is, we predict the law does **not** reach replicate-level accuracy.
+  - The median within-setting sd of dlh is ≤ 0.05. So the law's miss is reproducible across seeds, not seed noise.
+- **Headline.** "The band holds" if P1–P4 all pass. P5 describes the variability and is graded separately.
+- **Expectation (not graded):** settings failing P4 sit mostly at the corner h ≥ 0.02, ε ≤ 0.1, where ε′ already drifts with h (§19).
+
+**Predictions for E14** (recipe robustness; per-variant medians over its 4 points × 2 seeds, against E14_base at the same points):
+- A variant **transfers** if:
+  - its median law RMSE is ≤ 1.25 × E14_base's;
+  - its median |dlh| is ≤ 0.3;
+  - its median |dle| is ≤ 0.6.
+- **Q1.** At least 4 of the 6 E14_hp variants transfer.
+- Expectations, not graded: lr and batch transfer; width 64 is the most likely to fail; 40k steps is uncertain (E10 moved x_ref at h = 0.01).
+- **E14_arch** (MLP on; 3 layers) is reported with the same scoring and no prediction.
+- **E14_base** points also count as 4 more in-band settings and are reported with E13, but they are not part of the P1–P5 grading.
+
+**After training:** survival and wide-window probes on every E13/E14 checkpoint (`recfreq.survival_probes`), so w can be measured on the new models. Reported without prediction.
+
+### 20.2 Run 8 results against §20.1 (4 Nov 2026; E13 graded 04:30 IST, E14 and final scoring 04:54 IST)
+
+All 148 runs finished on the college server (GPUs 0 and 1, 00:30–04:50 IST), with no failed attempts. No surface was flat (all var ≥ 0.05).
+
+**Scheduling deviation, not a grading change:** GPU 1's queue ran the exploratory E14_arch first rather than last. Every run finished, so the order changed nothing.
+
+**E13 (72 models, 24 new settings in B)** (`logs/score_s20.txt`, `verify_out/validity_settings.csv`)
+
+| Prediction | Result | Criterion | Verdict |
+|---|---|---|---|
+| P1 | median R² 0.892; 92% of models ≥ 0.7 | ≥ 0.80; ≥ 85% | **PASS** |
+| P2 | median RMSE 0.68 nats; 90th percentile 0.93 | ≤ 0.85; ≤ 1.1 | **PASS** |
+| P3 | \|dlh\| ≤ 0.3 in 99%; \|dle\| ≤ 0.6 in 100% | ≥ 90%; ≥ 85% | **PASS** |
+| P4 | fit ratio ≤ 1.51 at 19/24 settings | ≥ 17 | **PASS** |
+| P5 | sys > noise at 96%; replicate ratio 1.76; dlh sd 0.037 | ≥ 80%; ≥ 1.5; ≤ 0.05 | **PASS** |
+
+**Headline: the band holds.** Inside h ∈ [0.001, 0.045], ε ∈ [0.05, 0.25], the frozen law predicts a newly trained default-recipe model with:
+- R² 0.89 (median; 10th percentile 0.71);
+- RMSE 0.68 nats (90% of models ≤ 0.93);
+- h′ between ×0.80 and ×1.74 of the law in 90% of models (dlh 5th–95th percentile −0.10 to +0.24);
+- logit ε′ within ±0.5 (5th–95th percentile −0.38 to +0.51).
+
+**Variability.**
+- The law's error is a reproducible bias:
+  - bias 0.59 nats against seed noise 0.26 (setting medians);
+  - seeds agree on h′ to ±9% (median sd of dlh 0.037).
+- A rerun of the training predicts a model 1.76× better than the law does.
+- So the law is a good, stable description, not a replicate-level one.
+
+**Where it is weakest inside B (post hoc description, not graded):**
+- The 5 settings failing P4 are (0.001, 0.25), (0.0029, 0.058), (0.0032, 0.07), (0.036, 0.11) and (0.045, 0.13). They sit at both ends of the h range.
+- The ungraded expectation (failures at h ≥ 0.02, ε ≤ 0.1) was mostly wrong: 1 of 5.
+- R² is lowest at h ≤ 0.002 (0.36–0.80 per setting). The surfaces are flatter there (absolute RMSE 0.32–0.77), so R² is less informative. The three R² < 0.4 models are all (0.001, 0.25).
+
+**E14 (76 models; per-variant medians over 4 points × 2 seeds; E14_base RMSE 0.573)**
+
+| Variant | RMSE (× base) | \|dlh\| | \|dle\| | R² | Verdict |
+|---|---|---|---|---|---|
+| lr 5e-4 | 0.577 (×1.01) | 0.07 | 0.23 | 0.92 | transfers |
+| lr 2e-3 | 0.603 (×1.05) | 0.07 | 0.18 | 0.91 | transfers |
+| width 64 | 0.591 (×1.03) | 0.08 | 0.39 | 0.89 | transfers |
+| batch 256 | 0.612 (×1.07) | 0.11 | 0.25 | 0.89 | transfers |
+| 40k steps | 0.602 (×1.05) | 0.10 | 0.24 | 0.90 | transfers |
+| width 256 | 0.719 (×1.255) | 0.05 | 0.18 | 0.89 | does not transfer (just over ×1.25) |
+| MLP on (expl.) | 0.786 (×1.37) | 0.14 | 0.18 | 0.84 | does not transfer |
+| 3 layers (expl.) | 0.894 (×1.56) | 0.31 | 0.58 | 0.83 | does not transfer |
+
+- **Q1: PASS (5/6).**
+  - The constants are insensitive to learning rate (×4 range), batch size, training length (×2) and width 64.
+  - Width 256 misses by a hair on RMSE, though its beliefs are the closest to the law of any variant.
+- The expectation "width 64 most likely to fail" was wrong; it transfers.
+- Architecture (exploratory): MLPs and a third layer shift the surfaces (R² 0.83–0.84). A 3-layer model's believed parameters drift to the edge of the tolerances. The law is a 2-layer attention-only law.
+
+**Exploratory: evidence weight w on the new models** (`verify_out/evidence_weight_E13_E14.csv`, `figs_validity/evidence_weight_E13.png`):
+- E13 w rises smoothly with h, from about 0.2 at h ≈ 0.001 to 0.72 at h = 0.045.
+- Spearman(log h, w) is 0.91 over 72 models, against 0.64–0.74 on earlier models.
+- Median w is 0.35 (IQR 0.27–0.47), inside the 0.25–0.65 range that §19 said the ε′ law averages over.
+
+**Figures:** `figs_validity/validity.png` (band map, R² histogram, bias against noise per setting).
+
+**Status:**
+- The band claim is now prospective and passed every registered test.
+- Remaining limits:
+  - the law's bias is about 2× the seed-to-seed difference;
+  - it covers 2-layer attention-only ALiBi;
+  - the low-h edge (h < 0.001) is still only partly explained (§19).

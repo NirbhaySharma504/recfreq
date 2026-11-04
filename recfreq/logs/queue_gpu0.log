@@ -1,0 +1,178 @@
+148 runs to do
+00:30:28 start E13_h0.001_e0.25_L2_alibi_learn_attn_s0 (attempt 1)
+00:30:28 start E13_h0.0012_e0.18_L2_alibi_learn_attn_s0 (attempt 1)
+00:30:28 start E13_h0.0015_e0.12_L2_alibi_learn_attn_s0 (attempt 1)
+00:30:28 start E13_h0.0017_e0.21_L2_alibi_learn_attn_s0 (attempt 1)
+00:30:28 start E13_h0.0021_e0.2_L2_alibi_learn_attn_s0 (attempt 1)
+00:30:28 start E13_h0.0025_e0.16_L2_alibi_learn_attn_s0 (attempt 1)
+00:47:34 done  E13_h0.001_e0.25_L2_alibi_learn_attn_s0
+00:47:34 done  E13_h0.0012_e0.18_L2_alibi_learn_attn_s0
+00:47:34 done  E13_h0.0015_e0.12_L2_alibi_learn_attn_s0
+00:47:34 done  E13_h0.0017_e0.21_L2_alibi_learn_attn_s0
+00:47:34 start E13_h0.0029_e0.058_L2_alibi_learn_attn_s0 (attempt 1)
+00:47:34 start E13_h0.0032_e0.07_L2_alibi_learn_attn_s0 (attempt 1)
+00:47:34 start E13_h0.004_e0.084_L2_alibi_learn_attn_s0 (attempt 1)
+00:47:34 start E13_h0.0043_e0.093_L2_alibi_learn_attn_s0 (attempt 1)
+00:47:39 done  E13_h0.0021_e0.2_L2_alibi_learn_attn_s0
+00:47:39 done  E13_h0.0025_e0.16_L2_alibi_learn_attn_s0
+00:47:39 start E13_h0.0051_e0.11_L2_alibi_learn_attn_s0 (attempt 1)
+00:47:39 start E13_h0.006_e0.17_L2_alibi_learn_attn_s0 (attempt 1)
+01:04:32 done  E13_h0.0029_e0.058_L2_alibi_learn_attn_s0
+01:04:32 done  E13_h0.0032_e0.07_L2_alibi_learn_attn_s0
+01:04:32 done  E13_h0.004_e0.084_L2_alibi_learn_attn_s0
+01:04:32 done  E13_h0.0043_e0.093_L2_alibi_learn_attn_s0
+01:04:32 start E13_h0.0069_e0.15_L2_alibi_learn_attn_s0 (attempt 1)
+01:04:32 start E13_h0.0084_e0.073_L2_alibi_learn_attn_s0 (attempt 1)
+01:04:32 start E13_h0.01_e0.05_L2_alibi_learn_attn_s0 (attempt 1)
+01:04:32 start E13_h0.012_e0.081_L2_alibi_learn_attn_s0 (attempt 1)
+01:04:37 done  E13_h0.0051_e0.11_L2_alibi_learn_attn_s0
+01:04:37 done  E13_h0.006_e0.17_L2_alibi_learn_attn_s0
+01:04:37 start E13_h0.014_e0.13_L2_alibi_learn_attn_s0 (attempt 1)
+01:04:37 start E13_h0.016_e0.1_L2_alibi_learn_attn_s0 (attempt 1)
+01:21:34 done  E13_h0.0069_e0.15_L2_alibi_learn_attn_s0
+01:21:34 done  E13_h0.0084_e0.073_L2_alibi_learn_attn_s0
+01:21:34 done  E13_h0.01_e0.05_L2_alibi_learn_attn_s0
+01:21:34 done  E13_h0.012_e0.081_L2_alibi_learn_attn_s0
+01:21:34 done  E13_h0.014_e0.13_L2_alibi_learn_attn_s0
+01:21:34 done  E13_h0.016_e0.1_L2_alibi_learn_attn_s0
+01:21:34 start E13_h0.018_e0.056_L2_alibi_learn_attn_s0 (attempt 1)
+01:21:34 start E13_h0.022_e0.23_L2_alibi_learn_attn_s0 (attempt 1)
+01:21:34 start E13_h0.025_e0.066_L2_alibi_learn_attn_s0 (attempt 1)
+01:21:34 start E13_h0.032_e0.2_L2_alibi_learn_attn_s0 (attempt 1)
+01:21:34 start E13_h0.036_e0.11_L2_alibi_learn_attn_s0 (attempt 1)
+01:21:34 start E13_h0.045_e0.13_L2_alibi_learn_attn_s0 (attempt 1)
+01:38:37 done  E13_h0.018_e0.056_L2_alibi_learn_attn_s0
+01:38:37 done  E13_h0.022_e0.23_L2_alibi_learn_attn_s0
+01:38:37 done  E13_h0.025_e0.066_L2_alibi_learn_attn_s0
+01:38:37 done  E13_h0.032_e0.2_L2_alibi_learn_attn_s0
+01:38:37 done  E13_h0.036_e0.11_L2_alibi_learn_attn_s0
+01:38:37 done  E13_h0.045_e0.13_L2_alibi_learn_attn_s0
+01:38:37 start E13_h0.001_e0.25_L2_alibi_learn_attn_s1 (attempt 1)
+01:38:37 start E13_h0.0012_e0.18_L2_alibi_learn_attn_s1 (attempt 1)
+01:38:37 start E13_h0.0015_e0.12_L2_alibi_learn_attn_s1 (attempt 1)
+01:38:37 start E13_h0.0017_e0.21_L2_alibi_learn_attn_s1 (attempt 1)
+01:38:37 start E13_h0.0021_e0.2_L2_alibi_learn_attn_s1 (attempt 1)
+01:38:37 start E13_h0.0025_e0.16_L2_alibi_learn_attn_s1 (attempt 1)
+01:55:34 done  E13_h0.0012_e0.18_L2_alibi_learn_attn_s1
+01:55:34 done  E13_h0.0017_e0.21_L2_alibi_learn_attn_s1
+01:55:34 done  E13_h0.0021_e0.2_L2_alibi_learn_attn_s1
+01:55:34 done  E13_h0.0025_e0.16_L2_alibi_learn_attn_s1
+01:55:34 start E13_h0.0029_e0.058_L2_alibi_learn_attn_s1 (attempt 1)
+01:55:34 start E13_h0.0032_e0.07_L2_alibi_learn_attn_s1 (attempt 1)
+01:55:34 start E13_h0.004_e0.084_L2_alibi_learn_attn_s1 (attempt 1)
+01:55:34 start E13_h0.0043_e0.093_L2_alibi_learn_attn_s1 (attempt 1)
+01:55:39 done  E13_h0.001_e0.25_L2_alibi_learn_attn_s1
+01:55:39 done  E13_h0.0015_e0.12_L2_alibi_learn_attn_s1
+01:55:39 start E13_h0.0051_e0.11_L2_alibi_learn_attn_s1 (attempt 1)
+01:55:39 start E13_h0.006_e0.17_L2_alibi_learn_attn_s1 (attempt 1)
+02:12:24 done  E13_h0.0043_e0.093_L2_alibi_learn_attn_s1
+02:12:24 start E13_h0.0069_e0.15_L2_alibi_learn_attn_s1 (attempt 1)
+02:12:29 done  E13_h0.0029_e0.058_L2_alibi_learn_attn_s1
+02:12:29 done  E13_h0.0032_e0.07_L2_alibi_learn_attn_s1
+02:12:29 done  E13_h0.004_e0.084_L2_alibi_learn_attn_s1
+02:12:29 start E13_h0.0084_e0.073_L2_alibi_learn_attn_s1 (attempt 1)
+02:12:29 start E13_h0.01_e0.05_L2_alibi_learn_attn_s1 (attempt 1)
+02:12:29 start E13_h0.012_e0.081_L2_alibi_learn_attn_s1 (attempt 1)
+02:12:34 done  E13_h0.0051_e0.11_L2_alibi_learn_attn_s1
+02:12:34 done  E13_h0.006_e0.17_L2_alibi_learn_attn_s1
+02:12:34 start E13_h0.014_e0.13_L2_alibi_learn_attn_s1 (attempt 1)
+02:12:34 start E13_h0.016_e0.1_L2_alibi_learn_attn_s1 (attempt 1)
+02:29:20 done  E13_h0.0069_e0.15_L2_alibi_learn_attn_s1
+02:29:20 done  E13_h0.0084_e0.073_L2_alibi_learn_attn_s1
+02:29:20 done  E13_h0.012_e0.081_L2_alibi_learn_attn_s1
+02:29:20 start E13_h0.018_e0.056_L2_alibi_learn_attn_s1 (attempt 1)
+02:29:20 start E13_h0.022_e0.23_L2_alibi_learn_attn_s1 (attempt 1)
+02:29:20 start E13_h0.025_e0.066_L2_alibi_learn_attn_s1 (attempt 1)
+02:29:25 done  E13_h0.01_e0.05_L2_alibi_learn_attn_s1
+02:29:25 done  E13_h0.014_e0.13_L2_alibi_learn_attn_s1
+02:29:25 done  E13_h0.016_e0.1_L2_alibi_learn_attn_s1
+02:29:25 start E13_h0.032_e0.2_L2_alibi_learn_attn_s1 (attempt 1)
+02:29:25 start E13_h0.036_e0.11_L2_alibi_learn_attn_s1 (attempt 1)
+02:29:25 start E13_h0.045_e0.13_L2_alibi_learn_attn_s1 (attempt 1)
+02:45:50 done  E13_h0.022_e0.23_L2_alibi_learn_attn_s1
+02:45:50 start E13_h0.001_e0.25_L2_alibi_learn_attn_s2 (attempt 1)
+02:46:00 done  E13_h0.018_e0.056_L2_alibi_learn_attn_s1
+02:46:00 done  E13_h0.025_e0.066_L2_alibi_learn_attn_s1
+02:46:00 done  E13_h0.045_e0.13_L2_alibi_learn_attn_s1
+02:46:00 start E13_h0.0012_e0.18_L2_alibi_learn_attn_s2 (attempt 1)
+02:46:00 start E13_h0.0015_e0.12_L2_alibi_learn_attn_s2 (attempt 1)
+02:46:00 start E13_h0.0017_e0.21_L2_alibi_learn_attn_s2 (attempt 1)
+02:46:05 done  E13_h0.032_e0.2_L2_alibi_learn_attn_s1
+02:46:05 done  E13_h0.036_e0.11_L2_alibi_learn_attn_s1
+02:46:05 start E13_h0.0021_e0.2_L2_alibi_learn_attn_s2 (attempt 1)
+02:46:05 start E13_h0.0025_e0.16_L2_alibi_learn_attn_s2 (attempt 1)
+03:02:10 done  E13_h0.001_e0.25_L2_alibi_learn_attn_s2
+03:02:10 start E13_h0.0029_e0.058_L2_alibi_learn_attn_s2 (attempt 1)
+03:02:35 done  E13_h0.0015_e0.12_L2_alibi_learn_attn_s2
+03:02:35 start E13_h0.0032_e0.07_L2_alibi_learn_attn_s2 (attempt 1)
+03:02:40 done  E13_h0.0017_e0.21_L2_alibi_learn_attn_s2
+03:02:40 start E13_h0.004_e0.084_L2_alibi_learn_attn_s2 (attempt 1)
+03:02:45 done  E13_h0.0012_e0.18_L2_alibi_learn_attn_s2
+03:02:45 done  E13_h0.0025_e0.16_L2_alibi_learn_attn_s2
+03:02:45 start E13_h0.0043_e0.093_L2_alibi_learn_attn_s2 (attempt 1)
+03:02:45 start E13_h0.0051_e0.11_L2_alibi_learn_attn_s2 (attempt 1)
+03:02:50 done  E13_h0.0021_e0.2_L2_alibi_learn_attn_s2
+03:02:50 start E13_h0.006_e0.17_L2_alibi_learn_attn_s2 (attempt 1)
+03:18:45 done  E13_h0.0029_e0.058_L2_alibi_learn_attn_s2
+03:18:45 start E13_h0.0069_e0.15_L2_alibi_learn_attn_s2 (attempt 1)
+03:19:10 done  E13_h0.0032_e0.07_L2_alibi_learn_attn_s2
+03:19:10 start E13_h0.0084_e0.073_L2_alibi_learn_attn_s2 (attempt 1)
+03:19:15 done  E13_h0.004_e0.084_L2_alibi_learn_attn_s2
+03:19:15 start E13_h0.01_e0.05_L2_alibi_learn_attn_s2 (attempt 1)
+03:19:25 done  E13_h0.0043_e0.093_L2_alibi_learn_attn_s2
+03:19:25 start E13_h0.012_e0.081_L2_alibi_learn_attn_s2 (attempt 1)
+03:19:30 done  E13_h0.0051_e0.11_L2_alibi_learn_attn_s2
+03:19:30 done  E13_h0.006_e0.17_L2_alibi_learn_attn_s2
+03:19:30 start E13_h0.014_e0.13_L2_alibi_learn_attn_s2 (attempt 1)
+03:19:30 start E13_h0.016_e0.1_L2_alibi_learn_attn_s2 (attempt 1)
+03:35:30 done  E13_h0.0069_e0.15_L2_alibi_learn_attn_s2
+03:35:30 start E13_h0.018_e0.056_L2_alibi_learn_attn_s2 (attempt 1)
+03:35:55 done  E13_h0.0084_e0.073_L2_alibi_learn_attn_s2
+03:35:55 start E13_h0.022_e0.23_L2_alibi_learn_attn_s2 (attempt 1)
+03:36:00 done  E13_h0.01_e0.05_L2_alibi_learn_attn_s2
+03:36:00 start E13_h0.025_e0.066_L2_alibi_learn_attn_s2 (attempt 1)
+03:36:10 done  E13_h0.012_e0.081_L2_alibi_learn_attn_s2
+03:36:10 done  E13_h0.016_e0.1_L2_alibi_learn_attn_s2
+03:36:10 start E13_h0.032_e0.2_L2_alibi_learn_attn_s2 (attempt 1)
+03:36:10 start E13_h0.036_e0.11_L2_alibi_learn_attn_s2 (attempt 1)
+03:36:15 done  E13_h0.014_e0.13_L2_alibi_learn_attn_s2
+03:36:15 start E13_h0.045_e0.13_L2_alibi_learn_attn_s2 (attempt 1)
+03:52:22 done  E13_h0.018_e0.056_L2_alibi_learn_attn_s2
+03:52:22 start E14_h0.0015_e0.08_L2_alibi_learn_attn_s0 (attempt 1)
+03:52:47 done  E13_h0.022_e0.23_L2_alibi_learn_attn_s2
+03:52:47 start E14_h0.004_e0.18_L2_alibi_learn_attn_s0 (attempt 1)
+03:52:52 done  E13_h0.025_e0.066_L2_alibi_learn_attn_s2
+03:52:52 start E14_h0.012_e0.12_L2_alibi_learn_attn_s0 (attempt 1)
+03:53:02 done  E13_h0.032_e0.2_L2_alibi_learn_attn_s2
+03:53:02 done  E13_h0.036_e0.11_L2_alibi_learn_attn_s2
+03:53:02 start E14_h0.025_e0.22_L2_alibi_learn_attn_s0 (attempt 1)
+03:53:02 start E14_h0.0015_e0.08_L2_alibi_learn_attn_s1 (attempt 1)
+03:53:07 done  E13_h0.045_e0.13_L2_alibi_learn_attn_s2
+03:53:07 start E14_h0.004_e0.18_L2_alibi_learn_attn_s1 (attempt 1)
+04:09:20 done  E14_h0.0015_e0.08_L2_alibi_learn_attn_s0
+04:09:20 start E14_h0.012_e0.12_L2_alibi_learn_attn_s1 (attempt 1)
+04:09:45 done  E14_h0.004_e0.18_L2_alibi_learn_attn_s0
+04:09:45 start E14_h0.025_e0.22_L2_alibi_learn_attn_s1 (attempt 1)
+04:09:50 done  E14_h0.012_e0.12_L2_alibi_learn_attn_s0
+04:09:50 start E14_h0.0015_e0.08_L2_alibi_learn_attn_s2 (attempt 1)
+04:09:55 done  E14_h0.025_e0.22_L2_alibi_learn_attn_s0
+04:09:55 done  E14_h0.0015_e0.08_L2_alibi_learn_attn_s1
+04:09:55 start E14_h0.004_e0.18_L2_alibi_learn_attn_s2 (attempt 1)
+04:09:55 start E14_h0.012_e0.12_L2_alibi_learn_attn_s2 (attempt 1)
+04:10:00 done  E14_h0.004_e0.18_L2_alibi_learn_attn_s1
+04:10:00 start E14_h0.025_e0.22_L2_alibi_learn_attn_s2 (attempt 1)
+04:26:17 done  E14_h0.012_e0.12_L2_alibi_learn_attn_s1
+04:26:17 start E14_h0.0015_e0.08_L2_alibi_learn_attn_st40000_s1 (attempt 1)
+04:26:47 done  E14_h0.025_e0.22_L2_alibi_learn_attn_s1
+04:26:47 done  E14_h0.0015_e0.08_L2_alibi_learn_attn_s2
+04:26:47 start E14_h0.004_e0.18_L2_alibi_learn_attn_st40000_s1 (attempt 1)
+04:26:47 start E14_h0.012_e0.12_L2_alibi_learn_attn_st40000_s1 (attempt 1)
+04:26:52 done  E14_h0.004_e0.18_L2_alibi_learn_attn_s2
+04:26:52 done  E14_h0.012_e0.12_L2_alibi_learn_attn_s2
+04:26:52 start E14_h0.025_e0.22_L2_alibi_learn_attn_st40000_s1 (attempt 1)
+04:26:57 done  E14_h0.025_e0.22_L2_alibi_learn_attn_s2
+04:49:36 done  E14_h0.0015_e0.08_L2_alibi_learn_attn_st40000_s1
+04:49:51 done  E14_h0.004_e0.18_L2_alibi_learn_attn_st40000_s1
+04:49:51 done  E14_h0.012_e0.12_L2_alibi_learn_attn_st40000_s1
+04:49:56 done  E14_h0.025_e0.22_L2_alibi_learn_attn_st40000_s1
+queue finished
