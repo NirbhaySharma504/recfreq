@@ -1,0 +1,15 @@
+<section id="f_found" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:80px 112px;display:flex;flex-direction:column;gap:26px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Recap · what we had established before this week</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:56px;font-weight:600;line-height:1.1">The clock is right; the evidence is under-weighted</h2>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:24px;font-size:24px;line-height:1.45">
+<div style="background:#FFFFFF;border-radius:12px;padding:22px 26px;border-top:6px solid #2B59C3"><b>1 · Bayes-shaped.</b> Bayes with fitted beliefs is the best description for 75 of 84 models. Beyond 2, extra old copies barely matter, as in Bayes.</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:22px 26px;border-top:6px solid #2B59C3"><b>2 · The formula predicts.</b> On new models at new settings, R² 0.87. Unchanged across context length 192–512, V 32–128, K 8–32.</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:22px 26px;border-top:6px solid #8A93A6"><b>3 · Not universal.</b> RoPE needs its own constants; with random (unstructured) typos, models behave like plain counters.</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:22px 26px;border-top:6px solid #2E8B57"><b>4 · The clock is exact.</b> With one old copy and no conflict, the belief "the old value still holds" matches Bayes in all 124 models.</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:22px 26px;border-top:6px solid #D9822B"><b>5 · Recent copies are under-counted.</b> Each counts w× as much as in Bayes; for ALiBi w rises from ≈ 0.15 to 0.73 as h grows.</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:22px 26px;border-top:6px solid #D9822B"><b>6 · Why the formula works where it does.</b> The typo-rate law is the average of w over the fitting box; it holds where w stays near that average.</div>
+</div>
+<aside>Six things we knew before this week. The models are Bayes-shaped, and the formula predicts new models well and survives changes in task size, though not changes in encoding or typo structure. When we split Bayes's decision into its two parts, the time part is exactly right in every model we probed, and the whole deviation comes from the evidence part: each recent copy counts for less than in Bayes, and how much less depends on the switch rate. That explains why a formula fitted on one box works there and drifts outside it.</aside>
+</section>

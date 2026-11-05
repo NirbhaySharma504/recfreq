@@ -1,22 +1,37 @@
 {
   "v": 4,
   "lists": "css",
-  "title": "Recency vs Frequency: Validating the Formula",
+  "title": "Recency vs Frequency: Where We Are",
   "order": [
     "cover",
-    "v_question",
-    "v_design",
-    "v_result",
-    "v_band",
-    "v_variability",
-    "v_robust",
-    "v_weight",
-    "v_claim"
+    "b_question",
+    "b_formula",
+    "b_law",
+    "f_found",
+    "f_hyp",
+    "w_week",
+    "r_band",
+    "r_variability",
+    "r_robust",
+    "z_where"
   ],
   "sections": {
-    "s1": {"description": "What we set out to test", "start": "cover"},
-    "s2": {"description": "Results", "start": "v_result"},
-    "s3": {"description": "The claim", "start": "v_claim"}
+    "s1": {
+      "description": "Background",
+      "start": "b_question"
+    },
+    "s2": {
+      "description": "Findings and hypotheses so far",
+      "start": "f_found"
+    },
+    "s3": {
+      "description": "This week",
+      "start": "w_week"
+    },
+    "s4": {
+      "description": "Results and where we are",
+      "start": "r_band"
+    }
   },
   "faces": {
     "source-serif-4": {

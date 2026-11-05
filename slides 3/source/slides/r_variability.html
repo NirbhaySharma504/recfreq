@@ -1,0 +1,15 @@
+<section id="r_variability" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:72px 112px;display:flex;flex-direction:column;gap:22px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Result 2 · the variability</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:56px;font-weight:600;line-height:1.1">The formula's error is a steady bias, about twice the seed noise</h2>
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:10px 16px">
+<img src="img/bias_noise.png" alt="Seed noise and formula bias at each of the 24 new settings" style="width:100%;max-height:480px;object-fit:contain">
+</div>
+<div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:24px;font-size:24px;line-height:1.42">
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #8A93A6"><b>Seed noise ≈ 0.26 nats:</b> how much two training runs of the same recipe differ. No formula can beat this.</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #D9822B"><b>Formula bias ≈ 0.59 nats:</b> larger than the noise at 23 of 24 settings. Rerunning the training predicts a model about 1.8× better.</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #2B59C3"><b>But the bias is reproducible:</b> seeds agree on the believed switch rate to ±9%. The formula is stable, not noisy.</div>
+</div>
+<aside>This is the variability part of Sir's question. Grey bars are how much two seeds of the same recipe differ: about a quarter of a nat. Orange bars are how far the formula is from the average model, with that seed noise removed: about 0.6 nats. So the formula is not as good as simply rerunning the training. But its miss is the same from seed to seed, so it is a stable, systematic description, which is what we will claim.</aside>
+</section>

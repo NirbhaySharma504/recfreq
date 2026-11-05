@@ -1,0 +1,21 @@
+<section id="b_law" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:72px 112px;display:flex;flex-direction:column;gap:22px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Background · our main finding so far</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:56px;font-weight:600;line-height:1.1">Models reason like Bayes, but with the wrong beliefs</h2>
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:10px 12px">
+<img src="img/pe_control_nw3.png" alt="Model versus Bayes probe curves for three encodings and two depths in two worlds" style="width:100%;display:block">
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1.1fr;gap:24px;font-size:24px;line-height:1.42">
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #2B59C3">
+<b>Believed switch rate</b><br><b style="font-size:30px">h′ = 1.45 · h<sup>0.74</sup></b><br>above the true h: models expect more change than there is
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #D9822B">
+<b>Believed typo rate</b><br><b style="font-size:30px">logit ε′ = −0.35 + 0.44·logit ε</b><br>pulled toward about 0.25
+</div>
+<div style="background:#16213A;color:#F5F7FA;border-radius:12px;padding:18px 24px">
+<b style="color:#F2B27E">"The formula"</b> = Bayes run with (h′, ε′). Fitted on 12 settings of 2-layer ALiBi models; it is a fitted law, not a derived one.
+</div>
+</div>
+<aside>Solid lines are trained models, dashed is Bayes, colours are the number of old copies. The lines for 2, 4 and 8 old copies nearly overlap, as Bayes says they should, but the switch happens at the wrong gap. The best description of every model is Bayes run with the wrong switch rate and the wrong typo rate, and those wrong beliefs follow two simple laws. When we say "the formula" in the rest of this deck, we mean this: Bayes with h-prime and epsilon-prime from these two laws. It was fitted on 12 settings, so it is an empirical law, not something we derived.</aside>
+</section>

@@ -1,0 +1,17 @@
+<section id="r_robust" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:72px 112px;display:flex;flex-direction:column;gap:22px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Results 3 and 4 · robustness, and the mechanism on new models</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:54px;font-weight:600;line-height:1.1">Robust to training settings; the evidence story replicates</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="background:#FFFFFF;border-radius:12px;padding:10px 14px"><img src="img/robustness.png" alt="Formula error under each training change, relative to the default" style="width:100%"></div>
+<div style="background:#FFFFFF;border-radius:12px;padding:16px 22px;border-top:6px solid #2E8B57;font-size:23px;line-height:1.42">Learning rate (4× range), batch, training length and width 64 all stay within ×1.07. Width 256 just misses (×1.255 vs ×1.25). <b>MLPs or a 3rd layer do shift it</b>: the formula is for 2-layer attention-only models.</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="background:#FFFFFF;border-radius:12px;padding:10px 14px"><img src="img/evidence_e13.png" alt="Evidence weight against switch rate, earlier and new models" style="width:100%"></div>
+<div style="background:#FFFFFF;border-radius:12px;padding:16px 22px;border-top:6px solid #2B59C3;font-size:23px;line-height:1.42">On the 72 new models, w climbs smoothly from ≈ 0.2 to 0.72 across the range (Spearman 0.91, cleaner than before). Its typical value, 0.35, lies in the range (0.25–0.65) the typo-rate law averages over: <b>this is why the formula works here.</b></div>
+</div>
+</div>
+<aside>Left: changing the learning rate, batch size, training length or making the model narrower leaves the formula's error within 7 percent; the wider model misses our limit by half a percent. Changing the architecture does matter, so we only claim the formula for two-layer attention-only models. Right: we also measured the evidence weight on the new models. The trend from last time comes back more cleanly, and the typical weight sits in the range the typo-rate law was fitted on, which is the explanation for why the formula works inside this range and drifts outside it.</aside>
+</section>

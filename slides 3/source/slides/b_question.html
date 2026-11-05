@@ -1,0 +1,21 @@
+<section id="b_question" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:80px 112px;display:flex;flex-direction:column;gap:28px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Background · the question</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:56px;font-weight:600;line-height:1.1">Old and frequent, or new and rare?</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1.15fr;gap:32px;align-items:stretch">
+<div style="background:#16213A;color:#F5F7FA;border-radius:12px;padding:30px 36px;font-size:32px;line-height:1.7;display:flex;flex-direction:column;justify-content:center">
+<div>Harry <b>Potter</b> <span style="color:#9FB6E0">× 5, long ago</span></div>
+<div style="color:#8A93A6">· · · gap of G steps · · ·</div>
+<div>Harry <b style="color:#F2B27E">Potyer</b> <span style="color:#9FB6E0">× 1, just now</span></div>
+<div>Harry ___ ?</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px;font-size:25px;line-height:1.45">
+<div style="background:#FFFFFF;border-radius:12px;padding:20px 26px;border-left:8px solid #2B59C3"><b>If the world has typos</b> (rate <b>ε</b>): "Potyer" is a slip. Trust the many old copies. <b>Frequency wins.</b></div>
+<div style="background:#FFFFFF;border-radius:12px;padding:20px 26px;border-left:8px solid #D9822B"><b>If the world changes</b> (switch rate <b>h</b>): the name really changed. Trust the recent copy. <b>Recency wins.</b></div>
+<div style="background:#FFFFFF;border-radius:12px;padding:20px 26px;border-left:8px solid #2E8B57"><b>Our setup:</b> small transformers trained on key–value streams with both switches and typos. The data has an exact best answer (Bayes), so we can tell <i>how</i> each model decides, not just whether it is right.</div>
+</div>
+</div>
+<p style="margin:0;font-size:22px;color:#5A6377">Notation: h = switch rate · ε = typo rate · G = gap · n<sub>c</sub> = old copies · n<sub>w</sub> = recent copies · V = 64 possible values</p>
+<aside>The question came from Sir's Potter and Potyer example. When an induction head has seen a continuation often but long ago, and a conflicting one rarely but recently, which does it copy? Either answer can be right: if the world only has typos, frequency is right; if the world really changes, recency is right. So we built a task with both: each key's value is redrawn at rate h, and each copy is corrupted at rate epsilon. Because the data comes from known rules, there is an exact best answer, the Bayes predictor, and we can compare every trained model to it.</aside>
+</section>

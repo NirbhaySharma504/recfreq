@@ -1,0 +1,19 @@
+<section id="r_band" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:72px 112px;display:flex;flex-direction:column;gap:24px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Result 1 · 72 new models at 24 new settings</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:56px;font-weight:600;line-height:1.1">The range holds: every check we committed to passed</h2>
+</div>
+<div style="display:grid;grid-template-columns:1.2fr 1fr;gap:30px;align-items:start">
+<div style="background:#FFFFFF;border-radius:12px;padding:12px 16px">
+<img src="img/band_map.png" alt="Band map: 24 new settings, passing in blue and weaker in orange, with earlier settings as squares" style="width:100%">
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 22px;text-align:center"><div style="font-size:52px;font-weight:600;color:#2B59C3">0.89</div><div style="font-size:22px;line-height:1.35">median R²<br>92% of models ≥ 0.7</div></div>
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 22px;text-align:center"><div style="font-size:52px;font-weight:600;color:#2B59C3">0.68</div><div style="font-size:22px;line-height:1.35">nats median error<br>90% of models ≤ 0.93</div></div>
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 22px;text-align:center"><div style="font-size:44px;font-weight:600;color:#2B59C3;line-height:1.3">×0.8–1.7</div><div style="font-size:22px;line-height:1.35">believed h′ vs formula,<br>90% of models</div></div>
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 22px;text-align:center"><div style="font-size:52px;font-weight:600;color:#2B59C3">19 / 24</div><div style="font-size:22px;line-height:1.35">settings as good as<br>inside the fitting box</div></div>
+<div style="grid-column:1 / 3;background:#FFFFFF;border-radius:12px;padding:16px 22px;border-left:8px solid #D9822B;font-size:22px;line-height:1.4">The 5 weaker settings (orange) sit at both ends of the h range. The lowest-h corner has nearly flat curves, so low R² there means little.</div>
+</div>
+</div>
+<aside>The map shows the range as the dashed box. Squares are the settings from earlier rounds; circles are the 24 new ones, blue where the formula does as well as it does on its own fitting data, orange where it does worse. Across the 72 new models the formula, never refitted, explains a median 89 percent of the variation in the models' behaviour, with a typical error of 0.68 nats, and the models' believed switch rate lands within a factor of 0.8 to 1.7 of the formula's value for 90 percent of them. The weaker settings are at the two ends of the switch-rate range, not where we expected.</aside>
+</section>
