@@ -1,15 +1,29 @@
-<section id="f_found" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:80px 112px;display:flex;flex-direction:column;gap:26px">
+<section id="f_found" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:64px 112px 56px;display:flex;flex-direction:column;gap:20px">
 <div>
 <p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Recap · what we had established before this week</p>
-<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:56px;font-weight:600;line-height:1.1">The clock is right; the evidence is under-weighted</h2>
+<h2 style="margin:10px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:52px;font-weight:600;line-height:1.1">The time term is right; the evidence is under-weighted</h2>
 </div>
-<div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:24px;font-size:24px;line-height:1.45">
-<div style="background:#FFFFFF;border-radius:12px;padding:22px 26px;border-top:6px solid #2B59C3"><b>1 · Bayes-shaped.</b> Bayes with fitted beliefs is the best description for 75 of 84 models. Beyond 2, extra old copies barely matter, as in Bayes.</div>
-<div style="background:#FFFFFF;border-radius:12px;padding:22px 26px;border-top:6px solid #2B59C3"><b>2 · The formula predicts.</b> On new models at new settings, R² 0.87. Unchanged across context length 192–512, V 32–128, K 8–32.</div>
-<div style="background:#FFFFFF;border-radius:12px;padding:22px 26px;border-top:6px solid #8A93A6"><b>3 · Not universal.</b> RoPE needs its own constants; with random (unstructured) typos, models behave like plain counters.</div>
-<div style="background:#FFFFFF;border-radius:12px;padding:22px 26px;border-top:6px solid #2E8B57"><b>4 · The clock is exact.</b> With one old copy and no conflict, the belief "the old value still holds" matches Bayes in all 124 models.</div>
-<div style="background:#FFFFFF;border-radius:12px;padding:22px 26px;border-top:6px solid #D9822B"><b>5 · Recent copies are under-counted.</b> Each counts w× as much as in Bayes; for ALiBi w rises from ≈ 0.15 to 0.73 as h grows.</div>
-<div style="background:#FFFFFF;border-radius:12px;padding:22px 26px;border-top:6px solid #D9822B"><b>6 · Why the formula works where it does.</b> The typo-rate law is the average of w over the fitting box; it holds where w stays near that average.</div>
+<div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:20px;font-size:21px;line-height:1.38">
+<div style="background:#FFFFFF;border-radius:12px;padding:14px 22px;border-top:6px solid #2B59C3"><b>1 · Bayes-shaped.</b> Bayes with fitted beliefs best describes 75 of 84 models; extra old copies barely matter, as in Bayes.</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:14px 22px;border-top:6px solid #2B59C3"><b>2 · The formula predicts.</b> New models at new settings: R² 0.87. Holds for context 192–512, V 32–128, K 8–32.</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:14px 22px;border-top:6px solid #8A93A6"><b>3 · Not universal.</b> RoPE needs its own constants; with random typos, models act like plain counters.</div>
 </div>
-<aside>Six things we knew before this week. The models are Bayes-shaped, and the formula predicts new models well and survives changes in task size, though not changes in encoding or typo structure. When we split Bayes's decision into its two parts, the time part is exactly right in every model we probed, and the whole deviation comes from the evidence part: each recent copy counts for less than in Bayes, and how much less depends on the switch rate. That explains why a formula fitted on one box works there and drifts outside it.</aside>
+<div style="display:grid;grid-template-columns:1.25fr 1fr;gap:24px;align-items:stretch">
+<div style="background:#FFFFFF;border-radius:12px;padding:16px 22px;border-top:6px solid #2E8B57;display:flex;flex-direction:column;gap:10px">
+<div style="font-size:23px"><b>4 · The time term is exact.</b> Show one old copy and no recent copies, so only time matters:</div>
+<div style="text-align:center;font-size:27px;background:#F4F6FA;border-radius:8px;padding:8px">model's belief "old value still holds" &nbsp;=&nbsp; <b style="color:#2B59C3">(1−h)<sup>G</sup></b></div>
+<img src="img/survival.png" alt="Model belief that the old value holds, against distance, overlaid on exact Bayes, at three switch rates" style="width:100%">
+<div style="font-size:20px;color:#3A4560;line-height:1.35">Dashed = Bayes, dots = models. They overlap at every switch rate, in all 124 models probed (RoPE too).</div>
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:16px 22px;border-top:6px solid #D9822B;display:flex;flex-direction:column;gap:10px">
+<div style="font-size:23px"><b>5 · Each recent copy counts only w×.</b> The model's rule is Bayes with one extra factor:</div>
+<div style="text-align:center;font-size:23px;background:#F4F6FA;border-radius:8px;padding:8px">log(s/(1−s)) + log V − <b style="color:#D9822B">w</b>·n<sub>w</sub>·log((1−ε)/ε)</div>
+<img src="img/evidence_weight.png" alt="Evidence weight w against switch rate h; ALiBi rises from 0.15 to 0.73, Bayes is 1" style="width:70%;align-self:center">
+<div style="font-size:20px;color:#3A4560;line-height:1.35">Bayes is w = 1. In ALiBi, w rises from ≈ 0.15 to 0.73 as h grows.</div>
+</div>
+</div>
+<div style="background:#16213A;color:#F5F7FA;border-radius:12px;padding:14px 26px;font-size:22px;line-height:1.45">
+<b style="color:#F2B27E">6 · Why the formula works where it does.</b> Its typo law, log((1−ε′)/ε′) = 0.35 + <b>0.44</b>·log((1−ε)/ε), is a w ≈ 0.44 averaged over the fitting box (shaded). Where the real w stays near that, the formula fits; where w drifts away, it misses.
+</div>
+<aside>Six things we knew before this week. The first three are the big picture: models look like Bayes, the formula predicts new models well and survives changes in task size, but not changes in position encoding or typo structure. The two graphs are the key finding. Bayes's rule has a time part and an evidence part, and we can test them separately. Left: with one old copy and no recent copies, only the time part is in play, and the model's belief that the old value still holds sits on top of Bayes's (1−h)^G at every switch rate. So the time part, which we call the clock, is exactly right. Right: all of the deviation comes from the evidence part. Each recent copy counts only w times as much as in Bayes, and w depends on the switch rate: about 0.15 at very low h, rising to about 0.7. Bottom: this explains the formula. Its fitted typo law is the same as multiplying the evidence by about 0.44, which is w averaged over the box we fitted on. So the formula works where w stays near that average and drifts outside.</aside>
 </section>

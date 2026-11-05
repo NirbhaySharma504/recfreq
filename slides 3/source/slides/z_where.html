@@ -4,11 +4,11 @@
 <h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:56px;font-weight:600;line-height:1.1">A claim we can defend, and what is left</h2>
 </div>
 <div style="background:#16213A;color:#F5F7FA;border-radius:12px;padding:26px 36px;font-size:28px;line-height:1.55">
-For 2-layer attention-only ALiBi models with <b>h ∈ [0.001, 0.045]</b> and <b>ε ∈ [0.05, 0.25]</b>, the frozen formula predicts a newly trained model with <b style="color:#F2B27E">median R² 0.89</b> and <b style="color:#F2B27E">error 0.68 nats (90% ≤ 0.93)</b>, whatever the learning rate, batch size or training length. Models behave like Bayes with an exact clock and under-weighted recent evidence.
+For 2-layer attention-only ALiBi models with <b>h ∈ [0.001, 0.045]</b> and <b>ε ∈ [0.05, 0.25]</b>, the frozen formula predicts a newly trained model with <b style="color:#F2B27E">median R² 0.89</b> and <b style="color:#F2B27E">error 0.68 nats (90% ≤ 0.93)</b>, whatever the learning rate, batch size or training length. Models behave like Bayes with an exact time term and under-weighted recent evidence.
 </div>
 <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:24px;font-size:23px;line-height:1.45">
 <div style="background:#FFFFFF;border-radius:12px;padding:20px 26px;border-top:6px solid #2E8B57">
-<b>Explained</b><br>· the Bayes shape and the fitted law<br>· the exact clock<br>· why the law holds in the range and drifts outside (the evidence weight w)<br>· in ALiBi, the slope sets w (causal)
+<b>Explained</b><br>· the Bayes shape and the fitted law<br>· the exact time term (clock)<br>· why the law holds in the range and drifts outside (the evidence weight w)<br>· in ALiBi, the slope sets w (causal)
 </div>
 <div style="background:#FFFFFF;border-radius:12px;padding:20px 26px;border-top:6px solid #D9822B">
 <b>Limits we will state</b><br>· a steady bias, ≈ 2× seed noise<br>· 2-layer attention-only; MLPs and depth shift it<br>· typos only go one way in our data (Potter → Potyer, never back)<br>· below h = 0.001, only partly explained

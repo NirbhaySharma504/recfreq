@@ -61,7 +61,7 @@ log-odds(old : new) &nbsp;=&nbsp; <b style="color:#2B59C3">log( s / (1−s) )</b
 <div style="font-size:24px;color:#5A6377;margin-top:6px">s = (1−h)<sup>G</sup> = chance the old value survived the gap</div>
 </div>
 <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:24px;font-size:24px;line-height:1.42">
-<div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #2B59C3"><b style="color:#2B59C3">Time</b>: the longer the gap, the more likely a switch happened.</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #2B59C3"><b style="color:#2B59C3">Time (the "clock")</b>: the longer the gap, the more likely a switch happened. This is the h·G in the switch rule.</div>
 <div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #8A93A6"><b style="color:#5A6377">Prior</b>: a switch only helps the new value if the redraw lands on it, 1 time in V.</div>
 <div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #D9822B"><b style="color:#D9822B">Evidence</b>: each recent copy multiplies the odds by (1−ε)/ε, the odds it is clean rather than a typo (×9 at ε = 0.1).</div>
 </div>
@@ -101,20 +101,34 @@ Switch to the recent value when (small hG):<br><b style="font-size:28px">log(h·
 <div class="pageno">4 / 11</div>
 </section>
 </div>
-<div class="frame"><section id="f_found" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:80px 112px;display:flex;flex-direction:column;gap:26px">
+<div class="frame"><section id="f_found" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:64px 112px 56px;display:flex;flex-direction:column;gap:20px">
 <div>
 <p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Recap · what we had established before this week</p>
-<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:56px;font-weight:600;line-height:1.1">The clock is right; the evidence is under-weighted</h2>
+<h2 style="margin:10px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:52px;font-weight:600;line-height:1.1">The time term is right; the evidence is under-weighted</h2>
 </div>
-<div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:24px;font-size:24px;line-height:1.45">
-<div style="background:#FFFFFF;border-radius:12px;padding:22px 26px;border-top:6px solid #2B59C3"><b>1 · Bayes-shaped.</b> Bayes with fitted beliefs is the best description for 75 of 84 models. Beyond 2, extra old copies barely matter, as in Bayes.</div>
-<div style="background:#FFFFFF;border-radius:12px;padding:22px 26px;border-top:6px solid #2B59C3"><b>2 · The formula predicts.</b> On new models at new settings, R² 0.87. Unchanged across context length 192–512, V 32–128, K 8–32.</div>
-<div style="background:#FFFFFF;border-radius:12px;padding:22px 26px;border-top:6px solid #8A93A6"><b>3 · Not universal.</b> RoPE needs its own constants; with random (unstructured) typos, models behave like plain counters.</div>
-<div style="background:#FFFFFF;border-radius:12px;padding:22px 26px;border-top:6px solid #2E8B57"><b>4 · The clock is exact.</b> With one old copy and no conflict, the belief "the old value still holds" matches Bayes in all 124 models.</div>
-<div style="background:#FFFFFF;border-radius:12px;padding:22px 26px;border-top:6px solid #D9822B"><b>5 · Recent copies are under-counted.</b> Each counts w× as much as in Bayes; for ALiBi w rises from ≈ 0.15 to 0.73 as h grows.</div>
-<div style="background:#FFFFFF;border-radius:12px;padding:22px 26px;border-top:6px solid #D9822B"><b>6 · Why the formula works where it does.</b> The typo-rate law is the average of w over the fitting box; it holds where w stays near that average.</div>
+<div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:20px;font-size:21px;line-height:1.38">
+<div style="background:#FFFFFF;border-radius:12px;padding:14px 22px;border-top:6px solid #2B59C3"><b>1 · Bayes-shaped.</b> Bayes with fitted beliefs best describes 75 of 84 models; extra old copies barely matter, as in Bayes.</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:14px 22px;border-top:6px solid #2B59C3"><b>2 · The formula predicts.</b> New models at new settings: R² 0.87. Holds for context 192–512, V 32–128, K 8–32.</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:14px 22px;border-top:6px solid #8A93A6"><b>3 · Not universal.</b> RoPE needs its own constants; with random typos, models act like plain counters.</div>
 </div>
-<aside>Six things we knew before this week. The models are Bayes-shaped, and the formula predicts new models well and survives changes in task size, though not changes in encoding or typo structure. When we split Bayes's decision into its two parts, the time part is exactly right in every model we probed, and the whole deviation comes from the evidence part: each recent copy counts for less than in Bayes, and how much less depends on the switch rate. That explains why a formula fitted on one box works there and drifts outside it.</aside>
+<div style="display:grid;grid-template-columns:1.25fr 1fr;gap:24px;align-items:stretch">
+<div style="background:#FFFFFF;border-radius:12px;padding:16px 22px;border-top:6px solid #2E8B57;display:flex;flex-direction:column;gap:10px">
+<div style="font-size:23px"><b>4 · The time term is exact.</b> Show one old copy and no recent copies, so only time matters:</div>
+<div style="text-align:center;font-size:27px;background:#F4F6FA;border-radius:8px;padding:8px">model's belief "old value still holds" &nbsp;=&nbsp; <b style="color:#2B59C3">(1−h)<sup>G</sup></b></div>
+<img src="img/survival.png" alt="Model belief that the old value holds, against distance, overlaid on exact Bayes, at three switch rates" style="width:100%">
+<div style="font-size:20px;color:#3A4560;line-height:1.35">Dashed = Bayes, dots = models. They overlap at every switch rate, in all 124 models probed (RoPE too).</div>
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:16px 22px;border-top:6px solid #D9822B;display:flex;flex-direction:column;gap:10px">
+<div style="font-size:23px"><b>5 · Each recent copy counts only w×.</b> The model's rule is Bayes with one extra factor:</div>
+<div style="text-align:center;font-size:23px;background:#F4F6FA;border-radius:8px;padding:8px">log(s/(1−s)) + log V − <b style="color:#D9822B">w</b>·n<sub>w</sub>·log((1−ε)/ε)</div>
+<img src="img/evidence_weight.png" alt="Evidence weight w against switch rate h; ALiBi rises from 0.15 to 0.73, Bayes is 1" style="width:70%;align-self:center">
+<div style="font-size:20px;color:#3A4560;line-height:1.35">Bayes is w = 1. In ALiBi, w rises from ≈ 0.15 to 0.73 as h grows.</div>
+</div>
+</div>
+<div style="background:#16213A;color:#F5F7FA;border-radius:12px;padding:14px 26px;font-size:22px;line-height:1.45">
+<b style="color:#F2B27E">6 · Why the formula works where it does.</b> Its typo law, log((1−ε′)/ε′) = 0.35 + <b>0.44</b>·log((1−ε)/ε), is a w ≈ 0.44 averaged over the fitting box (shaded). Where the real w stays near that, the formula fits; where w drifts away, it misses.
+</div>
+<aside>Six things we knew before this week. The first three are the big picture: models look like Bayes, the formula predicts new models well and survives changes in task size, but not changes in position encoding or typo structure. The two graphs are the key finding. Bayes's rule has a time part and an evidence part, and we can test them separately. Left: with one old copy and no recent copies, only the time part is in play, and the model's belief that the old value still holds sits on top of Bayes's (1−h)^G at every switch rate. So the time part, which we call the clock, is exactly right. Right: all of the deviation comes from the evidence part. Each recent copy counts only w times as much as in Bayes, and w depends on the switch rate: about 0.15 at very low h, rising to about 0.7. Bottom: this explains the formula. Its fitted typo law is the same as multiplying the evidence by about 0.44, which is w averaged over the box we fitted on. So the formula works where w stays near that average and drifts outside.</aside>
 <div class="pageno">5 / 11</div>
 </section>
 </div>
@@ -125,7 +139,7 @@ Switch to the recent value when (small hG):<br><b style="font-size:28px">log(h·
 </div>
 <table style="border-collapse:collapse;font-size:24px;line-height:1.38;background:#FFFFFF;border-radius:12px;overflow:hidden;width:100%">
 <tr style="background:#16213A;color:#F5F7FA"><th style="padding:14px 20px;text-align:left;width:46%">Hypothesis</th><th style="padding:14px 20px;text-align:left;width:16%">Verdict</th><th style="padding:14px 20px;text-align:left">What we saw</th></tr>
-<tr><td style="padding:12px 20px">One ALiBi slope sets both the clock and the evidence weight</td><td style="padding:12px 20px;color:#2E8B57;font-weight:600">Supported, partial</td><td style="padding:12px 20px">Editing the slope moves w both ways (halve ×0.57, double ×1.33). But RoPE, with no slope, also under-weights at low h.</td></tr>
+<tr><td style="padding:12px 20px">One ALiBi slope sets both the time term (clock) and the evidence weight</td><td style="padding:12px 20px;color:#2E8B57;font-weight:600">Supported, partial</td><td style="padding:12px 20px">Editing the slope moves w both ways (halve ×0.57, double ×1.33). But RoPE, with no slope, also under-weights at low h.</td></tr>
 <tr style="background:#F7F8FB"><td style="padding:12px 20px">Conflicts are rare in training, so the weighing is poorly learned</td><td style="padding:12px 20px;color:#B8860B;font-weight:600">Partial</td><td style="padding:12px 20px">Rarity predicts which cells deviate on unseen settings; extra conflict data lifts w only part of the way.</td></tr>
 <tr><td style="padding:12px 20px">Context length, long-gap data or training length set the low-h edge</td><td style="padding:12px 20px;color:#C0392B;font-weight:600">Refuted</td><td style="padding:12px 20px">2× context, 9× long-gap data, 4× training: none moves it much.</td></tr>
 <tr style="background:#F7F8FB"><td style="padding:12px 20px">Copy heads count recent copies by attention mass</td><td style="padding:12px 20px;color:#C0392B;font-weight:600">Refuted</td><td style="padding:12px 20px">Matching the mass reproduces only 11% of the extra copies' effect.</td></tr>
@@ -143,7 +157,7 @@ Switch to the recent value when (small hG):<br><b style="font-size:28px">log(h·
 <h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:56px;font-weight:600;line-height:1.1">Turning "it works in this range" into a tested claim</h2>
 </div>
 <div style="background:#FFFFFF;border-radius:12px;padding:24px 32px;border-left:8px solid #2B59C3;font-size:27px;line-height:1.5">
-<b>Sir's ask:</b> "the formula works in this range, with this variability." Our range from last time (h ≈ 0.001–0.045, ε ≈ 0.05–0.25) came from a yardstick chosen after seeing the data, and had no number for variability.
+<b>Our ask:</b> "the formula works in this range, with this variability." Our range from last time (h ≈ 0.001–0.045, ε ≈ 0.05–0.25) came from a yardstick chosen after seeing the data, and had no number for variability.
 </div>
 <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:26px;font-size:25px;line-height:1.45">
 <div style="background:#FFFFFF;border-radius:12px;padding:22px 28px;border-top:6px solid #2E8B57"><b style="font-size:28px">1 · Commit first</b><br>Fixed the range and the pass marks, and timestamped them, before any model finished training.</div>
@@ -151,7 +165,7 @@ Switch to the recent value when (small hG):<br><b style="font-size:28px">log(h·
 <div style="background:#FFFFFF;border-radius:12px;padding:22px 28px;border-top:6px solid #2E8B57"><b style="font-size:28px">3 · Never refit</b><br>The formula is used exactly as frozen. Seed-to-seed differences give the yardstick for variability.</div>
 </div>
 <p style="margin:0;font-size:25px;color:#3A4560"><b>148 models</b> trained overnight on the college GPUs, none failed.</p>
-<aside>Sir asked for a concrete claim: the formula works in this range, with this variability. Our range from last time was honest but chosen after looking at the results. So this week we did it properly: we wrote down the range and what would count as passing, and timestamped it, before any model had finished training. Then we trained models at 24 settings nobody had used before, picked at random inside the range, three seeds each, and another set where we changed one training setting at a time. The formula was never refitted. Training three seeds per setting lets us measure how much models vary just from the random seed, which is the yardstick for variability.</aside>
+<aside>Our goal this week was a concrete claim: the formula works in this range, with this variability. Our range from last time was honest but chosen after looking at the results. So this week we did it properly: we wrote down the range and what would count as passing, and timestamped it, before any model had finished training. Then we trained models at 24 settings nobody had used before, picked at random inside the range, three seeds each, and another set where we changed one training setting at a time. The formula was never refitted. Training three seeds per setting lets us measure how much models vary just from the random seed, which is the yardstick for variability.</aside>
 <div class="pageno">7 / 11</div>
 </section>
 </div>
@@ -169,6 +183,7 @@ Switch to the recent value when (small hG):<br><b style="font-size:28px">log(h·
 <div style="background:#FFFFFF;border-radius:12px;padding:18px 22px;text-align:center"><div style="font-size:52px;font-weight:600;color:#2B59C3">0.68</div><div style="font-size:22px;line-height:1.35">nats median error<br>90% of models ≤ 0.93</div></div>
 <div style="background:#FFFFFF;border-radius:12px;padding:18px 22px;text-align:center"><div style="font-size:44px;font-weight:600;color:#2B59C3;line-height:1.3">×0.8–1.7</div><div style="font-size:22px;line-height:1.35">believed h′ vs formula,<br>90% of models</div></div>
 <div style="background:#FFFFFF;border-radius:12px;padding:18px 22px;text-align:center"><div style="font-size:52px;font-weight:600;color:#2B59C3">19 / 24</div><div style="font-size:22px;line-height:1.35">settings as good as<br>inside the fitting box</div></div>
+<div style="grid-column:1 / 3;background:#FFFFFF;border-radius:12px;padding:16px 22px;border-left:8px solid #2B59C3;font-size:22px;line-height:1.4"><b>nats</b> = error in the model's log-odds (natural log). 0.68 nats means the formula's odds (old : new) are off by about ×2, since e<sup>0.68</sup> ≈ 2.</div>
 <div style="grid-column:1 / 3;background:#FFFFFF;border-radius:12px;padding:16px 22px;border-left:8px solid #D9822B;font-size:22px;line-height:1.4">The 5 weaker settings (orange) sit at both ends of the h range. The lowest-h corner has nearly flat curves, so low R² there means little.</div>
 </div>
 </div>
@@ -185,11 +200,11 @@ Switch to the recent value when (small hG):<br><b style="font-size:28px">log(h·
 <img src="img/bias_noise.png" alt="Seed noise and formula bias at each of the 24 new settings" style="width:100%;max-height:480px;object-fit:contain">
 </div>
 <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:24px;font-size:24px;line-height:1.42">
-<div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #8A93A6"><b>Seed noise ≈ 0.26 nats:</b> how much two training runs of the same recipe differ. No formula can beat this.</div>
-<div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #D9822B"><b>Formula bias ≈ 0.59 nats:</b> larger than the noise at 23 of 24 settings. Rerunning the training predicts a model about 1.8× better.</div>
-<div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #2B59C3"><b>But the bias is reproducible:</b> seeds agree on the believed switch rate to ±9%. The formula is stable, not noisy.</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #8A93A6"><b>Grey · seed noise ≈ 0.26 nats</b> (odds ×1.3). Train the same recipe twice with different random seeds: the two models differ this much. Nothing can predict a model more closely.</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #D9822B"><b>Orange · formula bias ≈ 0.59 nats</b> (odds ×1.8). How far the formula is from the models once seed noise is removed. Bigger than grey at 23 of 24 settings.</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #2B59C3"><b>But it misses the same way every time.</b> All seeds land on the same believed switch rate (±9%). The miss is a fixed offset, not randomness.</div>
 </div>
-<aside>This is the variability part of Sir's question. Grey bars are how much two seeds of the same recipe differ: about a quarter of a nat. Orange bars are how far the formula is from the average model, with that seed noise removed: about 0.6 nats. So the formula is not as good as simply rerunning the training. But its miss is the same from seed to seed, so it is a stable, systematic description, which is what we will claim.</aside>
+<aside>This is the "with this variability" part of our claim. A nat is a unit of error in log-odds: 0.26 nats means the odds are off by a factor of about 1.3, and 0.59 nats by about 1.8. Grey bars are how much two seeds of the same recipe differ: about a quarter of a nat. Orange bars are how far the formula is from the average model, with that seed noise removed: about 0.6 nats. So the formula is not as good as simply rerunning the training. But its miss is the same from seed to seed, so it is a stable, systematic description, which is what we will claim.</aside>
 <div class="pageno">9 / 11</div>
 </section>
 </div>
@@ -201,11 +216,11 @@ Switch to the recent value when (small hG):<br><b style="font-size:28px">log(h·
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start">
 <div style="display:flex;flex-direction:column;gap:14px">
 <div style="background:#FFFFFF;border-radius:12px;padding:10px 14px"><img src="img/robustness.png" alt="Formula error under each training change, relative to the default" style="width:100%"></div>
-<div style="background:#FFFFFF;border-radius:12px;padding:16px 22px;border-top:6px solid #2E8B57;font-size:23px;line-height:1.42">Learning rate (4× range), batch, training length and width 64 all stay within ×1.07. Width 256 just misses (×1.255 vs ×1.25). <b>MLPs or a 3rd layer do shift it</b>: the formula is for 2-layer attention-only models.</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:16px 22px;border-top:6px solid #2E8B57;font-size:23px;line-height:1.42">Each bar: the formula's error after changing <b>one</b> training setting, divided by its error with the usual recipe (1.00 = no change). Learning rate, batch, training length and width 64 make it at most 7% worse. Width 256 sits right at our limit. <b>MLPs or a 3rd layer push it past</b>, so we claim only 2-layer attention-only models.</div>
 </div>
 <div style="display:flex;flex-direction:column;gap:14px">
 <div style="background:#FFFFFF;border-radius:12px;padding:10px 14px"><img src="img/evidence_e13.png" alt="Evidence weight against switch rate, earlier and new models" style="width:100%"></div>
-<div style="background:#FFFFFF;border-radius:12px;padding:16px 22px;border-top:6px solid #2B59C3;font-size:23px;line-height:1.42">On the 72 new models, w climbs smoothly from ≈ 0.2 to 0.72 across the range (Spearman 0.91, cleaner than before). Its typical value, 0.35, lies in the range (0.25–0.65) the typo-rate law averages over: <b>this is why the formula works here.</b></div>
+<div style="background:#FFFFFF;border-radius:12px;padding:16px 22px;border-top:6px solid #2B59C3;font-size:23px;line-height:1.42">Slide 5's w graph again, now with the 72 new models (blue) over the earlier ones (grey). w climbs smoothly from ≈ 0.2 to 0.72 across the range, more cleanly than before. Its typical value (0.35) sits inside the band the formula's built-in w ≈ 0.44 averages over (≈ 0.25–0.65): <b>the same reason as before for why the formula works here.</b></div>
 </div>
 </div>
 <aside>Left: changing the learning rate, batch size, training length or making the model narrower leaves the formula's error within 7 percent; the wider model misses our limit by half a percent. Changing the architecture does matter, so we only claim the formula for two-layer attention-only models. Right: we also measured the evidence weight on the new models. The trend from last time comes back more cleanly, and the typical weight sits in the range the typo-rate law was fitted on, which is the explanation for why the formula works inside this range and drifts outside it.</aside>
@@ -218,11 +233,11 @@ Switch to the recent value when (small hG):<br><b style="font-size:28px">log(h·
 <h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:56px;font-weight:600;line-height:1.1">A claim we can defend, and what is left</h2>
 </div>
 <div style="background:#16213A;color:#F5F7FA;border-radius:12px;padding:26px 36px;font-size:28px;line-height:1.55">
-For 2-layer attention-only ALiBi models with <b>h ∈ [0.001, 0.045]</b> and <b>ε ∈ [0.05, 0.25]</b>, the frozen formula predicts a newly trained model with <b style="color:#F2B27E">median R² 0.89</b> and <b style="color:#F2B27E">error 0.68 nats (90% ≤ 0.93)</b>, whatever the learning rate, batch size or training length. Models behave like Bayes with an exact clock and under-weighted recent evidence.
+For 2-layer attention-only ALiBi models with <b>h ∈ [0.001, 0.045]</b> and <b>ε ∈ [0.05, 0.25]</b>, the frozen formula predicts a newly trained model with <b style="color:#F2B27E">median R² 0.89</b> and <b style="color:#F2B27E">error 0.68 nats (90% ≤ 0.93)</b>, whatever the learning rate, batch size or training length. Models behave like Bayes with an exact time term and under-weighted recent evidence.
 </div>
 <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:24px;font-size:23px;line-height:1.45">
 <div style="background:#FFFFFF;border-radius:12px;padding:20px 26px;border-top:6px solid #2E8B57">
-<b>Explained</b><br>· the Bayes shape and the fitted law<br>· the exact clock<br>· why the law holds in the range and drifts outside (the evidence weight w)<br>· in ALiBi, the slope sets w (causal)
+<b>Explained</b><br>· the Bayes shape and the fitted law<br>· the exact time term (clock)<br>· why the law holds in the range and drifts outside (the evidence weight w)<br>· in ALiBi, the slope sets w (causal)
 </div>
 <div style="background:#FFFFFF;border-radius:12px;padding:20px 26px;border-top:6px solid #D9822B">
 <b>Limits we will state</b><br>· a steady bias, ≈ 2× seed noise<br>· 2-layer attention-only; MLPs and depth shift it<br>· typos only go one way in our data (Potter → Potyer, never back)<br>· below h = 0.001, only partly explained

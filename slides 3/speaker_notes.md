@@ -16,9 +16,9 @@ Bayes compares two stories. Story one: nothing changed, and the recent copies ar
 
 Solid lines are trained models, dashed is Bayes, colours are the number of old copies. The lines for 2, 4 and 8 old copies nearly overlap, as Bayes says they should, but the switch happens at the wrong gap. The best description of every model is Bayes run with the wrong switch rate and the wrong typo rate, and those wrong beliefs follow two simple laws. When we say "the formula" in the rest of this deck, we mean this: Bayes with h-prime and epsilon-prime from these two laws. It was fitted on 12 settings, so it is an empirical law, not something we derived.
 
-## 5. The clock is right; the evidence is under-weighted
+## 5. The time term is right; the evidence is under-weighted
 
-Six things we knew before this week. The models are Bayes-shaped, and the formula predicts new models well and survives changes in task size, though not changes in encoding or typo structure. When we split Bayes's decision into its two parts, the time part is exactly right in every model we probed, and the whole deviation comes from the evidence part: each recent copy counts for less than in Bayes, and how much less depends on the switch rate. That explains why a formula fitted on one box works there and drifts outside it.
+Six things we knew before this week. The first three are the big picture: models look like Bayes, the formula predicts new models well and survives changes in task size, but not changes in position encoding or typo structure. The two graphs are the key finding. Bayes's rule has a time part and an evidence part, and we can test them separately. Left: with one old copy and no recent copies, only the time part is in play, and the model's belief that the old value still holds sits on top of Bayes's (1−h)^G at every switch rate. So the time part, which we call the clock, is exactly right. Right: all of the deviation comes from the evidence part. Each recent copy counts only w times as much as in Bayes, and w depends on the switch rate: about 0.15 at very low h, rising to about 0.7. Bottom: this explains the formula. Its fitted typo law is the same as multiplying the evidence by about 0.44, which is w averaged over the box we fitted on. So the formula works where w stays near that average and drifts outside.
 
 ## 6. Why are recent copies under-counted?
 
@@ -26,7 +26,7 @@ Four explanations we tested for why recent copies count too little. The ALiBi sl
 
 ## 7. Turning "it works in this range" into a tested claim
 
-Sir asked for a concrete claim: the formula works in this range, with this variability. Our range from last time was honest but chosen after looking at the results. So this week we did it properly: we wrote down the range and what would count as passing, and timestamped it, before any model had finished training. Then we trained models at 24 settings nobody had used before, picked at random inside the range, three seeds each, and another set where we changed one training setting at a time. The formula was never refitted. Training three seeds per setting lets us measure how much models vary just from the random seed, which is the yardstick for variability.
+Our goal this week was a concrete claim: the formula works in this range, with this variability. Our range from last time was honest but chosen after looking at the results. So this week we did it properly: we wrote down the range and what would count as passing, and timestamped it, before any model had finished training. Then we trained models at 24 settings nobody had used before, picked at random inside the range, three seeds each, and another set where we changed one training setting at a time. The formula was never refitted. Training three seeds per setting lets us measure how much models vary just from the random seed, which is the yardstick for variability.
 
 ## 8. The range holds: every check we committed to passed
 
@@ -34,7 +34,7 @@ The map shows the range as the dashed box. Squares are the settings from earlier
 
 ## 9. The formula's error is a steady bias, about twice the seed noise
 
-This is the variability part of Sir's question. Grey bars are how much two seeds of the same recipe differ: about a quarter of a nat. Orange bars are how far the formula is from the average model, with that seed noise removed: about 0.6 nats. So the formula is not as good as simply rerunning the training. But its miss is the same from seed to seed, so it is a stable, systematic description, which is what we will claim.
+This is the "with this variability" part of our claim. A nat is a unit of error in log-odds: 0.26 nats means the odds are off by a factor of about 1.3, and 0.59 nats by about 1.8. Grey bars are how much two seeds of the same recipe differ: about a quarter of a nat. Orange bars are how far the formula is from the average model, with that seed noise removed: about 0.6 nats. So the formula is not as good as simply rerunning the training. But its miss is the same from seed to seed, so it is a stable, systematic description, which is what we will claim.
 
 ## 10. Robust to training settings; the evidence story replicates
 

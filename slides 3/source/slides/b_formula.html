@@ -8,7 +8,7 @@ log-odds(old : new) &nbsp;=&nbsp; <b style="color:#2B59C3">log( s / (1−s) )</b
 <div style="font-size:24px;color:#5A6377;margin-top:6px">s = (1−h)<sup>G</sup> = chance the old value survived the gap</div>
 </div>
 <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:24px;font-size:24px;line-height:1.42">
-<div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #2B59C3"><b style="color:#2B59C3">Time</b>: the longer the gap, the more likely a switch happened.</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #2B59C3"><b style="color:#2B59C3">Time (the "clock")</b>: the longer the gap, the more likely a switch happened. This is the h·G in the switch rule.</div>
 <div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #8A93A6"><b style="color:#5A6377">Prior</b>: a switch only helps the new value if the redraw lands on it, 1 time in V.</div>
 <div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #D9822B"><b style="color:#D9822B">Evidence</b>: each recent copy multiplies the odds by (1−ε)/ε, the odds it is clean rather than a typo (×9 at ε = 0.1).</div>
 </div>
