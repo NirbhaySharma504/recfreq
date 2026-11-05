@@ -1,0 +1,24 @@
+<section id="evidence" data-transition="fade" style="background:#F7F5EF;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:112px 128px 128px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#B35C14">Question 3 · the evidence part</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1;color:#14213D">Recent copies count for less, and h sets how much</h2>
+</div>
+<div style="display:flex;gap:56px;align-items:center">
+<div style="background:#FFFFFF;border:1px solid #E2DDD0;border-radius:16px;padding:16px">
+<img src="/_blob/c011263d4f3366ac59f5d536d164b687" alt="Evidence weight w against switch rate h. ALiBi models (blue) rise from about 0.2 at h = 0.0003 to about 1.3 at h = 0.1; RoPE models (orange) rise from 0.2 to about 1.1 by h = 0.01. A dashed line marks Bayes at w = 1." style="width:840px;height:560px;object-fit:contain">
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:28px;line-height:1.4;color:#3D4657"><b style="color:#14213D">w</b> = how far one extra recent copy moves the model’s switch point ÷ how far it moves Bayes’s. w = 1 is Bayes.</p>
+<table style="font-size:28px;color:#14213D">
+<tr><th style="width:50%">h</th><th style="width:50%">ALiBi w</th></tr>
+<tr><td>≤ 0.001</td><td>0.15</td></tr>
+<tr><td>0.003</td><td>0.30</td></tr>
+<tr><td>0.01</td><td>0.37</td></tr>
+<tr><td>0.03</td><td>0.67</td></tr>
+<tr><td>0.06</td><td>0.73</td></tr>
+</table>
+<p style="font-size:26px;line-height:1.4;color:#3D4657">RoPE: ≈ 1 from h ≈ 0.01, but also low at very low h (0.23).</p>
+</div>
+</div>
+<aside>Now the evidence part. For each model we find the gap where it switches from the old to the new value, for one, two, three, four and more recent copies. Each extra copy moves that switch point. We divide by how far the same extra copy moves Bayes's switch point, and call that w, the evidence weight. w = 1 means a recent copy counts exactly as much as Bayes says; w below 1 means it counts for less. The table gives the ALiBi medians: about 0.15 at the lowest switch rates, rising to about 0.7 by h = 0.06 and about 1 near h = 0.1. RoPE models give recent copies more weight and reach Bayes by h of about 0.01, but they also drop at very low h. So the models are not uniformly wrong about evidence: the weight they give it depends on the switch rate they were trained on. Bayes's evidence weight does not depend on h at all.</aside>
+</section>

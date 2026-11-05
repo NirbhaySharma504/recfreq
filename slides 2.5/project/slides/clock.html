@@ -1,0 +1,14 @@
+<section id="clock" data-transition="fade" style="background:#F7F5EF;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:112px 128px 128px;display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#2F5BD0">Question 3 · the time part</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1;color:#14213D">Every model’s clock is right</h2>
+</div>
+<div style="display:flex;justify-content:center;background:#FFFFFF;border:1px solid #E2DDD0;border-radius:16px;padding:20px">
+<img src="/_blob/f58a0c01a5de24a6dbfc01c7395fe65e" alt="Three panels at h = 0.0003, 0.01 and 0.1 (eps = 0.1): the model's belief that a value seen once d pairs ago still holds, against d, lies on top of the exact Bayes curve for ALiBi and RoPE models." style="width:1500px;height:460px;object-fit:contain">
+</div>
+<div style="display:flex;gap:32px">
+<p style="flex:2;font-size:28px;line-height:1.4;color:#3D4657">One old copy, d pairs back: how much the model still believes it (dots), against exact Bayes (dashed). Same picture in <b>all 124 models</b>: h 0.0003–0.15, ε 0.01–0.45, three encodings, median error ≤ 0.042.</p>
+<p style="flex:1;font-size:28px;line-height:1.4;color:#14213D;background:#E6ECF8;border-radius:16px;padding:24px 28px">Including every setting where the law fails.</p>
+</div>
+<aside>First the time part. We show the model a value once, d pairs back, and read off how much probability it still gives to that value, corrected for typos. The dashed line is exact Bayes, which is just (1 minus h) to the power d. Left: very rare switches, so the belief stays near 1 for 250 pairs. Middle: h = 0.01, the belief fades over about 100 pairs. Right: h = 0.1, it is gone after about 30 pairs. In each case the model sits on the Bayes curve, ALiBi and RoPE alike. This holds in all 124 models we probed, across the whole map, three position encodings, and also in the models trained with extra conflict data. The median error is at most 0.04. It holds even at the settings where the law fails, so the law's failures cannot come from the model's sense of time. That also ruled out our first hypothesis, that ALiBi's straight-line distance penalty bends the clock: it does not.</aside>
+</section>

@@ -1,0 +1,27 @@
+<section id="region_how" data-transition="fade" style="background:#F7F5EF;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:112px 128px 128px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#B35C14">Question 2 · how we searched</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1;color:#14213D">Freeze the law, train far outside its box, score it</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:16px;background:#FFFEFB;border:1px solid #E2DDD0;border-radius:16px;padding:40px">
+<p style="font-family:'Source Serif 4', Georgia, serif;font-size:56px;font-weight:600;color:#B35C14">1</p>
+<h3 style="font-size:32px;font-weight:600;color:#14213D">Freeze</h3>
+<p style="font-size:28px;line-height:1.4;color:#3D4657">Same constants as in the paper. No refitting.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;background:#FFFEFB;border:1px solid #E2DDD0;border-radius:16px;padding:40px">
+<p style="font-family:'Source Serif 4', Georgia, serif;font-size:56px;font-weight:600;color:#B35C14">2</p>
+<h3 style="font-size:32px;font-weight:600;color:#14213D">Train</h3>
+<p style="font-size:28px;line-height:1.4;color:#3D4657">25 new settings × 2 seeds: h from 0.0003 to 0.15, ε from 0.01 to 0.45. With the old ones, 44 settings.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;background:#FFFEFB;border:1px solid #E2DDD0;border-radius:16px;padding:40px">
+<p style="font-family:'Source Serif 4', Georgia, serif;font-size:56px;font-weight:600;color:#B35C14">3</p>
+<h3 style="font-size:32px;font-weight:600;color:#14213D">Score</h3>
+<p style="font-size:28px;line-height:1.4;color:#3D4657">Law error ÷ error of the best Bayes fit to that same model. ×1 = as good as any Bayes belief could be.</p>
+</div>
+</div>
+<div style="background:#EDEAE1;border-radius:16px;padding:28px 40px">
+<p style="font-size:28px;line-height:1.4;color:#14213D"><b>Yardstick:</b> inside its own fitting box the law scores about ×1.4, so “works” = ×1.5 or better. Our pre-registered ×1.25 was stricter than the law achieves even where it was fitted; we report both.</p>
+</div>
+<aside>To find the region we did the opposite of fitting. We froze the law with exactly the constants in the paper, and trained 50 new models at 25 settings far outside the box, two seeds each: switch rates from 0.0003 to 0.15, which is more than two decades, and typo rates from 0.01 to 0.45. Together with the older settings that gives 44. For each model we compare two errors over its 112 probe answers: the error of the frozen law, and the error of the best possible Bayes fit to that model, with the beliefs fitted freely. The ratio says how much worse the law is than the best a Bayes description could do. A ratio of 1 is perfect. Before the runs we said "works" means 1.25 or better. When the data came in, it turned out the law scores about 1.4 even inside the box it was fitted on, so 1.25 is stricter than the law is anywhere. So we judge it against itself: 1.5 or better, which is as good as it does inside its own box. We say clearly that this yardstick was chosen after seeing the data, and we report the strict version too: 8 of 44 settings pass it.</aside>
+</section>

@@ -1,0 +1,28 @@
+<section id="deriv_rules" data-transition="fade" style="background:#F7F5EF;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:112px 128px 128px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#B35C14">Question 1 · the derivation, step 1</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1;color:#14213D">Every term comes from two rules of the world</h2>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFEFB;border:1px solid #E2DDD0;border-radius:16px;padding:36px;border-top:8px solid #2F5BD0">
+<h3 style="font-size:34px;font-weight:600;color:#2F5BD0">Rule 1 · switches, rate h</h3>
+<p style="font-size:28px;line-height:1.45;color:#3D4657">At each step the value stays the same with chance 1 − h, or switches with chance h to a random one of V = 64 values.</p>
+<div style="display:flex;flex-direction:column;gap:10px;background:#EDEAE1;border-radius:12px;padding:20px 28px">
+<p style="font-size:28px;color:#14213D">No switch for G steps:  (1 − h)·(1 − h)·… = (1 − h)^G = <b>s</b></p>
+<p style="font-size:28px;color:#14213D">At least one switch:  <b>1 − s</b></p>
+<p style="font-size:28px;color:#14213D">A switch lands on one given value:  <b>1/V</b></p>
+</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFEFB;border:1px solid #E2DDD0;border-radius:16px;padding:36px;border-top:8px solid #B35C14">
+<h3 style="font-size:34px;font-weight:600;color:#B35C14">Rule 2 · typos, rate ε</h3>
+<p style="font-size:28px;line-height:1.45;color:#3D4657">Each time the value is shown, it is shown correctly with chance 1 − ε, or as a typo with chance ε. A typo of z always shows z + 1.</p>
+<div style="display:flex;flex-direction:column;gap:10px;background:#EDEAE1;border-radius:12px;padding:20px 28px">
+<p style="font-size:28px;color:#14213D">A copy of c shows c:  <b>1 − ε</b></p>
+<p style="font-size:28px;color:#14213D">A copy of c shows c + 1:  <b>ε</b></p>
+<p style="font-size:28px;color:#14213D">n independent typos in a row:  <b>ε^n</b></p>
+</div>
+</div>
+</div>
+<p style="font-size:28px;line-height:1.4;color:#3D4657">These are the rules we used to generate the training data, so Bayes knows them exactly. Everything on the next slides is these numbers multiplied together.</p>
+<aside>Before any formula, the two rules of our world, because every term in the derivation comes from them. Rule 1, switches: at every step the value stays the same with chance 1 minus h, or switches with chance h, and a switch picks a fresh value at random out of 64. So the chance of no switch over G steps is 1 minus h, multiplied G times: (1 minus h) to the G. We call that s. The chance of at least one switch is 1 minus s. And when a switch happens, the chance it lands on one particular value is 1 over V, 1 over 64. Rule 2, typos: every time the value is shown, it is shown correctly with chance 1 minus epsilon, or as a typo with chance epsilon, and a typo of z always shows z plus 1. So a copy of c shows c with chance 1 minus epsilon and shows c plus 1 with chance epsilon. Copies are independent, so several typos in a row multiply: epsilon to the n. These are exactly the rules that generated the training data, so the ideal Bayes reasoner knows them. Everything on the next slides is just these few numbers multiplied together.</aside>
+</section>

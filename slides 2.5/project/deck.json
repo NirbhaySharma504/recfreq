@@ -1,0 +1,25 @@
+{
+  "v": 4,
+  "createdOnFiles": {"v": 1, "at": "2026-10-28T20:23:53Z"},
+  "lists": "css",
+  "title": "Recency vs Frequency: Where the Law Holds",
+  "order": ["cover", "question", "setup", "before", "asked",
+            "deriv_rules", "deriv_story", "deriv_steps", "deriv_token",
+            "deriv_fixes", "deriv_check", "law_fit",
+            "region_how", "region_map", "region_table",
+            "split", "clock", "evidence", "inside", "slope",
+            "edges", "lowh",
+            "scorecard", "answers"],
+  "sections": {
+    "s1": {"description": "What we did before, and what was left open", "start": "cover"},
+    "s2": {"description": "The Bayes formula, derived again and checked", "start": "deriv_rules"},
+    "s3": {"description": "Where the law works", "start": "region_how"},
+    "s4": {"description": "Why it works inside the region", "start": "split"},
+    "s5": {"description": "Why it fails outside the region", "start": "edges"},
+    "s6": {"description": "Scorecard and answers", "start": "scorecard"}
+  },
+  "faces": {
+    "source-serif-4": {"family": "Source Serif 4", "href": "https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400..700&display=swap"},
+    "ibm-plex-sans": {"family": "IBM Plex Sans", "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"}
+  }
+}

@@ -1,0 +1,22 @@
+<section id="split" data-transition="fade" style="background:#F7F5EF;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:112px 128px 128px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#B35C14">Question 3 · the idea</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1;color:#14213D">Bayes’s decision has two parts. Measure each one.</h2>
+</div>
+<div style="display:flex;justify-content:center;background:#14213D;border-radius:16px;padding:40px">
+<p style="font-family:'Source Serif 4', Georgia, serif;font-size:52px;color:#F2EFE6">log-odds (old : new)  =  <span style="color:#7FA2F0">time</span>  −  <span style="color:#E8A25C">evidence</span></p>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFEFB;border:1px solid #E2DDD0;border-top:8px solid #2F5BD0;border-radius:16px;padding:36px">
+<h3 style="font-size:34px;font-weight:600;color:#2F5BD0">Time: log(1 + sV/(1 − s))</h3>
+<p style="font-size:28px;line-height:1.4;color:#3D4657">How likely the old value survived the gap. Set by h and G only.</p>
+<p style="font-size:28px;line-height:1.4;color:#14213D"><b>Measured with:</b> one old copy, d pairs back, then the query. No conflict at all.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFEFB;border:1px solid #E2DDD0;border-top:8px solid #B35C14;border-radius:16px;padding:36px">
+<h3 style="font-size:34px;font-weight:600;color:#B35C14">Evidence: n_w · log((1 − ε)/ε)</h3>
+<p style="font-size:28px;line-height:1.4;color:#3D4657">How strongly the recent copies say “it changed”. Set by ε and n_w only.</p>
+<p style="font-size:28px;line-height:1.4;color:#14213D"><b>Measured with:</b> how far one extra recent copy moves the switch point.</p>
+</div>
+</div>
+<aside>To explain why the law works, we went back to the derivation. Bayes's decision is a sum of two separate parts. The time part says how likely the old value is to have survived the gap. It depends only on h and the gap. The evidence part says how strongly the recent copies argue that the value changed. It depends only on epsilon and how many recent copies there are. Bayes simply adds them. A fitted law in h-prime and epsilon-prime mixes the two up, so we measured each part directly in every model. For time we built a new probe with no conflict at all: show a value once, wait d pairs, and ask the model how much it still believes that value. Comparing that with Bayes tells us whether the model's clock is right. For evidence we look at how far the switch point moves when we add one more recent copy, and compare with how far Bayes moves it.</aside>
+</section>

@@ -1,0 +1,15 @@
+<section id="setup" data-transition="fade" style="background:#F7F5EF;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:112px 128px 128px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#B35C14">Recap · the setup</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1;color:#14213D">A synthetic world where we know the right answer</h2>
+</div>
+<div style="display:flex;justify-content:center;background:#FFFFFF;border:1px solid #E2DDD0;border-radius:16px;padding:24px">
+<img src="/_blob/2ecd58c906eba850123237d3ba28c65d" alt="Top: a training stream of key-value pairs with one typo (17 becomes 18) and one switch (A's value becomes 42). Bottom: a conflict probe with n_c old copies of c, a gap of G pairs, n_w recent copies of w = c+1, then the query." style="width:1400px;height:504px;object-fit:contain">
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px">
+<p style="font-size:26px;line-height:1.4;color:#3D4657"><b>h</b> = switch rate: a key’s value really changes. <b>ε</b> = typo rate: a copy shows value + 1.</p>
+<p style="font-size:26px;line-height:1.4;color:#3D4657">An exact Bayes filter gives the ideal answer for every probe, so every model can be scored against it.</p>
+<p style="font-size:26px;line-height:1.4;color:#3D4657">Models: 2-layer transformers, width 128, 4 heads, learnable ALiBi slopes; RoPE as a control.</p>
+</div>
+<aside>The setup, in one picture. Training data are streams of key and value pairs: 16 keys, 64 values, 256 pairs per sequence, fresh random data every step so nothing is memorised. Each key has a hidden value. At every step it switches to a new random value with probability h, a real change. Each time it is shown, it can instead show a typo, the value plus one, with probability epsilon. Because we wrote the generator, an exact Bayes filter gives the best possible prediction. The measurement is the conflict probe at the bottom: n_c old copies of value c, then a gap of G pairs, then n_w recent copies of w = c plus 1, which looks exactly like a typo of c, then the query. We read off log p(c) over p(w) from the model and from Bayes. Positive means it trusts the old value, negative means the recent one. The models are small: 2 layers, width 128, 4 heads, about 150 thousand parameters, mostly attention-only, with a learnable ALiBi slope per head so we can read and edit how fast each head forgets.</aside>
+</section>

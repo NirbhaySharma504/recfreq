@@ -1,0 +1,25 @@
+<section id="answers" data-transition="fade" style="background:#14213d">
+  <div id="p05523ae82465r0-c3a8232c" style="position:absolute; top:112px; left:128px; width:1664px; height:116px; display:flex; flex-direction:column; gap:12px">
+    <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#e8a25c">Summary</p>
+    <h2 style="font-family:'Source Serif 4', Georgia, serif; font-size:64px; font-weight:600; line-height:1.1; color:#f2efe6">Answers to the four questions</h2>
+  </div>
+  <div id="p05523ae82465r1-c3a8232c" style="position:absolute; top:264px; left:128px; width:1664px; height:430px; display:grid; gap:24px; grid-template-columns:1fr 1fr">
+    <div style="display:flex; flex-direction:column; gap:12px; padding:32px 36px; background:#1f2e50; border-radius:16px">
+      <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; font-weight:600; color:#e8a25c">1 · Formula and derivation</h3>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:26px; line-height:1.4; color:#dce3ef">The logic is right; three terms were missing. The corrected formula is within 0.9% of exact Bayes. The law is a fit, not a derivation.</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:12px; padding:32px 36px; background:#1f2e50; border-radius:16px">
+      <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; font-weight:600; color:#e8a25c">2 · Where it works</h3>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:26px; line-height:1.4; color:#dce3ef">A band at h ≈ 0.001–0.045, ε ≈ 0.05–0.25, tilted toward higher ε at higher h. Stable across seeds.</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:12px; padding:32px 36px; background:#1f2e50; border-radius:16px">
+      <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; font-weight:600; color:#e8a25c">3 · Why inside</h3>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:26px; line-height:1.4; color:#dce3ef">The clock is exact; recent evidence gets weight w &lt; 1 that grows with h. The law averages w over its box.</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:12px; padding:32px 36px; background:#1f2e50; border-radius:16px">
+      <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; font-weight:600; color:#e8a25c">4 · Why outside</h3>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:26px; line-height:1.4; color:#dce3ef">w leaves that average, and the law has no h in ε′. High h and low ε explained; high ε seed-dependent; very low h partly.</p>
+    </div>
+  </div>
+  <aside>To sum up. One: the Bayes derivation's logic is right, but our formula missed three terms; the corrected one matches exact Bayes to within 1 percent, and the conclusions stand. The law for h-prime and epsilon-prime is a fit, not a derivation. Two: the law works on a band of switch rates from about 0.001 to 0.045 and typo rates from about 0.05 to 0.25, tilted so that higher switch rates need higher typo rates, and these edges do not move with a second seed. Three: inside the band it works because the models get time exactly right and give recent evidence a reduced weight, and within the fitting box that weight stays close to the average the law encodes. In ALiBi one slope sets both the clock and the weight, which is why the weight follows h. Four: outside the band the weight moves away from that average, and the law has no way to follow it. Two edges are fully explained, the high-typo edge is explained in direction but depends on the seed, and the very-low-h edge is only partly explained. The next experiment is to switch off one head at a time on the probes and see which heads carry the count of recent copies.</aside>
+</section>

@@ -1,0 +1,18 @@
+<section id="lowh" data-transition="fade" style="background:#F7F5EF;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:112px 128px 128px;display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#B35C14">Question 4 · the low-h edge</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1;color:#14213D">What we ruled out at very low h</h2>
+</div>
+<table style="font-size:25px;color:#14213D">
+<tr><th style="width:34%">Idea</th><th style="width:33%">Test</th><th style="width:33%">Result</th></tr>
+<tr><td>Clock breaks at long gaps</td><td>Survival probes to 248 pairs</td><td>Clock exact: ruled out</td></tr>
+<tr><td>Context too short</td><td>2× context (E8)</td><td>Switch point ×1.34 / ×1.13: minor</td></tr>
+<tr><td>Too few long gaps in training</td><td>4.6–9× more (E9, more keys)</td><td>×1.07–1.27: ruled out</td></tr>
+<tr><td>Undertrained</td><td>4× training (E10)</td><td>w 0.135 → 0.124: ruled out</td></tr>
+<tr><td>Only ALiBi’s slope</td><td>RoPE at low h (E11)</td><td>RoPE w also low (0.23)</td></tr>
+<tr><td>Conflicts rare in training</td><td>+10% conflict data (E12)</td><td>RoPE 0.23 → 0.48; ALiBi 0.14 → 0.14</td></tr>
+<tr><td>Copy heads count by attention</td><td>Match the attention of k copies</td><td>Gives 11% of the effect: ruled out</td></tr>
+</table>
+<p style="font-size:26px;line-height:1.4;color:#14213D;background:#EDEAE1;border-radius:12px;padding:20px 28px"><b>Still open:</b> where the network counts recent copies, and why ALiBi’s w at h = 0.0003 stays at ≈ 0.14 under everything we tried.</p>
+<aside>The low-h edge is where we were least successful, so here is everything we tested, each with a prediction written down first. Maybe the clock breaks at long gaps? No: survival probes show it is exact out to 248 pairs, even at h = 0.0003. Maybe the context is too short to see a switch? Doubling the context moved the switch point by only 13 to 34 percent. Maybe training has too few long gaps? Using more keys gives 5 to 9 times more long gaps, and the switch point barely moved. Maybe the models are undertrained? Four times longer training left w unchanged at the lowest h. Maybe it is ALiBi's slope? RoPE models have no slope, and their w is also low at very low h. Maybe conflicts are too rare in training to matter for the loss? Adding 10 percent conflict sequences doubled RoPE's w at h = 0.0003, but left ALiBi's exactly where it was. One caveat: those conflict sequences only reach gaps of 128, while Bayes switches much later at this h. Last, maybe the copy heads count recent copies by how much attention they give them? We gave one recent copy the attention of four copies, and that reproduced only 11 percent of the effect of four real copies, so the count is made somewhere else in the network. What is solid: the clock is exact, w is low for both encodings, and for ALiBi at h = 0.0003 nothing we tried moved it.</aside>
+</section>

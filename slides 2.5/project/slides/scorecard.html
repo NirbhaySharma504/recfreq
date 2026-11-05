@@ -1,0 +1,20 @@
+<section id="scorecard" data-transition="fade" style="background:#F7F5EF;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:112px 128px 128px;display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#B35C14">Honest status</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1;color:#14213D">What we predicted in advance, and how it went</h2>
+</div>
+<table style="font-size:25px;color:#14213D">
+<tr><th style="width:64%">Prediction (written before the result)</th><th style="width:36%">Verdict</th></tr>
+<tr><td>A “switch-point law” predicts the new models’ switch points</td><td>Pass (error factor 1.32)</td></tr>
+<tr><td>Rarer conflict patterns in training → bigger deviation, on new models</td><td>Pass (ρ = 0.66)</td></tr>
+<tr><td>w rises with h on models not yet looked at</td><td>Pass (ρ = 0.67)</td></tr>
+<tr><td>Slope surgery moves w: halve / double</td><td>Pass / narrow fail (×1.28 vs ×1.3)</td></tr>
+<tr><td>ALiBi’s straight-line distance penalty bends the clock</td><td>Fail: clock is right</td></tr>
+<tr><td>More conflict data in training removes the deviation</td><td>Fail: helps only partly</td></tr>
+<tr><td>Context, long gaps or training length set the low-h edge</td><td>Fail (all three)</td></tr>
+<tr><td>RoPE escapes the low-h drop</td><td>Fail (w = 0.23)</td></tr>
+<tr><td>Conflict data lifts w at very low h</td><td>Fail for ALiBi</td></tr>
+<tr><td>Copy heads count recent copies by attention</td><td>Fail (11% of the effect)</td></tr>
+</table>
+<aside>Here is the full scorecard of what we predicted before seeing results in this round of work. Four predictions passed. A switch-point law, which says models get the time scale right but weigh evidence at about a third, predicted the switch points of the new models to within a factor of about 1.3. How often a conflict pattern occurs in ordinary training data predicts, on unseen models, how far the model deviates from Bayes on that pattern. The rise of w with h held on models we had not looked at. And slope surgery moved w in the predicted direction, with doubling just missing the size we set. Six predictions failed, and each failure taught us something: the clock is not the problem; extra conflict data helps but does not remove the deviation; context length, long gaps and training length do not set the low-h edge; RoPE is not immune; conflict data does not lift ALiBi at very low h; and the copy heads' attention is not where the copies get counted. We keep all of these in the record.</aside>
+</section>

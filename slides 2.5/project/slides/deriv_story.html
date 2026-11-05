@@ -1,0 +1,26 @@
+<section id="deriv_story" data-transition="fade" style="background:#F7F5EF;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:112px 128px 128px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#B35C14">Question 1 · the derivation, step 2</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1;color:#14213D">Two stories can explain a probe</h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;background:#14213D;border-radius:16px;padding:28px 40px">
+<p style="font-size:32px;color:#F2EFE6">n_c copies of c  →  gap of G pairs  →  n_w copies of w  →  which comes next?</p>
+<p style="font-size:26px;color:#9FB0CC">We set w = c + 1: exactly what a typo of c looks like. So the w’s are either a real change or typos.</p>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFEFB;border:1px solid #E2DDD0;border-radius:16px;padding:36px;border-top:8px solid #2F5BD0">
+<h3 style="font-size:34px;font-weight:600;color:#2F5BD0">A · nothing changed; the w’s were typos</h3>
+<p style="font-size:28px;line-height:1.5;color:#3D4657">No switch in the gap: s<br>Each recent w is a typo of c: ε, n_w times</p>
+<p style="font-size:32px;font-weight:600;color:#14213D">Chance of A ≈ s · ε^(n_w)</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFEFB;border:1px solid #E2DDD0;border-radius:16px;padding:36px;border-top:8px solid #B35C14">
+<h3 style="font-size:34px;font-weight:600;color:#B35C14">B · the value switched to w</h3>
+<p style="font-size:28px;line-height:1.5;color:#3D4657">A switch, landing on w: (1 − s) · 1/V<br>Each recent w is a clean copy: 1 − ε, n_w times</p>
+<p style="font-size:32px;font-weight:600;color:#14213D">Chance of B ≈ (1 − s)/V · (1 − ε)^(n_w)</p>
+</div>
+</div>
+<div style="background:#EDEAE1;border-radius:16px;padding:24px 40px">
+<p style="font-size:28px;line-height:1.4;color:#14213D">The old copies of c are clean in both stories, so they count the same. Other stories need an extra switch or extra typos, so they are much rarer.</p>
+</div>
+<aside>Now the probe. The model sees some old copies of c, then a gap of G pairs, then some recent copies of w, and has to say which value comes next. We choose w as c plus 1 on purpose: that is exactly what a typo of c looks like, so the recent w's could be a real change, or just typos. Only two stories explain this. Story A: nothing changed, and the w's were typos. From rule 1, no switch has chance s. From rule 2, each w being a typo of c has chance epsilon, and there are n_w of them, so epsilon to the n_w. Multiply: s times epsilon to the n_w. Story B: the value switched to w during the gap. A switch has chance 1 minus s, and it has to land on w, 1 over V. Then each recent w is a clean copy, 1 minus epsilon each. Multiply: (1 minus s) over V, times (1 minus epsilon) to the n_w. In both stories the old copies of c are clean copies, so they count the same in both. Any other story, like two switches, or some old copies being typos, needs an extra rare event, so it is much less likely. The approximately-equal signs are there because we will add two small corrections at step 5.</aside>
+</section>

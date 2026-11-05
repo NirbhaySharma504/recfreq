@@ -1,0 +1,22 @@
+<section id="deriv_check" data-transition="fade" style="display:flex; flex-direction:column; gap:36px; padding:112px 128px 128px; background:#f7f5ef">
+  <div style="display:flex; flex-direction:column; gap:12px">
+    <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#b35c14">Question 1 · the answer</p>
+    <h2 style="font-family:'Source Serif 4', Georgia, serif; font-size:64px; font-weight:600; line-height:1.1; color:#14213d">The logic was right; the corrected formula matches exact Bayes</h2>
+  </div>
+  <div style="display:flex; flex-direction:column; gap:10px; padding:28px 40px; background:#14213d; border-radius:16px">
+    <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:26px; color:#9fb0cc">Paper: s/(1 − s) = R / V</p>
+    <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:36px; font-weight:600; color:#f2efe6">Corrected: s/(1 − s) = [ R · <span style="color:#e8a25c">(1 + ρ^(n_c))</span> · <span style="color:#e8a25c">(1 − ε)/(1 − 2ε)</span> <span style="color:#e8a25c">− 1</span> ] / V</p>
+  </div>
+  <div style="display:flex; flex-direction:row; gap:48px">
+    <div style="display:flex; flex-direction:column; gap:16px; flex:1.1">
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:26px; color:#3d4657">Where each added piece comes from</p>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:27px; line-height:1.4; color:#14213d"><span style="color:#b35c14"><b>(1 − ε)/(1 − 2ε)</b></span> · the model predicts the next token (step 4). The biggest one.</p>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:27px; line-height:1.4; color:#14213d"><span style="color:#b35c14"><b>− 1</b></span> · a switch can land back on c (step 5)</p>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:27px; line-height:1.4; color:#14213d"><span style="color:#b35c14"><b>1 + ρ^(n_c)</b></span> · the old copies could all be typos (step 5)</p>
+    </div>
+  </div>
+  <div style="display:flex; flex-direction:column; padding:24px 40px; background:#edeae1; border-radius:16px">
+    <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; line-height:1.4; color:#14213d"><b>Conclusions unchanged:</b> old copies don’t matter; each recent copy moves the switch earlier by a fixed step. Only the numbers change, mostly at high ε.</p>
+  </div>
+  <aside>So, is the derivation right? The two-story logic is right, and the paper's formula is what you get from step 3. The exact version adds the three pieces we just derived: the next-token head start from step 4, which is the biggest, and the two small corrections from step 5. To check, we compared both formulas with an exact Bayes calculation, a separate program that tracks all 64 possible values step by step with no approximations, on 920 cases over a wide range of h, epsilon and copy numbers. The corrected formula's switch gap is off by 0.9 percent in the median; the remaining error comes from the rare stories we dropped. The paper's formula is off by 47 percent, and by 77 percent when the typo rate is 0.3 or more, because the head start (1 minus epsilon) over (1 minus 2 epsilon) grows quickly as epsilon approaches one half. The conclusions do not change: old copies don't matter, and each recent copy moves the switch point earlier by a fixed step. Only the numbers change, mostly when typos are common.</aside>
+</section>

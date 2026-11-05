@@ -1,0 +1,24 @@
+<section id="before" data-transition="fade" style="background:#F7F5EF;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:112px 128px 128px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#B35C14">Recap · what we found before the talk</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1;color:#14213D">Models reason like Bayes, with the wrong beliefs</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:16px;background:#FFFEFB;border:1px solid #E2DDD0;border-radius:16px;padding:40px">
+<h3 style="font-size:32px;font-weight:600;color:#2F5BD0">Bayes shape</h3>
+<p style="font-size:28px;line-height:1.4;color:#3D4657">Bayes with fitted beliefs (h′, ε′) is the best rule for 75 of 84 models. Not a generic fit: R² 0.95 on models, 0.73 on random curves.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;background:#FFFEFB;border:1px solid #E2DDD0;border-radius:16px;padding:40px">
+<h3 style="font-size:32px;font-weight:600;color:#2F5BD0">A law for the beliefs</h3>
+<p style="font-size:28px;line-height:1.4;color:#3D4657">h′ = 1.45 · h^0.74<br>logit ε′ = −0.35 + 0.44·logit ε<br>Predicts held-out settings at R² 0.87.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;background:#FFFEFB;border:1px solid #E2DDD0;border-radius:16px;padding:40px">
+<h3 style="font-size:32px;font-weight:600;color:#2F5BD0">Cause: the fading slope</h3>
+<p style="font-size:28px;line-height:1.4;color:#3D4657">Rescaling the copy heads’ ALiBi slope moves h′ (56 of 57 models). The trained slope is the loss minimum in 85 of 85.</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#EDEAE1;border-radius:16px;padding:36px 40px">
+<p style="font-size:28px;line-height:1.4;color:#14213D"><b>Run 6, 63 new models.</b> Inside its range the frozen law holds (R² 0.89–0.94), and it transfers across context length, vocabulary and number of keys. Outside its range it held at only 1 of 4 settings.</p>
+</div>
+<aside>What we had at the time of the talk. First, behaviour: when we fit candidate rules to each model's 112 probe answers, the Bayes rule with fitted beliefs h-prime and epsilon-prime wins for 75 of 84 models. That fit is informative: on random smooth curves the same Bayes family only reaches R squared 0.73, against 0.95 on the models. Second, the beliefs are wrong in a regular way. Models act as if values switch more often than they do, and they pull the typo rate toward the middle. Two formulas describe this, and they predict models trained at a setting they never saw with R squared 0.87. Third, a cause: when we rescale the ALiBi slopes of the copy heads after training, h-prime moves with the slope, and the slope training picked is exactly the loss minimum. In run 6 we froze the law and tested it on 63 new models. It held inside its range and across task sizes, but at only one of four settings outside its range. That is what you picked up on.</aside>
+</section>

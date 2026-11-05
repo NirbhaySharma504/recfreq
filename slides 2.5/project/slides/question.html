@@ -1,0 +1,27 @@
+<section id="question" data-transition="fade" style="background:#F7F5EF;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:112px 128px 128px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#B35C14">Recap · the question</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1;color:#14213D">Old and frequent, or new and rare?</h2>
+</div>
+<div style="display:flex;gap:48px;flex:1">
+<div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:24px;background:#14213D;border-radius:16px;padding:56px">
+<p style="font-size:44px;color:#F2EFE6">Harry <b>Potter</b> ×5, long ago</p>
+<p style="font-size:32px;color:#9FB0CC">· · · much later · · ·</p>
+<p style="font-size:44px;color:#E8A25C">Harry <b>Potyer</b> ×1, just now</p>
+<p style="font-size:32px;color:#9FB0CC">· · ·</p>
+<p style="font-size:44px;color:#F2EFE6">Harry ___ ?</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:12px;background:#FFFEFB;border:1px solid #E2DDD0;border-radius:16px;padding:40px">
+<h3 style="font-size:36px;font-weight:600;color:#2F5BD0">If the world has typos</h3>
+<p style="font-size:30px;line-height:1.4;color:#3D4657">“Potyer” is a slip. Trust the many old copies: <b>Potter</b>. Frequency is right.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:12px;background:#FFFEFB;border:1px solid #E2DDD0;border-radius:16px;padding:40px">
+<h3 style="font-size:36px;font-weight:600;color:#B35C14">If the world changes</h3>
+<p style="font-size:30px;line-height:1.4;color:#3D4657">The name really changed. Trust the latest copy: <b>Potyer</b>. Recency is right.</p>
+</div>
+</div>
+</div>
+<p style="font-size:28px;line-height:1.4;color:#3D4657">Induction heads copy “what came after this token last time”. When past copies disagree, which one do they copy, and is that the right choice?</p>
+<aside>A quick reminder of the question. Induction heads are the attention circuit that copies what followed a token the last time it appeared. Suppose the context has Harry Potter five times, long ago, and Harry Potyer once, just now. Which should the model copy? There is no single right answer: it depends on the world. If copies are sometimes corrupted by typos, the five old copies are better evidence and frequency wins. If names really change over time, the recent copy is the current truth and recency wins. So the right behaviour depends on two rates: how often values really change, and how often copies are corrupted. That is what makes the question precise enough to test.</aside>
+</section>

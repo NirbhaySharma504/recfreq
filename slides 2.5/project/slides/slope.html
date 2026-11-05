@@ -1,0 +1,16 @@
+<section id="slope" data-transition="fade" style="display:flex; flex-direction:column; gap:36px; padding:112px 128px 128px; background:#f7f5ef">
+  <div style="display:flex; flex-direction:column; gap:12px">
+    <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#b35c14">Question 3 · why w follows h in ALiBi</p>
+    <h2 style="font-family:'Source Serif 4', Georgia, serif; font-size:64px; font-weight:600; line-height:1.1; color:#14213d">One slope does two jobs</h2>
+  </div>
+  <div style="display:flex; flex-direction:row; justify-content:center; padding:20px; background:#ffffff; border:1px solid #e2ddd0; border-radius:16px">
+    <img src="/_blob/9d3fe57a6f10382b28c0f41c26609bec" alt="Three panels. (a) The copy heads' ALiBi slope rises with the switch rate h (rho = 0.93). (b) The evidence weight w rises with the slope in ordinarily trained models (rho = 0.84); models trained with extra conflicts sit higher. (c) Slope surgery on 50 unseen models: halving the slope gives w x0.57, doubling gives x1.33." style="width:1290px; height:380px; object-fit:contain">
+  </div>
+  <div style="display:grid; gap:32px; grid-template-columns:1fr 1fr 1fr">
+    <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:26px; line-height:1.4; color:#3d4657"><b>(a)</b> Training sets the copy heads’ slope so the clock is right, so it grows with h (ρ = 0.93, 119 models).</p>
+    <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:26px; line-height:1.4; color:#3d4657"><b>(b)</b> The same slope sets w (ρ = 0.84). Bayes keeps time and evidence apart; ALiBi ties them.</p>
+    <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:26px; line-height:1.4; color:#3d4657"><b>(c)</b> Editing it in 50 unseen models: halve → w ×0.57; double → w ×1.33.</p>
+  </div>
+  <p style="padding:16px 28px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:26px; line-height:1.4; color:#14213d; background:#edeae1; border-radius:12px">A real cause, but not the whole one: RoPE has no slope, yet its w also drops at very low h.</p>
+  <aside>Why does w go up with h? For ALiBi models we found a mechanism. Each copy head has one learned number, its slope, which sets how fast its attention to a past copy fades with distance. Panel a: training sets that slope so the clock is right, so models trained with more switches get steeper slopes, very consistently. Panel b: the same slope also decides how much each extra recent copy tips the balance, so w rises with the slope. In Bayes, time and evidence are separate knobs; in an ALiBi head they are tied through one number. Panel c is the causal test. We took 50 trained models we had not used before and edited the slope by hand. Halving it made w fall to about 0.57 of its value, in almost every model. Doubling it raised w by about a third. We had pre-registered at least 30 percent for doubling; seed 0 gave 28 percent, a narrow miss, and seed 1 gave 37 percent. So this is a real causal channel. But it is not the whole story, because RoPE models, which have no slope at all, also give recent copies little weight at very low h.</aside>
+</section>

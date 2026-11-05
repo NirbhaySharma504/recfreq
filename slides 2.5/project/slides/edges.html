@@ -1,0 +1,14 @@
+<section id="edges" data-transition="fade" style="background:#F7F5EF;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:112px 128px 128px;display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#B35C14">Question 4 · why it fails outside</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1;color:#14213D">At every edge w moves; the clock never does</h2>
+</div>
+<table style="font-size:25px;color:#14213D">
+<tr><th style="width:17%">Edge</th><th style="width:31%">What the models do</th><th style="width:36%">Why</th><th style="width:16%">Status</th></tr>
+<tr><td>High h (≥ 0.045–0.06)</td><td>Believed typo rate falls (0.09 at ε = 0.1)</td><td>Slope and w rise toward 1; the law’s ε′ has no h, so it keeps the in-box value</td><td>Explained</td></tr>
+<tr><td>Low ε (≤ 0.02)</td><td>Recent copies under-counted: 0.3–1.7 nats each vs Bayes’s 1.8–4.2</td><td>w only 0.2–0.45 where Bayes’s evidence is strong</td><td>Explained</td></tr>
+<tr><td>High ε (≥ 0.35)</td><td>Over-counted: up to 0.26 nats per copy vs Bayes’s ≤ 0.07; they switch where Bayes never would</td><td>The loss barely pins it: two seeds with equal loss give w = 1.26 and 0.08</td><td>Direction explained; size varies by seed</td></tr>
+<tr><td>Very low h (≤ 0.002)</td><td>h′ stops at ≈ 0.01; w is smallest (ALiBi 0.14, RoPE 0.23)</td><td>Not the clock. Several causes ruled out (next slide)</td><td>Partly explained</td></tr>
+</table>
+<aside>Question 4. At every edge of the region, the clock is still right, and what changes is w. At high switch rates the slope is steep and w approaches 1, so recent copies get almost full Bayes weight and the believed typo rate drops toward the true one. The law has no h in its typo part, so it keeps predicting the in-box value and misses. At very low typo rates, Bayes says each recent copy is very strong evidence, 2 to 4 nats, but the models give it much less, so they look as if they believe in more typos. At very high typo rates it flips. Bayes says a recent copy is almost worthless, because it is nearly as likely to be a typo, so Bayes never switches inside our window. The models still give each copy some weight, so they switch, and no Bayes curve can do that. This regime barely affects the training loss, and it shows: two seeds at h = 0.01 and epsilon = 0.35 reach the same loss, but one weighs recent copies more than Bayes and the other almost ignores them. So the direction is explained, but the exact behaviour depends on the seed. The last row, very low h, is the one we could only partly explain; the next slide lists what we tested.</aside>
+</section>
