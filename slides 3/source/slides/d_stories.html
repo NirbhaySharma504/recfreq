@@ -1,0 +1,34 @@
+<section id="d_stories" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:72px 112px;display:flex;flex-direction:column;gap:22px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Background · deriving the formula, 1 of 3</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:54px;font-weight:600;line-height:1.1">Two rules of the world, two stories for a probe</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;font-size:23px;line-height:1.45">
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 26px;border-top:6px solid #2B59C3">
+<b style="color:#2B59C3">Rule 1 · switches, rate h.</b> Each step the value stays (1 − h) or switches to a random one of V = 64.<br>
+· no switch in G steps: <b>s = (1 − h)<sup>G</sup></b><br>
+· at least one switch: <b>1 − s</b> &nbsp;· lands on a given value: <b>1/V</b>
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 26px;border-top:6px solid #D9822B">
+<b style="color:#D9822B">Rule 2 · typos, rate ε.</b> Each time a value z is shown, it shows z (1 − ε) or the typo z + 1 (ε).<br>
+· a copy of c shows c: <b>1 − ε</b>; shows c + 1: <b>ε</b><br>
+· n independent typos: <b>ε<sup>n</sup></b>
+</div>
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:16px 26px;font-size:25px;text-align:center">
+<b>Probe:</b> n<sub>c</sub> copies of c &nbsp;→&nbsp; gap of G pairs &nbsp;→&nbsp; n<sub>w</sub> copies of w = c + 1 &nbsp;→&nbsp; which comes next?
+<div style="font-size:21px;color:#5A6377;margin-top:4px">w = c + 1 is exactly what a typo of c looks like, so the w's are either a real change or typos.</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;font-size:23px;line-height:1.45">
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 26px;border-left:8px solid #2B59C3">
+<b>A · nothing changed; the w's are typos</b><br>no switch: s &nbsp;× &nbsp;each w a typo of c: ε, n<sub>w</sub> times
+<div style="font-size:28px;margin-top:8px;text-align:center">P(A) ≈ <b>s · ε<sup>n<sub>w</sub></sup></b></div>
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 26px;border-left:8px solid #D9822B">
+<b>B · the value switched to w</b><br>a switch landing on w: (1 − s)/V &nbsp;× &nbsp;each w clean: 1 − ε, n<sub>w</sub> times
+<div style="font-size:28px;margin-top:8px;text-align:center">P(B) ≈ <b>(1 − s)/V · (1 − ε)<sup>n<sub>w</sub></sup></b></div>
+</div>
+</div>
+<p style="margin:0;font-size:22px;color:#3A4560">The old copies of c are clean in both stories, so they count the same and will cancel. Other stories need an extra switch or extra typos, so they are much rarer (the ≈; we add the small ones back on slide 5).</p>
+<aside>Every term in the formula comes from the two rules we used to generate the data. Rule 1, switches: each step the value stays with chance 1 minus h, or switches to a random one of 64 values. So no switch over G steps has chance (1 minus h) to the G, which we call s, and a switch lands on any particular value with chance 1 over V. Rule 2, typos: each time a value is shown it is shown correctly with chance 1 minus epsilon, or as the value plus one with chance epsilon. Now the probe: old copies of c, a gap, then recent copies of w, where w is c plus one, exactly what a typo of c looks like. Only two stories explain this well. A: nothing changed and the w's are typos, chance s times epsilon to the n_w. B: the value switched to w, chance (1 minus s) over V, and then the w's are clean copies, (1 minus epsilon) to the n_w. The old copies are clean in both stories, so they contribute the same factor to both, which is why they will cancel.</aside>
+</section>

@@ -5,10 +5,13 @@
   "order": [
     "cover",
     "b_question",
-    "b_formula",
+    "d_stories",
+    "d_solve",
+    "d_exact",
     "b_law",
     "f_found",
-    "f_hyp",
+    "f_edges",
+    "f_score",
     "w_week",
     "r_band",
     "r_variability",
@@ -17,12 +20,12 @@
   ],
   "sections": {
     "s1": {
-      "description": "Background",
+      "description": "Background: the question and the formula, derived",
       "start": "b_question"
     },
     "s2": {
       "description": "Findings and hypotheses so far",
-      "start": "f_found"
+      "start": "b_law"
     },
     "s3": {
       "description": "This week",

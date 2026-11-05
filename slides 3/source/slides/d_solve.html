@@ -1,0 +1,26 @@
+<section id="d_solve" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:72px 112px;display:flex;flex-direction:column;gap:22px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Background · deriving the formula, 2 of 3</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:54px;font-weight:600;line-height:1.1">Divide the stories: time, prior and evidence</h2>
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:22px 36px;font-size:30px;line-height:1.6;text-align:center">
+odds(old : new) = P(A) ÷ P(B) = <span style="color:#2B59C3">s/(1 − s)</span> · <span style="color:#5A6377">V</span> · <span style="color:#D9822B">(ε/(1 − ε))<sup>n<sub>w</sub></sup></span><br>
+<b>log-odds = <span style="color:#2B59C3">log( s/(1 − s) )</span> + <span style="color:#5A6377">log V</span> − <span style="color:#D9822B">n<sub>w</sub> · log( (1 − ε)/ε )</span></b>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:22px;font-size:23px;line-height:1.42">
+<div style="background:#FFFFFF;border-radius:12px;padding:16px 24px;border-top:6px solid #2B59C3"><b style="color:#2B59C3">Time (the "clock")</b>: how likely the old value survived the gap. Set by h and G only.</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:16px 24px;border-top:6px solid #8A93A6"><b style="color:#5A6377">Prior</b>: a switch only helps w if it lands on w, 1 time in V.</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:16px 24px;border-top:6px solid #D9822B"><b style="color:#D9822B">Evidence</b>: each recent copy multiplies the odds by (1 − ε)/ε, ×9 at ε = 0.1. Set by ε and n<sub>w</sub> only.</div>
+</div>
+<div style="display:grid;grid-template-columns:1.1fr 1fr;gap:24px;font-size:23px;line-height:1.45">
+<div style="background:#16213A;color:#F5F7FA;border-radius:12px;padding:18px 28px">
+Switch when log-odds &lt; 0. For small hG, s/(1 − s) ≈ 1/(hG):<br><b style="font-size:28px">log(h·G) &gt; log V − n<sub>w</sub>·log((1 − ε)/ε)</b><br>
+<span style="color:#C9D2E3">n<sub>c</sub> is gone: old copies say what the value was, not whether it changed.</span>
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 28px;border-left:8px solid #2E8B57">
+<b>Example</b>, h = 0.01, ε = 0.1. Bayes switches to w after a gap of about:<br>
+<b>200</b> pairs with one recent w · <b>55</b> with two · <b>8</b> with three.
+</div>
+</div>
+<aside>Which story wins? Divide A by B. That is the odds that the old value is still true; above one keep c, below one switch to w. The old copies cancel. Taking logs splits the odds into three parts. Time, which we will call the clock: how likely the old value survived the gap, which depends only on h and the gap. The prior: a switch only helps w if it lands on w, one time in 64. Evidence: each recent copy multiplies the odds by one minus epsilon over epsilon, nine at epsilon 0.1, which depends only on epsilon and the number of recent copies. Setting the log-odds to zero gives the switch rule; for small h times G it is the familiar form log(hG) greater than log V minus n_w log((1 minus epsilon) over epsilon). For example at h 0.01 and epsilon 0.1, one recent w should be ignored until the gap is about 200 pairs, two win after about 55, three after about 8.</aside>
+</section>

@@ -1,0 +1,20 @@
+<section id="d_exact" style="background:#F4F6FA;color:#16213A;font-family:'IBM Plex Sans', Arial, sans-serif;padding:72px 112px;display:flex;flex-direction:column;gap:22px">
+<div>
+<p style="margin:0;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2B59C3;font-weight:600">Background · deriving the formula, 3 of 3</p>
+<h2 style="margin:12px 0 0;font-family:'Source Serif 4', Georgia, serif;font-size:54px;font-weight:600;line-height:1.1">Three terms we had dropped; with them it is exact</h2>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:22px;font-size:22px;line-height:1.42">
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #D9822B"><b>1 · The next token can be a typo too</b> (the biggest).<br>The model predicts the next <i>copy</i>, not the hidden value. If the value is c, the next copy shows w with chance ε, so c needs a head start to tie:<div style="text-align:center;font-size:25px;margin:8px 0 4px"><b>P(c)/P(w) = (1 − ε)/(1 − 2ε)</b></div>1.13 at ε = 0.1, 1.75 at ε = 0.3.</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #2B59C3"><b>2 · A switch can land back on c.</b><br>Chance 1/V; the value is then still c, so story A gets s + (1 − s)/V.<div style="text-align:center;font-size:25px;margin:8px 0 4px"><b>time part: sV/(1 − s) → sV/(1 − s) + 1</b></div>Matters only when evidence is weak.</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 24px;border-top:6px solid #8A93A6"><b>3 · The old copies could all be typos.</b><br>In story B the old value may have been c − 1, every old copy a typo.<div style="text-align:center;font-size:25px;margin:8px 0 4px"><b>R → R·(1 + ρ<sup>n<sub>c</sub></sup>), ρ = ε/(1 − ε)</b></div>1.11 for one old copy at ε = 0.1; ≈ 1 for two or more.</div>
+</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:20px 32px;font-size:25px;line-height:1.6;text-align:center">
+Before: &nbsp;s/(1 − s) = R / V &nbsp;&nbsp;&nbsp;&nbsp;→&nbsp;&nbsp;&nbsp;&nbsp; Exact: &nbsp;<b>s/(1 − s) = [ R·(1 + ρ<sup>n<sub>c</sub></sup>)·(1 − ε)/(1 − 2ε) − 1 ] / V</b>
+<div style="font-size:21px;color:#5A6377">R = ((1 − ε)/ε)<sup>n<sub>w</sub></sup>, the evidence from the recent copies</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;font-size:23px;line-height:1.45">
+<div style="background:#16213A;color:#F5F7FA;border-radius:12px;padding:18px 28px"><b style="color:#F2B27E">Checked</b> against an exact Bayes filter (tracks all 64 values step by step) on 920 cases: corrected switch gap off by <b>0.9%</b> (median). The old formula: 47%, and 77% at ε ≥ 0.3.</div>
+<div style="background:#FFFFFF;border-radius:12px;padding:18px 28px;border-left:8px solid #2E8B57"><b>Conclusions unchanged:</b> old copies still don't matter, and each recent copy still moves the switch earlier by a fixed step. Only the numbers change, mostly at high ε.</div>
+</div>
+<aside>When we re-derived the formula, the two-story logic held, but three terms had been dropped. The biggest: a language model predicts the next token, and the next token is itself a copy that can be a typo. If the hidden value is c, the next token shows w with chance epsilon. So c leaks some of its chance to w and needs a head start just to tie: the hidden odds must be (1 minus epsilon) over (1 minus 2 epsilon), 1.13 at epsilon 0.1 and 1.75 at 0.3. Second, a switch can land back on c, with chance 1 over V, which adds one to the time part; this matters only when the evidence is weak. Third, in story B the old copies could all have been typos of c minus 1, which multiplies the evidence by one plus rho to the n_c; that is 1.11 for one old copy and essentially one for more. With all three, the formula matches an exact Bayes filter to 0.9 percent in the median over 920 cases; the old one was off by 47 percent. The conclusions do not change.</aside>
+</section>
