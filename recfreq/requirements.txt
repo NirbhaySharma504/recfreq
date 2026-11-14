@@ -1,0 +1,9 @@
+# Exact versions on the training server (Python 3.10.12, RTX A6000, CUDA 12.8). torch 2.11.0 CPU builds give the same
+# analysis outputs; training used torch 2.11.0+cu128.
+torch==2.11.0
+numpy==2.2.6
+scipy==1.15.3
+pandas==2.3.3
+pyarrow==25.0.1
+matplotlib==3.10.9
+pytest==9.1.1

@@ -57,13 +57,27 @@ See the audit report for details. Failed predictions are reported alongside the 
 
 ## Reproducing
 
+Environment (pinned to the training server's versions):
+
 ```bash
 cd recfreq
-python -m venv .venv && .venv/bin/pip install torch numpy scipy pandas pyarrow matplotlib pytest
+python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python -m pytest -q
-.venv/bin/python scripts/queue.py configs/E1.json --max-parallel 6
-.venv/bin/python -m recfreq.fit_rules results/runs --exp E1 --out figs_fit
-.venv/bin/python -m recfreq.verify.law_scope --out verify_out
 ```
 
-Training one model (20k steps, width 128) takes about 5–6 minutes on an RTX A6000.
+**Analysis, from the committed raw files (CPU only, no checkpoints needed).** `results/runs/<run>/` holds each model's probe outputs (`probes.parquet`, `survival.parquet`, …) and `done.json`. One command recomputes everything in `verify_out/`:
+
+```bash
+bash scripts/reproduce_analysis.sh
+.venv/bin/python scripts/compare_outputs.py <committed verify_out copy> verify_out
+```
+
+To check the committed numbers without overwriting them, run it in a copy of `recfreq/` with `verify_out/` emptied, then compare.
+
+**Training (GPU).** Every model is defined by a config in `configs/` and a seed; data and probes are generated from fixed seeds.
+
+```bash
+.venv/bin/python scripts/queue.py configs/E1.json --max-parallel 6
+```
+
+Training one model (20k steps, width 128) takes about 5–6 minutes on an RTX A6000. Retraining with the same seed reproduces a model's fitted beliefs to within a few percent (h′ within 4%, ε′ within 2%, probe-surface correlation ≥ 0.9998), not bit for bit, because bf16 GPU arithmetic is not fully deterministic. Checkpoints (`ckpt.pt`, about 400 MB in total) are not in the repository; the probe scripts (`survival_probes.py`, `mass_probe.py`, slope surgery) need them.
